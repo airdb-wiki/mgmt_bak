@@ -7,13 +7,11 @@ export default {
 
     if (wx.getStorageSync('env') === 'prod') {
       wx.setStorageSync('requestUrl', 'https://bbs.baobeihuijia.com/lastest/wechatapi')
-    } else if (wx.getStorageSync('env') === 'trial') {
+    } else {
       wx.setNavigationBarTitle({
         title: '宝贝回家-体验版'
       })
-      wx.setStorageSync('requestUrl', 'https://apiwechat.srehub.com/lastest/wechatapi')
-    } else {
-      wx.setStorageSync('requestUrl', 'https://apiwechat.srehub.com/lastest/wechatapi')
+      wx.setStorageSync('requestUrl', 'https://bbs.baobeihuijia.com/test/lastest/wechatapi')
     }
 
     // 填写自己的鉴权服务器地址
