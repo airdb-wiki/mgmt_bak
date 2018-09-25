@@ -1,0 +1,36 @@
+{
+  "pages": [
+      "pages/topic/main",
+      "pages/logs/main",
+      "pages/publish/main",
+      "pages/home/main",
+      "pages/profile/main"
+  ],
+  "window": {
+    "enablePullDownRefresh": true,
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "宝贝回家",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [ {
+        "pagePath": "pages/home/main",
+        "text": "首页",
+        "iconPath": "/static/images/home.png",
+        "selectedIconPath": "/static/images/home_active.png"
+      }, {
+        "pagePath": "pages/topic/main",
+        "text": "助力",
+        "iconPath": "/static/images/reading.png",
+        "selectedIconPath": "/static/images/reading_active.png"        
+      }, {
+        "pagePath": "pages/profile/main",
+        "text": "我的",
+        "iconPath": "/static/images/user.png",
+        "selectedIconPath": "/static/images/user_active.png"
+      }
+
+    ]
+  }
+}
