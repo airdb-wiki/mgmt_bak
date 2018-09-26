@@ -61,7 +61,7 @@
 
 
     <!-- 右下角加号新建 -->
-    <img src="/images/addition_fill.png" class="btn-post" @click="onPostClick"/>
+    <img src="/static/images/addition_fill.png" class="btn-post" @click="onPostClick"/>
     <div class="profile-page-footer">
       <vfooter></vfooter>
     </div>

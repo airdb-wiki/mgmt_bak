@@ -2,7 +2,7 @@
 <script>
 export default {
   created () {
-    var env = 'prod'
+    var env = 'test'
     wx.setStorageSync('env', env)
 
     if (wx.getStorageSync('env') === 'prod') {
@@ -11,7 +11,7 @@ export default {
       wx.setNavigationBarTitle({
         title: '宝贝回家-体验版'
       })
-      wx.setStorageSync('requestUrl', 'https://bbs.baobeihuijia.com/test/lastest/wechatapi')
+      wx.setStorageSync('requestUrl', 'https://wechat.baobeihuijia.com/lastest/wechatapi')
     }
 
     // 填写自己的鉴权服务器地址
