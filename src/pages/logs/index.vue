@@ -1,28 +1,53 @@
 <template>
-  <div>
-    <ul class="container log-list">
-      <li v-for="(log, index) in logs" :class="{ red: aa }" :key="index" class="log-item">
-        <card :text="(index + 1) + ' . ' + log"></card>
-      </li>
-    </ul>
+  <div id="app">
+    <navbar :tabs="tabs"></navbar>
+    <card :items="items"></card>
   </div>
 </template>
 
 <script>
 import { formatTime } from '@/utils/index'
-import card from '@/components/card'
+import card from '@/components/card1'
+import navbar from '@/components/navbar'
 
 export default {
   components: {
-    card
+    card,
+    navbar
   },
-
   data () {
     return {
-      logs: []
+      tabs: [
+        '精选', '故事', '影像', '数据', '计划'
+      ],
+      items: [
+        {
+          url: '/static/images/home/sls.png',
+          title: '一场斗狗的厮杀游戏 曝光了人类的残忍兽性',
+          team: '谷雨计划',
+          editor: '李娜',
+          time: '9月10日',
+          avatarUrl: '/static/images/home/sls.png'
+        },
+        {
+          url: '/static/images/home/vr.png',
+          title: '一场斗狗的厮杀游戏 曝光了人类的残忍兽性',
+          team: '谷雨实验室',
+          editor: '李娜',
+          time: '9月10日',
+          avatarUrl: '/static/images/home/vr.png'
+        },
+        {
+          url: '/static/images/home/xiaolong.jpg',
+          title: '一场斗狗的厮杀游戏 曝光了人类的残忍兽性',
+          team: '谷雨计划',
+          editor: '李娜',
+          time: '9月10日',
+          avatarUrl: '/static/images/home/xiaolong.jpg'
+        }
+      ]
     }
   },
-
   created () {
     const logs = (wx.getStorageSync('logs') || [])
     this.logs = logs.map(log => formatTime(new Date(log)))
@@ -30,14 +55,9 @@ export default {
 }
 </script>
 
-<style>
-.log-list {
-  display: flex;
-  flex-direction: column;
-  padding: 40rpx;
-}
+<style scoped>
 
-.log-item {
-  margin: 10rpx;
+#app{
+  background-color: #f2f2f2;
 }
 </style>

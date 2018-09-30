@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-for="(item,index) in items" :key="item.id" class="container">
-      <navigator v-if="index == 0" url="/pages/detail/main" hover-class="none">
+      <navigator v-if="index == 0" url="../detail/main" hover-class="none">
         <div style="margin-top: 30px;">
           <img v-bind:src="item.url" class="img"></img>
           <p>{{item.title}}</p>
@@ -10,11 +10,11 @@
             <text>{{item.editor}}</text>
             <text class="ha">{{item.team}}</text>
             <text class="ha">{{item.time}}</text>
-            <img src="/static/images/zhuan.png" class="img2"></img>
+            <img src="/static/images/home/zhuan.png" class="img2"></img>
           </div>
         </div> 
       </navigator>
-      <navigator v-else url="/pages/detail/main" hover-class="none">
+      <navigator v-else url="../detail/main" hover-class="none">
         <div>
           <img v-bind:src="item.url" class="img"></img>
           <p>{{item.title}}</p>
@@ -23,7 +23,7 @@
             <text>{{item.editor}}</text>
             <text class="ha">{{item.team}}</text>
             <text class="ha">{{item.time}}</text>
-            <img src="/static/images/zhuan.png" class="img2"></img>
+            <img src="/static/images/home/zhuan.png" class="img2"></img>
           </div>
         </div> 
       </navigator>
