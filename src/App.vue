@@ -24,6 +24,22 @@ export default {
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
 
+    // 登陆后隐藏登陆页
+    wx.getSetting({
+      success: res => {
+        // console.log(res)
+        console.log(res.authSetting['scope.userInfo'])
+        wx.setStorageSync('authSetting.userInfo', res.authSetting['scope.userInfo'])
+        wx.setStorageSync('authSetting.userLocation', res.authSetting['scope.userLocation'])
+        wx.setStorageSync('authSetting.address', res.authSetting['scope.address'])
+        wx.setStorageSync('authSetting.invoiceTitle', res.authSetting['scope.invoiceTitle'])
+        wx.setStorageSync('authSetting.werun', res.authSetting['scope.werun'])
+        wx.setStorageSync('authSetting.record', res.authSetting['scope.record'])
+        wx.setStorageSync('authSetting.writePhotosAlbum', res.authSetting['scope.writePhotosAlbum'])
+        wx.setStorageSync('authSetting.camera', res.authSetting['scope.camera'])
+      }
+    })
+
     // 用户信息
     wx.getUserInfo({
       success: (res) => {

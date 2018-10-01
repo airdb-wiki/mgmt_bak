@@ -10,7 +10,7 @@
             <text>{{item.editor}}</text>
             <text class="ha">{{item.team}}</text>
             <text class="ha">{{item.time}}</text>
-            <img src="/static/images/zhuan.png" class="img2"></img>
+            <img src="/static/images/home/zhuan.png" class="img2"></img>
           </div>
         </div> 
       </navigator>
@@ -23,7 +23,7 @@
             <text>{{item.editor}}</text>
             <text class="ha">{{item.team}}</text>
             <text class="ha">{{item.time}}</text>
-            <img src="/static/images/zhuan.png" class="img2"></img>
+            <img src="/static/images/home/zhuan.png" class="img2"></img>
           </div>
         </div> 
       </navigator>
