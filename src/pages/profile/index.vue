@@ -1,12 +1,15 @@
 <template>
   <div class="bh-profile-page">
     <div class="profile-page-main">
-      <div class="userinfo" @click="">
-        <div class="userinfo-avatar">
-          <image class="img" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover" />  
+      <div class="userinfo">
+        <div class="userinfo-avatar" v-if="isLogin" @click="openSetting">
+          <image class="img" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover" />
+        </div>
+        <div class="userinfo-avatar" v-else @click="openSetting">
+          <image class="img" src="/static/images/user_active.png" background-size="cover" />
         </div>
         <div v-if="!isLogin">
-            <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">微信登录</button>
+          <button class="weui-btn" type="primary" open-type="getUserInfo" lang="zh_CN" @getuserinfo="getUserInfo">微信快速登录</button>
         </div>
         <div v-else>
           <div class="userinfo-cont">
@@ -103,6 +106,23 @@ export default {
       }]
     }
   },
+  onLoad: function () {
+    console.log('===profile onload test ======:')
+    // 检测用户是否授权
+    wx.getSetting({
+      success: (res) => {
+        console.log('test === getSetting success', res)
+        if (res['authSetting']['scope.userInfo']) this.isLogin = true
+        else this.isLogin = false
+      },
+      fail: (res) => {
+        console.log('test === getSetting fail', res)
+      },
+      complate: (res) => {
+        console.log('test === getSetting complate')
+      }
+    })
+  },
   onShareAppMessage: function () {
     return {
       title: '公益项目',
@@ -122,6 +142,26 @@ export default {
     },
     clickHandle (msg, ev) {
       console.log('clickHandle:', msg, ev)
+    },
+    openSetting () {
+      console.log('test === openSetting')
+      var that = this
+      wx.openSetting({
+        success: (res) => {
+          if (!res.authSetting['scope.userInfo']) {
+            that.isLogin = false
+            console.log('test === openSetting isLogin=false')
+          }
+        }
+      })
+    },
+    getUserInfo: function (e) {
+      console.log('test === getUserInfo success', e.mp.detail.userInfo)
+      this.isLogin = true
+      if (!e.mp.detail.userInfo) {
+        this.isLogin = false
+        this.userInfo = e.mp.detail.userInfo
+      }
     }
   },
 
