@@ -1,92 +1,69 @@
 <template>
-  <div class="page">
-    <div class="page__hd">
-
-      <!--
-      <div class="page__title">Search</div>
-      <div class="page__desc">搜索栏</div>
-      -->
-    </div>
-    <div class="page__bd">
-      <div class="weui-search-bar">
-        <div class="weui-search-bar__form">
-          <div class="weui-search-bar__box">
-            <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-            <input type="text" class="weui-search-bar__input" placeholder="搜索" v-model="inputVal" :focus="inputShowed" @input="inputTyping" />
-            <div class="weui-icon-clear" v-if="inputVal.length > 0" @click="clearInput">
-              <icon type="clear" size="14"></icon>
-            </div>
-          </div>
-          <label class="weui-search-bar__label" :hidden="inputShowed" @click="showInput">
-            <icon class="weui-icon-search" type="search" size="14"></icon>
-            <div class="weui-search-bar__text">搜索</div>
-          </label>
-        </div>
-        <div class="weui-search-bar__cancel-btn" :hidden="!inputShowed" @click="hideInput">取消</div>
-      </div>
-      <div class="weui-cells searchbar-result" v-if="inputVal.length > 0">
-        <navigator url="" class="weui-cell" hover-class="weui-cell_active">
-          <div class="weui-cell__bd">
-            <div>实时搜索文本</div>
-          </div>
-        </navigator>
-        <navigator url="" class="weui-cell" hover-class="weui-cell_active">
-          <div class="weui-cell__bd">
-            <div>实时搜索文本</div>
-          </div>
-        </navigator>
-        <navigator url="" class="weui-cell" hover-class="weui-cell_active">
-          <div class="weui-cell__bd">
-            <div>实时搜索文本</div>
-          </div>
-        </navigator>
-        <navigator url="" class="weui-cell" hover-class="weui-cell_active">
-          <div class="weui-cell__bd">
-            <div>实时搜索文本</div>
-          </div>
-        </navigator>
-      </div>
-    </div>
+  <div id="canva">
+    <canvas canvas-id="myCanvas" style="border: 1px solid;"/>
+    <button @click="ca">按钮</button>
+    <img :src="img" :open-type="getUserInfo">
   </div>
 </template>
 
 <script>
-export default {
+
+export default{
+  name: 'canva',
   data () {
     return {
-      inputShowed: false,
-      inputVal: ''
+      img: '/static/images/home/vr.png'
     }
   },
   methods: {
-    showInput () {
-      this.inputShowed = true
-    },
-    hideInput () {
-      this.inputVal = ''
-      this.inputShowed = false
-    },
-    clearInput () {
-      this.inputVal = ''
-    },
-    inputTyping (e) {
-      console.log(e)
-      this.inputVal = e.mp.detail.value
-      console.log('输入信息为：' + e.mp.detail.value)
+    ca () {
+      const ctx = wx.createCanvasContext('myCanvas')
+      // 选择图片作为背景
+      wx.chooseImage({
+        success: function (res) {
+          console.log(res.tempFilePaths[0])
+          ctx.drawImage(res.tempFilePaths[0], 0, 0, 80, 80)
+          ctx.setFontSize(18)
+          ctx.fillText('Welcome', 100, 50)
+          ctx.setTextAlign('align')
+          ctx.draw(false, function () {
+            wx.canvasToTempFilePath({
+              x: 0,
+              y: 0,
+              width: 80,
+              height: 80,
+              destWidth: 80,
+              destHeight: 80,
+              canvasId: 'myCanvas',
+              fileType: 'jpg',
+              success: function (res) {
+                wx.saveImageToPhotosAlbum({
+                  filePath: res.tempFilePath,
+                  success (res) {
+                    wx.showToast({
+                      title: '保存成功'
+                    })
+                  },
+                  fail () {
+                    wx.hideLoading()
+                  }
+                })
+              }
+            })
+          })
+        }
+      })
     }
+  },
+  mounted () {
+    const ctx = wx.createCanvasContext('myCanvas')
+    ctx.setFillStyle('red')
+    ctx.fillRect(10, 10, 150, 75)
+    ctx.draw()
   }
 }
 </script>
 
 <style scoped>
-.searchbar-result {
-  margin-top: 0;
-  font-size: 14px;
-}
-.searchbar-result:before {
-  display: none;
-}
-.weui-cell {
-  padding: 12px 15px 12px 35px;
-}
+
 </style>

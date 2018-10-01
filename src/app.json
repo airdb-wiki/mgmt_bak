@@ -5,6 +5,7 @@
       "pages/publish/main",
       "pages/home/main",
       "pages/profile/main",
+      "pages/test/main",
       "pages/detail/main"
   ],
   "window": {
@@ -21,7 +22,7 @@
         "iconPath": "/static/images/reading.png",
         "selectedIconPath": "/static/images/reading_active.png"
       }, {
-        "pagePath": "pages/topic/main",
+        "pagePath": "pages/test/main",
         "text": "助力",
         "iconPath": "/static/images/reading.png",
         "selectedIconPath": "/static/images/reading_active.png"        
