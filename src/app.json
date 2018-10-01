@@ -1,9 +1,9 @@
 {
   "pages": [
-      "pages/logs/main",
+      "pages/home/main",
       "pages/topic/main",
       "pages/publish/main",
-      "pages/home/main",
+      "pages/logs/main",
       "pages/profile/main",
       "pages/test/main",
       "pages/detail/main"
@@ -17,7 +17,7 @@
   },
   "tabBar": {
     "list": [ {
-        "pagePath": "pages/logs/main",
+        "pagePath": "pages/home/main",
         "text": "首页",
         "iconPath": "/static/images/reading.png",
         "selectedIconPath": "/static/images/reading_active.png"
@@ -32,7 +32,6 @@
         "iconPath": "/static/images/user.png",
         "selectedIconPath": "/static/images/user_active.png"
       }
-
     ]
   }
 }

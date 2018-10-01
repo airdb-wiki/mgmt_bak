@@ -1,7 +1,7 @@
 <template>
   <div class="bh-profile-page">
     <div class="profile-page-main">
-      <div class="userinfo" @click="">
+      <div class="userinfo" @click="openSetting">
         <div class="userinfo-avatar">
           <image class="img" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover" />  
         </div>
@@ -111,6 +111,11 @@ export default {
     }
   },
   methods: {
+    openSetting () {
+      wx.openSetting({
+        success: res => { }
+      })
+    },
     bindViewTap () {
       const url = '../logs/main'
       wx.navigateTo({ url })

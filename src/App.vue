@@ -24,6 +24,15 @@ export default {
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
 
+    // 登陆后隐藏登陆页
+    wx.getSetting({
+      success: res => {
+        // console.log(res)
+        console.log(res.authSetting['scope.userInfo'])
+        wx.setStorageSync('authSetting.userInfo', res.authSetting['scope.userInfo'])
+      }
+    })
+
     // 用户信息
     wx.getUserInfo({
       success: (res) => {
