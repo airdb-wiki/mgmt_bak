@@ -60,9 +60,7 @@ export default {
           avatarUrl: '/static/images/home/xiaolong.jpg'
         }
       ],
-      authSetting: {
-        userInfo: false
-      }
+      authSetting: {}
     }
   },
   onLoad: function () {
