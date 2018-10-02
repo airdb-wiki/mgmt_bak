@@ -1,7 +1,8 @@
 <template>
   <div class="bh-profile-page">
+    <!-- 自定义navigation -->
+    <navigation></navigation>
     <div class="profile-page-main">
-
       <div class="userinfo">
         <div class="userinfo-avatar" v-if="isLogin" @click="openSetting">
           <image class="img" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover" />
@@ -77,9 +78,11 @@
 
 <script>
 import vfooter from '@/pages/footer'
+import navigation from '@/components/navigation'
 export default {
   components: {
-    vfooter
+    vfooter,
+    navigation
   },
   data () {
     return {
@@ -287,7 +290,7 @@ export default {
   align-items: center;
   margin-bottom: 20rpx;
   border-bottom: 1px solid #d9d9d9;
-  background: #fff;
+  background: #f35336;
   min-height: 250rpx;
 }
 .userinfo-avatar {
@@ -317,18 +320,18 @@ export default {
 .userinfo-cont .text-name {
   margin-bottom: 10rpx;
   font-size: 32rpx;
-  color: #000;
+  color: #fff;
 }
 .userinfo-cont .text-time {
   margin-bottom: 10rpx;
   font-size: 28rpx;
-  color: #000;
+  color: #fff;
 }
 .userinfo-volunt {
   position: absolute;
-  top: 50rpx;
+  top: 200rpx;
   right: 20rpx;
-  color: #56abe4;
+  color: #fff;
 }
 .userinfo-volunt .icon-dot {
   display: inline-block;
@@ -337,7 +340,7 @@ export default {
   height: 16rpx;
   margin-right: 6rpx;
   border-radius: 100%;
-  background: #ed462f;
+  background: #fff;
 }
 .bh-profile-page {
   display: flex;
@@ -349,6 +352,7 @@ export default {
 }
 .profile-page-main {
   flex: 1 1 auto;
+  margin-top: 70px;
 }
 .profile-page-footer {
   box-sizing: border-box;
