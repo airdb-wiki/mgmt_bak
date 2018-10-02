@@ -7,7 +7,7 @@
 	  			分享给好友
 	  		</div>
   	    </button>
-  	    <button class="share_btn" open-type="share">
+  	    <button class="share_btn">
 	  		<div class="weui-label">
 	  			生成海报
 	  		</div>

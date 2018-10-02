@@ -1,5 +1,6 @@
 {
   "pages": [
+      "pages/test2/main",
       "pages/test/main",
       "pages/topic/main",
       "pages/publish/main",
@@ -29,6 +30,11 @@
       }, {
         "pagePath": "pages/profile/main",
         "text": "我的",
+        "iconPath": "/static/images/user.png",
+        "selectedIconPath": "/static/images/user_active.png"
+      }, {
+        "pagePath": "pages/test2/main",
+        "text": "测试",
         "iconPath": "/static/images/user.png",
         "selectedIconPath": "/static/images/user_active.png"
       }

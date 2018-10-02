@@ -1,6 +1,7 @@
 <template>
   <div class="bh-profile-page">
     <div class="profile-page-main">
+
       <div class="userinfo">
         <div class="userinfo-avatar" v-if="isLogin" @click="openSetting">
           <image class="img" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover" />
@@ -17,51 +18,53 @@
             <div class="text-time" @click="">公益时长:{{servicetime}}小时 ></div>
           </div>
         </div>
-
         <div class="userinfo-volunt"><i class="icon-dot"></i>加入志愿者</i></div>
       </div>
-
-      <!-- s -->
-      <div class="post-panel">
-        <div class="post-panel__hd">
-          <h3 class="post-panel__title">登记信息</h3>
+      <!-- userinfo end -->
+      
+      <div class="after-userifo">
+        <div class="weui-cell title">
+          <div class="weui-label">我的服务</div>
         </div>
-        <div class="post-panel__bd">
-          <div class="kind-list">
-            <div class="kind-item" v-for="(item, index) in items" :key="index" @click="onPostClick">
-              <div class="kind-item__pic">
-                <img class="img" v-if="userInfo.avatarUrl" :src="item.src" background-size="cover"/>  
+        <div class="weui-grids">
+          <div class="weui-grid" v-for="(item, index) in items" :key="index">
+            <navigator :url="item.url">
+              <div class='weui-grid__bg'>
+                <div class="weui-grid__icon">
+                    <image :src="item.src"/>
+                </div>
+                <text class="weui-grid__label">{{item.name}}</text>
               </div>
-              <div class="kind-item__cont">
-                <div>{{ item.name }}</div>
-              </div>
-            </div>
+            </navigator>
           </div>
         </div>
-        
       </div>
-      <!-- end -->
+      <!-- after-userifo end -->
 
-      <div class="notice-card">
-        <div class="notice-card__pic">
-          <img class="img" src="/static/images/mini-logo/1.png" alt="">
+      <div class="weui-cells">
+        <div class="weui-cell">
+          <div class="weui-cell__bd">
+            <div class="weui-label">修改信息</div>
+          </div>
+          <div class="weui-cell__ft weui-cell__ft_in-access"></div>
         </div>
-        <div class="notice-card__cont">
-          <p>第2388例 | 二十一年苦寻，夺子之痛难愈</p>
-          <p>寻找曾华起</p>
+        <div class="weui-cell">
+          <div class="weui-cell__bd">
+            <div class="weui-label">修改信息</div>
+          </div>
+          <div class="weui-cell__ft weui-cell__ft_in-access"></div>
+        </div>
+        <div class="weui-cell">
+          <div class="weui-cell__bd">
+            <div class="weui-label">修改信息</div>
+          </div>
+          <div class="weui-cell__ft weui-cell__ft_in-access"></div>
         </div>
       </div>
-      <div class="notice-card">
-        <div class="notice-card__pic">
-          <img class="img" src="/static/images/mini-logo/2.png" alt="http://http://bbs2.baobeihuijia.com">
-        </div>
-        <div class="notice-card__cont">
-          <p>第2397例 | 残纸寄乡愁</p>
-          <p>高杉回家</p>
-        </div>
-      </div>
+      <!-- weui-cells end -->
+
     </div>
-
+    <!-- profile-page-main end -->
 
     <!-- 右下角加号新建 -->
     <img src="/static/images/addition_fill.png" class="btn-post" @click="onPostClick"/>
@@ -73,12 +76,10 @@
 </template>
 
 <script>
-import card from '@/components/card'
 import vfooter from '@/pages/footer'
 export default {
   components: {
-    vfooter,
-    card
+    vfooter
   },
   data () {
     return {
@@ -107,7 +108,7 @@ export default {
     }
   },
   onLoad: function () {
-    console.log('===profile onload test ======:')
+    console.log('===test2 onload======:')
     // 检测用户是否授权
     wx.getSetting({
       success: (res) => {
@@ -131,17 +132,14 @@ export default {
     }
   },
   methods: {
-    binddivTap () {
+    /* binddivTap () {
       const url = '../logs/main'
       wx.navigateTo({ url })
-    },
+    }, */
     onPostClick () {
       wx.navigateTo({
         url: '/pages/publish/main'
       })
-    },
-    clickHandle (msg, ev) {
-      console.log('clickHandle:', msg, ev)
     },
     openSetting () {
       console.log('test === openSetting')
@@ -164,7 +162,6 @@ export default {
       }
     }
   },
-
   created () {
     // 调用应用实例的方法获取全局数据
   }
@@ -173,73 +170,123 @@ export default {
 
 
 <style scoped>
-.notice-card {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  margin-top: 20rpx;
-  padding: 30rpx 20rpx;
+.after-userifo .title{
+  border-top: 0.5px solid #d9d9d9;
+  border-left: 0.5px solid #d9d9d9;
+  border-right: 0.5px solid #d9d9d9;
+}
+.weui-cells{
+  margin-top: 10px;
+}
+.after-userifo{
   background: #fff;
 }
-.notice-card__pic {
-  flex: 0 0 auto;
-  width: 110rpx;
-  height: 110rpx;
-  border-radius: 8rpx;
-  background: #ccc;
-  margin-right: 20rpx;
-  overflow: hidden;
+.weui-grids {
+    position: relative;
+    overflow: hidden;
 }
-.notice-card__pic .img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.weui-grids:before {
+    content: " ";
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 1px;
+    border-top: 0.5px solid #d9d9d9;
+    color: #d9d9d9;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+} 
+.weui-grids:after {
+    content: " ";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1px;
+    bottom: 0;
+    border-left: 0.5px solid #d9d9d9;
+    color: #d9d9d9;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-transform: scaleX(0.5);
+    transform: scaleX(0.5);
+} 
+.weui-grid {
+    position: relative;
+    float: left;
+    padding: 20px 10px;
+    width: 33.33333333%;
+    box-sizing: border-box;
 }
-.notice-card__cont {
-  flex: 1 1 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.weui-grid:before {
+    content: " ";
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 1px;
+    bottom: 0;
+    border-right: 0.5px solid #d9d9d9;
+    color: #d9d9d9;
+    -webkit-transform-origin: 100% 0;
+    transform-origin: 100% 0;
+    -webkit-transform: scaleX(0.5);
+    transform: scaleX(0.5);
+} 
+.weui-grid:after {
+    content: " ";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 1px;
+    border-bottom: 0.5px solid #d9d9d9;
+    color: #d9d9d9;
+    -webkit-transform-origin: 0 100%;
+    transform-origin: 0 100%;
+    -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+} 
+.weui-grid:active {
+    background-color: #ECECEC;
+}  
+.weui-grid__bg {
+    position: relative;
+    float: left;
+    padding: 0px 0px;
+    width: 100%;
+    box-sizing: border-box;
 }
-.kind-list {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  padding: 20rpx 0;
+.weui-grid__icon {
+    width: 32px;
+    height: 32px;
+    margin: 0 auto;
 }
-.kind-item {
-  flex: 0 0    auto;
-  width: 25%;
-  padding: 20rpx 0;
+.weui-grid__icon image {
+    display: block;
+    width: 100%;
+    height: 100%;
 }
-.kind-item__pic {
-  width: 100rpx;
-  height: 100rpx;
-  margin: 0 auto;
-  border-radius: 100%;
-  overflow: hidden;
-  background: #ccc;
+.weui-grid__icon + .weui-grid__label {
+    margin-top: 5px;
 }
-.kind-item__pic .img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.kind-item__cont {
-  margin-top: 10rpx;
-  text-align: center;
-  color: #aaa;
+.weui-grid__label {
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    color: #000;
+    font-size: 14px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 .userinfo {
   display: flex;
   flex-direction: row;
   align-items: center;
   margin-bottom: 20rpx;
+  border-bottom: 1px solid #d9d9d9;
   background: #fff;
   min-height: 250rpx;
 }
@@ -298,7 +345,7 @@ export default {
   box-sizing: border-box;
   min-height: 100%;
   background: #efeff4;
-  margin: 20rpx 0;
+  margin: 0 0;
 }
 .profile-page-main {
   flex: 1 1 auto;
