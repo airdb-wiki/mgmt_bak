@@ -14,7 +14,7 @@
         <div v-else>
           <div class="userinfo-cont">
             <div class="text-name">{{ userInfo.nickName }}</div>
-            <div>公益时长：{{servicetime}}小时</div>
+            <div class="text-time" @click="">公益时长：{{servicetime}}小时 ></div>
           </div>
         </div>
 
@@ -271,6 +271,11 @@ export default {
   margin-bottom: 10rpx;
   font-size: 32rpx;
   color: #000;
+}
+.userinfo-cont .text-time {
+  margin-bottom: 10rpx;
+  font-size: 28rpx;
+  color: #fffbf0;
 }
 .userinfo-volunt {
   position: absolute;
