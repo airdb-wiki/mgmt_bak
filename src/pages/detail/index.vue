@@ -1,10 +1,18 @@
 <template>
   <div>
+    <!-- 自定义navigation -->
+    <div class="navigation">
+      <button :plain="true" @click="back">
+        <img src="/static/images/home/back.png" class="back">
+        <div style="border: 1px solid #e2e2e2;margin: 0 10px 0 4px;"></div>
+        <img src="/static/images/home/home.png" class="home">
+      </button>
+    </div>
   	<detail></detail>
     <!-- 底部分享，评论栏 -->
     <canvas canvas-id="myCanvas" :hidden='canvasHidden'/>
     <div class="footer">
-      <button @click="shareToFriends" open-type='share' :apply="true" :plain='true'>
+      <button @click="shareToFriends" open-type='share' :plain='true'>
         <img src="/static/images/home/wx.png" class="icon">
         分享给好友
       </button>
@@ -85,6 +93,11 @@ export default{
           reserve: false
         })
       }, 1000)
+    },
+    back () {
+      wx.navigateBack({
+        delta: 1
+      })
     }
   }
 }
@@ -113,5 +126,31 @@ export default{
 canvas{
   width: 100%;
   height: 50px;
+}
+.navigation{
+  width: 100%;
+  padding: 27px 5px 10px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  z-index: 9999;
+}
+.navigation button{
+  display: flex;
+  flex-direction: row;
+  border-radius: 20px;
+  border: 1px solid #e2e2e2;
+  padding: 3px 5px;
+  margin-left: 10px;
+  width: 88px;
+}
+.back{
+  width: 26px;
+  height: 26px;
+}
+.home{
+  width: 25px;
+  height: 25px;
 }
 </style>
