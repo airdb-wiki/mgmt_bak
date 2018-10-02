@@ -3,14 +3,14 @@
     <div v-for="(item,index) in items" :key="item.id" class="container">
       <navigator v-if="index == 0" url="../detail/main" hover-class="none">
         <div style="margin-top: 30px;">
-          <img v-bind:src="item.url" class="img"></img>
+          <img v-bind:src="item.url" class="img">
           <p>{{item.title}}</p>
           <div class="editor">
-            <img class="img1" v-bind:src="item.avatarUrl"></img>
+            <img class="img1" v-bind:src="item.avatarUrl">
             <text>{{item.editor}}</text>
             <text class="ha">{{item.team}}</text>
             <text class="ha">{{item.time}}</text>
-            <img src="/static/images/home/zhuan.png" class="img2"></img>
+            <img src="/static/images/home/zhuan.png" class="img2">
           </div>
         </div> 
       </navigator>
@@ -19,11 +19,11 @@
           <img v-bind:src="item.url" class="img"></img>
           <p>{{item.title}}</p>
           <div class="editor">
-            <img class="img1" v-bind:src="item.avatarUrl"></img>
+            <img class="img1" v-bind:src="item.avatarUrl">
             <text>{{item.editor}}</text>
             <text class="ha">{{item.team}}</text>
             <text class="ha">{{item.time}}</text>
-            <img src="/static/images/home/zhuan.png" class="img2"></img>
+            <img src="/static/images/home/zhuan.png" class="img2">
           </div>
         </div> 
       </navigator>

@@ -88,17 +88,15 @@ export default {
   background-color: #f2f2f2;
 }
 .login{
-  height: 100%;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   text-align: center;
   z-index: 9999;
   position: fixed;
-  top: 0;
+  bottom: 0px;
   left: 0;
 }
 .login div{
-  margin: 200px 50px;
   background-color: #fff;
   border-radius: 10px;
 }
