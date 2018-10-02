@@ -22,7 +22,7 @@ export default{
 }
 ul{
   position: fixed;
-  top: 52px;
+  top: 53px;
   padding: 4px 0;
   margin: 0 0 2px 0;
   z-index: 9999;

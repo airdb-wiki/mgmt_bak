@@ -41,7 +41,7 @@ export default {
 <style>
 .container{
   padding: 0;
-  margin: 8px 30px;
+  margin: 8px 33px;
   border-radius: 6px;
   background-color: #fff;
 
