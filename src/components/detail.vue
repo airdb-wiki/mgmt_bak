@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="margin: 61px 0 54px 0;">
   	<div v-for="content in contents" :key="content.id" style="z-index: 0;">
   	  <div class="title">{{content.title}}</div>
 

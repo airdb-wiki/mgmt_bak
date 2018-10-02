@@ -1,20 +1,24 @@
 {
   "pages": [
+<<<<<<< HEAD
       "pages/test2/main",
+=======
+      "pages/home/main",
+      "pages/detail/main",
+>>>>>>> 595eededb37f574fe294acf966377ae334670719
       "pages/test/main",
       "pages/topic/main",
       "pages/publish/main",
       "pages/logs/main",
-      "pages/profile/main",
-      "pages/home/main",
-      "pages/detail/main"
+      "pages/profile/main"
   ],
   "window": {
     "enablePullDownRefresh": true,
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "宝贝回家",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom"
   },
   "tabBar": {
     "list": [ {

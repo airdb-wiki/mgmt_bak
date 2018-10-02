@@ -21,14 +21,14 @@ export default{
       ctx.fillStyle = '#fff'
       ctx.fillRect(0, 0, 300, 1500)
 
-      // ctx.setFillStyle('black')
-      // ctx.setShadow(10, 50, 50, 'blue')
-      // ctx.fillRect(10, 10, 150, 75)
+      ctx.setFillStyle('black')
+      ctx.setShadow(10, 50, 50, 'blue')
+      ctx.fillRect(10, 10, 150, 75)
 
       ctx.setFontSize(28)
       ctx.setFillStyle('#393939')
-      ctx.fillText('文字在这里！！！', 100, 400)
-      ctx.fillText('dean', 30, 796)
+      ctx.fillText('文字在这里！！！', 10, 10)
+      ctx.fillText('dean', 10, 6)
 
       ctx.font = 'italic bold 20px cursive'
       const metrics = ctx.measureText('Hello World')
@@ -39,7 +39,7 @@ export default{
       ctx.fillText('111111111111111111111111111111111111111111111111111111111111111', 30, 870)
 
       // 将图片转化为画布
-      // ctx.drawImage('/static/images/mina/8.jpg', 30, 30, 160, 80)
+      ctx.drawImage('/static/images/mina/8.jpg', 30, 30, 160, 80)
 
       ctx.draw(true, function () {
         console.log('draw callback success')

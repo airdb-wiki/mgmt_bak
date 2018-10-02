@@ -1,16 +1,14 @@
 <template>
   <div id="app">
-  
-    <div style="z-index: 0;">
+    <!-- 自定义navigation -->
+    <navigation></navigation>
+    
+    <!-- 自定义navBar -->
+    <div style="z-index: 0;margin-top: 70px;">
       <navbar :tabs="tabs"></navbar>
       <card :items="items"></card>
     </div>
     
-    <!--
-    <div class="login" v-if="authSetting.userInfo === false" style="display: none">
-      <button open-type="getUserInfo" @click="login" type="primary">登陆{{authSetting.userInfo}}</button>
-    </div>
-    -->
     <div class="login" v-if="!authSetting.userInfo">
       <div>
         <button open-type="getUserInfo" @click="login" type="primary">登陆{{authSetting.userInfo}}</button>
@@ -23,11 +21,13 @@
 import { formatTime } from '@/utils/index'
 import card from '@/components/card1'
 import navbar from '@/components/navbar'
+import navigation from '@/components/navigation'
 
 export default {
   components: {
     card,
-    navbar
+    navbar,
+    navigation
   },
   data () {
     return {
@@ -88,17 +88,15 @@ export default {
   background-color: #f2f2f2;
 }
 .login{
-  height: 100%;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   text-align: center;
   z-index: 9999;
   position: fixed;
-  top: 0;
+  bottom: 0px;
   left: 0;
 }
 .login div{
-  margin: 200px 50px;
   background-color: #fff;
   border-radius: 10px;
 }

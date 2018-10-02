@@ -1,18 +1,27 @@
 <template>
   <div>
+    <!-- 自定义navigation -->
+    <div class="navigation">
+      <button :plain="true" @click="back">
+        <img src="/static/images/home/back.png" class="back">
+        <div style="border: 1px solid #e2e2e2;margin: 0 10px 0 4px;"></div>
+        <img src="/static/images/home/home.png" class="home">
+      </button>
+    </div>
   	<detail></detail>
-  	<div class="footer">
-  		<button class="share_btn" open-type="share">
-	  		<div class="weui-label">
-	  			分享给好友
-	  		</div>
-  	    </button>
-  	    <button class="share_btn">
-	  		<div class="weui-label">
-	  			生成海报
-	  		</div>
-  	    </button>
-  	</div>
+    
+    <!-- 底部分享，评论栏 -->
+    <canvas canvas-id="myCanvas" :hidden='canvasHidden'/>
+    <div class="footer">
+      <button @click="shareToFriends" open-type='share' :plain='true'>
+        <img src="/static/images/home/wx.png" class="icon">
+        分享给好友
+      </button>
+      <button @click="download" :plain='true' style="border-left: 1px solid #e2e2e2;">
+        <img src="/static/images/home/download.png" class="icon">
+        生成海报
+      </button>
+    </div>
   </div>
 </template>
 
@@ -23,50 +32,126 @@ export default{
   components: {
     detail
   },
-  data () {
+  onShareAppMessage () {
     return {
-      uuid: '',
-      article: {}
+      title: '标题',
+      path: '/pages/detail'
     }
   },
-  onShareAppMessage: function (res) {
-    if (res.from === 'button') {
-      // 来自页面内转发按钮
-      console.log('test === /detail onShareAppMessage', res.target)
-    }
+  data () {
     return {
-      title: '自定义分享标题',
-      desc: '自定义分享描述',
-      path: '/pages/detail/main?uuid=' + this.article.UUID
+      canvasHidden: false
+    }
+  },
+  methods: {
+    download () {
+      var that = this
+      that.canvasHidden = false
+      const ctx = wx.createCanvasContext('myCanvas')
+      // 填充背景色
+      ctx.fillStyle = '#fff'
+      ctx.fillRect(0, 0, 260, 960)
+
+      ctx.setFontSize(20)
+      ctx.setFillStyle('#393939')
+      ctx.fillText('文字在这里！！！', 20, 5, 800)
+      ctx.setTextAlign('center')
+
+      ctx.font = 'italic bold 20px cursive'
+      const metrics = ctx.measureText('Hello World')
+      console.log(metrics.width)
+
+      ctx.drawImage('/static/images/mina/8.jpg', 20, 5, 120, 60)
+
+      wx.showLoading({
+        title: '分享图片生成中...',
+        mask: true
+      })
+
+      ctx.draw(true, function () {
+        console.log('draw callback success')
+        wx.canvasToTempFilePath({
+          x: 0,
+          y: 0,
+          width: 780,
+          height: 800,
+          destWidth: 780,
+          destHeight: 800,
+          canvasId: 'myCanvas',
+          fileType: 'png',
+          success: function (res) {
+            wx.hideLoading()
+            wx.previewImage({
+              urls: [res.tempFilePath]
+            })
+          }
+        })
+      })
+      setTimeout(function () {
+        wx.drawCanvas({
+          canvasId: 'myCanvas',
+          actions: [],
+          reserve: false
+        })
+      }, 1000)
+    },
+    back () {
+      wx.navigateBack({
+        delta: 1
+      })
     }
   }
 }
 </script>
 
-<style>
+<style scope>
 .footer{
+  width: 100%;
+  position: fixed;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  bottom: 0rpx;
-  width: 100%;
-  height: 100rpx;
-  background: #fff;
+  bottom: 0;
+  left: 0;
+  padding: 5px 10px;
+  background-color: #fff;
 }
-.share_btn{
-  width:50%;
-  background:#fff;
-}
-button::after{
+.footer button{
   border: none;
-  border-right: 1rpx solid #dddddd;
-  border-radius: 0;
+  flex: 1;
 }
-.weui-label{
-  font-size:35rpx;
-  margin-right:35px;
-  margin-left:35px;
+.icon{
+  width: 20px;
+  height: 20px;
+  margin-left: -10px;
+}
+canvas{
+  width: 100%;
+  height: 50px;
+}
+.navigation{
+  width: 100%;
+  padding: 27px 5px 10px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  z-index: 9999;
+}
+.navigation button{
+  display: flex;
+  flex-direction: row;
+  border-radius: 20px;
+  border: 1px solid #e2e2e2;
+  padding: 3px 5px;
+  margin-left: 10px;
+  width: 88px;
+}
+.back{
+  width: 26px;
+  height: 26px;
+}
+.home{
+  width: 25px;
+  height: 25px;
 }
 </style>
