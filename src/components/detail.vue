@@ -23,11 +23,6 @@
     <div class="share" v-on:click="share">
       <img src="/static/images/home/share.png">
     </div>
-    <!-- 底部分享，评论栏 -->
-    <div>
-      <button @click="shareToFriends" open-type='share' :apply="true">分享给好友</button>
-      <button @click="download">生成海报</button>
-    </div>
   </div>
 </template>
 
@@ -55,8 +50,6 @@ export default{
     share () {
       console.log('click')
     }
-  },
-  onShareAppMessage () {
   }
 }
 </script>
