@@ -1,11 +1,7 @@
 {
   "pages": [
-<<<<<<< HEAD
-      "pages/test2/main",
-=======
       "pages/home/main",
       "pages/detail/main",
->>>>>>> 595eededb37f574fe294acf966377ae334670719
       "pages/test/main",
       "pages/topic/main",
       "pages/publish/main",
