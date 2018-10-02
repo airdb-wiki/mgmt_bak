@@ -4,7 +4,7 @@
     <navigation></navigation>
     
     <!-- 自定义navBar -->
-    <div style="z-index: 0;margin-top: 60px;">
+    <div style="z-index: 0;margin-top: 70px;">
       <navbar :tabs="tabs"></navbar>
       <card :items="items"></card>
     </div>
