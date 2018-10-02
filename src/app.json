@@ -1,12 +1,12 @@
 {
   "pages": [
+      "pages/detail/main",
       "pages/test/main",
       "pages/topic/main",
       "pages/publish/main",
       "pages/logs/main",
       "pages/profile/main",
-      "pages/home/main",
-      "pages/detail/main"
+      "pages/home/main"
   ],
   "window": {
     "enablePullDownRefresh": true,
