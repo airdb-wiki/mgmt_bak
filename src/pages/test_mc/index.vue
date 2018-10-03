@@ -4,20 +4,20 @@
     <navigation></navigation>
     <div class="profile-page-main">
       <div class="userinfo">
-        <div class="userinfo-avatar" v-if="isLogin" @click="openSetting">
-          <image class="img" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover" />
+        <div v-if="authSetting.userInfo" class="userinfo-avatar" @click="openSetting">
+          <image class="img" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover"/>
         </div>
-        <div class="userinfo-avatar" v-else @click="openSetting">
+        <div v-else class="userinfo-avatar" @click="openSetting">
           <image class="img" src="/static/images/user_active.png" background-size="cover" />
         </div>
-        <div v-if="!isLogin">
-          <button class="weui-btn" type="primary" open-type="getUserInfo" lang="zh_CN" @getuserinfo="getUserInfo">微信快速登录</button>
-        </div>
-        <div v-else>
+        <div v-if="authSetting.userInfo">
           <div class="userinfo-cont">
             <div class="text-name">{{ userInfo.nickName }}</div>
-            <div class="text-time" @click="">公益时长:{{servicetime}}小时 ></div>
+            <div class="text-time" @click="ClickServiceTime">公益时长:{{servicetime}}小时 ></div>
           </div>
+        </div>
+        <div v-else>
+          <button class="weui-btn" type="primary" open-type="getUserInfo" lang="zh_CN" @getuserinfo="getUserInfo">微信快速登录</button>
         </div>
         <div class="userinfo-volunt"><i class="icon-dot"></i>加入志愿者</i></div>
       </div>
@@ -86,9 +86,11 @@ export default {
   },
   data () {
     return {
-      isLogin: true,
       servicetime: 10,
       userInfo: wx.getStorageSync('userInfo'),
+      authSetting: {
+        userInfo: wx.getStorageSync('authSetting.userInfo')
+      },
       items: [{
         name: '家寻宝贝',
         src: '/static/images/mini-logo/1.png'
@@ -111,21 +113,9 @@ export default {
     }
   },
   onLoad: function () {
-    console.log('===test2 onload======:')
-    // 检测用户是否授权
-    wx.getSetting({
-      success: (res) => {
-        console.log('test === getSetting success', res)
-        if (res['authSetting']['scope.userInfo']) this.isLogin = true
-        else this.isLogin = false
-      },
-      fail: (res) => {
-        console.log('test === getSetting fail', res)
-      },
-      complate: (res) => {
-        console.log('test === getSetting complate')
-      }
-    })
+    console.log('===test2 onLoad======:')
+    console.log('test2====onLoad() authSetting.userInfo =', this.authSetting.userInfo)
+    console.log('test2====onLoad() userInfo =', this.userInfo)
   },
   onShareAppMessage: function () {
     return {
@@ -135,38 +125,43 @@ export default {
     }
   },
   methods: {
-    /* binddivTap () {
-      const url = '../logs/main'
-      wx.navigateTo({ url })
-    }, */
     onPostClick () {
       wx.navigateTo({
         url: '/pages/publish/main'
       })
     },
     openSetting () {
-      console.log('test === openSetting')
       var that = this
       wx.openSetting({
         success: (res) => {
-          if (!res.authSetting['scope.userInfo']) {
-            that.isLogin = false
-            console.log('test === openSetting isLogin=false')
-          }
+          wx.setStorageSync('authSetting.userInfo', res.authSetting['scope.userInfo'])
+          that.authSetting.userInfo = wx.getStorageSync('authSetting.userInfo')
+          console.log('test2===openSetting() authSetting.userInfo =', that.authSetting.userInfo)
         }
       })
     },
     getUserInfo: function (e) {
-      console.log('test === getUserInfo success', e.mp.detail.userInfo)
-      this.isLogin = true
+      wx.setStorageSync('authSetting.userInfo', true)
+      this.authSetting.userInfo = wx.getStorageSync('authSetting.userInfo')
+      wx.setStorageSync('userInfo', e.mp.detail.userInfo)
+      this.userInfo = wx.getStorageSync('userInfo')
       if (!e.mp.detail.userInfo) {
-        this.isLogin = false
+        wx.setStorageSync('authSetting.userInfo', false)
+        this.authSetting.userInfo = wx.getStorageSync('authSetting.userInfo')
+        wx.setStorageSync('userInfo', e.mp.detail.userInfo)
         this.userInfo = e.mp.detail.userInfo
       }
+      console.log('test2===getUserInfo() userinfo =', e.mp.detail.userInfo)
+      console.log('test2===getUserInfo() authSetting.userInfo =', this.authSetting.userInfo)
+    },
+    // 点击志愿时长
+    ClickServiceTime: function () {
+      wx.navigateTo({
+        url: '/pages/test_mc/serviceTime/main'
+      })
     }
   },
   created () {
-    // 调用应用实例的方法获取全局数据
   }
 }
 </script>

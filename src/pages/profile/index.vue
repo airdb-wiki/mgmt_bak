@@ -107,19 +107,19 @@ export default {
     }
   },
   onLoad: function () {
-    console.log('===profile onload test ======:')
+    console.log('===profile onLoad()===')
     // 检测用户是否授权
     wx.getSetting({
       success: (res) => {
-        console.log('test === getSetting success', res)
+        console.log('profile===onLoad() success', res)
         if (res['authSetting']['scope.userInfo']) this.isLogin = true
         else this.isLogin = false
       },
       fail: (res) => {
-        console.log('test === getSetting fail', res)
+        console.log('profile===onLoad() fail', res)
       },
       complate: (res) => {
-        console.log('test === getSetting complate')
+        console.log('profile===onLoad()')
       }
     })
   },
@@ -144,19 +144,19 @@ export default {
       console.log('clickHandle:', msg, ev)
     },
     openSetting () {
-      console.log('test === openSetting')
+      console.log('profile === openSetting')
       var that = this
       wx.openSetting({
         success: (res) => {
           if (!res.authSetting['scope.userInfo']) {
             that.isLogin = false
-            console.log('test === openSetting isLogin=false')
+            console.log('profile === openSetting isLogin=false')
           }
         }
       })
     },
     getUserInfo: function (e) {
-      console.log('test === getUserInfo success', e.mp.detail.userInfo)
+      console.log('profile === getUserInfo() userInfo =', e.mp.detail.userInfo)
       this.isLogin = true
       if (!e.mp.detail.userInfo) {
         this.isLogin = false

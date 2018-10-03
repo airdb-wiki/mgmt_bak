@@ -1,13 +1,14 @@
 {
   "pages": [
-      "pages/home/main",
-      "pages/detail/main",
-      "pages/test/main",
-      "pages/test2/main",
-      "pages/topic/main",
-      "pages/publish/main",
-      "pages/logs/main",
-      "pages/profile/main"
+    "pages/test_mc/main",
+    "pages/home/main",
+    "pages/detail/main",
+    "pages/test/main",
+    "pages/test_mc/serviceTime/main",
+    "pages/topic/main",
+    "pages/publish/main",
+    "pages/logs/main",
+    "pages/profile/main"
   ],
   "window": {
     "enablePullDownRefresh": true,
@@ -34,7 +35,7 @@
         "iconPath": "/static/images/user.png",
         "selectedIconPath": "/static/images/user_active.png"
       }, {
-        "pagePath": "pages/test2/main",
+        "pagePath": "pages/test_mc/main",
         "text": "测试",
         "iconPath": "/static/images/user.png",
         "selectedIconPath": "/static/images/user_active.png"
