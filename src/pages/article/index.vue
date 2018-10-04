@@ -105,7 +105,7 @@ export default {
   },
   onShareAppMessage: function () {
     return {
-      title: '宝贝科技提供技术支持',
+      title: '宝贝科技',
       desc: '10岁丢失宝贝',
       path: '/pages/article/main?uuid=' + this.article.UUID
     }

@@ -8,6 +8,8 @@
     "pages/topic/main",
     "pages/publish/main",
     "pages/logs/main",
+    "pages/hr/main",
+    "pages/licence/main",
     "pages/profile/main"
   ],
   "window": {

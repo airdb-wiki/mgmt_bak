@@ -1,19 +1,26 @@
 <template>
   <div class="page">
     <div class="page__hd">
-        <!--
-        <div class="page__title">Article</div>
-        <div class="page__desc">文章</div>
-        -->
     </div>
+
+    <navigator open-type="navigateBack">
+        <img src="/static/images/home/back.png" class="back">
+    </navigator>
+    <navigator open-type="reLaunch" url="/pages/home/main">
+        <img src="/static/images/home/home.png" class="home">
+    </navigator>
+
     <div class="page__bd">
         <div class="weui-article">
-            <div class="weui-article__h1">加入我们</div>
+            <div class="weui-article__h1">
+                <navigator open-type="navigateBack">加入我们</navigator>
+            </div>
+
             <div class="weui-article__section">
                 <div class="weui-article__section">
                     <div class="weui-article__h3">1. 背景介绍</div>
                     <div class="weui-article__p">
-                        本软件是由 Dean 业余时间完成，目的是提供一个挂失、认领服务给身边的朋友使用。 使用Vue + Golang 实现。
+                        本软件是由 Dean 业余时间完成，目的是提供一个挂失、认领服务给身边的朋友使用。 使用 MPVue + Golang 实现。
                     </div>
                 </div>
                 <div class="weui-article__section">
@@ -35,10 +42,29 @@
 <script>
 export default {
   components: {
+  },
+  onLoad: function () {
+    wx.setNavigationBarTitle({
+      title: '志愿者招募计划'
+    })
+  },
+  onShareAppMessage: function () {
+    return {
+      title: '志愿者招募计划',
+      desc: '公益项目',
+      path: '/pages/hr/main?from=forward'
+    }
   }
 }
 </script>
 
 <style>
-
+    .navigation{
+      width:100%;
+      height:70rpx;
+      position:fixed;
+      background-color:#fff;
+      padding:55rpx 0 20rpx 0rpx;
+      z-index:9999;
+    }
 </style>

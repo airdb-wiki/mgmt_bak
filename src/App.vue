@@ -4,6 +4,7 @@ export default {
   created () {
     var env = 'test'
     wx.setStorageSync('env', env)
+    // console.log(wxConfig.envVersion)
 
     if (wx.getStorageSync('env') === 'prod') {
       wx.setStorageSync('requestUrl', 'https://bbs.baobeihuijia.com/lastest/wechatapi')

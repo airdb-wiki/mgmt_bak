@@ -32,12 +32,12 @@ export default{
   data () {
     return {
       radarData: [
-        {desc: '阅读', value: '0.6'},
-        {desc: '体育', value: '0.5'},
-        {desc: '旅游', value: '0.8'},
-        {desc: '游戏', value: '0.5'},
-        {desc: '学习', value: '1.0'},
-        {desc: '动漫', value: '0.3'}
+        {desc: '参与', value: '0.6'},
+        {desc: '关注', value: '0.5'},
+        {desc: '发贴', value: '0.8'},
+        {desc: '转发', value: '0.5'},
+        {desc: '粉丝', value: '1.0'},
+        {desc: '捐助', value: '0.3'}
       ]
     }
   },
@@ -159,6 +159,13 @@ export default{
     ctx.fill()
 
     ctx.draw()
+  },
+  onShareAppMessage: function () {
+    return {
+      title: '您的公益时长为10小时',
+      desc: '公益项目',
+      path: '/pages/test_mc/serviceTimeb/main?from=forward'
+    }
   }
 }
 </script>
