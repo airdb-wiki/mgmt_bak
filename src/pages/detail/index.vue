@@ -145,7 +145,7 @@ canvas{
 }
 .navigation{
   width: 100%;
-  padding: 36px 0 16px 4px;
+  padding: 26px 0 16px 5px;
   position: fixed;
   top: 0;
   left: 0;
@@ -157,9 +157,9 @@ canvas{
   flex-direction: row;
   border-radius: 20px;
   border: 1px solid #e2e2e2;
-  padding: 3px 4px 3px 5px;
+  padding: 3px 4px 3px 9px;
   margin-left: 6px;
-  width: 70px;
+  width: 72px;
   height: 24px;
 }
 .back{

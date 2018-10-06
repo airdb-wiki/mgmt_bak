@@ -16,7 +16,7 @@ export default {
 }
 </script>
 
-<style>
+<style scope>
 .navigation{
   position: fixed;
   width: 100%;
@@ -26,6 +26,7 @@ export default {
   left: 0;
   background-color: #fff;
   z-index: 9999;
+  padding-left: 150px;
 }
 </style>
 

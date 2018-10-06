@@ -1,6 +1,7 @@
 <template>
   <div class="bh-profile-page">
-    <div class="profile-page-main">
+    <navigation></navigation>
+    <div class="profile-page-main" style="margin-top: 60px;">
       <div class="userinfo">
         <div class="userinfo-avatar" v-if="isLogin" @click="openSetting">
           <image class="img" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover" />
@@ -75,10 +76,12 @@
 <script>
 import card from '@/components/card'
 import vfooter from '@/pages/footer'
+import navigation from '@/components/navigation'
 export default {
   components: {
     vfooter,
-    card
+    card,
+    navigation
   },
   data () {
     return {
