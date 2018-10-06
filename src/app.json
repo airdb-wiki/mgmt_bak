@@ -13,12 +13,12 @@
     "pages/profile/main"
   ],
   "window": {
-    "enablePullDownRefresh": true,
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "宝贝回家",
     "navigationBarTextStyle": "black",
-    "navigationStyle": "custom"
+    "navigationStyle": "custom",
+    "disableScroll": true
   },
   "tabBar": {
     "list": [ {
