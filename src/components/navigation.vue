@@ -1,5 +1,5 @@
 <template>
-  <div style="style" class="navigation">
+  <div class="navigation">
     {{deContent}}
   </div>
 </template>
@@ -7,7 +7,6 @@
 <script>
 export default {
   name: 'navigation',
-  props: ['style'],
   data () {
     return {
       deContent: '宝贝回家'

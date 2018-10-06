@@ -2,13 +2,13 @@
   <div class="page">
     <div class="navigation">
       <div class="btn">
-        <navigator open-type="navigateBack">
+        <navigator open-type="navigateBack" style="padding: 0;margin: 0;">
           <img src="/static/images/home/back.png" class="back">
         </navigator>
 
         <div style="border-left: 1px solid #e2e2e2;margin: 2px 10px 0 4px;height: 18px;"></div>
 
-        <navigator open-type="reLaunch" url="/pages/home/main">
+        <navigator open-type="reLaunch" url="/pages/home/main" style="padding: 0;margin: 0;">
           <img src="/static/images/home/home.png" class="home">
         </navigator>
       </div>
@@ -24,7 +24,6 @@
       </button>
     </div>
     -->
-
     <div class="page__bd" style="margin-top: 60px;">
         <div class="weui-article">
             
@@ -58,6 +57,7 @@
             </div>
         </div>
     </div>
+    <ha></ha>
 </div>
 </template>
 
