@@ -4,9 +4,15 @@
     <navigation></navigation>
     
     <!-- 自定义navBar -->
-    <div style="z-index: 0;margin-top: 70px;">
-      <navbar :tabs="tabs"></navbar>
+    <div style="z-index: 0;margin-top: 79px;">
+      <!-- <navbar :tabs="tabs"></navbar> -->
       <card :items="items"></card>
+    </div>
+
+    <div>
+      <scroll-view :scroll-x="true" class="navbar">
+        <div v-for="tab in tabs" :key="tab.id" class="tab">{{tab}}</div>
+      </scroll-view>
     </div>
     
     <div class="login" v-if="!authSetting.userInfo">
@@ -32,7 +38,7 @@ export default {
   data () {
     return {
       tabs: [
-        '精选', '故事', '影像', '数据', '计划'
+        '精选', '故事', '影像', '数据', '计划', '故事', '影像', '数据', '计划'
       ],
       items: [
         {
@@ -99,5 +105,36 @@ export default {
 .login div{
   background-color: #fff;
   border-radius: 10px;
+}
+.navbar{
+  width: 100%;
+  white-space: nowrap;
+  position: fixed;
+  top: 73px;
+  left: 0;
+  z-index: 9999;
+  background-color: #fff;
+}
+::scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+.tab{
+  text-align: center;
+  font-size: 20px;
+  width: 60px;
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 2px 0;
+}
+.tab:hover{
+  font-weight: bold;
+  text-align: center;
+  font-size: 20px;
+  width: 60px;
+  display: inline-block;
+  box-sizing: border-box;
+  border-bottom: 4px solid #e2d609;
 }
 </style>

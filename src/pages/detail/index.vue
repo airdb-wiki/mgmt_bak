@@ -145,7 +145,7 @@ canvas{
 }
 .navigation{
   width: 100%;
-  padding: 26px 0 16px 4px;
+  padding: 36px 0 16px 4px;
   position: fixed;
   top: 0;
   left: 0;
