@@ -1,5 +1,14 @@
 <template>
   <div class="page">
+    <div class="page__hd">
+        <navigator open-type="navigateBack">
+            <img src="/static/images/home/back.png" class="back">
+        </navigator>
+        <navigator open-type="reLaunch" url="/pages/home/main">
+            <img src="/static/images/home/home.png" class="home">
+        </navigator>
+    </div>
+
     <div class="page__bd">
         <div class="weui-article">
             <div class="weui-article__h1">许可条款</div>

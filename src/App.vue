@@ -1,6 +1,15 @@
 
 <script>
 export default {
+  onLaunch (res) {
+    console.log('open app scene info', res.scene)
+    console.log('shareTicket is: ', res.shareTicket)
+  },
+  onPageNotFound () {
+    wx.redirectTo({
+      url: '/pages/home/main'
+    })
+  },
   created () {
     var env = 'test'
     wx.setStorageSync('env', env)

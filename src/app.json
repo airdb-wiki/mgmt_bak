@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/test_mc/main",
+    "pages/hr/main",
     "pages/home/main",
     "pages/detail/main",
     "pages/test/main",
@@ -8,7 +8,7 @@
     "pages/topic/main",
     "pages/publish/main",
     "pages/logs/main",
-    "pages/hr/main",
+    "pages/test_mc/main",
     "pages/licence/main",
     "pages/profile/main"
   ],
@@ -27,17 +27,12 @@
         "iconPath": "/static/images/reading.png",
         "selectedIconPath": "/static/images/reading_active.png"
       }, {
-        "pagePath": "pages/test/main",
-        "text": "助力",
-        "iconPath": "/static/images/reading.png",
-        "selectedIconPath": "/static/images/reading_active.png"        
-      }, {
         "pagePath": "pages/profile/main",
         "text": "我的",
         "iconPath": "/static/images/user.png",
         "selectedIconPath": "/static/images/user_active.png"
       }, {
-        "pagePath": "pages/test_mc/main",
+        "pagePath": "pages/hr/main",
         "text": "测试",
         "iconPath": "/static/images/user.png",
         "selectedIconPath": "/static/images/user_active.png"

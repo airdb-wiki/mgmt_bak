@@ -1,17 +1,31 @@
 <template>
   <div class="page">
-    <div class="page__hd">
+    <div class="navigation">
+        <navigator open-type="navigateBack">
+            <img src="/static/images/home/back.png" class="back">
+        </navigator>
+
+        <div style="border: 1px solid #e2e2e2;margin: 0 10px 0 4px;"></div>
+
+        <navigator open-type="reLaunch" url="/pages/home/main">
+            <img src="/static/images/home/home.png" class="home">
+        </navigator>
     </div>
 
-    <navigator open-type="navigateBack">
+    <!-- 自定义navigation -->
+    <!--
+    <div class="navigation">
+      <button :plain="true" @click="back">
         <img src="/static/images/home/back.png" class="back">
-    </navigator>
-    <navigator open-type="reLaunch" url="/pages/home/main">
+        <div style="border: 1px solid #e2e2e2;margin: 0 10px 0 4px;"></div>
         <img src="/static/images/home/home.png" class="home">
-    </navigator>
+      </button>
+    </div>
+    -->
 
     <div class="page__bd">
         <div class="weui-article">
+            
             <div class="weui-article__h1">
                 <navigator open-type="navigateBack">加入我们</navigator>
             </div>
@@ -20,7 +34,13 @@
                 <div class="weui-article__section">
                     <div class="weui-article__h3">1. 背景介绍</div>
                     <div class="weui-article__p">
-                        本软件是由 Dean 业余时间完成，目的是提供一个挂失、认领服务给身边的朋友使用。 使用 MPVue + Golang 实现。
+                        宝贝回家小程序宗旨是为帮助寻找失踪儿童及一些流浪乞讨的孩子找家，为孩子家长及志愿者提供一个信息沟通的平台。  
+                    </div>
+                    <div class="weui-article__p">
+                        项目介绍： <a href="https://bbhj.airdb.io">https://bbhj.airdb.io</a>
+                    </div>
+                    <div class="weui-article__p">
+                      目前采用 MPVue + Golang 实现， Github地址： https://github.com/bbhj/mina
                     </div>
                 </div>
                 <div class="weui-article__section">
@@ -43,15 +63,10 @@
 export default {
   components: {
   },
-  onLoad: function () {
-    wx.setNavigationBarTitle({
-      title: '志愿者招募计划'
-    })
-  },
   onShareAppMessage: function () {
     return {
       title: '志愿者招募计划',
-      desc: '公益项目',
+      // imageUrl: '/static/images/home/home.png',
       path: '/pages/hr/main?from=forward'
     }
   }
@@ -59,12 +74,40 @@ export default {
 </script>
 
 <style>
-    .navigation{
-      width:100%;
-      height:70rpx;
-      position:fixed;
-      background-color:#fff;
-      padding:55rpx 0 20rpx 0rpx;
-      z-index:9999;
-    }
+.navigation{
+  width: 100%;
+  padding: 27px 5px 10px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  z-index: 9999;
+}
+.navigation button{
+  display: flex;
+  flex-direction: row;
+  border-radius: 20px;
+  border: 1px solid #e2e2e2;
+  padding: 3px 5px;
+  margin-left: 10px;
+  width: 88px;
+}
+.back{
+  width: 25px;
+  height: 25px;
+}
+.home{
+  width: 25px;
+  height: 25px;
+}
+.navbar{
+  display: flex;
+  flex-direction: row;
+  border-radius: 20px;
+  border: 1px solid #e2e2e2;
+  padding: 3px 5px;
+  margin-left: 10px;
+  width: 25px;
+  height: 25px;
+}
 </style>

@@ -147,8 +147,8 @@ canvas{
   width: 88px;
 }
 .back{
-  width: 26px;
-  height: 26px;
+  width: 25px;
+  height: 25px;
 }
 .home{
   width: 25px;
