@@ -1,15 +1,17 @@
 <template>
   <div class="page">
     <div class="navigation">
+      <div class="btn">
         <navigator open-type="navigateBack">
-            <img src="/static/images/home/back.png" class="back">
+          <img src="/static/images/home/back.png" class="back">
         </navigator>
 
-        <div style="border: 1px solid #e2e2e2;margin: 0 10px 0 4px;"></div>
+        <div style="border-left: 1px solid #e2e2e2;margin: 2px 10px 0 4px;height: 18px;"></div>
 
         <navigator open-type="reLaunch" url="/pages/home/main">
-            <img src="/static/images/home/home.png" class="home">
+          <img src="/static/images/home/home.png" class="home">
         </navigator>
+      </div>
     </div>
 
     <!-- 自定义navigation -->
@@ -76,29 +78,30 @@ export default {
 <style>
 .navigation{
   width: 100%;
-  padding: 27px 5px 10px 0;
+  padding: 26px 0 16px 4px;
   position: fixed;
   top: 0;
   left: 0;
   background-color: #fff;
   z-index: 9999;
 }
-.navigation button{
+.btn{
   display: flex;
   flex-direction: row;
   border-radius: 20px;
   border: 1px solid #e2e2e2;
-  padding: 3px 5px;
-  margin-left: 10px;
-  width: 88px;
+  padding: 3px 4px 3px 5px;
+  margin-left: 6px;
+  width: 70px;
+  height: 24px;
 }
 .back{
-  width: 25px;
-  height: 25px;
+  width: 24px;
+  height: 24px;
 }
 .home{
-  width: 25px;
-  height: 25px;
+  width: 23px;
+  height: 23px;
 }
 .navbar{
   display: flex;
