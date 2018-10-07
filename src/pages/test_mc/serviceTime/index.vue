@@ -12,6 +12,39 @@
       <div class="serviceIndex">
         <canvas class="canvas" canvas-id="radar"></canvas>
       </div>
+      <!-- serivceIndex end -->
+      <div class="weui-cells">
+
+        <div class="weui-cell">
+          <div class="weui-cell__bd">
+            今日任务
+          </div>
+          <div class="weui-cell__ft">
+            今日已获成长值{{growIndex}}
+          </div>
+        </div>
+        <!-- cell end -->
+        <div class="weui-cell test-cell">
+          <div class="weui-cell__hd">
+            <image src="/static/images/user_active.png"></image>
+          </div>
+          <div class="weui-cell__bd">标题文字</div>
+          <div class="weui-cell__ft">
+            <button type="default" class="button" size="mini" plain="true">去看看</button>
+          </div>
+        </div>
+        <!-- cell end -->
+        <div class="weui-cell test-cell">
+          <div class="weui-cell__hd">
+            <image src="/static/images/user_active.png"></image>
+          </div>
+          <div class="weui-cell__bd">标题文字</div>
+          <div class="weui-cell__ft">说明文字</div>
+        </div>
+        <!-- cell end -->
+
+      </div>
+      <!-- cells end -->
     </div>
     <!-- test-page-main end -->
 
@@ -31,6 +64,7 @@ export default{
 
   data () {
     return {
+      growIndex: 0,
       radarData: [
         {desc: '参与', value: '0.6'},
         {desc: '关注', value: '0.5'},
@@ -171,18 +205,47 @@ export default{
 </script>
 
 <style scope>
+.test-cell .weui-cell__ft {
+  text-align:right;
+  color:#999;
+  margin:20rpx 20rpx;
+}
+.button {
+  color:#f35336;
+  border-color:#f35336;
+  border:1px solid #f35336;
+}
+.test-cell {
+  padding:20rpx 30rpx;
+  position:relative;
+  display:-ms-flexbox;
+  display:flex;
+  -ms-flex-align:center;
+  align-items:center;
+  height:100rpx;
+}
+.weui-cell__hd image {
+  margin-right:20rpx;
+  vertical-align: middle;
+  width:50rpx; 
+  height:50rpx;
+}
+.weui-cells {
+  margin-top: 0;
+}
 .serviceIndex {
   display: flex;
   flex-direction: row;
   align-items: center;
   background: #f35336;
-  height: 500rpx;
+  height: 550rpx;
 }
 .canvas {
   height: 500rpx;
   width: 600rpx;
   margin-left: 75rpx;
   margin-right: 75rpx;
+  margin-top: 50rpx;
 }
 .test-page-footer {
   box-sizing: border-box;

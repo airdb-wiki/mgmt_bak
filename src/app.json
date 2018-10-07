@@ -1,14 +1,16 @@
 {
   "pages": [
+    "pages/home/main",
+    "pages/test_mc/main",
     "pages/detail/main",
     "pages/hr/main",
-    "pages/home/main",
     "pages/test/main",
     "pages/test_mc/serviceTime/main",
+    "pages/test_mc/myPrivilege/main",
+    "pages/volunteer/main",
     "pages/topic/main",
     "pages/publish/main",
     "pages/logs/main",
-    "pages/test_mc/main",
     "pages/licence/main",
     "pages/profile/main"
   ],
@@ -34,6 +36,11 @@
       }, {
         "pagePath": "pages/hr/main",
         "text": "测试",
+        "iconPath": "/static/images/user.png",
+        "selectedIconPath": "/static/images/user_active.png"
+      }, {
+        "pagePath": "pages/test_mc/main",
+        "text": "测试_mc",
         "iconPath": "/static/images/user.png",
         "selectedIconPath": "/static/images/user_active.png"
       }

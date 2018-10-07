@@ -13,13 +13,14 @@
         <div v-if="authSetting.userInfo">
           <div class="userinfo-cont">
             <div class="text-name">{{ userInfo.nickName }}</div>
-            <div class="text-time" @click="ClickServiceTime">公益时长:{{servicetime}}小时 ></div>
+            <div class="text-time" @click="ClickServiceTime">公益时长: {{servicetime}}小时 ></div>
           </div>
         </div>
         <div v-else>
           <button class="weui-btn" type="primary" open-type="getUserInfo" lang="zh_CN" @getuserinfo="getUserInfo">微信快速登录</button>
         </div>
-        <div class="userinfo-volunt"><i class="icon-dot"></i>加入志愿者</i></div>
+        <div class="userinfo-volunt" @click="ClickJoinVolunteer" v-if="!isVolunteer"><i class="icon-dot"></i>加入志愿者</i></div>
+        <div class="userinfo-volunt" @click="ClickMyPrivilege" v-else><i class="icon-dot"></i>我的特权</i></div>
       </div>
       <!-- userinfo end -->
       
@@ -87,6 +88,7 @@ export default {
   data () {
     return {
       servicetime: 10,
+      isVolunteer: true,
       userInfo: wx.getStorageSync('userInfo'),
       authSetting: {
         userInfo: wx.getStorageSync('authSetting.userInfo')
@@ -113,9 +115,9 @@ export default {
     }
   },
   onLoad: function () {
-    console.log('===test2 onLoad======:')
-    console.log('test2====onLoad() authSetting.userInfo =', this.authSetting.userInfo)
-    console.log('test2====onLoad() userInfo =', this.userInfo)
+    console.log('===test_mc onLoad======:')
+    console.log('test_mc====onLoad() authSetting.userInfo =', this.authSetting.userInfo)
+    console.log('test_mc====onLoad() userInfo =', this.userInfo)
   },
   onShareAppMessage: function () {
     return {
@@ -136,7 +138,7 @@ export default {
         success: (res) => {
           wx.setStorageSync('authSetting.userInfo', res.authSetting['scope.userInfo'])
           that.authSetting.userInfo = wx.getStorageSync('authSetting.userInfo')
-          console.log('test2===openSetting() authSetting.userInfo =', that.authSetting.userInfo)
+          console.log('test_mc===openSetting() authSetting.userInfo =', that.authSetting.userInfo)
         }
       })
     },
@@ -151,13 +153,23 @@ export default {
         wx.setStorageSync('userInfo', e.mp.detail.userInfo)
         this.userInfo = e.mp.detail.userInfo
       }
-      console.log('test2===getUserInfo() userinfo =', e.mp.detail.userInfo)
-      console.log('test2===getUserInfo() authSetting.userInfo =', this.authSetting.userInfo)
+      console.log('test_mc===getUserInfo() userinfo =', e.mp.detail.userInfo)
+      console.log('test_mc===getUserInfo() authSetting.userInfo =', this.authSetting.userInfo)
     },
     // 点击志愿时长
     ClickServiceTime: function () {
       wx.navigateTo({
         url: '/pages/test_mc/serviceTime/main'
+      })
+    },
+    ClickJoinVolunteer: function () {
+      wx.navigateTo({
+        url: '/pages/volunteer/main'
+      })
+    },
+    ClickMyPrivilege: function () {
+      wx.navigateTo({
+        url: '/pages/test_mc/myPrivilege/main'
       })
     }
   },
