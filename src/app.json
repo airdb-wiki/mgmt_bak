@@ -12,7 +12,8 @@
     "pages/publish/main",
     "pages/logs/main",
     "pages/licence/main",
-    "pages/profile/main"
+    "pages/profile/main",
+    "pages/search/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

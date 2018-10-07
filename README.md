@@ -30,7 +30,7 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 ```
 .navigation {
   width: 100%;
-  padding: 26px 0 22px 8px;
+  padding: 26px 0 12px 8px;
   position: fixed;
   top: 0;
   left: 0;
@@ -68,15 +68,16 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 
 * 在dist/commom/vendor.wxss中修改
 ```
-.navigation {
+.navigation.data-v-31126f10 {
   position: fixed;
   width: 100%;
-  height: 40rpx;
+  height: 40px;
   padding: 30px 0 28rpx 40rpx;
   top: 0;
   left: 0;
   background-color: #fff;
   z-index: 9999;
-  padding-left: 300rpx;
+  display: flex;
+  flex-direction: row;
 }
 ```

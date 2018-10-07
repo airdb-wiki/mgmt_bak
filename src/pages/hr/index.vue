@@ -75,7 +75,7 @@ export default {
 }
 </script>
 
-<style scope>
+<style scoped>
 .navigation{
   width: 100%;
   padding: 26px 0 16px 5px;

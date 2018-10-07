@@ -21,6 +21,10 @@
           <img src="/static/images/home/home.png" class="home">
         </navigator>
       </div>
+
+      <!-- 顶部标题 -->
+      <div v-if="showTitle" class="title">详情</div>
+      <div v-else class="title">{{title}}</div>
     </div>
 
   	<detail></detail>
@@ -41,7 +45,7 @@
     <div class="footer">
       <form @submit="sub">
         <div class="container">
-          <input type="text" confirm-type="send" name="pl"/>
+          <input type="text" confirm-type="send" name="pl" placeholder="说点什么吧" placeholder-style="color: #e2e2e2;"/>
           <button :plain='true' form-type="submit">
             <div class="form_btn">
               <img src="/static/images/home/talk.png">
@@ -75,7 +79,9 @@ export default{
   },
   data () {
     return {
-      canvasHidden: false
+      canvasHidden: false,
+      title: '顶梁柱“北漂”意外之死',
+      showTitle: false
     }
   },
   methods: {
@@ -142,30 +148,18 @@ export default{
 }
 </script>
 
-<style scope>
-/* .footer{
-  width: 100%;
-  position: fixed;
-  display: flex;
-  flex-direction: row;
-  bottom: 0;
-  left: 0;
-  padding: 5px 10px;
-  background-color: #fff;
+<style scoped>
+.title{
+  width: 40%;
+  margin-left: 5px;
+  text-align: center;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 30px;
+  font-size: 18px;
 }
-.footer button{
-  border: none;
-  flex: 1;
-}
-.icon{
-  width: 20px;
-  height: 20px;
-  margin-left: -10px;
-}
-canvas{
-  width: 100%;
-  height: 50px;
-} */
 .navigation{
   width: 100%;
   padding: 26px 0 16px 5px;
@@ -174,6 +168,8 @@ canvas{
   left: 0;
   background-color: #fff;
   z-index: 9999;
+  display: flex;
+  flex-direction: row;
 }
 .btn{
   display: flex;
