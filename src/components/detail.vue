@@ -20,9 +20,11 @@
 
       <div class="pra">{{content.pra}}</div>
   	</div>
-    <div class="share" v-on:click="share">
-      <img src="/static/images/home/share.png">
+    <div class="share" v-on:click="download">
+      <img src="/static/images/home/sharetof.png">
     </div>
+
+    <canvas canvas-id="myCanvas" :hidden='canvasHidden'/>
   </div>
 </template>
 
@@ -43,12 +45,61 @@ export default{
           general: '他是儿子、丈夫和父亲。三十而立的他像很多大学毕业的“北漂”一样，成为家里的顶梁柱。如今，他在暴雨中猝然离去。',
           pra: '刘晓苍的家人怎么也没想到，那场在网上刷屏的暴雨，会彻头彻尾地“浇”进自己家里，并带走了被全家人视为顶梁柱的人。2018年8月8日的防汛信息显示，北京出现强降雨，全市平均降雨39.2毫米，最大降雨量和最大雨强均出现在朝阳区黑庄户，降雨量达214.0毫米，最大雨强出现在8时至9时。'
         }
-      ]
+      ],
+      canvasHidden: false
     }
   },
   methods: {
-    share () {
-      console.log('click')
+    download () {
+      var that = this
+      that.canvasHidden = false
+      const ctx = wx.createCanvasContext('myCanvas')
+      // 填充背景色
+      ctx.fillStyle = '#fff'
+      ctx.fillRect(0, 0, 260, 960)
+
+      ctx.setFontSize(20)
+      ctx.setFillStyle('#393939')
+      ctx.fillText('文字在这里！！！', 20, 5, 800)
+      ctx.setTextAlign('center')
+
+      ctx.font = 'italic bold 20px cursive'
+      const metrics = ctx.measureText('Hello World')
+      console.log(metrics.width)
+
+      ctx.drawImage('/static/images/mina/8.jpg', 20, 5, 120, 60)
+
+      wx.showLoading({
+        title: '分享图片生成中...',
+        mask: true
+      })
+
+      ctx.draw(true, function () {
+        console.log('draw callback success')
+        wx.canvasToTempFilePath({
+          x: 0,
+          y: 0,
+          width: 780,
+          height: 800,
+          destWidth: 780,
+          destHeight: 800,
+          canvasId: 'myCanvas',
+          fileType: 'png',
+          success: function (res) {
+            wx.hideLoading()
+            wx.previewImage({
+              urls: [res.tempFilePath]
+            })
+          }
+        })
+      })
+      setTimeout(function () {
+        wx.drawCanvas({
+          canvasId: 'myCanvas',
+          actions: [],
+          reserve: false
+        })
+      }, 1000)
     }
   }
 }
@@ -122,5 +173,9 @@ export default{
   width: 35px;
   height: 35px;
   margin-top: 7px;
+}
+canvas{
+  width: 100%;
+  height: 50px;
 }
 </style>

@@ -26,7 +26,7 @@
   	<detail></detail>
     
     <!-- 底部分享，评论栏 -->
-    <canvas canvas-id="myCanvas" :hidden='canvasHidden'/>
+    <!-- <canvas canvas-id="myCanvas" :hidden='canvasHidden'/>
     <div class="footer">
       <button @click="shareToFriends" open-type='share' :plain='true'>
         <img src="/static/images/home/wx.png" class="icon">
@@ -36,6 +36,26 @@
         <img src="/static/images/home/download.png" class="icon">
         生成海报
       </button>
+    </div> -->
+
+    <div class="footer">
+      <form @submit="sub">
+        <div class="container">
+          <input type="text" confirm-type="send" name="pl"/>
+          <button :plain='true' form-type="submit">
+            <div class="form_btn">
+              <img src="/static/images/home/talk.png">
+              <div>评论</div>
+            </div>
+          </button>
+          <button @click="shareToFriends" open-type='share' :plain='true'>
+            <div class="form_btn">
+              <img src="/static/images/home/wx.png">
+              <div>分享</div>
+            </div>
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 </template>
@@ -59,6 +79,9 @@ export default{
     }
   },
   methods: {
+    sub (e) {
+      console.log('---------------评论的内容为：', e.mp.detail.value.pl)
+    },
     download () {
       var that = this
       that.canvasHidden = false
@@ -120,7 +143,7 @@ export default{
 </script>
 
 <style scope>
-.footer{
+/* .footer{
   width: 100%;
   position: fixed;
   display: flex;
@@ -142,7 +165,7 @@ export default{
 canvas{
   width: 100%;
   height: 50px;
-}
+} */
 .navigation{
   width: 100%;
   padding: 26px 0 16px 5px;
@@ -169,5 +192,41 @@ canvas{
 .home{
   width: 23px;
   height: 23px;
+}
+.footer{
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: #fff;
+}
+.container{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin: 3px 6px;
+}
+.container input{
+  border: 1px solid #e2e2e2;
+  padding: 0 8px;
+  border-radius: 20px;
+  flex: 6;
+  height: 35px;
+}
+.container button{
+  border: none;
+  flex: 1;
+}
+.form_btn{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.form_btn img{
+  width: 23px;
+  height: 23px;
+}
+.form_btn div{
+  font-size: 12px;
 }
 </style>

@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/detail/main",
     "pages/hr/main",
     "pages/home/main",
-    "pages/detail/main",
     "pages/test/main",
     "pages/test_mc/serviceTime/main",
     "pages/topic/main",
