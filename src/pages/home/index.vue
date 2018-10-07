@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- 自定义navigation -->
-    <navigation></navigation>
+    <navigation :search='true'></navigation>
     
     <!-- 自定义navBar -->
     <div style="z-index: 0;margin-top: 79px;">

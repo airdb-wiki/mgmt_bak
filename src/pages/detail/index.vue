@@ -41,7 +41,7 @@
     <div class="footer">
       <form @submit="sub">
         <div class="container">
-          <input type="text" confirm-type="send" name="pl"/>
+          <input type="text" confirm-type="send" name="pl" placeholder="说点什么吧" placeholder-style="color: #e2e2e2;"/>
           <button :plain='true' form-type="submit">
             <div class="form_btn">
               <img src="/static/images/home/talk.png">
@@ -142,7 +142,7 @@ export default{
 }
 </script>
 
-<style scope>
+<style scoped>
 /* .footer{
   width: 100%;
   position: fixed;
