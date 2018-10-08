@@ -34,7 +34,7 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #000;
+  background-color: #fff;
   z-index: 9999;
 }
 .btn {
