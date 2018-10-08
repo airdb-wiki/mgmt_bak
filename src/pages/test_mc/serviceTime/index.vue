@@ -30,7 +30,7 @@
           </div>
           <div class="weui-cell__bd">标题文字</div>
           <div class="weui-cell__ft">
-            <button type="default" class="button" size="mini" plain="true">去看看</button>
+            <button type="default" class="beforButton" size="mini" plain="true">去看看</button>
           </div>
         </div>
         <!-- cell end -->
@@ -39,7 +39,9 @@
             <image src="/static/images/user_active.png"></image>
           </div>
           <div class="weui-cell__bd">标题文字</div>
-          <div class="weui-cell__ft">说明文字</div>
+          <div class="weui-cell__ft">
+            <button type="default" class="beforButton" size="mini" plain="true">去看看</button>
+          </div>
         </div>
         <!-- cell end -->
 
@@ -205,15 +207,17 @@ export default{
 </script>
 
 <style scope>
+.weui-cell__ft {
+  font-size:30rpx;
+  color:black;
+}
 .test-cell .weui-cell__ft {
   text-align:right;
-  color:#999;
-  margin:20rpx 20rpx;
+  padding:20rpx 0 10rpx 0;
 }
-.button {
-  color:#f35336;
-  border-color:#f35336;
-  border:1px solid #f35336;
+.beforButton {
+  color:#red;
+  border:1px solid #red;
 }
 .test-cell {
   padding:20rpx 30rpx;

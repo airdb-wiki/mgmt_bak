@@ -20,7 +20,7 @@
           <button class="weui-btn" type="primary" open-type="getUserInfo" lang="zh_CN" @getuserinfo="getUserInfo">微信快速登录</button>
         </div>
         <div class="userinfo-volunt" @click="ClickJoinVolunteer" v-if="!isVolunteer"><i class="icon-dot"></i>加入志愿者</i></div>
-        <div class="userinfo-volunt" @click="ClickMyPrivilege" v-else><i class="icon-dot"></i>我的特权</i></div>
+        <div class="userinfo-privilege" @click="ClickMyPrivilege" v-else>我的特权></div>
       </div>
       <!-- userinfo end -->
       
@@ -180,6 +180,18 @@ export default {
 
 
 <style scoped>
+.userinfo-privilege {
+  position:absolute;
+  top:40%;
+  right:0;
+  width:150rpx;
+  height:50rpx;
+  background:#FFCC00;
+  color:#fff;
+  border-top-left-radius:25rpx;
+  border-bottom-left-radius:25rpx;
+  padding:0 0 0 30rpx;
+}
 .after-userifo .title{
   border-top: 0.5px solid #d9d9d9;
   border-left: 0.5px solid #d9d9d9;
@@ -293,6 +305,7 @@ export default {
 }
 .userinfo {
   display: flex;
+  position:relative;
   flex-direction: row;
   align-items: center;
   margin-bottom: 20rpx;

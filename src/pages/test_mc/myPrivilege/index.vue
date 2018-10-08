@@ -114,17 +114,19 @@ export default{
 </script>
 
 <style scope>
+.weui-grid__label {
+  margin-top: 25rpx;
+}
 .weui-grids {
   border-top:0px;
   border-left:0rpx;
-  border-bottom:1rpx solid #d9d9d9;
   overflow:hidden;
 }
 .weui-grid {
   position:relative;
-  height:200rpx;
+  height:250rpx;
   float:left;
-  padding:40rpx 20rpx;
+  padding:65rpx 40rpx 60rpx 40rpx;
   width:33.33333333%;
   border-right:0rpx;
   border-bottom:1rpx solid #d9d9d9;
