@@ -22,12 +22,13 @@
         </navigator>
       </div>
 
-      <!-- 顶部标题 -->
-      <div v-if="showTitle" class="title">详情</div>
+      <div v-if="!showTitle" class="title">详情</div>
       <div v-else class="title">{{title}}</div>
     </div>
 
-  	<detail></detail>
+    <scroll-view>
+      <detail></detail>
+    </scroll-view>
     
     <!-- 底部分享，评论栏 -->
     <!-- <canvas canvas-id="myCanvas" :hidden='canvasHidden'/>
@@ -82,6 +83,15 @@ export default{
       canvasHidden: false,
       title: '顶梁柱“北漂”意外之死',
       showTitle: false
+    }
+  },
+  onPageScroll (res) {
+    if (res.scrollTop > 40) {
+      this.showTitle = true
+    } else {
+      if (res.scrollTop < 40) {
+        this.showTitle = false
+      }
     }
   },
   methods: {
