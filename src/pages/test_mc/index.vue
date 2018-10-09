@@ -184,13 +184,13 @@ export default {
   position:absolute;
   top:40%;
   right:0;
-  width:150rpx;
+  width:145rpx;
   height:50rpx;
   background:#FFCC00;
   color:#fff;
   border-top-left-radius:25rpx;
   border-bottom-left-radius:25rpx;
-  padding:0 0 0 30rpx;
+  padding:0 0 0 20rpx;
 }
 .after-userifo .title{
   border-top: 0.5px solid #d9d9d9;
@@ -214,7 +214,7 @@ export default {
     top: 0;
     right: 0;
     height: 1px;
-    border-top: 0.5px solid #d9d9d9;
+    border-top: 0.5rpx solid #d9d9d9;
     color: #d9d9d9;
     -webkit-transform-origin: 0 0;
     transform-origin: 0 0;
@@ -228,7 +228,7 @@ export default {
     top: 0;
     width: 1px;
     bottom: 0;
-    border-left: 0.5px solid #d9d9d9;
+    border-left: 0.5rpx solid #d9d9d9;
     color: #d9d9d9;
     -webkit-transform-origin: 0 0;
     transform-origin: 0 0;
@@ -249,7 +249,7 @@ export default {
     top: 0;
     width: 1px;
     bottom: 0;
-    border-right: 0.5px solid #d9d9d9;
+    border-right: 0.5rpx solid #d9d9d9;
     color: #d9d9d9;
     -webkit-transform-origin: 100% 0;
     transform-origin: 100% 0;
@@ -334,17 +334,21 @@ export default {
   align-items: flex-start;
   justify-content: center;
   padding-left: 20rpx;
-  font-size: 36rpx;
   color: #aaa;
 }
 .userinfo-cont .text-name {
-  margin-bottom: 10rpx;
-  font-size: 32rpx;
-  color: #fff;
+  margin-bottom:10rpx;
+  font-size:38rpx;
+  color:#fff;
+  width:250rpx;
+  overflow:hidden;
+  height:50rpx;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 }
 .userinfo-cont .text-time {
   margin-bottom: 10rpx;
-  font-size: 28rpx;
+  font-size: 24rpx;
   color: #fff;
 }
 .userinfo-volunt {

@@ -10,7 +10,9 @@
 
     <div class="test-page-main">
       <div class="serviceIndex">
+        <div class="index-title">成长指标</div>
         <canvas class="canvas" canvas-id="radar"></canvas>
+        <div class="index-detail" @click="">查看明细></div>
       </div>
       <!-- serivceIndex end -->
       <div class="weui-cells">
@@ -26,21 +28,27 @@
         <!-- cell end -->
         <div class="weui-cell test-cell">
           <div class="weui-cell__hd">
-            <image src="/static/images/user_active.png"></image>
+            <image src="/static/images/test_mc/1.jpg"></image>
           </div>
-          <div class="weui-cell__bd">标题文字</div>
+          <div class="weui-cell__bd">
+            <div class="bd_head">标题</div>
+            <div class="bd_foot">成长值 +200</div>
+          </div>
           <div class="weui-cell__ft">
-            <button type="default" class="beforButton" size="mini" plain="true">去看看</button>
+            <button class="myButton" hover-class="none">去看看</button>
           </div>
         </div>
         <!-- cell end -->
         <div class="weui-cell test-cell">
           <div class="weui-cell__hd">
-            <image src="/static/images/user_active.png"></image>
+            <image src="/static/images/test_mc/2.png"></image>
           </div>
-          <div class="weui-cell__bd">标题文字</div>
+          <div class="weui-cell__bd">
+            <div class="bd_head">标题</div>
+            <div class="bd_foot">成长值 +200</div>
+          </div>
           <div class="weui-cell__ft">
-            <button type="default" class="beforButton" size="mini" plain="true">去看看</button>
+            <button class="myButton" hover-class="none">去看看</button>
           </div>
         </div>
         <!-- cell end -->
@@ -207,17 +215,44 @@ export default{
 </script>
 
 <style scope>
+.bd_head {
+  font-size:35rpx;
+}
+.bd_foot {
+  color:#505050;
+  font-size:25rpx;
+  padding-top:10rpx;
+}
+.index-detail {
+  position:absolute;
+  top:33rpx;
+  right:30rpx;
+  font-size:28rpx;
+  color:#fff;
+}
+.index-title {
+  position:absolute;
+  top:30rpx;
+  left:30rpx;
+  font-size:30;
+  color:#fff;
+}
 .weui-cell__ft {
   font-size:30rpx;
   color:black;
 }
-.test-cell .weui-cell__ft {
-  text-align:right;
-  padding:20rpx 0 10rpx 0;
-}
-.beforButton {
-  color:#red;
-  border:1px solid #red;
+.myButton {
+  border: 0.5rpx solid #ff0000; 
+  border-radius: 15rpx;  
+  background-color: white;
+  height:60rpx;
+  width:120rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size:25rpx;
+  color:#ff0000;
+  padding:0;
 }
 .test-cell {
   padding:20rpx 30rpx;
@@ -231,13 +266,14 @@ export default{
 .weui-cell__hd image {
   margin-right:20rpx;
   vertical-align: middle;
-  width:50rpx; 
-  height:50rpx;
+  width:70rpx; 
+  height:70rpx;
 }
 .weui-cells {
   margin-top: 0;
 }
 .serviceIndex {
+  position:relative;
   display: flex;
   flex-direction: row;
   align-items: center;
