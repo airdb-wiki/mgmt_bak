@@ -113,7 +113,7 @@ export default{
 }
 </script>
 
-<style scope>
+<style scoped>
 .weui-grid__label {
   margin-top: 25rpx;
 }
