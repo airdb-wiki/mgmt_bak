@@ -23,6 +23,13 @@ export default {
     focus () {
       wx.navigateTo({ url: '/pages/search/main' })
     }
+  },
+  mounted () {
+    wx.getSystemInfo({
+      success: res => {
+        console.log('systemInfo', res)
+      }
+    })
   }
 }
 </script>
@@ -31,8 +38,8 @@ export default {
 .navigation{
   position: fixed;
   width: 100%;
-  height: 20px;
-  padding: 40px 0 14px 20px;
+  height: 21pt;
+  padding: 18pt 0 14pt 20pt;
   top: 0;
   left: 0;
   background-color: #fff;
@@ -41,11 +48,11 @@ export default {
   flex-direction: row;
 }
 #search{
-  margin-top: 30px;
+  margin-top: 20pt;
   border: 1px solid #e2e2e2;
-  width: 68%;
-  line-height: 27px;
-  height: 30px;
+  width: 65%;
+  line-height: 21pt;
+  height: 23pt;
   border-radius: 20px;
   margin-left: 5px;
 }

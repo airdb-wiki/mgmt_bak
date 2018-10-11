@@ -110,10 +110,11 @@ export default {
   width: 100%;
   white-space: nowrap;
   position: fixed;
-  top: 73px;
+  top: 54pt;
   left: 0;
   z-index: 9999;
   background-color: #fff;
+  overflow: hidden;
 }
 ::scrollbar {
   width: 0;

@@ -102,7 +102,7 @@ export default{
     },
     clickDetail: function () {
       wx.navigateTo({
-        url: '/pages/hzw_text/main'
+        url: '/pages/test_mc/hzw_text/main'
       })
     }
   },
