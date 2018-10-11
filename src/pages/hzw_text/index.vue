@@ -1,5 +1,11 @@
 <template>
   <div class="page">
+    <div class="navigation">
+      <div @click="back">
+        <img src="/static/images/home/back.png" class="back">
+      </div>
+    </div>
+    <!-- navigation end -->
     <canvas style="width: 100%; height: 300px;" canvas-id="firstCanvas"></canvas>
   </div>
 </template>
@@ -10,7 +16,7 @@ export default {
     const ctx = wx.createCanvasContext('firstCanvas')
 
     ctx.beginPath()
-    ctx.setFillStyle('red')
+    ctx.setFillStyle('#f35336')
     ctx.fillRect(0, 0, 600, 300)
 
     // 书写文本
@@ -85,13 +91,45 @@ export default {
         [320, 160]
       ]
     }
+  },
+  methods: {
+    back: function () {
+      wx.navigateBack({
+        delta: 1
+      })
+    }
   }
 }
 </script>
 
 <style scoped>
-.page{
-    width: 100%;
-    height: 300px;
+.test-page-footer {
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  padding-top: 30rpx;
+}
+.test-page-main {
+  flex:1 1 auto;
+  margin-top:140rpx;
+}
+.test-page {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  min-height: 100%;
+  background: #efeff4;
+  margin: 0 0;
+}
+.navigation{
+  width:100%;
+  height:70rpx;
+  position:fixed;
+  background-color:#fff;
+  padding:55rpx 0 20rpx 0rpx;
+  z-index:9999;
+}
+.back{
+  width:100rpx;
+  height:70rpx;
 }
 </style>

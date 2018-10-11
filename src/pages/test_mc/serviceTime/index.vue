@@ -2,9 +2,20 @@
   <div class="test-page">
 
     <div class="navigation">
-      <div @click="back">
-        <img src="/static/images/home/back.png" class="back">
+      <div class="btn">
+        <navigator open-type="navigateBack">
+          <img src="/static/images/home/back.png" class="back">
+        </navigator>
+
+        <div style="border-left: 1px solid #e2e2e2;margin: 2px 10px 0 4px;height: 18px;"></div>
+
+        <navigator open-type="reLaunch" url="/pages/home/main">
+          <img src="/static/images/home/home.png" class="home">
+        </navigator>
       </div>
+
+      <div v-if="!showTitle" class="title">详情</div>
+      <div v-else class="title">{{title}}</div>
     </div>
     <!-- navigation end -->
 
@@ -12,7 +23,7 @@
       <div class="serviceIndex">
         <div class="index-title">成长指标</div>
         <canvas class="canvas" canvas-id="radar"></canvas>
-        <div class="index-detail" @click="">查看明细></div>
+        <div class="index-detail" @click="clickDetail">查看明细></div>
       </div>
       <!-- serivceIndex end -->
       <div class="weui-cells">
@@ -26,54 +37,38 @@
           </div>
         </div>
         <!-- cell end -->
-        <div class="weui-cell test-cell">
-          <div class="weui-cell__hd">
-            <image src="/static/images/test_mc/1.jpg"></image>
-          </div>
-          <div class="weui-cell__bd">
-            <div class="bd_head">标题</div>
-            <div class="bd_foot">成长值 +200</div>
-          </div>
-          <div class="weui-cell__ft">
-            <button class="myButton" hover-class="none">去看看</button>
-          </div>
-        </div>
-        <!-- cell end -->
-        <div class="weui-cell test-cell">
+
+        <div class="weui-cell test-cell" v-for="(item, index) in items" :key="index">
           <div class="weui-cell__hd">
             <image src="/static/images/test_mc/2.png"></image>
           </div>
           <div class="weui-cell__bd">
-            <div class="bd_head">标题</div>
-            <div class="bd_foot">成长值 +200</div>
+            <div class="bd_head">{{item.name}}</div>
+            <div class="bd_foot">
+              <div class="label">成长值</div>
+              <div class="value">+{{item.value}}</div>
+            </div>
           </div>
           <div class="weui-cell__ft">
             <button class="myButton" hover-class="none">去看看</button>
           </div>
         </div>
         <!-- cell end -->
-
       </div>
       <!-- cells end -->
     </div>
     <!-- test-page-main end -->
 
-    <div class="test-page-footer">
-      <vfooter></vfooter>
-    </div>
-    <!-- test-page-footer end -->
+    <div class="test-page-footer"></div>
   </div>
 </template>
 
 <script>
-import vfooter from '@/pages/footer'
 export default{
-  components: {
-    vfooter
-  },
-
   data () {
     return {
+      title: '成长指标',
+      showTitle: false,
       growIndex: 0,
       radarData: [
         {desc: '参与', value: '0.6'},
@@ -82,6 +77,14 @@ export default{
         {desc: '转发', value: '0.5'},
         {desc: '粉丝', value: '1.0'},
         {desc: '捐助', value: '0.3'}
+      ],
+      items: [
+        {name: '标题一', value: '200'},
+        {name: '标题二', value: '100'},
+        {name: '标题三', value: '50'},
+        {name: '标题四', value: '50'},
+        {name: '标题五', value: '20'},
+        {name: '标题六', value: '20'}
       ]
     }
   },
@@ -96,10 +99,25 @@ export default{
     rpx: function (param) {
       var windowW = wx.getSystemInfoSync().windowWidth
       return Number((windowW / 750 * param).toFixed(2))
+    },
+    clickDetail: function () {
+      wx.navigateTo({
+        url: '/pages/hzw_text/main'
+      })
+    }
+  },
+  // methods end
+
+  onPageScroll (res) {
+    if (res.scrollTop > 40) {
+      this.showTitle = true
+    } else {
+      if (res.scrollTop < 40) {
+        this.showTitle = false
+      }
     }
   },
 
-  // methods end
   onShow: function () {
     var X0 = this.rpx(300)
     var Y0 = this.rpx(250)
@@ -218,10 +236,21 @@ export default{
 .bd_head {
   font-size:35rpx;
 }
-.bd_foot {
+.bd_foot .label {
   color:#505050;
   font-size:25rpx;
+  width:80rpx;
+}
+.bd_foot .value {
+  padding-left:10rpx;
+  font-size:25rpx;
+  color:#f35336;
+}
+.bd_foot {
   padding-top:10rpx;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: row;
 }
 .index-detail {
   position:absolute;
@@ -304,16 +333,44 @@ export default{
   background: #efeff4;
   margin: 0 0;
 }
+.title{
+  width: 40%;
+  margin-left: 5px;
+  text-align: center;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 30px;
+  font-size: 18px;
+}
 .navigation{
-  width:100%;
-  height:70rpx;
-  position:fixed;
-  background-color:#fff;
-  padding:55rpx 0 20rpx 0rpx;
-  z-index:9999;
+  width: 100%;
+  padding: 26px 0 16px 5px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  z-index: 9999;
+  display: flex;
+  flex-direction: row;
+}
+.btn{
+  display: flex;
+  flex-direction: row;
+  border-radius: 20px;
+  border: 1px solid #e2e2e2;
+  padding: 3px 4px 3px 9px;
+  margin-left: 6px;
+  width: 72px;
+  height: 24px;
 }
 .back{
-  width:100rpx;
-  height:70rpx;
+  width: 24px;
+  height: 24px;
+}
+.home{
+  width: 23px;
+  height: 23px;
 }
 </style>
