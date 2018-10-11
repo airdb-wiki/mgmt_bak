@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/hzw_text/main",
+    "pages/test_mc/hzw_text/main",
     "pages/detail/main",
     "pages/home/main",
     "pages/test_mc/main",
@@ -41,7 +41,7 @@
         "iconPath": "/static/images/user.png",
         "selectedIconPath": "/static/images/user_active.png"
       }, {
-        "pagePath": "pages/hzw_text/main",
+        "pagePath": "pages/test_mc/hzw_text/main",
         "text": "测试_hzw",
         "iconPath": "/static/images/user.png",
         "selectedIconPath": "/static/images/user_active.png"

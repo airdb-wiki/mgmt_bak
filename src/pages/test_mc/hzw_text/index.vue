@@ -1,6 +1,7 @@
 <template>
   <div class="page">
-    <canvas style="width: 100%; height: 300px;" canvas-id="firstCanvas"></canvas>
+    <canvas style="width: 100%; height: 380px;" canvas-id="firstCanvas"></canvas>
+    <button @click="share">生成海报</button>
   </div>
 </template>
 
@@ -11,43 +12,43 @@ export default {
 
     ctx.beginPath()
     ctx.setFillStyle('red')
-    ctx.fillRect(0, 0, 600, 300)
+    ctx.fillRect(0, 0, 600, 380)
 
     // 书写文本
     ctx.setFillStyle('#fff')
     ctx.beginPath()
     ctx.setFontSize(20)
-    ctx.fillText('当前成长值', 30, 34)
-    ctx.fillText('去提升 >', 85, 65)
-    ctx.fillText('距Lv1会员还需 88 成长值~', 30, 100)
+    ctx.fillText('当前成长值', 30, 70)
+    ctx.fillText('去提升 >', 90, 112)
+    ctx.fillText('距Lv1会员还需 88 成长值~', 30, 145)
 
     ctx.beginPath()
-    ctx.setFontSize(35)
-    ctx.fillText('12', 30, 69)
+    ctx.setFontSize(40)
+    ctx.fillText('12', 30, 115)
 
     // 绘制一个背景
     ctx.beginPath()
     ctx.setStrokeStyle('rgba(255, 255, 255, .4)')
     ctx.setLineWidth(29)
     ctx.setLineCap('round')
-    ctx.moveTo(88, 57)
-    ctx.lineTo(156, 60)
+    ctx.moveTo(95, 105)
+    ctx.lineTo(160, 105)
     ctx.stroke()
 
     // 分割线1
     ctx.beginPath()
     ctx.setLineWidth(3)
     ctx.setStrokeStyle('#e2e2e2')
-    ctx.moveTo(0, 121)
-    ctx.lineTo(300, 121)
+    ctx.moveTo(0, 180)
+    ctx.lineTo(300, 180)
     ctx.stroke()
 
     // 分割线2
     ctx.beginPath()
     ctx.setLineWidth(3)
     ctx.setStrokeStyle('#e2e2e2')
-    ctx.moveTo(0, 262)
-    ctx.lineTo(300, 262)
+    ctx.moveTo(0, 340)
+    ctx.lineTo(300, 340)
     ctx.stroke()
 
     // 绘制折线图
@@ -57,10 +58,10 @@ export default {
     ctx.setStrokeStyle('#fff')
     ctx.setFontSize(20)
     ctx.moveTo(position[0][0], position[0][1])
-    ctx.fillText('4月', position[0][0] - 10, position[0][1] + 25)
+    ctx.fillText('4月', position[0][0] - 10, position[0][1] + 30)
     for (var i = 1; i < 4; i++) {
       ctx.lineTo(position[i][0], position[i][1])
-      ctx.fillText('4月', position[i][0] - 10, position[0][1] + 25)
+      ctx.fillText('4月', position[i][0] - 10, position[0][1] + 30)
     }
     ctx.stroke()
 
@@ -79,11 +80,37 @@ export default {
   data () {
     return {
       position: [
-        [20, 220],
-        [120, 200],
-        [220, 205],
-        [320, 160]
+        [20, 280],
+        [120, 260],
+        [220, 265],
+        [320, 210]
       ]
+    }
+  },
+  methods: {
+    share () {
+      wx.canvasToTempFilePath({
+        canvasId: 'firstCanvas',
+        success: (res) => {
+          wx.saveImageToPhotosAlbum({
+            filePath: res.tempFilePath,
+            success: (res) => {
+              console.log(res)
+              wx.showToast({
+                title: '保存成功',
+                icon: 'success',
+                duration: 2000
+              })
+            },
+            fail: (err) => {
+              console.error(err)
+            }
+          })
+        },
+        fail: (err) => {
+          console.error(err)
+        }
+      }, this)
     }
   }
 }
