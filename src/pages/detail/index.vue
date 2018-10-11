@@ -159,20 +159,9 @@ export default{
 </script>
 
 <style scoped>
-.title{
-  width: 40%;
-  margin-left: 5px;
-  text-align: center;
-  display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  line-height: 30px;
-  font-size: 18px;
-}
 .navigation{
   width: 100%;
-  padding: 26px 0 16px 5px;
+  padding: 18pt 0 4pt 0;
   position: fixed;
   top: 0;
   left: 0;
@@ -181,23 +170,34 @@ export default{
   display: flex;
   flex-direction: row;
 }
+.title{
+  width: 50%;
+  margin-left: 3pt;
+  text-align: center;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 30pt;
+  font-size: 18px;
+}
 .btn{
   display: flex;
   flex-direction: row;
   border-radius: 20px;
   border: 1px solid #e2e2e2;
-  padding: 3px 4px 3px 9px;
-  margin-left: 6px;
-  width: 72px;
-  height: 24px;
+  padding: 3pt 0pt 5pt 4pt;
+  margin-left: 6pt;
+  width: 56pt;
+  height: 16pt;
 }
 .back{
-  width: 24px;
-  height: 24px;
+  width: 20pt;
+  height: 20pt;
 }
 .home{
-  width: 23px;
-  height: 23px;
+  width: 17pt;
+  height: 17pt;
 }
 .footer{
   width: 100%;

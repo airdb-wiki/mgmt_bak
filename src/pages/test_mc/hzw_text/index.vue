@@ -14,6 +14,8 @@ export default {
     ctx.setFillStyle('red')
     ctx.fillRect(0, 0, 600, 380)
 
+    // 为了练习canvas，便于以后海报的制作，这里文本，按钮均使用canvas实现
+
     // 书写文本
     ctx.setFillStyle('#fff')
     ctx.beginPath()
