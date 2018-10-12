@@ -1,8 +1,7 @@
 <template>
   <div>
-    <button @click="lu">开始</button>
-    <button @click="stop">停止</button>
-    <button @click="play">播放</button>
+    <button @click="lu">{{btnContent}}</button>
+    <div v-for="(talk, index) in talks" :key="talk.id" @click="play(index)" class="myTalk">{{talk}}</div>
   </div>
 </template>
 
@@ -12,47 +11,59 @@ const recorderManager = wx.getRecorderManager()
 export default {
   data () {
     return {
-      savedFilePath: ''
+      talksUrl: [],
+      btnContent: '开始',
+      start: true,
+      hidden: true,
+      startTime: Number,
+      myDuration: Number,
+      talks: []
     }
   },
   methods: {
     lu () {
-      const options = {
-        duration: 10000,
-        sampleRate: 44100,
-        numberOfChannels: 1,
-        encodeBitRate: 192000,
-        format: 'aac',
-        frameSize: 50
-      }
+      if (this.start === true) {
+        const options = {
+          duration: 10000,
+          sampleRate: 44100,
+          numberOfChannels: 1,
+          encodeBitRate: 192000,
+          format: 'aac',
+          frameSize: 50
+        }
 
-      recorderManager.start(options)
-    },
-    stop () {
-      recorderManager.onStop((res) => {
-        console.log('recorder stop', res)
-        wx.saveFile({
-          tempFilePath: res.tempFilePath,
-          success: res => {
-            console.log(res)
-            this.savedFilePath = res.savedFilePath
-            wx.setStorageSync('voice', res.savedFilePath)
-          }
+        var startDate = new Date()
+        this.startTime = startDate.getSeconds()
+        this.start = false
+        this.btnContent = '结束'
+
+        recorderManager.start(options)
+      } else {
+        recorderManager.onStop((res) => {
+          console.log('recorder stop', res)
+
+          // 储存音频的信息
+          var endDate = new Date()
+          this.myDuration = endDate.getSeconds() - this.startTime
+          console.log('duration: ', this.myDuration)
+          this.talks = this.talks.concat('（﹙·' + this.myDuration)
+          this.talksUrl = this.talksUrl.concat(res.tempFilePath)
+          console.log(this.tempPath)
+
+          // 设置button样式
+          this.start = true
+          this.btnContent = '开始'
         })
-      })
 
-      recorderManager.stop()
-    },
-    play () {
-      if (this.savedFilePath === '') {
-        var a = wx.getStorageSync('voice')
-        console.log(a)
+        recorderManager.stop()
       }
+    },
+    play (index) {
       this.innerAudioContext = wx.createInnerAudioContext()
       this.innerAudioContext.onError((res) => {
         console.log('播放失败')
       })
-      this.innerAudioContext.src = this.savedFilePath
+      this.innerAudioContext.src = this.talksUrl[index]
       this.innerAudioContext.play()
     }
   }
@@ -60,5 +71,12 @@ export default {
 </script>
 
 <style scoped>
-
+.myTalk{
+  padding: 7px 10px;
+  font-weight: bold;
+  background-color: aquamarine;
+  border-radius: 7px;
+  margin: 5px 10px;
+  width: 100px;
+}
 </style>
