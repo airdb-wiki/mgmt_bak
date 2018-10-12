@@ -2,36 +2,21 @@
   <div>
     <button @click="lu">点击</button>
     <button @click="stop">停止</button>
+    <button @click="play">播放</button>
   </div>
 </template>
 
 <script>
+const recorderManager = wx.getRecorderManager()
+
 export default {
+  data () {
+    return {
+      tempPath: ''
+    }
+  },
   methods: {
     lu () {
-      const recorderManager = wx.getRecorderManager()
-
-      recorderManager.onStart(() => {
-        console.log('recorder start')
-      })
-      recorderManager.onPause(() => {
-        console.log('recorder pause')
-      })
-      recorderManager.onStop((res) => {
-        console.log('recorder stop', res)
-        const tempPath = res.tempFilePath
-        this.innerAudioContext = wx.createInnerAudioContext()
-        this.innerAudioContext.onError((res) => {
-        // 播放音频失败的回调
-        })
-        this.innerAudioContext.src = tempPath
-        this.innerAudioContext.play()
-      })
-      recorderManager.onFrameRecorded((res) => {
-        const { frameBuffer } = res
-        console.log('frameBuffer.byteLength', frameBuffer.byteLength)
-      })
-
       const options = {
         duration: 10000,
         sampleRate: 44100,
@@ -42,6 +27,22 @@ export default {
       }
 
       recorderManager.start(options)
+    },
+    stop () {
+      recorderManager.onStop((res) => {
+        console.log('recorder stop', res)
+        this.tempPath = res.tempFilePath
+      })
+
+      recorderManager.stop()
+    },
+    play () {
+      this.innerAudioContext = wx.createInnerAudioContext()
+      this.innerAudioContext.onError((res) => {
+        console.log('播放失败')
+      })
+      this.innerAudioContext.src = this.tempPath
+      this.innerAudioContext.play()
     }
   }
 }
