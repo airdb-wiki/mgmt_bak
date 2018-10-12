@@ -2,9 +2,20 @@
   <div class="test-page">
 
     <div class="navigation">
-      <div @click="back">
-        <img src="/static/images/home/back.png" class="back">
+      <div class="btn">
+        <navigator open-type="navigateBack">
+          <img src="/static/images/home/back.png" class="back">
+        </navigator>
+
+        <div style="border-left: 1px solid #e2e2e2;margin: 2px 10px 0 4px;height: 18px;"></div>
+
+        <navigator open-type="reLaunch" url="/pages/home/main">
+          <img src="/static/images/home/home.png" class="home">
+        </navigator>
       </div>
+
+      <div v-if="!showTitle" class="title">详情</div>
+      <div v-else class="title">{{title}}</div>
     </div>
     <!-- navigation end -->
 
@@ -51,6 +62,8 @@ export default{
 
   data () {
     return {
+      title: '成长指标',
+      showTitle: false,
       userInfo: wx.getStorageSync('userInfo'),
       authSetting: {
         userInfo: wx.getStorageSync('authSetting.userInfo')
@@ -102,6 +115,16 @@ export default{
     }
   },
   // methods end
+
+  onPageScroll (res) {
+    if (res.scrollTop > 40) {
+      this.showTitle = true
+    } else {
+      if (res.scrollTop < 40) {
+        this.showTitle = false
+      }
+    }
+  },
 
   onShareAppMessage: function () {
     return {
@@ -192,15 +215,43 @@ export default{
   margin: 0 0;
 }
 .navigation{
-  width:100%;
-  height:70rpx;
-  position:fixed;
-  background-color:#fff;
-  padding:55rpx 0 20rpx 0rpx;
-  z-index:9999;
+  width: 100%;
+  padding: 18pt 0 4pt 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  z-index: 9999;
+  display: flex;
+  flex-direction: row;
+}
+.title{
+  width: 50%;
+  margin-left: 3pt;
+  text-align: center;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 30pt;
+  font-size: 18px;
+}
+.btn{
+  display: flex;
+  flex-direction: row;
+  border-radius: 20px;
+  border: 1px solid #e2e2e2;
+  padding: 3pt 0pt 5pt 4pt;
+  margin-left: 6pt;
+  width: 56pt;
+  height: 16pt;
 }
 .back{
-  width:100rpx;
-  height:70rpx;
+  width: 20pt;
+  height: 20pt;
+}
+.home{
+  width: 17pt;
+  height: 17pt;
 }
 </style>

@@ -1,10 +1,10 @@
 {
   "pages": [
-    "pages/test_mc/voicemail/main",
     "pages/test_mc/hzw_text/main",
+    "pages/test_mc/main",
+    "pages/test_mc/voicemail/main",
     "pages/detail/main",
     "pages/home/main",
-    "pages/test_mc/main",
     "pages/hr/main",
     "pages/test/main",
     "pages/test_mc/serviceTime/main",
