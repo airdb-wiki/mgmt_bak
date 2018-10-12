@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="lu">点击</button>
+    <button @click="lu">开始</button>
     <button @click="stop">停止</button>
     <button @click="play">播放</button>
   </div>
@@ -12,7 +12,7 @@ const recorderManager = wx.getRecorderManager()
 export default {
   data () {
     return {
-      tempPath: ''
+      savedFilePath: ''
     }
   },
   methods: {
@@ -31,17 +31,28 @@ export default {
     stop () {
       recorderManager.onStop((res) => {
         console.log('recorder stop', res)
-        this.tempPath = res.tempFilePath
+        wx.saveFile({
+          tempFilePath: res.tempFilePath,
+          success: res => {
+            console.log(res)
+            this.savedFilePath = res.savedFilePath
+            wx.setStorageSync('voice', res.savedFilePath)
+          }
+        })
       })
 
       recorderManager.stop()
     },
     play () {
+      if (this.savedFilePath === '') {
+        var a = wx.getStorageSync('voice')
+        console.log(a)
+      }
       this.innerAudioContext = wx.createInnerAudioContext()
       this.innerAudioContext.onError((res) => {
         console.log('播放失败')
       })
-      this.innerAudioContext.src = this.tempPath
+      this.innerAudioContext.src = this.savedFilePath
       this.innerAudioContext.play()
     }
   }
