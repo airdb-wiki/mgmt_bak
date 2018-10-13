@@ -36,7 +36,10 @@
     </div>
 
     <!-- 分享图片生成的画布 -->
-    <canvas canvas-id="myCanvas" :hidden='canvasHidden'/>
+    <!-- 画板的层级问题可以用cover-view解决 -->
+    <canvas canvas-id="myCanvas" :hidden='canvasHidden'>
+      <cover-view></cover-view>
+    </canvas>
   </div>
 </template>
 
@@ -45,7 +48,7 @@ export default{
   name: 'detail',
   data () {
     return {
-      canvasHidden: false,
+      canvasHidden: true,
       content: {
         title: '约1986年出生1990年与小朋友离家玩耍时走失疑时广西桂林人的秦干寻亲',
         notice: '本站不保证寻子家人酬金承诺的有效性，请亲自与寻子家长联系确认，本网站及志愿者提供的寻人服务均是免费的'
@@ -94,6 +97,7 @@ export default{
         })
       })
       setTimeout(function () {
+        that.canvasHidden = true
         wx.drawCanvas({
           canvasId: 'myCanvas',
           actions: [],

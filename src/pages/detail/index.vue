@@ -86,10 +86,10 @@ export default{
     }
   },
   onPageScroll (res) {
-    if (res.scrollTop > 40) {
+    if (res.scrollTop > 30) {
       this.showTitle = true
     } else {
-      if (res.scrollTop < 40) {
+      if (res.scrollTop < 30) {
         this.showTitle = false
       }
     }
