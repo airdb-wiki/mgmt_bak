@@ -1,29 +1,41 @@
 <template>
   <div style="margin: 61px 0 54px 0;">
-  	<div v-for="content in contents" :key="content.id" style="z-index: 0;">
-  	  <div class="title">{{content.title}}</div>
+  	<div class="weui-article">
+      <div class="weui-article__h1" style="font-weight: bold;font-size: 22px;">{{content.title}}</div>
+      <div class="notice">
+        <div class="weui-article__h1" id="noticeT">重要通知</div>
+        <div class="weui-article__h1" id="noticeC">{{content.notice}}</div>
+      </div>
+      <div class="weui-article__h1 title" >01  登记信息</div>
+      <div class="weui-article__section" id="content">
+        <div class="weui-article__title">原创： 宝贝回家</div>
+        <div class="weui-article__section">
+          <div class="weui-article__h3">寻亲类别：宝贝寻家</div>
+          <div class="weui-article__h3">寻亲编号：3255441</div>
+          <div class="weui-article__h3">姓 名：某某 </div>
+          <div class="weui-article__h3">性 别：女 </div>
+          <div class="weui-article__h3">出生日期：1986年05月43日 </div>
+          <div class="weui-article__h3">失踪时身高：120厘米左右 </div>
+          <div class="weui-article__h3">失踪时间：1994年03月21日 </div>
+          <div class="weui-article__h3">失踪人所在地：广东省,云浮市 </div>
+          <div class="weui-article__h3">失踪地点：广西壮族自治区,桂林市, </div>
+          <div class="weui-article__h3">寻亲者特征描述：腿上有块胎记 </div>
+          <div class="weui-article__h3">其他资料：我走丢时身上两件衣服，外面是一件毛衣，里面是一件粉红色的，一条格子裤</div>
+          <div class="weui-article__h3">注册时间：2018/6/23 12:02:34 </div>
+          <div class="weui-article__h3">跟进志愿者：淡雅宁静</div>
+          <div class="weui-article__p">
+            <image class="weui-article__img" src="/static/images/home/sls.png" mode="aspectFit" style="height: 180px" />
+          </div>
+        </div>
+      </div>
+    </div>
 
-  	  <div class="header">
-  	  	<img :src="content.url">
-  	  	<div>{{content.writer}}</div>
-  	  	<div>{{content.time}}</div>
-  	  	<button :size="mini">+ 喜欢</button>
-  	  </div>
-
-  	  <img :src="content.coverUrl" class="cover" :mode="aspectFit">
-  	  <div class="desc">{{content.desc}}</div>
-
-  	  <div class="general">{{content.general}}</div>
-
-      <div class="edit">撰文 | {{content.writer}}</div>
-      <div class="edit">王波 | {{content.editor}}</div>
-
-      <div class="pra">{{content.pra}}</div>
-  	</div>
+    <!-- 分享按钮 -->
     <div class="share" v-on:click="download">
       <img src="/static/images/home/sharetof.png">
     </div>
 
+    <!-- 分享图片生成的画布 -->
     <canvas canvas-id="myCanvas" :hidden='canvasHidden'/>
   </div>
 </template>
@@ -33,20 +45,11 @@ export default{
   name: 'detail',
   data () {
     return {
-      contents: [
-        {
-          title: '顶梁柱“北漂”意外之死',
-          url: '/static/images/home/sls.png',
-          writer: '李华良',
-          editor: '王波',
-          time: '2018-09-25',
-          coverUrl: '/static/images/home/vr.png',
-          desc: '2018年8月8日，北京通州迎来强降水。通州区气象台升级发布了暴雨橙色预警，部分低洼路出现积水。摄影 | 赵庆（视觉中国）',
-          general: '他是儿子、丈夫和父亲。三十而立的他像很多大学毕业的“北漂”一样，成为家里的顶梁柱。如今，他在暴雨中猝然离去。',
-          pra: '刘晓苍的家人怎么也没想到，那场在网上刷屏的暴雨，会彻头彻尾地“浇”进自己家里，并带走了被全家人视为顶梁柱的人。2018年8月8日的防汛信息显示，北京出现强降雨，全市平均降雨39.2毫米，最大降雨量和最大雨强均出现在朝阳区黑庄户，降雨量达214.0毫米，最大雨强出现在8时至9时。'
-        }
-      ],
-      canvasHidden: false
+      canvasHidden: false,
+      content: {
+        title: '约1986年出生1990年与小朋友离家玩耍时走失疑时广西桂林人的秦干寻亲',
+        notice: '本站不保证寻子家人酬金承诺的有效性，请亲自与寻子家长联系确认，本网站及志愿者提供的寻人服务均是免费的'
+      }
     }
   },
   methods: {
@@ -106,61 +109,46 @@ export default{
 </script>
 
 <style scoped>
-.title{
-	font-size: 22px;
-	font-weight: bold;
-	padding: 20px 0 20px 10px;
+.notice{
+  text-align: center;
+  border: 8px solid #ffd6d1;
+  padding: 2px 5px;
 }
-.header{
-	display: flex;
-	flex-direction: row;
-	padding: 0 0 20px 15px;
-  align-items: center;
-}
-.header img{
-  width: 23px;
-  height: 23px;
-  border-radius: 50%;
-  margin: 0 4px;
-}
-.header div{
-  font-size: 14px;
-  color: #d2d2d2;
-  padding: 0 4px;
-}
-.header button{
-  background-color: #9db3a9;
-  border-radius: 16px;
+#noticeT{
+  background-color: #8fada7;
+  padding: 4px 8px;
   color: #fff;
-  padding: 0 13px;
-  font-size: 15px;
-  height: 30px;
-  line-height: 30px;
+  width: 150px;
+  margin: auto;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  font-weight: bold;
 }
-.cover{
-  width: 100%;
+#noticeC{
+  color: #ff0000;
+  font-weight: bold;  
 }
-.desc{
-  font-size: 12px;
-  margin: 0 20px;
-  color: #a1a1a1;
+.title{
+  background-color: #86d36d;
+  color: #fff;
+  font-weight: bold;
+  width: 200px;
+  margin: auto;
+  padding: 10px 0;
+  margin-top: 10px;
+  text-align: center;
 }
-.general{
-  margin: 28px 20px 15px 20px;
-  font-size: 16px;
-}
-.edit{
-  margin: 15px 15px;
-  font-size: 16px;
-}
-.pra{
-  margin: 15px 15px;
-  font-size: 16px;
+#content{
+  border: 1px solid #000;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px 5px;
+  background-color: #f2fff8;
 }
 .share{
   position:fixed;
-  top: 488px;
-  right: 17px;
+  bottom: 60pt;
+  right: 17pt;
   width: 50px;
   height: 50px;
   border-radius: 50%;
