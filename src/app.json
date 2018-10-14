@@ -1,10 +1,10 @@
 {
   "pages": [
     "pages/detail/main",
+    "pages/home/main",
     "pages/test_mc/hzw_text/main",
     "pages/test_mc/main",
     "pages/test_mc/voicemail/main",
-    "pages/home/main",
     "pages/hr/main",
     "pages/test/main",
     "pages/test_mc/serviceTime/main",
@@ -22,8 +22,7 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "宝贝回家",
     "navigationBarTextStyle": "black",
-    "navigationStyle": "custom",
-    "disableScroll": true
+    "navigationStyle": "custom"
   },
   "tabBar": {
     "list": [ {

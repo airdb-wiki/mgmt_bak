@@ -3,18 +3,19 @@
     <!-- 自定义navigation -->
     <navigation :search='true'></navigation>
     
-    <!-- 自定义navBar -->
+    <!-- 内容 -->
     <div style="z-index: 0;margin-top: 79px;">
-      <!-- <navbar :tabs="tabs"></navbar> -->
       <card :items="items"></card>
     </div>
 
+    <!-- 自定义navBar -->
     <div>
       <scroll-view :scroll-x="true" class="navbar">
         <div v-for="tab in tabs" :key="tab.id" class="tab">{{tab}}</div>
       </scroll-view>
     </div>
     
+    <!-- 底部登陆按钮 -->
     <div class="login" v-if="!authSetting.userInfo">
       <div>
         <button open-type="getUserInfo" @click="login" type="primary">登陆{{authSetting.userInfo}}</button>
@@ -66,7 +67,7 @@ export default {
           avatarUrl: '/static/images/home/xiaolong.jpg'
         }
       ],
-      authSetting: {}
+      authSetting: false
     }
   },
   onLoad: function () {
@@ -74,13 +75,24 @@ export default {
   methods: {
     login () {
       console.log('login function')
+      setTimeout(function () {
+        wx.getSetting({
+          success: res => {
+            console.log('setting', res)
+            console.log('setting', res.authSetting['scope.userInfo'])
+            if (res.authSetting['scope.userInfo'] === true) {
+              this.getUserInfo = res.authSetting['scope.userInfo']
+            }
+          }
+        })
+      }, 2000)
     }
   },
   // 转发
   onShareAppMessage: function () {
   },
   created () {
-    this.authSetting.userInfo = wx.getStorageSync('authSetting.userInfo')
+    this.authSetting = wx.getStorageSync('authSetting.userInfo')
     console.log('create====', this.authSetting.userInfo)
     const logs = (wx.getStorageSync('logs') || [])
     this.logs = logs.map(log => formatTime(new Date(log)))
@@ -110,7 +122,7 @@ export default {
   width: 100%;
   white-space: nowrap;
   position: fixed;
-  top: 54pt;
+  top: 53pt;
   left: 0;
   z-index: 9999;
   background-color: #fff;

@@ -62,17 +62,24 @@ export default{
       const ctx = wx.createCanvasContext('myCanvas')
       // 填充背景色
       ctx.fillStyle = '#fff'
-      ctx.fillRect(0, 0, 500, 860)
+      ctx.fillRect(0, 0, 420, 570)
+
+      ctx.fillStyle = '#ff0000'
+      ctx.fillRect(140, 10, 130, 50)
+
+      ctx.setFontSize(30)
+      ctx.setFillStyle('#393939')
+      ctx.fillText('宝贝回家', 150, 40)
 
       ctx.setFontSize(20)
       ctx.setFillStyle('#393939')
-      ctx.fillText('我在帮助XX回家，都来帮忙吧', 50, 30)
+      ctx.fillText('我在帮助XX回家，都来帮忙吧', 50, 100)
 
       ctx.setFontSize(20)
       ctx.setFillStyle('#393939')
-      ctx.fillText('扫描右边二维码了解详情', 170, 90)
+      ctx.fillText('扫描右边二维码了解详情', 150, 200)
 
-      ctx.drawImage('/static/images/mina/8.jpg', 50, 40, 100, 100)
+      ctx.drawImage('/static/images/mina/8.jpg', 50, 160, 100, 100)
 
       wx.showLoading({
         title: '分享图片生成中...',
@@ -84,8 +91,8 @@ export default{
         wx.canvasToTempFilePath({
           x: 0,
           y: 0,
-          width: 300,
-          height: 250,
+          width: 420,
+          height: 570,
           canvasId: 'myCanvas',
           fileType: 'png',
           success: function (res) {
@@ -164,7 +171,7 @@ export default{
   margin-top: 7px;
 }
 canvas{
-  width: 300px;
-  height: 450px;
+  width: 420px;
+  height: 570px;
 }
 </style>
