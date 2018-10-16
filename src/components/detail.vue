@@ -62,7 +62,7 @@ export default{
       ctx.fillRect(0, 0, 420, 615)
 
       // 海报头部绘制
-      ctx.fillStyle = '#ff0000'
+      ctx.fillStyle = '#86d36d'
       ctx.fillRect(144, 10, 130, 40)
 
       ctx.setFontSize(30)
