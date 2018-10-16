@@ -161,11 +161,11 @@ export default{
 <style scoped>
 .navigation{
   width: 100%;
-  padding: 18pt 0 4pt 0;
+  padding-top: 21pt;
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #fff;
+  background-color: #000;
   z-index: 9999;
   display: flex;
   flex-direction: row;
@@ -189,7 +189,7 @@ export default{
   padding: 3pt 0pt 5pt 4pt;
   margin-left: 6pt;
   width: 56pt;
-  height: 16pt;
+  height: 15pt;
 }
 .back{
   width: 20pt;
