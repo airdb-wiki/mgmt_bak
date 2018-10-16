@@ -65,7 +65,7 @@ export default{
       ctx.fillStyle = '#86d36d'
       ctx.fillRect(144, 10, 130, 40)
 
-      ctx.setFontSize(30)
+      ctx.font = 'bold 30px Arial'
       ctx.setFillStyle('#393939')
       ctx.fillText('宝贝回家', 150, 40)
 

@@ -17,8 +17,11 @@
     
     <!-- 底部登陆按钮 -->
     <div class="login" v-if="!authSetting.userInfo">
-      <div>
-        <button open-type="getUserInfo" @click="login" type="primary">登陆{{authSetting.userInfo}}</button>
+      <div class="myModal">
+        <div style="font-size: 20px;margin: 12px;">欢迎</div>
+        <div style="font-size: 18px;margin: 12px;">请允许授权后放心使用小程序，您的信息和数据将受到保护</div>
+        <button open-type="getUserInfo" @click="login" type="primary" class="shou">微信授权登陆{{authSetting.userInfo}}</button>
+        <button @click="cancel" type="primary" style="background-color: #fff;color: #000;">回到小程序首页</button>
       </div>
     </div>
   </div>
@@ -107,6 +110,7 @@ export default {
 }
 .login{
   width: 100%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   text-align: center;
   z-index: 9999;
@@ -114,9 +118,18 @@ export default {
   bottom: 0px;
   left: 0;
 }
-.login div{
+.myModal{
+  width: 280px;
+  margin: auto;
+  margin-top: 220px;
   background-color: #fff;
-  border-radius: 10px;
+  border-radius: 8px;
+  padding: 15px;
+}
+.shou{
+  margin-bottom: 10px;
+  background-color: #a7b0f0;
+  color: #fff;
 }
 .navbar{
   width: 100%;
@@ -124,7 +137,7 @@ export default {
   position: fixed;
   top: 53pt;
   left: 0;
-  z-index: 9999;
+  z-index: 999;
   background-color: #fff;
   overflow: hidden;
 }
