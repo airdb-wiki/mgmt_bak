@@ -91,11 +91,6 @@ export default{
   // data end
 
   methods: {
-    back: function () {
-      wx.navigateBack({
-        delta: 1
-      })
-    },
     rpx: function (param) {
       var windowW = wx.getSystemInfoSync().windowWidth
       return Number((windowW / 750 * param).toFixed(2))

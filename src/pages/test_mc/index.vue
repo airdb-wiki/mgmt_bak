@@ -26,7 +26,7 @@
       
       <div class="after-userifo">
         <div class="weui-cell title">
-          <div class="weui-label">我的服务</div>
+          <div class="weui-label">登记信息</div>
         </div>
         <div class="weui-grids">
           <div class="weui-grid" v-for="(item, index) in items" :key="index">
@@ -95,22 +95,28 @@ export default {
       },
       items: [{
         name: '家寻宝贝',
-        src: '/static/images/mini-logo/1.png'
+        src: '/static/images/mini-logo/1.png',
+        url: '/pages/publish/main'
       }, {
         name: '宝贝寻家',
-        src: '/static/images/mini-logo/2.png'
+        src: '/static/images/mini-logo/2.png',
+        url: '/pages/publish/main'
       }, {
         name: '救助寻亲',
-        src: '/static/images/mini-logo/3.png'
+        src: '/static/images/mini-logo/3.png',
+        url: '/pages/publish/main'
       }, {
         name: '流浪乞讨',
-        src: '/static/images/mini-logo/4.png'
+        src: '/static/images/mini-logo/4.png',
+        url: '/pages/publish/main'
       }, {
         name: '即时寻人',
-        src: '/static/images/mini-logo/5.png'
+        src: '/static/images/mini-logo/5.png',
+        url: '/pages/publish/main'
       }, {
         name: '其他寻人',
-        src: '/static/images/mini-logo/6.png'
+        src: '/static/images/mini-logo/6.png',
+        url: '/pages/publish/main'
       }]
     }
   },
@@ -122,8 +128,8 @@ export default {
   onShareAppMessage: function () {
     return {
       title: '公益项目',
-      desc: '10岁丢失宝贝',
-      path: '/pages/profile/main?from=forward'
+      path: '/pages/profile/main?from=forward',
+      imageUrl: '/static/images/home/vr.png'
     }
   },
   methods: {

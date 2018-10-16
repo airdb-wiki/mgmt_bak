@@ -68,8 +68,8 @@ export default {
   onShareAppMessage: function () {
     return {
       title: '志愿者招募计划',
-      // imageUrl: '/static/images/home/home.png',
-      path: '/pages/hr/main?from=forward'
+      path: '/pages/hr/main?from=forward',
+      imageUrl: '/static/images/home/vr.png'
     }
   }
 }

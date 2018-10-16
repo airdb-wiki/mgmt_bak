@@ -312,11 +312,11 @@ export default {
   padding-top: 30rpx;
 }
 .btn-post {
-    float: right;
-    position: fixed;
-    bottom: 40rpx;
-    right: 20rpx;  
-    height: 120rpx;
-    width: 120rpx;
+  float: right;
+  position: fixed;
+  bottom: 40rpx;
+  right: 20rpx;  
+  height: 120rpx;
+  width: 120rpx;
 }
 </style>

@@ -108,11 +108,6 @@ export default{
   // data end
 
   methods: {
-    back: function () {
-      wx.navigateBack({
-        delta: 1
-      })
-    }
   },
   // methods end
 
