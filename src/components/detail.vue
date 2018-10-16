@@ -37,7 +37,7 @@
 
     <!-- 分享图片生成的画布 -->
     <!-- 画板的层级问题可以用cover-view解决 -->
-    <canvas canvas-id="myCanvas" :hidden='canvasHidden'>
+    <canvas canvas-id="myCanvas">
       <cover-view></cover-view>
     </canvas>
   </div>
@@ -48,7 +48,6 @@ export default{
   name: 'detail',
   data () {
     return {
-      canvasHidden: true,
       content: {
         title: '约1986年出生1990年与小朋友离家玩耍时走失疑时广西桂林人的秦干寻亲',
         notice: '本站不保证寻子家人酬金承诺的有效性，请亲自与寻子家长联系确认，本网站及志愿者提供的寻人服务均是免费的'
@@ -57,15 +56,14 @@ export default{
   },
   methods: {
     download () {
-      var that = this
-      that.canvasHidden = false
       const ctx = wx.createCanvasContext('myCanvas')
       // 填充背景色
       ctx.fillStyle = '#fff'
-      ctx.fillRect(0, 0, 420, 570)
+      ctx.fillRect(0, 0, 420, 615)
 
+      // 海报头部绘制
       ctx.fillStyle = '#ff0000'
-      ctx.fillRect(140, 10, 130, 50)
+      ctx.fillRect(144, 10, 130, 40)
 
       ctx.setFontSize(30)
       ctx.setFillStyle('#393939')
@@ -73,13 +71,42 @@ export default{
 
       ctx.setFontSize(20)
       ctx.setFillStyle('#393939')
-      ctx.fillText('我在帮助XX回家，都来帮忙吧', 50, 100)
+      ctx.fillText('我在帮他回家，都来帮个忙吧', 68, 85)
+
+      // 个人信息绘制
+      ctx.fillStyle = '#e3fff0'
+      ctx.fillRect(30, 95, 360, 400)
+      ctx.fillStyle = '#fff'
+      ctx.fillRect(30, 95, 20, 20)
+      ctx.fillStyle = '#fff'
+      ctx.fillRect(370, 95, 20, 20)
+      ctx.fillStyle = '#fff'
+      ctx.fillRect(30, 480, 20, 20)
+      ctx.fillStyle = '#fff'
+      ctx.fillRect(370, 480, 20, 20)
 
       ctx.setFontSize(20)
       ctx.setFillStyle('#393939')
-      ctx.fillText('扫描右边二维码了解详情', 150, 200)
+      ctx.fillText('寻亲编号：3255441', 50, 130)
+      ctx.fillText('姓 名：某某', 50, 155)
+      ctx.fillText('性 别：女', 50, 180)
+      ctx.fillText('出生日期：1986年05月43日', 50, 205)
+      ctx.fillText('失踪时身高：120厘米左右', 50, 230)
+      ctx.fillText('失踪时间：1994年03月21日', 50, 255)
+      ctx.fillText('失踪人所在地：广东省,云浮市', 50, 280)
+      ctx.fillText('失踪地点：广西壮族自治区,桂林市', 50, 305)
+      ctx.fillText('其他资料：我走丢时身上两件衣服，外', 50, 330)
+      ctx.fillText('面是一件毛衣，里面是一件粉红色的，', 50, 355)
+      ctx.fillText('一条格子裤', 50, 380)
+      ctx.fillText('注册时间：2018/6/23 12:02:34', 50, 430)
+      ctx.fillText('跟进志愿者：淡雅宁静', 50, 455)
 
-      ctx.drawImage('/static/images/mina/8.jpg', 50, 160, 100, 100)
+      // 二维码关注区域绘制
+      ctx.setFontSize(20)
+      ctx.setFillStyle('#393939')
+      ctx.fillText('扫描右边二维码了解更多', 160, 550)
+
+      ctx.drawImage('/static/images/mina/8.jpg', 50, 500, 100, 100)
 
       wx.showLoading({
         title: '分享图片生成中...',
@@ -92,7 +119,7 @@ export default{
           x: 0,
           y: 0,
           width: 420,
-          height: 570,
+          height: 615,
           canvasId: 'myCanvas',
           fileType: 'png',
           success: function (res) {
@@ -103,14 +130,6 @@ export default{
           }
         })
       })
-      setTimeout(function () {
-        that.canvasHidden = true
-        wx.drawCanvas({
-          canvasId: 'myCanvas',
-          actions: [],
-          reserve: false
-        })
-      }, 1000)
     }
   }
 }
@@ -151,7 +170,7 @@ export default{
   border-radius: 10px;
   margin: 10px;
   padding: 10px 5px;
-  background-color: #dbffec;
+  background-color: #e3fff0;
 }
 .share{
   position:fixed;
@@ -171,7 +190,10 @@ export default{
   margin-top: 7px;
 }
 canvas{
+  position: fixed;
+  bottom: 0;
+  left: -9999px;
   width: 420px;
-  height: 570px;
+  height: 615px;
 }
 </style>
