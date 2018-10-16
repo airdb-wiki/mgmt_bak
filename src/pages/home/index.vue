@@ -70,21 +70,26 @@ export default {
           avatarUrl: '/static/images/home/xiaolong.jpg'
         }
       ],
-      authSetting: false
+      authSetting: {
+        userInfo: wx.getStorageSync('authSetting.userInfo')
+      }
     }
   },
   onLoad: function () {
   },
   methods: {
     login () {
-      console.log('login function')
+      console.log('login function', wx.getStorageSync('authSetting.userInfo'))
       setTimeout(function () {
         wx.getSetting({
           success: res => {
             console.log('setting', res)
             console.log('setting', res.authSetting['scope.userInfo'])
             if (res.authSetting['scope.userInfo'] === true) {
-              this.getUserInfo = res.authSetting['scope.userInfo']
+              // this.getUserInfo = res.authSetting['scope.userInfo']
+              console.log('====', res.authSetting['scope.userInfo'])
+              this.authSetting.userInfo = res.authSetting['scope.userInfo']
+              wx.setStorageSync('authSetting.userInfo', res.authSetting['scope.userInfo'])
             }
           }
         })
@@ -95,7 +100,8 @@ export default {
   onShareAppMessage: function () {
   },
   created () {
-    this.authSetting = wx.getStorageSync('authSetting.userInfo')
+    console.log('==authSetting==', wx.getStorageSync('authSetting.userInfo'), this.authSetting.userInfo)
+    this.authSetting.userInfo = wx.getStorageSync('authSetting.userInfo')
     console.log('create====', this.authSetting.userInfo)
     const logs = (wx.getStorageSync('logs') || [])
     this.logs = logs.map(log => formatTime(new Date(log)))
