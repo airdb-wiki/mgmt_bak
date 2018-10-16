@@ -165,7 +165,7 @@ export default{
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #000;
+  background-color: #fff;
   z-index: 9999;
   display: flex;
   flex-direction: row;
