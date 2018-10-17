@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/search/main",
     "pages/detail/main",
     "pages/home/main",
     "pages/test_mc/hzw_text/main",
@@ -14,8 +15,7 @@
     "pages/publish/main",
     "pages/logs/main",
     "pages/licence/main",
-    "pages/profile/main",
-    "pages/search/main"
+    "pages/profile/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
