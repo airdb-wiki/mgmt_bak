@@ -16,12 +16,12 @@
     </div>
     
     <!-- 底部登陆按钮 -->
-    <div class="login" v-if="!authSetting.userInfo">
+    <div class="login" v-if="!authSetting.userInfo" :hidden="!showLogin">
       <div class="myModal">
         <div style="font-size: 20px;margin: 12px;">欢迎</div>
         <div style="font-size: 18px;margin: 12px;">请允许授权后放心使用小程序，您的信息和数据将受到保护</div>
-        <button open-type="getUserInfo" @click="login" type="primary" class="shou">微信授权登陆{{authSetting.userInfo}}</button>
-        <button @click="cancel" type="primary" style="background-color: #fff;color: #000;">回到小程序首页</button>
+        <button open-type="getUserInfo" @click="login" class="shou">微信授权登陆{{authSetting.userInfo}}</button>
+        <button @click="cancel" style="background-color: #fff;color: #000;">回到小程序首页</button>
       </div>
     </div>
   </div>
@@ -72,13 +72,13 @@ export default {
       ],
       authSetting: {
         userInfo: wx.getStorageSync('authSetting.userInfo')
-      }
+      },
+      showLogin: true
     }
-  },
-  onLoad: function () {
   },
   methods: {
     login () {
+      var that = this
       console.log('login function', wx.getStorageSync('authSetting.userInfo'))
       setTimeout(function () {
         wx.getSetting({
@@ -88,12 +88,16 @@ export default {
             if (res.authSetting['scope.userInfo'] === true) {
               // this.getUserInfo = res.authSetting['scope.userInfo']
               console.log('====', res.authSetting['scope.userInfo'])
-              this.authSetting.userInfo = res.authSetting['scope.userInfo']
+              that.authSetting.userInfo = res.authSetting['scope.userInfo']
               wx.setStorageSync('authSetting.userInfo', res.authSetting['scope.userInfo'])
             }
           }
         })
       }, 2000)
+    },
+    cancel () {
+      console.log('hover')
+      this.showLogin = false
     }
   },
   // 转发
@@ -143,7 +147,7 @@ export default {
   position: fixed;
   top: 53pt;
   left: 0;
-  z-index: 999;
+  z-index: 9999;
   background-color: #fff;
   overflow: hidden;
 }
