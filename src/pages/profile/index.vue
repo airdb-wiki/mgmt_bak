@@ -1,68 +1,72 @@
 <template>
   <div class="bh-profile-page">
+    <!-- 自定义navigation -->
     <navigation></navigation>
-    <div class="profile-page-main" style="margin-top: 60px;">
+    <div class="profile-page-main">
       <div class="userinfo">
-        <div class="userinfo-avatar" v-if="isLogin" @click="openSetting">
-          <image class="img" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover" />
+        <div v-if="authSetting.userInfo" class="userinfo-avatar" @click="openSetting">
+          <image class="img" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover"/>
         </div>
-        <div class="userinfo-avatar" v-else @click="openSetting">
+        <div v-else class="userinfo-avatar" @click="openSetting">
           <image class="img" src="/static/images/user_active.png" background-size="cover" />
         </div>
-        <div v-if="!isLogin">
-          <button class="weui-btn" type="primary" open-type="getUserInfo" lang="zh_CN" @getuserinfo="getUserInfo">微信快速登录</button>
-        </div>
-        <div v-else>
+        <div v-if="authSetting.userInfo">
           <div class="userinfo-cont">
             <div class="text-name">{{ userInfo.nickName }}</div>
-            <div class="text-time" @click="">公益时长:{{servicetime}}小时 ></div>
+            <div class="text-time" @click="ClickServiceTime">公益时长: {{servicetime}}小时 ></div>
           </div>
         </div>
-
-        <div class="userinfo-volunt"><i class="icon-dot"></i>加入志愿者</i></div>
-      </div>
-
-      <!-- s -->
-      <div class="post-panel">
-        <div class="post-panel__hd">
-          <h3 class="post-panel__title">登记信息</h3>
+        <div v-else>
+          <button class="weui-btn" type="primary" open-type="getUserInfo" lang="zh_CN" @getuserinfo="getUserInfo">微信快速登录</button>
         </div>
-        <div class="post-panel__bd">
-          <div class="kind-list">
-            <div class="kind-item" v-for="(item, index) in items" :key="index" @click="onPostClick">
-              <div class="kind-item__pic">
-                <img class="img" v-if="userInfo.avatarUrl" :src="item.src" background-size="cover"/>  
+        <div class="userinfo-volunt" @click="ClickJoinVolunteer" v-if="!isVolunteer"><i class="icon-dot"></i>加入志愿者</i></div>
+        <div class="userinfo-privilege" @click="ClickMyPrivilege" v-else>我的特权></div>
+      </div>
+      <!-- userinfo end -->
+      
+      <div class="after-userifo">
+        <div class="weui-cell title">
+          <div class="weui-label">登记信息</div>
+        </div>
+        <div class="weui-grids">
+          <div class="weui-grid" v-for="(item, index) in items" :key="index">
+            <navigator :url="item.url">
+              <div class='weui-grid__bg'>
+                <div class="weui-grid__icon">
+                    <image :src="item.src"/>
+                </div>
+                <text class="weui-grid__label">{{item.name}}</text>
               </div>
-              <div class="kind-item__cont">
-                <div>{{ item.name }}</div>
-              </div>
-            </div>
+            </navigator>
           </div>
         </div>
-        
       </div>
-      <!-- end -->
+      <!-- after-userifo end -->
 
-      <div class="notice-card">
-        <div class="notice-card__pic">
-          <img class="img" src="/static/images/mini-logo/1.png" alt="">
+      <div class="weui-cells">
+        <div class="weui-cell">
+          <div class="weui-cell__bd">
+            <div class="weui-label">修改信息</div>
+          </div>
+          <div class="weui-cell__ft weui-cell__ft_in-access"></div>
         </div>
-        <div class="notice-card__cont">
-          <p>第2388例 | 二十一年苦寻，夺子之痛难愈</p>
-          <p>寻找曾华起</p>
+        <div class="weui-cell">
+          <div class="weui-cell__bd">
+            <div class="weui-label">修改信息</div>
+          </div>
+          <div class="weui-cell__ft weui-cell__ft_in-access"></div>
+        </div>
+        <div class="weui-cell">
+          <div class="weui-cell__bd">
+            <div class="weui-label">修改信息</div>
+          </div>
+          <div class="weui-cell__ft weui-cell__ft_in-access"></div>
         </div>
       </div>
-      <div class="notice-card">
-        <div class="notice-card__pic">
-          <img class="img" src="/static/images/mini-logo/2.png" alt="http://http://bbs2.baobeihuijia.com">
-        </div>
-        <div class="notice-card__cont">
-          <p>第2397例 | 残纸寄乡愁</p>
-          <p>高杉回家</p>
-        </div>
-      </div>
+      <!-- weui-cells end -->
+
     </div>
-
+    <!-- profile-page-main end -->
 
     <!-- 右下角加号新建 -->
     <img src="/static/images/addition_fill.png" class="btn-post" @click="onPostClick"/>
@@ -74,176 +78,245 @@
 </template>
 
 <script>
-import card from '@/components/card'
 import vfooter from '@/pages/footer'
 import navigation from '@/components/navigation'
 export default {
   components: {
     vfooter,
-    card,
     navigation
   },
   data () {
     return {
-      isLogin: true,
       servicetime: 10,
+      isVolunteer: true,
       userInfo: wx.getStorageSync('userInfo'),
+      authSetting: {
+        userInfo: wx.getStorageSync('authSetting.userInfo')
+      },
       items: [{
         name: '家寻宝贝',
-        src: '/static/images/mini-logo/1.png'
+        src: '/static/images/mini-logo/1.png',
+        url: '/pages/publish/main'
       }, {
         name: '宝贝寻家',
-        src: '/static/images/mini-logo/2.png'
+        src: '/static/images/mini-logo/2.png',
+        url: '/pages/publish/main'
       }, {
         name: '救助寻亲',
-        src: '/static/images/mini-logo/3.png'
+        src: '/static/images/mini-logo/3.png',
+        url: '/pages/publish/main'
       }, {
         name: '流浪乞讨',
-        src: '/static/images/mini-logo/4.png'
+        src: '/static/images/mini-logo/4.png',
+        url: '/pages/publish/main'
       }, {
         name: '即时寻人',
-        src: '/static/images/mini-logo/5.png'
+        src: '/static/images/mini-logo/5.png',
+        url: '/pages/publish/main'
       }, {
         name: '其他寻人',
-        src: '/static/images/mini-logo/6.png'
+        src: '/static/images/mini-logo/6.png',
+        url: '/pages/publish/main'
       }]
     }
   },
   onLoad: function () {
-    console.log('===profile onLoad()===')
-    // 检测用户是否授权
-    wx.getSetting({
-      success: (res) => {
-        console.log('profile===onLoad() success', res)
-        if (res['authSetting']['scope.userInfo']) this.isLogin = true
-        else this.isLogin = false
-      },
-      fail: (res) => {
-        console.log('profile===onLoad() fail', res)
-      },
-      complate: (res) => {
-        console.log('profile===onLoad()')
-      }
-    })
+    console.log('===test_mc onLoad======:')
+    console.log('test_mc====onLoad() authSetting.userInfo =', this.authSetting.userInfo)
+    console.log('test_mc====onLoad() userInfo =', this.userInfo)
   },
   onShareAppMessage: function () {
     return {
       title: '公益项目',
-      desc: '10岁丢失宝贝',
-      path: '/pages/profile/main?from=forward'
+      path: '/pages/profile/main?from=forward',
+      imageUrl: '/static/images/home/vr.png'
     }
   },
   methods: {
-    binddivTap () {
-      const url = '../logs/main'
-      wx.navigateTo({ url })
-    },
     onPostClick () {
       wx.navigateTo({
         url: '/pages/publish/main'
       })
     },
-    clickHandle (msg, ev) {
-      console.log('clickHandle:', msg, ev)
-    },
     openSetting () {
-      console.log('profile === openSetting')
       var that = this
       wx.openSetting({
         success: (res) => {
-          if (!res.authSetting['scope.userInfo']) {
-            that.isLogin = false
-            console.log('profile === openSetting isLogin=false')
-          }
+          wx.setStorageSync('authSetting.userInfo', res.authSetting['scope.userInfo'])
+          that.authSetting.userInfo = wx.getStorageSync('authSetting.userInfo')
+          console.log('test_mc===openSetting() authSetting.userInfo =', that.authSetting.userInfo)
         }
       })
     },
     getUserInfo: function (e) {
-      console.log('profile === getUserInfo() userInfo =', e.mp.detail.userInfo)
-      this.isLogin = true
+      wx.setStorageSync('authSetting.userInfo', true)
+      this.authSetting.userInfo = wx.getStorageSync('authSetting.userInfo')
+      wx.setStorageSync('userInfo', e.mp.detail.userInfo)
+      this.userInfo = wx.getStorageSync('userInfo')
       if (!e.mp.detail.userInfo) {
-        this.isLogin = false
+        wx.setStorageSync('authSetting.userInfo', false)
+        this.authSetting.userInfo = wx.getStorageSync('authSetting.userInfo')
+        wx.setStorageSync('userInfo', e.mp.detail.userInfo)
         this.userInfo = e.mp.detail.userInfo
       }
+      console.log('test_mc===getUserInfo() userinfo =', e.mp.detail.userInfo)
+      console.log('test_mc===getUserInfo() authSetting.userInfo =', this.authSetting.userInfo)
+    },
+    // 点击志愿时长
+    ClickServiceTime: function () {
+      wx.navigateTo({
+        url: '/pages/test_mc/serviceTime/main'
+      })
+    },
+    ClickJoinVolunteer: function () {
+      wx.navigateTo({
+        url: '/pages/volunteer/main'
+      })
+    },
+    ClickMyPrivilege: function () {
+      wx.navigateTo({
+        url: '/pages/test_mc/myPrivilege/main'
+      })
     }
   },
-
   created () {
-    // 调用应用实例的方法获取全局数据
   }
 }
 </script>
 
 
 <style scoped>
-.notice-card {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  margin-top: 20rpx;
-  padding: 30rpx 20rpx;
+.userinfo-privilege {
+  position:absolute;
+  top:40%;
+  right:0;
+  width:145rpx;
+  height:50rpx;
+  background:#FFCC00;
+  color:#fff;
+  border-top-left-radius:25rpx;
+  border-bottom-left-radius:25rpx;
+  padding:0 0 0 20rpx;
+}
+.after-userifo .title{
+  border-top: 0.5px solid #d9d9d9;
+  border-left: 0.5px solid #d9d9d9;
+  border-right: 0.5px solid #d9d9d9;
+}
+.weui-cells{
+  margin-top: 10px;
+}
+.after-userifo{
   background: #fff;
 }
-.notice-card__pic {
-  flex: 0 0 auto;
-  width: 110rpx;
-  height: 110rpx;
-  border-radius: 8rpx;
-  background: #ccc;
-  margin-right: 20rpx;
-  overflow: hidden;
+.weui-grids {
+    position: relative;
+    overflow: hidden;
 }
-.notice-card__pic .img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.weui-grids:before {
+    content: " ";
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 1px;
+    border-top: 0.5rpx solid #d9d9d9;
+    color: #d9d9d9;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+} 
+.weui-grids:after {
+    content: " ";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1px;
+    bottom: 0;
+    border-left: 0.5rpx solid #d9d9d9;
+    color: #d9d9d9;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-transform: scaleX(0.5);
+    transform: scaleX(0.5);
+} 
+.weui-grid {
+    position: relative;
+    float: left;
+    padding: 20px 10px;
+    width: 33.33333333%;
+    box-sizing: border-box;
 }
-.notice-card__cont {
-  flex: 1 1 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.weui-grid:before {
+    content: " ";
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 1px;
+    bottom: 0;
+    border-right: 0.5rpx solid #d9d9d9;
+    color: #d9d9d9;
+    -webkit-transform-origin: 100% 0;
+    transform-origin: 100% 0;
+    -webkit-transform: scaleX(0.5);
+    transform: scaleX(0.5);
+} 
+.weui-grid:after {
+    content: " ";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 1px;
+    border-bottom: 0.5px solid #d9d9d9;
+    color: #d9d9d9;
+    -webkit-transform-origin: 0 100%;
+    transform-origin: 0 100%;
+    -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+} 
+.weui-grid:active {
+    background-color: #ECECEC;
+}  
+.weui-grid__bg {
+    position: relative;
+    float: left;
+    padding: 0px 0px;
+    width: 100%;
+    box-sizing: border-box;
 }
-.kind-list {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  padding: 20rpx 0;
+.weui-grid__icon {
+    width: 32px;
+    height: 32px;
+    margin: 0 auto;
 }
-.kind-item {
-  flex: 0 0    auto;
-  width: 25%;
-  padding: 20rpx 0;
+.weui-grid__icon image {
+    display: block;
+    width: 100%;
+    height: 100%;
 }
-.kind-item__pic {
-  width: 100rpx;
-  height: 100rpx;
-  margin: 0 auto;
-  border-radius: 100%;
-  overflow: hidden;
-  background: #ccc;
+.weui-grid__icon + .weui-grid__label {
+    margin-top: 5px;
 }
-.kind-item__pic .img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.kind-item__cont {
-  margin-top: 10rpx;
-  text-align: center;
-  color: #aaa;
+.weui-grid__label {
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    color: #000;
+    font-size: 14px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 .userinfo {
   display: flex;
+  position:relative;
   flex-direction: row;
   align-items: center;
   margin-bottom: 20rpx;
-  background: #fff;
+  border-bottom: 1px solid #d9d9d9;
+  background: #f35336;
   min-height: 250rpx;
 }
 .userinfo-avatar {
@@ -267,24 +340,28 @@ export default {
   align-items: flex-start;
   justify-content: center;
   padding-left: 20rpx;
-  font-size: 36rpx;
   color: #aaa;
 }
 .userinfo-cont .text-name {
-  margin-bottom: 10rpx;
-  font-size: 32rpx;
-  color: #000;
+  margin-bottom:10rpx;
+  font-size:38rpx;
+  color:#fff;
+  width:250rpx;
+  overflow:hidden;
+  height:50rpx;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 }
 .userinfo-cont .text-time {
   margin-bottom: 10rpx;
-  font-size: 28rpx;
-  color: #000;
+  font-size: 24rpx;
+  color: #fff;
 }
 .userinfo-volunt {
   position: absolute;
-  top: 50rpx;
+  top: 200rpx;
   right: 20rpx;
-  color: #56abe4;
+  color: #fff;
 }
 .userinfo-volunt .icon-dot {
   display: inline-block;
@@ -293,7 +370,7 @@ export default {
   height: 16rpx;
   margin-right: 6rpx;
   border-radius: 100%;
-  background: #ed462f;
+  background: #fff;
 }
 .bh-profile-page {
   display: flex;
@@ -301,10 +378,11 @@ export default {
   box-sizing: border-box;
   min-height: 100%;
   background: #efeff4;
-  margin: 20rpx 0;
+  margin: 0 0;
 }
 .profile-page-main {
   flex: 1 1 auto;
+  margin-top: 70px;
 }
 .profile-page-footer {
   box-sizing: border-box;
@@ -312,11 +390,11 @@ export default {
   padding-top: 30rpx;
 }
 .btn-post {
-  float: right;
-  position: fixed;
-  bottom: 40rpx;
-  right: 20rpx;  
-  height: 120rpx;
-  width: 120rpx;
+    float: right;
+    position: fixed;
+    bottom: 40rpx;
+    right: 20rpx;  
+    height: 120rpx;
+    width: 120rpx;
 }
 </style>

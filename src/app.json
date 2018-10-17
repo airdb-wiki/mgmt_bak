@@ -36,11 +36,6 @@
         "iconPath": "/static/images/user.png",
         "selectedIconPath": "/static/images/user_active.png"
       }, {
-        "pagePath": "pages/test_mc/main",
-        "text": "测试",
-        "iconPath": "/static/images/user.png",
-        "selectedIconPath": "/static/images/user_active.png"
-      }, {
         "pagePath": "pages/test_mc/hzw_text/main",
         "text": "测试_hzw",
         "iconPath": "/static/images/user.png",

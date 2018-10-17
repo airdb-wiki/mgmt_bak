@@ -82,8 +82,8 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #000;
-  z-index: 9999;
+  background-color: #fff;
+  z-index: 999;
 }
 .btn{
   display: flex;
