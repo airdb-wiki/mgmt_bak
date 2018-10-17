@@ -42,7 +42,7 @@ export default {
   data () {
     return {
       tabs: [
-        '精选', '故事', '影像', '数据', '计划', '故事', '影像', '数据', '计划'
+        '家寻宝贝', '宝贝那家', '救助寻亲', '流浪乞讨', '实时寻人', '其他寻人'
       ],
       items: [
         {
@@ -70,21 +70,26 @@ export default {
           avatarUrl: '/static/images/home/xiaolong.jpg'
         }
       ],
-      authSetting: false
+      authSetting: {
+        userInfo: wx.getStorageSync('authSetting.userInfo')
+      }
     }
   },
   onLoad: function () {
   },
   methods: {
     login () {
-      console.log('login function')
+      console.log('login function', wx.getStorageSync('authSetting.userInfo'))
       setTimeout(function () {
         wx.getSetting({
           success: res => {
             console.log('setting', res)
             console.log('setting', res.authSetting['scope.userInfo'])
             if (res.authSetting['scope.userInfo'] === true) {
-              this.getUserInfo = res.authSetting['scope.userInfo']
+              // this.getUserInfo = res.authSetting['scope.userInfo']
+              console.log('====', res.authSetting['scope.userInfo'])
+              this.authSetting.userInfo = res.authSetting['scope.userInfo']
+              wx.setStorageSync('authSetting.userInfo', res.authSetting['scope.userInfo'])
             }
           }
         })
@@ -95,7 +100,8 @@ export default {
   onShareAppMessage: function () {
   },
   created () {
-    this.authSetting = wx.getStorageSync('authSetting.userInfo')
+    console.log('==authSetting==', wx.getStorageSync('authSetting.userInfo'), this.authSetting.userInfo)
+    this.authSetting.userInfo = wx.getStorageSync('authSetting.userInfo')
     console.log('create====', this.authSetting.userInfo)
     const logs = (wx.getStorageSync('logs') || [])
     this.logs = logs.map(log => formatTime(new Date(log)))
@@ -149,7 +155,7 @@ export default {
 .tab{
   text-align: center;
   font-size: 20px;
-  width: 60px;
+  width: 100px;
   display: inline-block;
   box-sizing: border-box;
   padding: 2px 0;
@@ -158,7 +164,7 @@ export default {
   font-weight: bold;
   text-align: center;
   font-size: 20px;
-  width: 60px;
+  width: 100px;
   display: inline-block;
   box-sizing: border-box;
   border-bottom: 4px solid #e2d609;
