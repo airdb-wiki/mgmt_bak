@@ -104,6 +104,7 @@ export default {
     },
     clearInput () {
       this.inputVal = ''
+      this.showSearchBar = true
     },
     inputTyping (e) {
       console.log(e)
