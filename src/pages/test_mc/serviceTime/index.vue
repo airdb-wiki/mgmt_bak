@@ -14,15 +14,15 @@
         </navigator>
       </div>
 
-      <div v-if="!showTitle" class="title">详情</div>
-      <div v-else class="title">{{title}}</div>
+      <!-- 此处文字颜色为白色，即不显示标题 -->
+      <div class="title">详情</div>
     </div>
     <!-- navigation end -->
 
     <div class="test-page-main">
       <div class="serviceIndex">
         <div class="index-title">成长指标</div>
-        <canvas class="canvas" canvas-id="radar"></canvas>
+          <canvas class="canvas" canvas-id="radar"></canvas>
         <div class="index-detail" @click="clickDetail">查看明细></div>
       </div>
       <!-- serivceIndex end -->
@@ -68,7 +68,6 @@ export default{
   data () {
     return {
       title: '成长指标',
-      showTitle: false,
       growIndex: 0,
       radarData: [
         {desc: '参与', value: '0.6'},
@@ -104,6 +103,7 @@ export default{
   },
   // methods end
 
+  /*
   onPageScroll (res) {
     if (res.scrollTop > 40) {
       this.showTitle = true
@@ -113,6 +113,7 @@ export default{
       }
     }
   },
+  */
 
   onShow: function () {
     var X0 = this.rpx(300)
@@ -161,7 +162,7 @@ export default{
     ctx.setFillStyle('white')
     ctx.fillText(this.radarData[0].desc, this.rpx(270), this.rpx(60))// 上
     ctx.fillText(this.radarData[1].desc, this.rpx(80), this.rpx(150))// 左上
-    ctx.fillText(this.radarData[2].desc, this.rpx(470), this.rpx(150))// 右上
+    ctx.fillText(this.radarData[2].desc, this.rpx(455), this.rpx(145))// 右上
     ctx.fillText(this.radarData[3].desc, this.rpx(80), this.rpx(380))// 左下
     ctx.fillText(this.radarData[4].desc, this.rpx(450), this.rpx(380))// 右下
     ctx.fillText(this.radarData[5].desc, this.rpx(270), this.rpx(460))// 下
@@ -216,7 +217,25 @@ export default{
     ctx.setFillStyle('rgba(250, 250, 250, 0.2)') // 透明
     ctx.fill()
 
-    ctx.draw()
+    var that = this
+
+    ctx.draw(true, function () {
+      console.log('draw callback success')
+      wx.canvasToTempFilePath({
+        x: 0,
+        y: 0,
+        width: 500,
+        height: 600,
+        canvasId: 'radar',
+        fileType: 'png',
+        success: function (res) {
+          that.tempFilePath = res.tempFilePath
+          that.canvasHidden = true
+          console.log('canvasToTempFilePath callback success')
+          console.log('tempFilePath==', that.tempFilePath)
+        }
+      })
+    })
   },
   onShareAppMessage: function () {
     return {
@@ -249,15 +268,15 @@ export default{
   flex-direction: row;
 }
 .index-detail {
-  position:absolute;
-  top:33rpx;
-  right:30rpx;
+  position:fixed;
+  top:155rpx;
+  right:25rpx;
   font-size:28rpx;
   color:#fff;
 }
 .index-title {
-  position:absolute;
-  top:30rpx;
+  position:fixed;
+  top:150rpx;
   left:30rpx;
   font-size:30;
   color:#fff;
@@ -311,7 +330,6 @@ export default{
   margin-left: 75rpx;
   margin-right: 75rpx;
   margin-top: 50rpx;
-  z-index: 9;
 }
 .test-page-footer {
   box-sizing: border-box;
@@ -342,6 +360,9 @@ export default{
   flex-direction: row;
 }
 .title{
+  color: #fff;
+
+  pointer-events:none;
   width: 50%;
   margin-left: 3pt;
   text-align: center;
