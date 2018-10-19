@@ -4,8 +4,8 @@
     <navigation :search='true'></navigation>
     
     <!-- 内容 -->
-    <div style="z-index: 0;margin-top: 79px;">
-      <card :items="items"></card>
+    <div style="z-index: 0;margin-top: 100px;">
+      <card :items="database"></card>
     </div>
 
     <!-- 自定义navBar -->
@@ -73,7 +73,8 @@ export default {
       authSetting: {
         userInfo: wx.getStorageSync('authSetting.userInfo')
       },
-      showLogin: true
+      showLogin: true,
+      database: []
     }
   },
   methods: {
@@ -110,6 +111,27 @@ export default {
     const logs = (wx.getStorageSync('logs') || [])
     this.logs = logs.map(log => formatTime(new Date(log)))
     // 获取用户授权
+
+    var that = this
+    wx.request({
+      url: wx.getStorageSync('requestUrl') + '/small/article/topics',
+      method: 'GET',
+      data: {
+        type: 'nearby',
+        page: '1'
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        that.database[0] = res.data[0]
+        for (var i = 1; i < res.data.length; i++) {
+          that.database = that.database.concat(res.data[i])
+        }
+        console.log('database:', that.database)
+      }
+    })
+    // 从数据库请求数据
   }
 }
 </script>

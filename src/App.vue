@@ -11,7 +11,7 @@ export default {
     })
   },
   created () {
-    var env = 'test'
+    var env = 'prod'
     wx.setStorageSync('env', env)
     // console.log(wxConfig.envVersion)
 

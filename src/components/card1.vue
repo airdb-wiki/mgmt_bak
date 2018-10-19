@@ -1,36 +1,25 @@
 <template>
   <div>
     <scroll-view>
-      <div v-for="(item,index) in items" :key="item.id" class="container">
-        <navigator v-if="index == 0" url="../detail/main" hover-class="none">
-          <div style="margin-top: 30px;">
-            <img v-bind:src="item.url" class="img">
-            <p>{{item.title}}</p>
-            <div class="editor">
-              <img class="img1" v-bind:src="item.avatarUrl">
-              <text>{{item.editor}}</text>
-              <text class="ha">{{item.team}}</text>
-              <text class="ha">{{item.time}}</text>
-              <img src="/static/images/home/zhuan.png" class="img2">
-            </div>
-          </div> 
-        </navigator>
-        <navigator v-else url="../detail/main" hover-class="none">
-          <div>
-            <img v-bind:src="item.url" class="img">
-            <p>{{item.title}}</p>
-            <div class="editor">
-              <img class="img1" v-bind:src="item.avatarUrl">
-              <text>{{item.editor}}</text>
-              <text class="ha">{{item.team}}</text>
-              <text class="ha">{{item.time}}</text>
-              <img src="/static/images/home/zhuan.png" class="img2">
-            </div>
-          </div> 
-        </navigator>
+      <div v-for="item in items" :key="item.id" class="container">
+        <div style="flex: 1;">
+          <img :src="item.AvatarUrl">
+        </div>
+        <div class="info_container">
+          <div class="address">
+            <img src="/static/images/home/position.png" style="width: 18px;height: 18px;">
+            <text>{{item.MissedAddress}}河南省洛阳市</text>
+          </div>
+          <div class="title">{{item.title}}寻找回家的路，让你不再孤立无援</div>
+          <div class="info_1">
+            <text>{{item.Age}}岁</text>
+            <text>{{item.sex}}男</text>
+          </div>
+          <div class="inf0_2">跟进志愿者：{{item.editor}}南舒北朗</div>
+          <div>注册时间：{{item.time}}2017-6-19</div>
+        </div>
       </div>
     </scroll-view>
-    
   </div>
 </template>
 
@@ -43,51 +32,33 @@ export default {
 
 <style scoped>
 .container{
-  padding: 0;
-  margin: 8px 33px;
-  border-radius: 6px;
-  background-color: #fff;
-
-}
-.img{
-  border-radius:6px;
-  width: 100%;
-  height:200px;
-  margin: 0;
-  padding: 0;
-}
-.container p{
-  padding: 14px;
-}
-.editor{
-  position: relative;
-  width:100%;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
+  margin: 10px 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #e2e2e2;
+  height: 180px;
 }
-.img1{
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  margin: 0 10px 10px 10px;
+.container img{
+  width: 120px;
+  height: 180px;
+  border-radius: 5px 0 0 5px;
 }
-.img2{
-  position: absolute;
-  right: 20px;
-  bottom: 15px;
-  width:20px;
-  height: 20px;
+.info_container{
+  display: flex;
+  flex-direction: column;
+  flex: 2;
+  padding: 5px;
 }
-.editor text{
-  font-size: 14px;
-  color: #111;
-  margin-bottom: 15px;
+.address{
+  margin-left: 5px;
 }
-.ha{
-  color:#a2a2a2;
-  font-size: 8px;
-  margin-left: 14px;
+.title{
+  font-weight: bold;
+  flex-wrap: wrap;
+  font-size: 18px;
+}
+.info_1 text{
+  margin-right: 20px;
 }
 </style>
