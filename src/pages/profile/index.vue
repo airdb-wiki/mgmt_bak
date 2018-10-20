@@ -19,7 +19,7 @@
         <div v-else>
           <button class="weui-btn" type="primary" open-type="getUserInfo" lang="zh_CN" @getuserinfo="getUserInfo">微信快速登录</button>
         </div>
-        <div class="userinfo-volunt" @click="ClickJoinVolunteer" v-if="!isVolunteer"><i class="icon-dot"></i>加入志愿者</i></div>
+        <div class="userinfo-privilege" @click="ClickJoinVolunteer" v-if="!minaAuth.isVolunteer"><i class="icon-dot"></i>加入志愿者</i></div>
         <div class="userinfo-privilege" @click="ClickMyPrivilege" v-else>我的特权></div>
       </div>
       <!-- userinfo end -->
@@ -88,6 +88,7 @@ export default {
   data () {
     return {
       servicetime: 10,
+      minaAuth: wx.getStorageSync('minaAuth'),
       isVolunteer: false,
       userInfo: wx.getStorageSync('userInfo'),
       authSetting: {

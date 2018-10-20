@@ -11,9 +11,13 @@ export default {
     })
   },
   created () {
-    var env = 'prod'
+    var env = 'test'
+    var userInfo = {} // 微信用户信息
+    var loginInfo = {} // 用户登录信息
+
     wx.setStorageSync('env', env)
     // console.log(wxConfig.envVersion)
+    console.log('app created, env:', wx.getStorageSync('env'))
 
     if (wx.getStorageSync('env') === 'prod') {
       wx.setStorageSync('requestUrl', 'https://bbs.baobeihuijia.com/lastest/wechatapi')
@@ -34,42 +38,11 @@ export default {
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
 
-    // 登陆后隐藏登陆页
-    wx.getSetting({
-      success: res => {
-        // console.log(res)
-        console.log(res.authSetting['scope.userInfo'])
-        wx.setStorageSync('authSetting.userInfo', res.authSetting['scope.userInfo'])
-        wx.setStorageSync('authSetting.userLocation', res.authSetting['scope.userLocation'])
-        wx.setStorageSync('authSetting.address', res.authSetting['scope.address'])
-        wx.setStorageSync('authSetting.invoiceTitle', res.authSetting['scope.invoiceTitle'])
-        wx.setStorageSync('authSetting.werun', res.authSetting['scope.werun'])
-        wx.setStorageSync('authSetting.record', res.authSetting['scope.record'])
-        wx.setStorageSync('authSetting.writePhotosAlbum', res.authSetting['scope.writePhotosAlbum'])
-        wx.setStorageSync('authSetting.camera', res.authSetting['scope.camera'])
-      }
-    })
-
-    // 用户信息
-    wx.getUserInfo({
-      success: (res) => {
-        try {
-          wx.setStorageSync('userInfo', res.userInfo)
-        } catch (e) {
-          console.log('setUserInfo failed App.vue')
-        }
-        this.userInfo = res.userInfo
-        console.log('getUserInfo', res.userInfo)
-      }
-    })
-
-    var loginInfo = {}
     // 用户网络类型
     wx.getNetworkType({
       success: function (res) {
         try {
           loginInfo['networkType'] = res.networkType
-          wx.setStorageSync('networkType', res.networkType)
         } catch (e) {
           console.log('getNetworkType failed App.vue')
         }
@@ -83,6 +56,7 @@ export default {
           loginInfo['platform'] = res.platform
           loginInfo['brand'] = res.brand
           loginInfo['pmodel'] = res.model
+          loginInfo['system'] = res.system
           wx.setStorageSync('systemInfo', res)
         } catch (e) {
           console.log('getSystemInfo failed App.vue')
@@ -90,25 +64,93 @@ export default {
       }
     })
 
-    // 获取用户经纬度
-    wx.getLocation({
-      type: 'wgs84',
-      success: function (res) {
-        try {
-          loginInfo['longitude'] = res.longitude
-          loginInfo['latitude'] = res.latitude
-          wx.setStorageSync('userLocation', res)
-        } catch (e) {
-          console.log('getSystemInfo failed App.vue')
-        }
+    // 获取微信授权信息
+    wx.getSetting({
+      success: res => {
+        // console.log(res)
+        wx.setStorageSync('authSetting.userInfo', res.authSetting['scope.userInfo'])
+        wx.setStorageSync('authSetting.userLocation', res.authSetting['scope.userLocation'])
+        wx.setStorageSync('authSetting.address', res.authSetting['scope.address'])
+        wx.setStorageSync('authSetting.invoiceTitle', res.authSetting['scope.invoiceTitle'])
+        wx.setStorageSync('authSetting.werun', res.authSetting['scope.werun'])
+        wx.setStorageSync('authSetting.record', res.authSetting['scope.record'])
+        wx.setStorageSync('authSetting.writePhotosAlbum', res.authSetting['scope.writePhotosAlbum'])
+        wx.setStorageSync('authSetting.camera', res.authSetting['scope.camera'])
       }
     })
+
+    // 获取用户经纬度
+    if (wx.getStorageSync('authSetting.userLocation')) {
+      wx.getLocation({
+        type: 'wgs84',
+        success: function (res) {
+          try {
+            loginInfo['longitude'] = res.longitude
+            loginInfo['latitude'] = res.latitude
+            wx.setStorageSync('userLocation', res)
+          } catch (e) {
+            console.log('getLocation failed App.vue')
+          }
+        }
+      })
+    }
+
+    // 获取用户信息
+    if (wx.getStorageSync('authSetting.userInfo')) {
+      wx.getUserInfo({
+        success: (res) => {
+          try {
+            userInfo = res.userInfo
+            wx.setStorageSync('userInfo', res.userInfo)
+            wx.login({
+              success: function (res) {
+                if (res.code) {
+                  wx.request({
+                    url: wx.getStorageSync('requestUrl') + '/small/user/login',
+                    method: 'POST',
+                    header: {
+                      'content-type': 'application/json'
+                    },
+                    data: {
+                      code: res.code,
+                      platform: loginInfo['platform'],
+                      system: loginInfo['system'],
+                      brand: loginInfo['brand'],
+                      pmodel: loginInfo['pmodel'],
+                      networkType: loginInfo['networkType'],
+                      longitude: loginInfo['longitude'],
+                      latitude: loginInfo['latitude'],
+                      nickName: userInfo.nickName,
+                      avatarUrl: userInfo.avatarUrl,
+                      // 性别 0：未知、1：男、2：女
+                      gender: userInfo.gender,
+                      country: userInfo.country,
+                      province: userInfo.province,
+                      city: userInfo.city,
+                      language: userInfo.language
+                    },
+                    success: function (res) {
+                      var obj = JSON.parse(res.data)
+                      console.log('wechat login: ', res.data)
+                      wx.setStorageSync('minaAuth', obj)
+                      var ss = wx.getStorageSync('minaAuth')
+                      console.log(ss)
+                    }
+                  })
+                }
+              }
+            })
+          } catch (e) {
+            console.log('setUserInfo failed App.vue')
+          }
+        }
+      })
+    }
 
     wx.request({
       url: wx.getStorageSync('requestUrl') + '/small/config',
       method: 'GET',
       data: {
-
       },
       header: {
         'content-type': 'application/json'
@@ -118,46 +160,13 @@ export default {
         wx.setStorageSync('wecosUrl', res.data.WeCosUrl)
       }
     })
-
-    console.log('app created, env:', wx.getStorageSync('env'))
-    console.log('cache logs by setStorageSync')
-
-    wx.login({
-      success: function (res) {
-        if (res.code) {
-          wx.request({
-            url: wx.getStorageSync('requestUrl') + '/small/user/login',
-            method: 'POST',
-            data: {
-              code: res.code,
-              loginInfo: JSON.stringify(loginInfo),
-              userInfo: JSON.stringify(wx.getStorageSync('userInfo'))
-            },
-            header: {
-              'content-type': 'application/json'
-            },
-            success: function (res) {
-              var obj = JSON.parse(res.data)
-              console.log('wechat login: ', obj)
-              loginInfo['openid'] = obj.openid
-              loginInfo['unionid'] = obj.unionid
-              console.log('-----', loginInfo)
-              wx.setStorageSync('loginInfo', loginInfo)
-              console.log('loginInfo add openid', wx.getStorageSync('loginInfo'))
-            }
-          })
-        }
-      }
-    })
   }
 }
 </script>
-
 <style>
 
 html, body {
   background: #efeff4;
-
 }
 page {
   background: #efeff4;
