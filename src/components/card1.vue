@@ -1,9 +1,8 @@
 <template>
   <div>
     <scroll-view>
-      <div v-for="(item, index) in items" :key="item.id" @click="a">
-        <navigator url="../../pages/detail/main?item=index" open-type="navigate" hover-class="none">
-        <div class="weui-cell">
+      <div v-for="item in items" :key="item.id">
+        <div class="weui-cell" :id="item.UUID" @click="a">
           <div class="weui-cell__hd">
             <image :src="item.AvatarUrl" style="vertical-align: middle;width:65px; height: 90px;border-radius: 5px 0 0 5px;"></image>
           </div>
@@ -22,7 +21,6 @@
             </div>
           </div>
         </div>
-        </navigator>
       </div>
     </scroll-view>
   </div>
@@ -40,6 +38,9 @@ export default {
   methods: {
     a (e) {
       console.log(e)
+      wx.navigateTo({
+        url: '../../pages/detail/main?id=' + e.currentTarget.id
+      })
     }
   }
 }

@@ -27,7 +27,7 @@
     </div>
 
     <scroll-view>
-      <detail></detail>
+      <detail :item="item"></detail>
     </scroll-view>
 
     <div class="footer">
@@ -84,6 +84,14 @@ export default{
   },
   onLoad (options) {
     console.log(options)
+    var that = this
+    var items = wx.getStorageSync('database')
+    for (var i = 0; i < items.length; i++) {
+      if (options.id === items[i].UUID) {
+        that.item = items[i]
+        console.log(that.item)
+      }
+    }
   },
   methods: {
     sub (e) {
