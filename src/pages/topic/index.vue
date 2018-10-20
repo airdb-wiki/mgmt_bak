@@ -38,8 +38,6 @@
   
   </div>
 
-
-  </div>
 </template>
 
 <script>
@@ -86,7 +84,7 @@ export default {
       this.accountsIndex = e.mp.detail.value
     },
     clickHandle (uuid) {
-      console.log('clickHandle:', uuid)
+      console.log('clickHandle:')
       wx.navigateTo({
         url: '../article/main?uuid=' + uuid,
         success: function () {
@@ -137,7 +135,7 @@ export default {
           }
 
           vm.items = vm.items.concat(res.data)
-          console.log('not 0, add 5 , xxx', vm.items.length)
+          console.log('not 0, add 5 , xxx', vm.items)
         },
         compelte: function (e) {
           console.log('e', e, vm.items)

@@ -128,6 +128,7 @@ export default {
         for (var i = 1; i < res.data.length; i++) {
           that.database = that.database.concat(res.data[i])
         }
+        wx.setStorageSync('database', that.database)
         console.log('database:', that.database)
       }
     })

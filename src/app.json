@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/home/main",
+    "pages/topic/main",
     "pages/detail/main",
     "pages/test_mc/hzw_text/main",
     "pages/test_mc/main",
@@ -10,11 +11,11 @@
     "pages/test_mc/serviceTime/main",
     "pages/test_mc/myPrivilege/main",
     "pages/volunteer/main",
-    "pages/topic/main",
     "pages/publish/main",
     "pages/logs/main",
     "pages/licence/main",
     "pages/profile/main",
+    "pages/article/main",
     "pages/search/main"
   ],
   "window": {

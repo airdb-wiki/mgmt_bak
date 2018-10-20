@@ -12,15 +12,16 @@
         <div class="weui-article__section">
           <div class="weui-article__h3">寻亲类别：宝贝寻家</div>
           <div class="weui-article__h3">寻亲编号：3255441</div>
-          <div class="weui-article__h3">姓 名：某某 </div>
-          <div class="weui-article__h3">性 别：女 </div>
-          <div class="weui-article__h3">出生日期：1986年05月43日 </div>
-          <div class="weui-article__h3">失踪时身高：120厘米左右 </div>
-          <div class="weui-article__h3">失踪时间：1994年03月21日 </div>
-          <div class="weui-article__h3">失踪人所在地：广东省,云浮市 </div>
-          <div class="weui-article__h3">失踪地点：广西壮族自治区,桂林市, </div>
-          <div class="weui-article__h3">寻亲者特征描述：腿上有块胎记 </div>
-          <div class="weui-article__h3">其他资料：我走丢时身上两件衣服，外面是一件毛衣，里面是一件粉红色的，一条格子裤</div>
+          <div class="weui-article__h3">姓 名：{{item.Nickname}} </div>
+          <div class="weui-article__h3" v-if="item.Gender == 2">性 别：女 </div>
+          <div class="weui-article__h3" v-else>性 别：男 </div>
+          <div class="weui-article__h3">出生日期：{{item.BirthedAt}} </div>
+          <div class="weui-article__h3">失踪时身高：120厘米左右 {{item.Height}}</div>
+          <div class="weui-article__h3">失踪时间：{{item.MissedAt}}</div>
+          <div class="weui-article__h3">失踪人所在地：广东省,云浮市 {{item.MissedAddress}}</div>
+          <div class="weui-article__h3">失踪地点：广西壮族自治区,桂林市, {{item.id}}</div>
+          <div class="weui-article__h3">寻亲者特征描述: {{item.Characters}}</div>
+          <div class="weui-article__h3">其他资料：{{item.Details}}</div>
           <div class="weui-article__h3">注册时间：2018/6/23 12:02:34 </div>
           <div class="weui-article__h3">跟进志愿者：淡雅宁静</div>
           <div class="weui-article__p">
@@ -46,6 +47,7 @@
 <script>
 export default{
   name: 'detail',
+  props: ['item'],
   data () {
     return {
       content: {
