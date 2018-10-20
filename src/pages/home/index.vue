@@ -42,7 +42,7 @@ export default {
   data () {
     return {
       tabs: [
-        '家寻宝贝', '宝贝那家', '救助寻亲', '流浪乞讨', '实时寻人', '其他寻人'
+        '家寻宝贝', '宝贝寻家', '救助寻亲', '流浪乞讨', '实时寻人', '其他寻人'
       ],
       authSetting: {
         userInfo: wx.getStorageSync('authSetting.userInfo')

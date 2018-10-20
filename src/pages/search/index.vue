@@ -13,7 +13,7 @@
         </navigator>
       </div>
 
-      <div v-if="!showTitle" class="title">SearchBar</div>
+      <div v-if="!showTitle" class="title">宝贝回家</div>
       <div v-else class="title">{{title}}</div>
     </div>
 

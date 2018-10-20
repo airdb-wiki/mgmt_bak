@@ -9,15 +9,26 @@
           <div class="weui-cell__bd" style="margin-left: 8px;">
             <div class="title">{{item.title}}寻找回家的路，让你不再孤立无援</div>
             <div class="info_1">
+              
               <text v-if="item.Gender == 2">女</text>
               <text v-else>男</text>
-              <img src="/static/images/home/position.png" style="width: 16px;height: 16px;">
-              <text>{{item.MissedAddress}}河南省洛阳市</text>
+
+              <text>{{item.Category}}</text>
+              <text>拐卖</text>
+              <text>离家出走</text>
+
             </div>
+
+
             <div class="pub_info">
-              <div>{{item.Nickname}}发表于宝贝回家</div>
-              <img src="/static/images/home/notice.png">
-              <text style="position: absolute; right: 10px;line-height: 20px;">2000</text>
+                <img src="/static/images/home/position.png"  align="left" style="width: 16px;height: 16px;">
+                <navigator url="/pages/location/main?title=navigate" hover-class="navigator-hover">
+                  {{item.MissedAddress}}
+                </navigator>
+              <div>
+                <img src="/static/images/home/notice.png">
+                <text style="position: absolute; right: 10px;line-height: 20px;">2000</text>
+              </div>
             </div>
           </div>
         </div>

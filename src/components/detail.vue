@@ -8,22 +8,22 @@
       </div>
       <div class="weui-article__h1 title" >01  登记信息</div>
       <div class="weui-article__section" id="content">
-        <div class="weui-article__title">原创： 宝贝回家</div>
+        <div class="weui-article__title">信息来源： {{item.DataFrom}}</div>
         <div class="weui-article__section">
-          <div class="weui-article__h3">寻亲类别：宝贝寻家</div>
-          <div class="weui-article__h3">寻亲编号：3255441</div>
+          <div class="weui-article__h3">寻亲类别：{{item.Category}}</div>
+          <div class="weui-article__h3">寻亲编号：{{item.Babyid}}</div>
           <div class="weui-article__h3">姓 名：{{item.Nickname}} </div>
           <div class="weui-article__h3" v-if="item.Gender == 2">性 别：女 </div>
           <div class="weui-article__h3" v-else>性 别：男 </div>
           <div class="weui-article__h3">出生日期：{{item.BirthedAt}} </div>
-          <div class="weui-article__h3">失踪时身高：120厘米左右 {{item.Height}}</div>
+          <div class="weui-article__h3">户籍地点：{{item.BirthedProvince}} {{item.BirthedCity}} </div>
           <div class="weui-article__h3">失踪时间：{{item.MissedAt}}</div>
-          <div class="weui-article__h3">失踪人所在地：广东省,云浮市 {{item.MissedAddress}}</div>
-          <div class="weui-article__h3">失踪地点：广西壮族自治区,桂林市, {{item.id}}</div>
+          <div class="weui-article__h3">失踪地点：{{item.MissedProvince}} {{item.MissedAddress}}</div>
+          <div class="weui-article__h3">失踪时身高：120厘米左右 {{item.Height}}</div>
           <div class="weui-article__h3">寻亲者特征描述: {{item.Characters}}</div>
           <div class="weui-article__h3">其他资料：{{item.Details}}</div>
-          <div class="weui-article__h3">注册时间：2018/6/23 12:02:34 </div>
-          <div class="weui-article__h3">跟进志愿者：淡雅宁静</div>
+          <div class="weui-article__h3">失踪时间： {{item.MissedAt}} </div>
+          <div class="weui-article__h3">跟进志愿者： {{item.Handler}}</div>
           <div class="weui-article__p">
             <image class="weui-article__img" :src="item.AvatarUrl" mode="aspectFit" style="height: 180px" />
           </div>
