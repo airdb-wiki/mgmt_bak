@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- 自定义navigation -->
-    <navigation :search='true'></navigation>
+    <navigation :search='true' :yourcity=minaAuth.yourcity></navigation>
     
     <!-- 内容 -->
     <div style="z-index: 0;margin-top: 100px;">
@@ -48,7 +48,8 @@ export default {
         userInfo: wx.getStorageSync('authSetting.userInfo')
       },
       showLogin: true,
-      database: []
+      database: [],
+      minaAuth: wx.getStorageSync('minaAuth')
     }
   },
   methods: {

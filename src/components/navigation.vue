@@ -3,7 +3,7 @@
     <div v-if="search === false">{{deContent}}</div>
     <div v-else>
       <div style="display: flex;flex-direction: row;">
-        <div style="line-height: 38px;margin-left: -20px;">{{position}}</div>
+        <div style="line-height: 38px;margin-left: -20px;">{{yourcity}}</div>
         <div class="arrow"></div>
       </div>
       <label  class="weui-search-bar__label" @click="focus" id="search">
@@ -18,7 +18,8 @@
 export default {
   name: 'navigation',
   props: {
-    search: Boolean
+    search: Boolean,
+    yourcity: String
   },
   data () {
     return {
@@ -32,9 +33,6 @@ export default {
     }
   },
   onLoad () {
-    var address = wx.getStorageSync('address')
-    console.log('address', address)
-    this.position = address
   }
 }
 </script>
