@@ -57,7 +57,7 @@ export default{
       src2: ''
     }
   },
-  created () {
+  onLoad () {
     var that = this
     wx.request({
       url: 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential',
@@ -75,6 +75,7 @@ export default{
       }
     })
     // 获取access_taken
+
     setTimeout(function () {
       if (that.access_token === '') {
         console.log('error')
@@ -91,8 +92,6 @@ export default{
         width: '280px',
         success (res) {
           console.log(res)
-          // var _array = wx.base64ToArrayBuffer(res.data)
-          // console.log(_array)
           var src2 = wx.arrayBufferToBase64(res.data)
           that.src2 = 'data:image/jepg;base64,' + src2
           console.log(that.src2)
@@ -101,8 +100,8 @@ export default{
           console.log(e)
         }
       })
-    }, 500)
-    // 生成二维码，并保存
+      // 生成二维码
+    }, 1000)
   },
   methods: {
     download () {
