@@ -1,10 +1,16 @@
 <template>
   <div class="navigation">
     <div v-if="search === false">{{deContent}}</div>
-    <label v-else class="weui-search-bar__label" @click="focus" id="search">
-      <icon class="weui-icon-search" type="search" size="14"></icon>
-      <div class="weui-search-bar__text">搜索</div>
-    </label>
+    <div v-else>
+      <div style="display: flex;flex-direction: row;">
+        <div style="line-height: 38px;margin-left: -20px;">{{position}}</div>
+        <div class="arrow"></div>
+      </div>
+      <label  class="weui-search-bar__label" @click="focus" id="search">
+        <icon class="weui-icon-search" type="search" size="14"></icon>
+        <div class="weui-search-bar__text">搜索</div>
+      </label>
+    </div>
   </div>
 </template>
 
@@ -16,7 +22,8 @@ export default {
   },
   data () {
     return {
-      deContent: '宝贝回家'
+      deContent: '宝贝回家',
+      position: ''
     }
   },
   methods: {
@@ -24,12 +31,10 @@ export default {
       wx.navigateTo({ url: '/pages/search/main' })
     }
   },
-  mounted () {
-    wx.getSystemInfo({
-      success: res => {
-        console.log('systemInfo', res)
-      }
-    })
+  onLoad () {
+    var address = wx.getStorageSync('address')
+    console.log('address', address)
+    this.position = address
   }
 }
 </script>
@@ -50,11 +55,19 @@ export default {
 #search{
   margin-top: 20pt;
   border: 1px solid #e2e2e2;
-  width: 65%;
+  width: 50%;
   line-height: 21pt;
   height: 23pt;
   border-radius: 20px;
-  margin-left: 5px;
+  margin-left: 72px;
+}
+.arrow {
+  width: 0;
+  height: 0;
+  border-top: 10px solid #ccc;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  margin: 15px 0 0 2px;
 }
 </style>
 

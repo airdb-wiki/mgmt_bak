@@ -1,5 +1,6 @@
 
 <script>
+var QQMapWX = require('../static/qqmap-wx-jssdk.min.js')
 export default {
   onLaunch (res) {
     console.log('open app scene info', res.scene)
@@ -11,7 +12,7 @@ export default {
     })
   },
   created () {
-    var env = 'test'
+    var env = 'prod'
     var userInfo = {} // 微信用户信息
     var loginInfo = {} // 用户登录信息
 
@@ -88,6 +89,26 @@ export default {
             loginInfo['longitude'] = res.longitude
             loginInfo['latitude'] = res.latitude
             wx.setStorageSync('userLocation', res)
+
+            // 获取用户的地理位置
+            var qqmapsdk = new QQMapWX({
+              key: 'F6JBZ-3NM33-LDK3V-3TWWM-KC2N6-WZBCW'
+            })
+
+            qqmapsdk.reverseGeocoder({
+              location: {
+                latitude: res.latitude,
+                longitude: res.longitude
+              },
+              success: function (addressRes) {
+                var address = addressRes.result.ad_info.city
+                console.log('position', addressRes.result.ad_info.city)
+                wx.setStorageSync('address', address)
+              },
+              fail: function (e) {
+                console.log('fail', e)
+              }
+            })
           } catch (e) {
             console.log('getLocation failed App.vue')
           }
