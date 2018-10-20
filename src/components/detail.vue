@@ -25,7 +25,7 @@
           <div class="weui-article__h3">注册时间：2018/6/23 12:02:34 </div>
           <div class="weui-article__h3">跟进志愿者：淡雅宁静</div>
           <div class="weui-article__p">
-            <image class="weui-article__img" src="/static/images/home/sls.png" mode="aspectFit" style="height: 180px" />
+            <image class="weui-article__img" :src="item.AvatarUrl" mode="aspectFit" style="height: 180px" />
           </div>
         </div>
       </div>
@@ -53,8 +53,56 @@ export default{
       content: {
         title: '约1986年出生1990年与小朋友离家玩耍时走失疑时广西桂林人的秦干寻亲',
         notice: '本站不保证寻子家人酬金承诺的有效性，请亲自与寻子家长联系确认，本网站及志愿者提供的寻人服务均是免费的'
-      }
+      },
+      src2: ''
     }
+  },
+  created () {
+    var that = this
+    wx.request({
+      url: 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential',
+      data: {
+        appid: 'wxc4e11081e3d5bdf7',
+        secret: 'e3284a3123d4ed4e06ee09bf0171bef7'
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      method: 'GET',
+      success (res) {
+        console.log('index', res)
+        that.access_token = res.data.access_token
+      }
+    })
+    // 获取access_taken
+    setTimeout(function () {
+      if (that.access_token === '') {
+        console.log('error')
+        return
+      }
+      wx.request({
+        url: 'https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token=' + that.access_token,
+        data: {
+          scene: '000',
+          path: 'pages/detail/main'
+        },
+        method: 'POST',
+        responseType: 'arraybuffer',
+        width: '280px',
+        success (res) {
+          console.log(res)
+          // var _array = wx.base64ToArrayBuffer(res.data)
+          // console.log(_array)
+          var src2 = wx.arrayBufferToBase64(res.data)
+          that.src2 = 'data:image/jepg;base64,' + src2
+          console.log(that.src2)
+        },
+        fail (e) {
+          console.log(e)
+        }
+      })
+    }, 500)
+    // 生成二维码，并保存
   },
   methods: {
     download () {
@@ -108,8 +156,7 @@ export default{
       ctx.setFillStyle('#393939')
       ctx.fillText('扫描右边二维码了解更多', 160, 550)
 
-      ctx.drawImage('/static/images/mina/8.jpg', 50, 500, 100, 100)
-
+      ctx.drawImage(this.src2, 50, 400, 100, 100)
       wx.showLoading({
         title: '分享图片生成中...',
         mask: true

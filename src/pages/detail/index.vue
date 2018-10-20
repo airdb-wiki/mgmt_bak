@@ -70,7 +70,8 @@ export default{
       canvasHidden: false,
       title: '顶梁柱“北漂”意外之死',
       showTitle: false,
-      item: {}
+      item: {},
+      comment: []
     }
   },
   onPageScroll (res) {
@@ -83,19 +84,82 @@ export default{
     }
   },
   onLoad (options) {
-    console.log(options)
     var that = this
     var items = wx.getStorageSync('database')
     for (var i = 0; i < items.length; i++) {
       if (options.id === items[i].UUID) {
         that.item = items[i]
-        console.log(that.item)
       }
     }
+    // 从缓存中获取信息
+
+    this.requestComment()
+    // 从数据库获取评论信息
   },
   methods: {
+    requestComment () {
+      var that = this
+      wx.request({
+        url: wx.getStorageSync('requestUrl') + '/small/comment',
+        data: {
+          UUID: that.item.UUID
+        },
+        method: 'GET',
+        dataType: 'json',
+        success: res => {
+          console.log('评论信息：', res)
+        },
+        fail: () => {
+          console.log('fail')
+        }
+      })
+    },
     sub (e) {
-      console.log('---------------评论的内容为：', e.mp.detail.value.pl)
+      var that = this
+      if (e.mp.detail.value.pl === '') {
+        wx.showLoading({
+          title: '留言不能为空！'
+        })
+        setTimeout(function () {
+          wx.hideLoading()
+        }, 2000)
+        return
+      }
+      // 检验评论的合法性
+
+      var comment = {}
+      comment.content = e.mp.detail.value.pl
+      comment.UUID = that.item.UUID
+      comment.AvatarUrl = wx.getStorageSync('userInfo').avatarUrl
+      comment.NickName = wx.getStorageSync('userInfo').nickName
+      that.commemt = that.comment.concat(comment)
+      // 更新数据
+
+      wx.request({
+        url: wx.getStorageSync('requestUrl') + '/small/comment',
+        method: 'POST',
+        data: {
+          UUID: that.UUID,
+          AvatarUrl: wx.getStorageSync('userInfo').avatarUrl,
+          Nickname: wx.getStorageSync('userInfo').nickName,
+          Content: comment.content
+        },
+        header: {
+          'content-type': 'application/json'
+        },
+        success: function (res) {
+          console.log(res.data)
+          wx.showToast({
+            title: '评论成功',
+            icon: 'success',
+            duration: 2000
+          })
+        },
+        fail: function () {
+          console.log('上传失败')
+        }
+      })
+      // 将评论上传至数据库
     },
     download () {
       var that = this

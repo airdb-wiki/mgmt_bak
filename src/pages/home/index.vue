@@ -44,32 +44,6 @@ export default {
       tabs: [
         '家寻宝贝', '宝贝那家', '救助寻亲', '流浪乞讨', '实时寻人', '其他寻人'
       ],
-      items: [
-        {
-          url: '/static/images/home/sls.png',
-          title: '一场斗狗的厮杀游戏 曝光了人类的残忍兽性',
-          team: '谷雨计划',
-          editor: '李娜',
-          time: '9月10日',
-          avatarUrl: '/static/images/home/sls.png'
-        },
-        {
-          url: '/static/images/home/vr.png',
-          title: '一场斗狗的厮杀游戏 曝光了人类的残忍兽性',
-          team: '谷雨实验室',
-          editor: '李娜',
-          time: '9月10日',
-          avatarUrl: '/static/images/home/vr.png'
-        },
-        {
-          url: '/static/images/home/xiaolong.jpg',
-          title: '一场斗狗的厮杀游戏 曝光了人类的残忍兽性',
-          team: '谷雨计划',
-          editor: '李娜',
-          time: '9月10日',
-          avatarUrl: '/static/images/home/xiaolong.jpg'
-        }
-      ],
       authSetting: {
         userInfo: wx.getStorageSync('authSetting.userInfo')
       },

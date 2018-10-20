@@ -37,7 +37,6 @@ export default {
   },
   methods: {
     a (e) {
-      console.log(e)
       wx.navigateTo({
         url: '../../pages/detail/main?id=' + e.currentTarget.id
       })
