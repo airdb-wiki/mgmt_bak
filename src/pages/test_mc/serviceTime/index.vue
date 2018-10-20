@@ -269,14 +269,14 @@ export default{
 }
 .index-detail {
   position:fixed;
-  top:155rpx;
+  top:165rpx;
   right:25rpx;
   font-size:28rpx;
   color:#fff;
 }
 .index-title {
   position:fixed;
-  top:150rpx;
+  top:160rpx;
   left:30rpx;
   font-size:30;
   color:#fff;

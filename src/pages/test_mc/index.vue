@@ -46,19 +46,19 @@
       <div class="weui-cells">
         <div class="weui-cell">
           <div class="weui-cell__bd">
-            <div class="weui-label">修改信息</div>
+            <div class="weui-label">我的保存</div>
           </div>
           <div class="weui-cell__ft weui-cell__ft_in-access"></div>
         </div>
         <div class="weui-cell">
           <div class="weui-cell__bd">
-            <div class="weui-label">修改信息</div>
+            <div class="weui-label">我的发布</div>
           </div>
           <div class="weui-cell__ft weui-cell__ft_in-access"></div>
         </div>
         <div class="weui-cell">
           <div class="weui-cell__bd">
-            <div class="weui-label">修改信息</div>
+            <div class="weui-label">我的关注</div>
           </div>
           <div class="weui-cell__ft weui-cell__ft_in-access"></div>
         </div>
@@ -88,7 +88,7 @@ export default {
   data () {
     return {
       servicetime: 10,
-      isVolunteer: true,
+      isVolunteer: false,
       userInfo: wx.getStorageSync('userInfo'),
       authSetting: {
         userInfo: wx.getStorageSync('authSetting.userInfo')
@@ -220,7 +220,7 @@ export default {
     top: 0;
     right: 0;
     height: 1px;
-    border-top: 0.5rpx solid #d9d9d9;
+    border-top: 0.2rpx solid #d9d9d9;
     color: #d9d9d9;
     -webkit-transform-origin: 0 0;
     transform-origin: 0 0;
@@ -234,7 +234,7 @@ export default {
     top: 0;
     width: 1px;
     bottom: 0;
-    border-left: 0.5rpx solid #d9d9d9;
+    border-left: 0.2rpx solid #d9d9d9;
     color: #d9d9d9;
     -webkit-transform-origin: 0 0;
     transform-origin: 0 0;
@@ -255,7 +255,7 @@ export default {
     top: 0;
     width: 1px;
     bottom: 0;
-    border-right: 0.5rpx solid #d9d9d9;
+    border-right: 0.2rpx solid #d9d9d9;
     color: #d9d9d9;
     -webkit-transform-origin: 100% 0;
     transform-origin: 100% 0;
@@ -269,7 +269,7 @@ export default {
     bottom: 0;
     right: 0;
     height: 1px;
-    border-bottom: 0.5px solid #d9d9d9;
+    border-bottom: 0.2px solid #d9d9d9;
     color: #d9d9d9;
     -webkit-transform-origin: 0 100%;
     transform-origin: 0 100%;
@@ -359,7 +359,7 @@ export default {
 }
 .userinfo-volunt {
   position: absolute;
-  top: 200rpx;
+  top: 50rpx;
   right: 20rpx;
   color: #fff;
 }
