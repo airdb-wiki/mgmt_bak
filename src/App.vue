@@ -12,7 +12,7 @@ export default {
     })
   },
   created () {
-    var env = 'prod'
+    var env = 'test'
     var userInfo = {} // 微信用户信息
     var loginInfo = {} // 用户登录信息
 
@@ -21,12 +21,12 @@ export default {
     console.log('app created, env:', wx.getStorageSync('env'))
 
     if (wx.getStorageSync('env') === 'prod') {
-      wx.setStorageSync('requestUrl', 'https://bbs.baobeihuijia.com/lastest/wechatapi')
+      wx.setStorageSync('requestUrl', 'https://wechat.baobeihuijia.com/lastest/wechatapi')
     } else {
       wx.setNavigationBarTitle({
         title: '宝贝回家-体验版'
       })
-      wx.setStorageSync('requestUrl', 'https://wechat.baobeihuijia.com/lastest/wechatapi')
+      wx.setStorageSync('requestUrl', 'https://wechat.baobeihuijia.com/test/lastest/wechatapi')
     }
 
     // 填写自己的鉴权服务器地址

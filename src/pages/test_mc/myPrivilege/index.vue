@@ -68,7 +68,7 @@ export default{
       authSetting: {
         userInfo: wx.getStorageSync('authSetting.userInfo')
       },
-      privilege: 0,
+      privilege: 3,
       items: [{
         name: '精美礼品',
         src: '/static/images/mini-logo/1.png'

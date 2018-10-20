@@ -52,6 +52,9 @@ export default {
       minaAuth: wx.getStorageSync('minaAuth')
     }
   },
+  onload () {
+    this.minaAuth = wx.getStorageSync('minaAuth')
+  },
   methods: {
     login () {
       var that = this

@@ -73,7 +73,11 @@
     <!-- profile-page-main end -->
 
     <!-- 右下角加号新建 -->
-    <img src="/static/images/addition_fill.png" class="btn-post" @click="onPostClick"/>
+    <button open-type="contact" session-from="weixin-baobeihuijia">
+      <img src="/static/images/CustomerService.png" class="btn-post">
+    </button>
+
+
     <div class="profile-page-footer">
       <vfooter></vfooter>
     </div>
