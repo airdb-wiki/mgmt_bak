@@ -29,19 +29,6 @@
     <scroll-view>
       <detail></detail>
     </scroll-view>
-    
-    <!-- 底部分享，评论栏 -->
-    <!-- <canvas canvas-id="myCanvas" :hidden='canvasHidden'/>
-    <div class="footer">
-      <button @click="shareToFriends" open-type='share' :plain='true'>
-        <img src="/static/images/home/wx.png" class="icon">
-        分享给好友
-      </button>
-      <button @click="download" :plain='true' style="border-left: 1px solid #e2e2e2;">
-        <img src="/static/images/home/download.png" class="icon">
-        生成海报
-      </button>
-    </div> -->
 
     <div class="footer">
       <form @submit="sub">
@@ -82,7 +69,8 @@ export default{
     return {
       canvasHidden: false,
       title: '顶梁柱“北漂”意外之死',
-      showTitle: false
+      showTitle: false,
+      item: {}
     }
   },
   onPageScroll (res) {
@@ -93,6 +81,9 @@ export default{
         this.showTitle = false
       }
     }
+  },
+  onLoad (options) {
+    console.log(options)
   },
   methods: {
     sub (e) {

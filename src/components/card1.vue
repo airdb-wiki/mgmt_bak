@@ -1,10 +1,11 @@
 <template>
   <div>
     <scroll-view>
-      <div class="weui-cells weui-cells_after-title">
-        <div class="weui-cell" v-for="item in items" :key="item.id">
+      <div v-for="(item, index) in items" :key="item.id" @click="a">
+        <navigator url="../../pages/detail/main?item=index" open-type="navigate" hover-class="none">
+        <div class="weui-cell">
           <div class="weui-cell__hd">
-            <image :src="item.AvatarUrl" style="vertical-align: middle;width:65px; height: 100px;border-radius: 5px 0 0 5px;"></image>
+            <image :src="item.AvatarUrl" style="vertical-align: middle;width:65px; height: 90px;border-radius: 5px 0 0 5px;"></image>
           </div>
           <div class="weui-cell__bd" style="margin-left: 8px;">
             <div class="title">{{item.title}}寻找回家的路，让你不再孤立无援</div>
@@ -16,11 +17,12 @@
             </div>
             <div class="pub_info">
               <div>{{item.Nickname}}发表于宝贝回家</div>
-                <img src="/static/images/home/notice.png">
-                <text style="position: absolute; right: 10px;line-height: 20px;">2000</text>
+              <img src="/static/images/home/notice.png">
+              <text style="position: absolute; right: 10px;line-height: 20px;">2000</text>
             </div>
           </div>
         </div>
+        </navigator>
       </div>
     </scroll-view>
   </div>
@@ -29,7 +31,17 @@
 <script>
 export default {
   name: 'card',
-  props: ['items']
+  props: ['items'],
+  data () {
+    return {
+      index: 0
+    }
+  },
+  methods: {
+    a (e) {
+      console.log(e)
+    }
+  }
 }
 </script>
 
@@ -63,7 +75,7 @@ export default {
 }
 .weui-cell{
   padding: 0;
-  margin: 6px 10px;
+  margin: 8px 10px;
   border: none;
   line-height: 28px;
   border-radius: 5px;
