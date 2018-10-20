@@ -13,7 +13,7 @@
         <div v-if="authSetting.userInfo">
           <div class="userinfo-cont">
             <div class="text-name">{{ userInfo.nickName }}</div>
-            <div class="text-time" @click="ClickServiceTime">公益时长: {{servicetime}}小时 ></div>
+            <div class="text-time" @click="ClickServiceTime">公益时长: {{minaAuth.serviceTime}}小时 ></div>
           </div>
         </div>
         <div v-else>

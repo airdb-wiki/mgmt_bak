@@ -70,37 +70,37 @@ export default{
       },
       privilege: 0,
       items: [{
-        name: '特权1',
+        name: '精美礼品',
         src: '/static/images/mini-logo/1.png'
       }, {
-        name: '特权2',
+        name: '公仔一个',
         src: '/static/images/mini-logo/2.png'
       }, {
-        name: '特权3',
+        name: '衣服一件',
         src: '/static/images/mini-logo/3.png'
       }, {
-        name: '特权4',
+        name: '未解锁',
         src: '/static/images/mini-logo/4.png'
       }, {
-        name: '特权5',
+        name: '未解锁',
         src: '/static/images/mini-logo/5.png'
       }, {
-        name: '特权6',
+        name: '未解锁',
         src: '/static/images/mini-logo/6.png'
       }, {
-        name: '特权7',
+        name: '未解锁',
         src: '/static/images/mini-logo/6.png'
       }, {
-        name: '特权8',
+        name: '未解锁',
         src: '/static/images/mini-logo/6.png'
       }, {
-        name: '特权9',
+        name: '未解锁',
         src: '/static/images/mini-logo/6.png'
       }, {
-        name: '特权10',
+        name: '未解锁',
         src: '/static/images/mini-logo/6.png'
       }, {
-        name: '特权11',
+        name: '未解锁',
         src: '/static/images/mini-logo/6.png'
       }]
     }
