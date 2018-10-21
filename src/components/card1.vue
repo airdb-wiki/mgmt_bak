@@ -21,13 +21,13 @@
 
 
             <div class="pub_info">
-                <img src="/static/images/home/position.png"  align="left" style="width: 16px;height: 16px;">
+                <img src="/static/images/home/position.png" style="position: absolute; left: 5px;bottom: 4px;">
                 <navigator url="/pages/location/main?title=navigate" hover-class="navigator-hover">
                   {{item.MissedAddress}}
                 </navigator>
               <div>
-                <img src="/static/images/home/notice.png">
-                <text style="position: absolute; right: 10px;line-height: 20px;">2000</text>
+                <img src="/static/images/home/notice.png" style="position: absolute; right: 45px;bottom: 4px;">
+                <text style="position: absolute; right: 10px;line-height: 30px;">2000</text>
               </div>
             </div>
           </div>
@@ -69,8 +69,9 @@ export default {
 .pub_info image{
   width: 20px;
   height: 20px;
-  position: absolute;
-  right: 45px;
+}
+.pub_info navigator{
+  margin-left: 32px;
 }
 .title{
   font-weight: bold;
@@ -81,7 +82,7 @@ export default {
   padding: 0px 10px;
   border-radius: 5px;
   background: #e2e2e2;
-  margin-right: 20px;
+  margin-right: 10px;
   font-size: 14px;
 }
 .weui-cell{
@@ -91,6 +92,6 @@ export default {
   line-height: 28px;
   border-radius: 5px;
   box-shadow: 0 0 5px #b1b1b1;
-  background: rgba(255, 99, 7, .2);
+  background: #fff;
 }
 </style>

@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/test_mc/hzw_map/main",
     "pages/home/main",
     "pages/topic/main",
     "pages/detail/main",
