@@ -4,9 +4,12 @@
     <navigation :search='true' :yourcity=minaAuth.yourcity></navigation>
     
     <!-- 内容 -->
+    <form @submit="formSubmit_collect" report-submit="true">
     <div style="z-index: 0;margin-top: 100px;">
+      <button formType="submit"  hover-class="none" class='invisibleclass'></button>
       <card :items="database"></card>
     </div>
+    </form>
 
     <!-- 自定义navBar -->
     <div>
@@ -14,7 +17,7 @@
         <div v-for="tab in tabs" :key="tab.id" class="tab">{{tab}}</div>
       </scroll-view>
     </div>
-    
+
     <!-- 底部登陆按钮 -->
     <div class="login" v-if="!authSetting.userInfo" :hidden="!showLogin">
       <div class="myModal">
@@ -56,6 +59,9 @@ export default {
     this.minaAuth = wx.getStorageSync('minaAuth')
   },
   methods: {
+    formSubmit_collect (e) {
+      console.log('form发生了submit事件', e.mp.detail.formId)
+    },
     login () {
       var that = this
       console.log('login function', wx.getStorageSync('authSetting.userInfo'))
