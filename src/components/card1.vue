@@ -72,6 +72,7 @@ export default {
 }
 .pub_info navigator{
   margin-left: 32px;
+  text-decoration:underline;
 }
 .title{
   font-weight: bold;
@@ -82,7 +83,7 @@ export default {
   padding: 0px 10px;
   border-radius: 5px;
   background: #e2e2e2;
-  margin-right: 10px;
+  margin-right: 4px;
   font-size: 14px;
 }
 .weui-cell{
