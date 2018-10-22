@@ -28,7 +28,7 @@
     </form>
 
     <!-- 自定义navBar -->
-    <div>
+    <div class="bar">
       <scroll-view :scroll-x="true" class="navbar">
         <div v-for="tab in tabs" :key="tab.id" class="tab">{{tab}}</div>
       </scroll-view>
@@ -220,5 +220,18 @@ export default {
   height: 165px;
   border-radius: 10px;
   margin-left: 10px;
+}
+.bar::after{
+  content: '+';
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 28px;
+  position: fixed;
+  background-color: rgba(255, 255, 255, .85);
+  z-index: 9999;
+  height: 30px;
+  padding: 0 7px;
+  top: 75px;
+  right: 0;
 }
 </style>
