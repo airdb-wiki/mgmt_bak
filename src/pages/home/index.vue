@@ -3,9 +3,25 @@
     <!-- 自定义navigation -->
     <navigation :search='true' :yourcity=minaAuth.yourcity></navigation>
     
+    <!-- swiper轮播图 -->
+    <swiper :indicator-dots="true"
+      :autoplay="true"
+      :interval="interval"
+      :duration="duration"
+      previous-margin="-10px"
+      class="mySwiper">
+      <div v-for="item in imgUrls" :key="item.id">
+        <swiper-item style="border-radius: 10px;">
+          <navigator url="" open-type="navigate" hover-class="none">
+            <image :src="item" class="swiper_img"/>
+          </navigator>
+        </swiper-item>
+      </div>
+    </swiper>
+
     <!-- 内容 -->
     <form @submit="formSubmit_collect" report-submit="true">
-    <div style="z-index: 0;margin-top: 100px;">
+    <div style="z-index: 0;">
       <button formType="submit"  hover-class="none" class='invisibleclass'></button>
       <card :items="database"></card>
     </div>
@@ -52,7 +68,14 @@ export default {
       },
       showLogin: true,
       database: [],
-      minaAuth: wx.getStorageSync('minaAuth')
+      minaAuth: wx.getStorageSync('minaAuth'),
+      interval: 5000,
+      duration: 1000,
+      imgUrls: [
+        '/static/images/home/sls.png',
+        '/static/images/home/vr.png',
+        '/static/images/home/wx.png'
+      ]
     }
   },
   onload () {
@@ -179,5 +202,18 @@ export default {
   display: inline-block;
   box-sizing: border-box;
   border-bottom: 4px solid #e2d609;
+}
+.mySwiper{
+  margin: auto;
+  margin-top: 107px;
+  width: 310px;
+  height: 150px;
+  border-radius: 10px;
+}
+.swiper_img{
+  width: 320px;
+  height: 150px;
+  border-radius: 10px;
+  margin-left: 10px;
 }
 </style>
