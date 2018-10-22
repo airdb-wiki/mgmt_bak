@@ -7,7 +7,7 @@
             <image :src="item.AvatarUrl" style="vertical-align: middle;width:65px; height: 90px;border-radius: 5px 0 0 5px;"></image>
           </div>
           <div class="weui-cell__bd" style="margin-left: 8px;">
-            <div class="title">{{item.title}}寻找回家的路，让你不再孤立无援</div>
+            <div class="title">{{item.title}}寻找回家的路，让你不再孤立无援ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss</div>
             <div class="info_1">
               
               <text v-if="item.Gender == 2">女</text>
@@ -73,11 +73,18 @@ export default {
 .pub_info navigator{
   margin-left: 32px;
   text-decoration:underline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 180px;
 }
 .title{
+  width: 270px;
   font-weight: bold;
-  flex-wrap: wrap;
   font-size: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .info_1 text{
   padding: 0px 10px;

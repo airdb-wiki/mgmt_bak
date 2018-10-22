@@ -55,17 +55,17 @@ export default {
   border: 1px solid #e2e2e2;
   width: 50%;
   line-height: 21pt;
-  height: 23pt;
+  height: 21pt;
   border-radius: 20px;
-  margin-left: 72px;
+  margin-left: 69px;
 }
 .arrow {
-  width: 0;
-  height: 0;
-  border-top: 10px solid #ccc;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  margin: 15px 0 0 2px;
+  width: 8px;
+  height: 8px;
+  border:#666 solid;
+  border-width: 1px 1px 0 0;
+  transform: rotate(135deg);
+  margin: 10pt 0 0 6pt;
 }
 </style>
 
