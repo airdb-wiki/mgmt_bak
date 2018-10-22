@@ -74,7 +74,7 @@ export default {
       imgUrls: [
         '/static/images/home/sls.png',
         '/static/images/home/vr.png',
-        '/static/images/home/wx.png'
+        '/static/images/home/xiaolong.jpg'
       ]
     }
   },
@@ -211,13 +211,13 @@ export default {
 .mySwiper{
   margin: auto;
   margin-top: 107px;
-  width: 310px;
-  height: 150px;
+  width: 330px;
+  height: 165px;
   border-radius: 10px;
 }
 .swiper_img{
-  width: 320px;
-  height: 150px;
+  width: 330px;
+  height: 165px;
   border-radius: 10px;
   margin-left: 10px;
 }
