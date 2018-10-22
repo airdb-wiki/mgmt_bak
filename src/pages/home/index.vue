@@ -110,6 +110,11 @@ export default {
   },
   // 转发
   onShareAppMessage: function () {
+    return {
+      title: '凝聚每一份爱的力量',
+      path: '/pages/hr/main?from=forward',
+      imageUrl: '/static/images/forward.png'
+    }
   },
   created () {
     console.log('==authSetting==', wx.getStorageSync('authSetting.userInfo'), this.authSetting.userInfo)
