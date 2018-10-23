@@ -20,12 +20,13 @@
     </swiper>
 
     <!-- 内容 -->
-    <form @submit="formSubmit_collect" report-submit="true">
+    <!-- <form @submit="formSubmit_collect" report-submit="true"> -->
     <div style="z-index: 0;">
-      <button formType="submit"  hover-class="none" class='invisibleclass'></button>
+      <!-- <button formType="submit"  hover-class="none" class='invisibleclass'></button> -->
+      <!-- 在组件中收集formid -->
       <card :items="database"></card>
     </div>
-    </form>
+    <!-- </form> -->
 
     <!-- 自定义navBar -->
     <div class="bar">
@@ -82,9 +83,9 @@ export default {
     this.minaAuth = wx.getStorageSync('minaAuth')
   },
   methods: {
-    formSubmit_collect (e) {
-      console.log('form发生了submit事件', e.mp.detail.formId)
-    },
+    // formSubmit_collect (e) {
+    //   console.log('form发生了submit事件', e.mp.detail.formId)
+    // },
     login () {
       var that = this
       console.log('login function', wx.getStorageSync('authSetting.userInfo'))

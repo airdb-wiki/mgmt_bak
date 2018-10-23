@@ -94,7 +94,7 @@ export default{
           console.log(res)
           var src2 = wx.arrayBufferToBase64(res.data)
           that.src2 = 'data:image/jepg;base64,' + src2
-          console.log(that.src2)
+          // console.log(that.src2)
         },
         fail (e) {
           console.log(e)
