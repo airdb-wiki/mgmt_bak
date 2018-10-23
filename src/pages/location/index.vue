@@ -22,6 +22,10 @@
       :markers="markers"
       scale="12"></map>
 
+    <div class="distance">
+      <text>距离：{{distance}}米</text>
+    </div>
+
     <div class="page__bd" style="margin-top: 60px;">
         <div class="weui-article">
             
@@ -54,6 +58,8 @@ export default {
   },
   data () {
     return {
+      userLocation: '',
+      distance: '',
       targetLocation: {
         latitude: '23.099994',
         longitude: '113.324520'
@@ -90,7 +96,10 @@ export default {
   },
   onLoad (options) {
     var that = this
+    // 获取用户信息
+    that.userLocation = wx.getStorageSync('userLocation')
 
+    // 获取寻人信息地址的经纬度
     demo.geocoder({
       address: options.position,
       success: function (res) {
@@ -102,6 +111,28 @@ export default {
         that.circles[0].latitude = res.result.location.lat
         that.circles[0].longitude = res.result.location.lng
         console.log(res.result.location.lat)
+
+        // 计算距离
+        demo.calculateDistance({
+          from: {
+            latitude: that.userLocation.latitude,
+            longitude: that.userLocation.longitude
+          },
+          to: [{
+            latitude: that.targetLocation.latitude,
+            longitude: that.targetLocation.longitude
+          }],
+          success: function (res) {
+            console.log(res)
+            that.distance = res.result.elements[0].distance
+          },
+          fail: function (res) {
+            console.log(res)
+          },
+          complete: function (res) {
+            console.log(res)
+          }
+        })
       }
     })
   }
@@ -145,5 +176,18 @@ export default {
   margin-left: 10px;
   width: 25px;
   height: 25px;
+}
+.distance{
+  text-align: center;
+  vertical-align: middle;
+  padding: 12px 0;
+  margin: 5px 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+}
+.distance text{
+  font-size: 28px;
+  font-weight: bold;
+  color: #fff;
 }
 </style>
