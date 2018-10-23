@@ -14,6 +14,14 @@
       </div>
     </div>
 
+    <map
+      :longitude="targetLocation.longitude"
+      :latitude="targetLocation.latitude"
+      style="width: 100%; height: 300px;margin-top: 75px;"
+      :circles="circles"
+      :markers="markers"
+      scale="12"></map>
+
     <div class="page__bd" style="margin-top: 60px;">
         <div class="weui-article">
             
@@ -37,8 +45,36 @@
 </template>
 
 <script>
+var QQMapWX = require('../../../static/qqmap-wx-jssdk.min.js')
+var demo = new QQMapWX({
+  key: 'F6JBZ-3NM33-LDK3V-3TWWM-KC2N6-WZBCW'
+})
 export default {
   components: {
+  },
+  data () {
+    return {
+      targetLocation: {
+        latitude: '23.099994',
+        longitude: '113.324520'
+      },
+      circles: [{
+        latitude: 23.099994,
+        longitude: 113.324520,
+        color: '#FF0000DD',
+        fillColor: '#7cb5ec88',
+        radius: 8000,
+        strokeWidth: 2
+      }],
+      markers: [{
+        iconPath: '/static/images/home/locicon.png',
+        id: 0,
+        latitude: 23.099994,
+        longitude: 113.324520,
+        width: 20,
+        height: 20
+      }]
+    }
   },
   onShareAppMessage: function () {
     return {
@@ -51,6 +87,23 @@ export default {
     formSubmit_collect (e) {
       console.log('form发生了submit事件', e.mp.detail.formId)
     }
+  },
+  onLoad (options) {
+    var that = this
+
+    demo.geocoder({
+      address: options.position,
+      success: function (res) {
+        console.log('address to position:', res)
+        that.targetLocation.latitude = res.result.location.lat
+        that.targetLocation.longitude = res.result.location.lng
+        that.markers[0].latitude = res.result.location.lat
+        that.markers[0].longitude = res.result.location.lng
+        that.circles[0].latitude = res.result.location.lat
+        that.circles[0].longitude = res.result.location.lng
+        console.log(res.result.location.lat)
+      }
+    })
   }
 }
 </script>

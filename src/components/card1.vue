@@ -26,10 +26,10 @@
                 </navigator> -->
 
                 <!-- 点击地址时收集 -->
-                <form @submit="formSubmit_addr" report-submit>
+                <form @submit="formSubmit_addr" report-submit :id="item.MissedAddress">
                   <div class="addr-wrapper">
                     <img src="/static/images/home/position.png" style="position: absolute; left: 5px;bottom: 4px;">
-                    <div class="text-addr" @click.stop="">
+                    <div class="text-addr" @click.stop="" id="address_content">
                       <button class="btn-submit" formType="submit"></button>
                       {{item.MissedAddress}}
                     </div>
@@ -68,9 +68,10 @@ export default {
     },
     formSubmit_addr (e) {
       console.log('addr submit事件', e.mp.detail.formId)
+      console.log('address content is: ', e)
       // 跳转到地图页面
       wx.navigateTo({
-        url: '/pages/location/main?title=navigate'
+        url: '/pages/location/main?position=' + e.currentTarget.id
       })
     }
   }
