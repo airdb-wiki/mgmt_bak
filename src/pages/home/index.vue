@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- 自定义navigation -->
-    <navigation :search='true' :yourcity=minaAuth.yourcity></navigation>
+    <navigation :search='true' :yourcity="minaAuth.yourcity ? minaAuth.yourcity : '定位中...'"></navigation>
     
     <!-- swiper轮播图 -->
     <swiper :indicator-dots="true"
@@ -79,7 +79,7 @@ export default {
       ]
     }
   },
-  onload () {
+  onShow () {
     this.minaAuth = wx.getStorageSync('minaAuth')
   },
   methods: {

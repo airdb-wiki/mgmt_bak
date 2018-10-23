@@ -29,10 +29,10 @@
                 <form @submit="formSubmit_addr" report-submit>
                   <div class="addr-wrapper">
                     <img src="/static/images/home/position.png" style="position: absolute; left: 5px;bottom: 4px;">
-                    <view class="text-addr" @click.stop="">
+                    <div class="text-addr" @click.stop="">
                       <button class="btn-submit" formType="submit"></button>
                       {{item.MissedAddress}}
-                    </view>
+                    </div>
                   </div>
                 </form>
                 <div class="people-wrapper">
