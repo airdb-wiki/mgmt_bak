@@ -183,7 +183,7 @@ export default {
   position: fixed;
   top: 53pt;
   left: 0;
-  z-index: 9999;
+  z-index: 999;
   background-color: #fff;
   overflow: hidden;
 }
