@@ -26,7 +26,7 @@
       <text>距离：{{distance}}米</text>
     </div>
 
-    <div class="page__bd" style="margin-top: 60px;">
+    <div class="page__bd">
         <div class="weui-article">
             
             <div class="weui-article__h1">

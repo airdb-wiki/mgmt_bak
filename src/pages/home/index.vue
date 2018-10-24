@@ -6,6 +6,7 @@
     <!-- swiper轮播图 -->
     <swiper :indicator-dots="true"
       :autoplay="true"
+      :circular="circular"
       :interval="interval"
       :duration="duration"
       previous-margin="-10px"
@@ -76,6 +77,7 @@ export default {
       minaAuth: wx.getStorageSync('minaAuth'),
       interval: 5000,
       duration: 1000,
+      circular: true,
       imgUrls: [
         '/static/images/home/sls.png',
         '/static/images/home/vr.png',
