@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- 自定义navigation -->
-    <navigation :search='true' :yourcity="minaAuth.yourcity ? minaAuth.yourcity : '定位中...'"></navigation>
+    <navigation :search='true' :propArray="cityList" :yourcity="minaAuth.yourcity ? minaAuth.yourcity : '定位中...'"></navigation>
     
     <!-- swiper轮播图 -->
     <swiper :indicator-dots="true"
@@ -52,6 +52,10 @@ import { formatTime } from '@/utils/index'
 import card from '@/components/card1'
 import navbar from '@/components/navbar'
 import navigation from '@/components/navigation'
+var QQMapWX = require('../../../static/qqmap-wx-jssdk.min.js')
+var demo = new QQMapWX({
+  key: 'F6JBZ-3NM33-LDK3V-3TWWM-KC2N6-WZBCW'
+})
 
 export default {
   components: {
@@ -76,7 +80,8 @@ export default {
         '/static/images/home/sls.png',
         '/static/images/home/vr.png',
         '/static/images/home/xiaolong.jpg'
-      ]
+      ],
+      cityList: []
     }
   },
   onShow () {
@@ -146,6 +151,19 @@ export default {
       }
     })
     // 从数据库请求数据
+
+    demo.getCityList({
+      success: function (res) {
+        console.log('cityList', res.result[1])
+        that.cityList = res.result[1]
+      },
+      fail: function (res) {
+        console.log(res)
+      },
+      complete: function (res) {
+        console.log(res)
+      }
+    })
   }
 }
 </script>

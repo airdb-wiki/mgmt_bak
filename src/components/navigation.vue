@@ -7,7 +7,7 @@
         <div class="arrow"></div>
       </div>
       <div class='com_sList' v-if="selectShow">
-        <div v-for="(item, index) in propArray" :key="item.id" :id="index" class='com-sItem' @click='setText'>{{item}}</div>
+        <div v-for="(item, index) in propArray" :key="item.id" :id="index" class='com-sItem' @click='setText'>{{item.name}}</div>
       </div>
       <label  class="weui-search-bar__label" @click="focus" id="search">
         <icon class="weui-icon-search" type="search" size="14"></icon>
@@ -22,20 +22,14 @@ export default {
   name: 'navigation',
   props: {
     search: Boolean,
-    yourcity: String
+    yourcity: String,
+    propArray: Array
   },
   data () {
     return {
       deContent: '宝贝回家',
       position: '',
-      selectShow: false,
-      propArray: [
-        '上海',
-        '广东',
-        '深圳',
-        '郑州',
-        '洛阳'
-      ]
+      selectShow: false
     }
   },
   methods: {
@@ -47,7 +41,7 @@ export default {
     },
     setText (e) {
       var id = e.currentTarget.id
-      this.yourcity = this.propArray[id]
+      this.yourcity = this.propArray[id].name
       this.selectShow = false
     }
   },
@@ -86,49 +80,33 @@ export default {
   transform: rotate(135deg);
   margin: 10pt 0 0 6pt;
 }
-.com-sImg{
-    position: absolute;
-   right: 10px;
-    top: 11px;
-    width: 20px;
-    height: 13px;
-    transition: all .3s ease;
-}
-.com-sTxt{
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    padding:0 20px 0 6px;
-    font-size: 14px;
-    color: white
-}
-.com-sList{
-    background: #fff;
-    width: inherit;
-    position: absolute;
-    border: 1px solid #e2e2e2;
-    border-top: none;
-    box-sizing: border-box;
-    z-index: 9999;
-    max-height: 120px;
-    overflow: auto;
+.com_sList{
+  background: #fff;
+  width: inherit;
+  position: absolute;
+  left: 2px;
+  border: 1px solid #e2e2e2;
+  border-top: none;
+  box-sizing: border-box;
+  z-index: 9999;
+  max-height: 400px;
+  width: 120px;
+  overflow: auto;
 }
 .com-sItem{
-    height: 30px;
-    width: 100px;
-    margin-left: -23px;
-    line-height: 30px;
-    background-color: #fff;
-    border-top: 1px solid #e2e2e2;
-    text-align: center;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-size: 14px;
-    color: #000
+  height: 30px;
+  line-height: 30px;
+  background-color: #fff;
+  border-top: 1px solid #e2e2e2;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+  color: #000
 }
 .com-sItem:first-child{
-    border-top: none;
+  border-top: none;
 }
 </style>
 
