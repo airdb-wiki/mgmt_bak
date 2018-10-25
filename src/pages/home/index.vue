@@ -53,6 +53,7 @@ import { formatTime } from '@/utils/index'
 import card from '@/components/card1'
 import navbar from '@/components/navbar'
 import navigation from '@/components/navigation'
+var fmt = require('../../utils/index.js')
 var QQMapWX = require('../../../static/qqmap-wx-jssdk.min.js')
 var demo = new QQMapWX({
   key: 'F6JBZ-3NM33-LDK3V-3TWWM-KC2N6-WZBCW'
@@ -83,7 +84,11 @@ export default {
         '/static/images/home/vr.png',
         '/static/images/home/xiaolong.jpg'
       ],
-      cityList: []
+      cityList: [],
+      parms: {
+        type: 'nearby',
+        page: 1
+      }
     }
   },
   onShow () {
@@ -114,7 +119,33 @@ export default {
     cancel () {
       console.log('hover')
       this.showLogin = false
+    },
+    // 隐藏登陆框
+    getTopicInfo () {
+      var that = this
+      wx.request({
+        url: wx.getStorageSync('requestUrl') + '/small/article/topics',
+        method: 'GET',
+        data: {
+          type: this.parms.type,
+          page: this.parms.page
+        },
+        header: {
+          'content-type': 'application/json'
+        },
+        success: function (res) {
+          for (var i = 0; i < res.data.length; i++) {
+            res.data[i].MissedAt = fmt.formatTimeMin(new Date(res.data[i].MissedAt))
+            res.data[i].BirthedAt = fmt.formatTime(new Date(res.data[i].BirthedAt))
+          }
+
+          that.database = that.database.concat(res.data)
+          wx.setStorageSync('database', that.database)
+          that.parms.page++
+        }
+      })
     }
+    // 下拉刷新后获取更多信息
   },
   // 转发
   onShareAppMessage: function () {
@@ -124,6 +155,17 @@ export default {
       imageUrl: '/static/images/forward.png'
     }
   },
+  onReachBottom () {
+    var that = this
+    wx.showLoading({
+      title: '正在加载...'
+    })
+    setTimeout(function () {
+      wx.hideLoading()
+      that.getTopicInfo()
+    }, 500)
+  },
+  // 触底加载更多刷新
   created () {
     console.log('==authSetting==', wx.getStorageSync('authSetting.userInfo'), this.authSetting.userInfo)
     this.authSetting.userInfo = wx.getStorageSync('authSetting.userInfo')
@@ -150,6 +192,7 @@ export default {
         }
         wx.setStorageSync('database', that.database)
         console.log('database:', that.database)
+        that.parms.page++
       }
     })
     // 从数据库请求数据

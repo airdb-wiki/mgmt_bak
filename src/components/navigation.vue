@@ -1,6 +1,6 @@
 <template>
   <div class="navigation">
-    <div v-if="search === false">{{deContent}}</div>
+    <div v-if="search === false" style="padding-right: 45px;margin: auto;line-height: 37px;">{{deContent}}</div>
     <div v-else>
       <div style="display: flex;flex-direction: row;" @click="selectToggle">
         <div style="line-height: 38px;margin-left: -20px;">{{yourcity}}</div>

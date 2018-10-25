@@ -1,6 +1,9 @@
 <template>
   <div>
-    <div class="weui-article">
+    <!-- 自定义navigation -->
+    <navigation :search='false'></navigation>
+
+    <div class="weui-article" style="margin-top: 65px;">
       <div class="weui-article__h1 h1">{{article.title}}</div>
       <div class="weui-article__section">
 
@@ -23,7 +26,12 @@
 </template>
 
 <script>
+import navigation from '@/components/navigation'
+
 export default {
+  components: {
+    navigation
+  },
   data () {
     return {
       article: {
