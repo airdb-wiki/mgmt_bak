@@ -38,13 +38,23 @@
         "iconPath": "/static/images/reading.png",
         "selectedIconPath": "/static/images/reading_active.png"
       }, {
+        "pagePath": "pages/test_mc/successPage/main",
+        "text": "动态",
+        "iconPath": "/static/images/music.png",
+        "selectedIconPath": "/static/images/music_active.png"
+      }, {
         "pagePath": "pages/profile/main",
         "text": "我的",
         "iconPath": "/static/images/user.png",
         "selectedIconPath": "/static/images/user_active.png"
       }, {
+<<<<<<< HEAD
         "pagePath": "pages/test_mc/trends/main",
         "text": "测试_hzw",
+=======
+        "pagePath": "pages/test_mc/successPage/main",
+        "text": "测试",
+>>>>>>> ea3d8287cdfbdeea3a923db17053be80a2e9d003
         "iconPath": "/static/images/user.png",
         "selectedIconPath": "/static/images/user_active.png"
       }
