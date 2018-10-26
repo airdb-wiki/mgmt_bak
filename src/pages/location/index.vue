@@ -23,7 +23,23 @@
       scale="12"></map>
 
     <div class="distance">
-      <text>距离：{{distance}}米</text>
+      <text>距离：{{distance/1000}}千米</text>
+    </div>
+
+    <div class="weui-cells__title">失踪人信息</div>
+    <div class="weui-cells weui-cells_after-title">
+        <div class="weui-cell">
+          <div class="weui-cell__hd">
+            <image :src="item.AvatarUrl" style="vertical-align: middle;width:65px; height: 90px;border-radius: 5px;"></image>
+          </div>
+          <div class="detail">
+            <div>姓名: {{item.Nickname}}</div>
+            <div v-if="item.Gender == 2">性别: 女</div>
+            <div v-else>性别: 男</div>
+            <div>编号: {{item.Badyid}}</div>
+            <div style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">失踪时间: {{item.MissedAt}}</div>
+          </div>
+        </div>
     </div>
 
     <div class="page__bd">
@@ -79,7 +95,8 @@ export default {
         longitude: 113.324520,
         width: 20,
         height: 20
-      }]
+      }],
+      item: {}
     }
   },
   onShareAppMessage: function () {
@@ -96,12 +113,20 @@ export default {
   },
   onLoad (options) {
     var that = this
-    // 获取用户信息
+    // 获取用户位置信息
     that.userLocation = wx.getStorageSync('userLocation')
+
+    // 获取失踪人信息
+    var items = wx.getStorageSync('database')
+    for (var i = 0; i < items.length; i++) {
+      if (options.UUID === items[i].UUID) {
+        that.item = items[i]
+      }
+    }
 
     // 获取寻人信息地址的经纬度
     demo.geocoder({
-      address: options.position,
+      address: that.item.MissedAddress,
       success: function (res) {
         console.log('address to position:', res)
         that.targetLocation.latitude = res.result.location.lat
@@ -182,12 +207,19 @@ export default {
   vertical-align: middle;
   padding: 12px 0;
   margin: 5px 10px;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 255, 255, 0.555);
   border-radius: 10px;
 }
 .distance text{
   font-size: 28px;
   font-weight: bold;
   color: #fff;
+}
+.detail{
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  font-size: 16px;
+  width: 260px;
 }
 </style>
