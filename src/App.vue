@@ -155,7 +155,7 @@ export default {
                       console.log('wechat login: ', res.data)
                       wx.setStorageSync('minaAuth', obj)
                       var ss = wx.getStorageSync('minaAuth')
-                      console.log(ss)
+                      console.log('access_token is:', ss)
                     }
                   })
                 }

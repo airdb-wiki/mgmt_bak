@@ -59,21 +59,8 @@ export default{
   },
   onLoad () {
     var that = this
-    wx.request({
-      url: 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential',
-      data: {
-        appid: 'wxc4e11081e3d5bdf7',
-        secret: 'e3284a3123d4ed4e06ee09bf0171bef7'
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      method: 'GET',
-      success (res) {
-        console.log('index', res)
-        that.access_token = res.data.access_token
-      }
-    })
+    var minaAuth = wx.getStorageSync('minaAuth')
+    that.access_token = minaAuth.accessToken
     // 获取access_taken
 
     setTimeout(function () {
@@ -155,7 +142,7 @@ export default{
       ctx.setFillStyle('#393939')
       ctx.fillText('扫描右边二维码了解更多', 160, 550)
 
-      ctx.drawImage(this.src2, 50, 400, 100, 100)
+      ctx.drawImage(this.src2, 50, 500, 100, 100)
       wx.showLoading({
         title: '分享图片生成中...',
         mask: true
