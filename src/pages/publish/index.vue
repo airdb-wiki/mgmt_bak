@@ -243,7 +243,7 @@ export default {
       this.article.details = e.mp.detail.value
     },
     AddressInput: function (e) {
-      this.article.address = e.mp.detail.value
+      this.article.missAddress = e.mp.detail.value
     },
     contentInput: function (e) {
       this.article.content = e.mp.detail.value

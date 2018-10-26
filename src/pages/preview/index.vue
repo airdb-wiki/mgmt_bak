@@ -36,7 +36,7 @@
                 </div>
                 <div class="bh-article-group">
                   <span class="bh-article-group__label">失踪地点</span>
-                  <p class="bh-article-group__cont">{{article.province}}{{article.city}}-{{article.address}}</p>
+                  <p class="bh-article-group__cont">{{article.missedProvince}}{{article.missedCity}}-{{article.missedAddress}}</p>
                 </div>
                 <div class="bh-article-group">
                   <span class="bh-article-group__label">特征描述</span>
