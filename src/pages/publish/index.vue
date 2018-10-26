@@ -178,10 +178,10 @@ export default {
         uuid: 'default-uuid',
         nickName: 'nickname',
         gender: 0,
-        country: '中国',
-        province: '广东',
-        city: '深圳',
-        address: 'address',
+        missedCountry: '中国',
+        missedProvince: '广东',
+        missedCity: '深圳',
+        missedAddress: 'address',
         title: 'xxx',
         characters: 'default',
         details: 'detail',
@@ -262,7 +262,7 @@ export default {
       var files = this.$refs.imgUploader.getFiles()
       console.log('image files: ', files)
       /*
-      if (this.article.Nickname === '' || this.article.Address === '' || this.article.Characters === '' || this.article.Details === '') {
+      if (this.article.Nickname === '' || this.article.MissedAddress === '' || this.article.Characters === '' || this.article.Details === '') {
         wx.showLoading({
           title: '信息不能为空'
         })

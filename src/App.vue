@@ -156,6 +156,11 @@ export default {
                       wx.setStorageSync('minaAuth', obj)
                       var ss = wx.getStorageSync('minaAuth')
                       console.log('access_token is:', ss)
+                      wx.showToast({
+                        title: '公益时长 +3',
+                        icon: 'success',
+                        duration: 2000
+                      })
                     }
                   })
                 }
