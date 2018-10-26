@@ -51,6 +51,13 @@ export default {
         ]
       }
     }
+  },
+  onShareAppMessage: function () {
+    return {
+      title: '凝聚每一份爱的力量',
+      path: '/pages/hr/main?from=forward',
+      imageUrl: '/static/images/forward.png'
+    }
   }
 }
 </script>

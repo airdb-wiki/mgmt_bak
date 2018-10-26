@@ -43,6 +43,13 @@ export default {
       style: 'background: rgba(255, 255, 255, 0)'
     }
   },
+  onShareAppMessage: function () {
+    return {
+      title: '凝聚每一份爱的力量',
+      path: '/pages/hr/main?from=forward',
+      imageUrl: '/static/images/forward.png'
+    }
+  },
   onPageScroll (res) {
     this.style = 'background: rgba(255, 255, 255, ' + res.scrollTop / 120 + ')'
   },
