@@ -3,7 +3,7 @@
     <navigation :search='false'></navigation>
 
     <!-- 顶部背景 -->
-    <div class="trans"></div>
+    <div class="trans" :style="style"></div>
     <image src="/static/images/home/sls.png" mode="scaleToFill" class="bg"></image>
 
     <!-- navBar -->
@@ -14,7 +14,7 @@
     </div>
     
     <div class="weui-cells weui-cells_after-title">
-        <div class="weui-cell" v-for="item in num" :key="item.id">
+        <div class="weui-cell" v-for="item in num" :key="item.id" @click="navTo">
           <div class="weui-cell__hd">
             <image :src="icon" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
           </div>
@@ -39,7 +39,16 @@ export default {
       ],
       num: [
         '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1'
-      ]
+      ],
+      style: 'background: rgba(255, 255, 255, 0)'
+    }
+  },
+  onPageScroll (res) {
+    this.style = 'background: rgba(255, 255, 255, ' + res.scrollTop / 120 + ')'
+  },
+  methods: {
+    navTo () {
+      wx.navigateTo({ url: '/pages/test_mc/successPage/main' })
     }
   }
 }
@@ -50,7 +59,7 @@ export default {
     width: 100%;
     height: 130px;
     margin-top: 72px;
-    background-color: rgba(0, 0, 0, 0);
+    background-color: rgba(255, 255, 255, 0);
 }
 .bg{
   width: 100%;
