@@ -71,37 +71,37 @@ export default{
       privilege: 3,
       items: [{
         name: '精美礼品',
-        src: '/static/images/mini-logo/1.png'
+        src: '/static/images/profile/gift.png'
       }, {
         name: '公仔一个',
-        src: '/static/images/mini-logo/2.png'
+        src: '/static/images/profile/doll.png'
       }, {
         name: '衣服一件',
-        src: '/static/images/mini-logo/3.png'
+        src: '/static/images/profile/clothes.png'
       }, {
         name: '未解锁',
-        src: '/static/images/mini-logo/4.png'
+        src: '/static/images/profile/locked.png'
       }, {
         name: '未解锁',
-        src: '/static/images/mini-logo/5.png'
+        src: '/static/images/profile/locked.png'
       }, {
         name: '未解锁',
-        src: '/static/images/mini-logo/6.png'
+        src: '/static/images/profile/locked.png'
       }, {
         name: '未解锁',
-        src: '/static/images/mini-logo/6.png'
+        src: '/static/images/profile/locked.png'
       }, {
         name: '未解锁',
-        src: '/static/images/mini-logo/6.png'
+        src: '/static/images/profile/locked.png'
       }, {
         name: '未解锁',
-        src: '/static/images/mini-logo/6.png'
+        src: '/static/images/profile/locked.png'
       }, {
         name: '未解锁',
-        src: '/static/images/mini-logo/6.png'
+        src: '/static/images/profile/locked.png'
       }, {
         name: '未解锁',
-        src: '/static/images/mini-logo/6.png'
+        src: '/static/images/profile/locked.png'
       }]
     }
   },
