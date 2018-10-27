@@ -17,7 +17,7 @@
     <map
       :longitude="targetLocation.longitude"
       :latitude="targetLocation.latitude"
-      style="width: 100%; height: 300px;margin-top: 75px;"
+      style="width: 100%; height: 400px;margin-top: 75px;"
       :circles="circles"
       :markers="markers"
       scale="12"></map>
@@ -36,30 +36,12 @@
             <div>姓名: {{item.Nickname}}</div>
             <div v-if="item.Gender == 2">性别: 女</div>
             <div v-else>性别: 男</div>
-            <div>编号: {{item.Badyid}}</div>
+            <div>编号: {{item.Babyid}}</div>
             <div style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">失踪时间: {{item.MissedAt}}</div>
           </div>
         </div>
     </div>
 
-    <div class="page__bd">
-        <div class="weui-article">
-            
-            <div class="weui-article__h1">
-              <form @submit="formSubmit_collect" report-submit="true">
-                <button formType="submit" hover-class="none" class='invisibleclass'>
-                  收集 formid
-                </button>
-              </form>
-            </div>
-
-            <div class="weui-article__section">
-                <div class="weui-article__section">
-                    <div class="weui-article__h3">这是地图页面</div>
-                </div>
-            </div>
-        </div>
-    </div>
     <ha></ha>
 </div>
 </template>

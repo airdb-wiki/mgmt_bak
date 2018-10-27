@@ -11,13 +11,17 @@
               <image :src="item.AvatarUrl" style="vertical-align: middle;width:65px; height: 90px;border-radius: 5px 0 0 5px;"></image>
             </div>
             <div class="weui-cell__bd" style="margin-left: 8px;">
-              <div class="title">{{item.title}}寻找回家的路，让你不再孤立无援ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss</div>
+              <div class="title">
+                {{item.Title}}
+              </div>
               <div class="info_1">
                 <text v-if="item.Gender == 2">女</text>
                 <text v-else>男</text>
                 <text>{{item.Category}}</text>
+                <!--
                 <text>拐卖</text>
                 <text>离家出走</text>
+                -->
               </div>
 
               <div class="pub_info">

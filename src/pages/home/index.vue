@@ -56,10 +56,6 @@ import card from '@/components/card1'
 import navbar from '@/components/navbar'
 import navigation from '@/components/navigation'
 var fmt = require('../../utils/index.js')
-var QQMapWX = require('../../../static/qqmap-wx-jssdk.min.js')
-var demo = new QQMapWX({
-  key: 'F6JBZ-3NM33-LDK3V-3TWWM-KC2N6-WZBCW'
-})
 
 export default {
   components: {
@@ -70,7 +66,7 @@ export default {
   data () {
     return {
       tabs: [
-        '家寻宝贝', '宝贝寻家', '救助寻亲', '流浪乞讨', '实时寻人', '其他寻人'
+        '儿童走失', '老人走失', '离家出走', '人贩拐卖', '其他寻人'
       ],
       authSetting: {
         userInfo: wx.getStorageSync('authSetting.userInfo')
@@ -139,6 +135,9 @@ export default {
           for (var i = 0; i < res.data.length; i++) {
             res.data[i].MissedAt = fmt.formatTimeMin(new Date(res.data[i].MissedAt))
             res.data[i].BirthedAt = fmt.formatTime(new Date(res.data[i].BirthedAt))
+            if (res.data[i].Title === '') {
+              res.data[i].Title = res.data[i].MissedProvince + '-' + res.data[i].MissedCity + ', 寻找' + res.data[i].Nickname
+            }
           }
 
           that.database = that.database.concat(res.data)
@@ -153,7 +152,7 @@ export default {
   onShareAppMessage: function () {
     return {
       title: '凝聚每一份爱的力量',
-      path: '/pages/hr/main?from=forward',
+      path: '/pages/home/main?from=forward',
       imageUrl: '/static/images/forward.png'
     }
   },
@@ -189,26 +188,17 @@ export default {
       },
       success: function (res) {
         that.database[0] = res.data[0]
-        for (var i = 1; i < res.data.length; i++) {
+        for (var i = 0; i < res.data.length; i++) {
+          console.log(res.data[i])
+          if (res.data[i].Title === '') {
+            res.data[i].Title = res.data[i].MissedProvince + '-' + res.data[i].MissedCity + ', 寻找' + res.data[i].Nickname
+          }
+          console.log('====================', res.data[i].Title)
           that.database = that.database.concat(res.data[i])
         }
         wx.setStorageSync('database', that.database)
         console.log('database:', that.database)
         that.parms.page++
-      }
-    })
-    // 从数据库请求数据
-
-    demo.getCityList({
-      success: function (res) {
-        console.log('cityList', res.result[1])
-        that.cityList = res.result[1]
-      },
-      fail: function (res) {
-        console.log(res)
-      },
-      complete: function (res) {
-        console.log(res)
       }
     })
   }

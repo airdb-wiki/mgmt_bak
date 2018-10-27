@@ -38,7 +38,6 @@ li:hover{
   font-weight:bold;
   text-align:center;
   padding: 8px 21px;
-  text-decoration:none;
   text-transform:uppercase;
   font-size: 16px;
   z-index: 9999;

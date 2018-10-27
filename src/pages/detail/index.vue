@@ -62,7 +62,7 @@ export default{
   onShareAppMessage () {
     return {
       title: '约1986年出生1990年与小朋友离家玩耍时走失疑时广西桂林人的秦干寻亲',
-      path: '/pages/detail'
+      path: '/pages/detail/main'
     }
   },
   data () {
