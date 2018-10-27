@@ -37,6 +37,7 @@
     </div>
 
     <!-- 底部登陆按钮 -->
+    <!--
     <div class="login" v-if="!authSetting.userInfo" :hidden="!showLogin">
       <div class="myModal">
         <div style="font-size: 20px;margin: 12px;">欢迎</div>
@@ -45,6 +46,7 @@
         <button @click="cancel" style="background-color: #fff;color: #000;">回到小程序首页</button>
       </div>
     </div>
+    -->
   </div>
 </template>
 
