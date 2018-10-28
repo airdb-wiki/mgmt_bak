@@ -3,62 +3,70 @@
     <navigation :search='false'></navigation>
 
     <!-- 顶部背景 -->
-    <div class="trans" :style="style"></div>
+    <div class="trans" :style="style">
+      <div class="nickName">仙人球</div>
+      <div class="avatar">
+        <image src="/static/images/home/wx.png"></image>
+      </div>
+    </div>
     <image src="/static/images/home/sls.png" mode="scaleToFill" class="bg"></image>
 
     <div class="more">+</div>
     
-    <div class="trend_container">
-      <div style="img">
-        <image src="/static/images/home/wx.png" style="width: 50px;height: 50px;"></image>
-      </div>
-      <div class="content">
-        <div style="font-size: 18px;font-weight: bold;">仙人球</div>
-        <div>{{content}}</div>
-        <div class="imgContainer">
-          <image class="weui-article__img" src="/static/images/home/sls.png" mode="aspectFill"/>
-          <image class="weui-article__img" src="/static/images/home/sls.png" mode="aspectFill"/>
+    <div style="padding-top: 30px;background-color: #fff;">
+      <div class="trend_container">
+        <div style="img">
+          <image src="/static/images/home/wx.png" style="width: 50px;height: 50px;"></image>
         </div>
-        <div class="talk">
-          <div>{{time}}</div>
-          <image src="/static/images/home/talk1.png"></image>
+        <div class="content">
+          <div style="font-size: 18px;font-weight: bold;">仙人球</div>
+          <div>{{content}}</div>
+          <div class="imgContainer">
+            <image class="weui-article__img" src="/static/images/home/sls.png" mode="aspectFill"/>
+            <image class="weui-article__img" src="/static/images/home/sls.png" mode="aspectFill"/>
+          </div>
+          <div class="talk">
+            <div>{{time}}</div>
+            <image src="/static/images/home/talk1.png"></image>
+          </div>
+        </div>
+      </div>
+      <div class="trend_container">
+        <div style="img">
+          <image src="/static/images/home/wx.png" style="width: 50px;height: 50px;"></image>
+        </div>
+        <div class="content">
+          <div style="font-size: 18px;font-weight: bold;">仙人球</div>
+          <div>{{content}}</div>
+          <div class="imgContainer">
+            <image class="weui-article__img" src="/static/images/home/sls.png" mode="aspectFill"/>
+            <image class="weui-article__img" src="/static/images/home/sls.png" mode="aspectFill"/>
+          </div>
+          <div class="talk">
+            <div>{{time}}</div>
+            <image src="/static/images/home/talk1.png"></image>
+          </div>
+        </div>
+      </div>
+      <div class="trend_container">
+        <div style="img">
+          <image src="/static/images/home/wx.png" style="width: 50px;height: 50px;"></image>
+        </div>
+        <div class="content">
+          <div style="font-size: 18px;font-weight: bold;">仙人球</div>
+          <div>{{content}}</div>
+          <div class="imgContainer">
+            <image class="weui-article__img" src="/static/images/home/sls.png" mode="aspectFill"/>
+            <image class="weui-article__img" src="/static/images/home/sls.png" mode="aspectFill"/>
+          </div>
+          <div class="talk">
+            <div>{{time}}</div>
+            <image src="/static/images/home/talk1.png"></image>
+          </div>
         </div>
       </div>
     </div>
-    <div class="trend_container">
-      <div style="img">
-        <image src="/static/images/home/wx.png" style="width: 50px;height: 50px;"></image>
-      </div>
-      <div class="content">
-        <div style="font-size: 18px;font-weight: bold;">仙人球</div>
-        <div>{{content}}</div>
-        <div class="imgContainer">
-          <image class="weui-article__img" src="/static/images/home/sls.png" mode="aspectFill"/>
-          <image class="weui-article__img" src="/static/images/home/sls.png" mode="aspectFill"/>
-        </div>
-        <div class="talk">
-          <div>{{time}}</div>
-          <image src="/static/images/home/talk1.png"></image>
-        </div>
-      </div>
-    </div>
-    <div class="trend_container">
-      <div style="img">
-        <image src="/static/images/home/wx.png" style="width: 50px;height: 50px;"></image>
-      </div>
-      <div class="content">
-        <div style="font-size: 18px;font-weight: bold;">仙人球</div>
-        <div>{{content}}</div>
-        <div class="imgContainer">
-          <image class="weui-article__img" src="/static/images/home/sls.png" mode="aspectFill"/>
-          <image class="weui-article__img" src="/static/images/home/sls.png" mode="aspectFill"/>
-        </div>
-        <div class="talk">
-          <div>{{time}}</div>
-          <image src="/static/images/home/talk1.png"></image>
-        </div>
-      </div>
-    </div>
+    
   </div>
 </template>
 
@@ -102,10 +110,35 @@ export default {
 
 <style scoped>
 .trans{
-    width: 100%;
-    height: 180px;
-    margin-top: 72px;
-    background-color: rgba(255, 255, 255, 0);
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 180px;
+  margin-top: 72px;
+  background-color: rgba(255, 255, 255, 0);
+}
+.nickName{
+  color: #fff;
+  font-weight: bold;
+  font-size: 20px;
+  position: absolute;
+  bottom: 11px;
+  right: 122px;
+}
+.avatar{
+  z-index: 1;
+  position: absolute;
+  bottom: -40px;
+  right: 20px;
+  width: 92px;
+  height: 92px;
+  border: 1px solid rgba(0, 0, 0, .5);
+  background-color: #fff;
+}
+.avatar image{
+  width: 90px;
+  height: 90px;
 }
 .bg{
   width: 100%;
@@ -168,7 +201,6 @@ export default {
   width: 100%;
   padding: 10px;
   padding-bottom: 5px;
-  background-color: #fff;
   border-bottom: 1px solid #cccccc;
 }
 .img{
