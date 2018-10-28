@@ -187,13 +187,12 @@ export default {
         'content-type': 'application/json'
       },
       success: function (res) {
-        that.database[0] = res.data[0]
+        // that.database[0] = res.data[0]
         for (var i = 0; i < res.data.length; i++) {
           console.log(res.data[i])
           if (res.data[i].Title === '') {
             res.data[i].Title = res.data[i].MissedProvince + '-' + res.data[i].MissedCity + ', 寻找' + res.data[i].Nickname
           }
-          console.log('====================', res.data[i].Title)
           that.database = that.database.concat(res.data[i])
         }
         wx.setStorageSync('database', that.database)
