@@ -56,12 +56,6 @@ import card from '@/components/card1'
 import navbar from '@/components/navbar'
 import navigation from '@/components/navigation'
 var fmt = require('../../utils/index.js')
-var QQMapWX = require('../../../static/qqmap-wx-jssdk.min.js')
-
-// 实例化API核心类
-var demo = new QQMapWX({
-  key: 'F6JBZ-3NM33-LDK3V-3TWWM-KC2N6-WZBCW' // 必填
-})
 
 export default {
   components: {
@@ -207,13 +201,6 @@ export default {
         that.parms.page++
       }
     })
-
-    demo.getCityList({
-      success: function (res) {
-        that.cityList = res.result[1]
-      }
-    })
-    // 获取城市列表
   }
 }
 </script>
