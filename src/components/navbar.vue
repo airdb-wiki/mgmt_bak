@@ -18,7 +18,7 @@ export default{
 	width: 100%;
 	height: 20px;
   background-color: #fff;
-  z-index: 9999;
+  z-index: 999;
 }
 ul{
   position: fixed;
