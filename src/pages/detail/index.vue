@@ -23,7 +23,7 @@
       </div>
 
       <div v-if="!showTitle" class="title">详情</div>
-      <div v-else class="title">{{title}}</div>
+      <div v-else class="title">{{item.Title}}</div>
     </div>
 
     <scroll-view>
@@ -68,7 +68,6 @@ export default{
   data () {
     return {
       canvasHidden: false,
-      title: '顶梁柱“北漂”意外之死',
       showTitle: false,
       item: {},
       comment: [],
