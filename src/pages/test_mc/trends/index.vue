@@ -4,9 +4,9 @@
 
     <!-- 顶部背景 -->
     <div class="trans" :style="style">
-      <div class="nickName">仙人球</div>
+      <div class="nickName">{{userInfo.nickName}}</div>
       <div class="avatar">
-        <image src="/static/images/home/wx.png"></image>
+        <image :src="userInfo.avatarUrl"></image>
       </div>
     </div>
     <image src="/static/images/home/sls.png" mode="scaleToFill" class="bg"></image>
@@ -87,7 +87,8 @@ export default {
       ],
       style: 'background: rgba(255, 255, 255, 0)',
       content: '2014年6月8日，经人介绍，约32岁的陈连发在宝贝回家寻子网站进行了寻亲登记，寻家工作组志愿者精彩跟进该案例，及时和陈连发进行沟通',
-      time: '一天前'
+      time: '一天前',
+      userInfo: {}
     }
   },
   onShareAppMessage: function () {
@@ -104,6 +105,10 @@ export default {
     navTo () {
       wx.navigateTo({ url: '/pages/test_mc/successPage/main' })
     }
+  },
+  onLoad () {
+    this.userInfo = wx.getStorageSync('userInfo')
+    console.log(this.userInfo)
   }
 }
 </script>
@@ -123,7 +128,7 @@ export default {
   font-weight: bold;
   font-size: 20px;
   position: absolute;
-  bottom: 11px;
+  bottom: 10px;
   right: 122px;
 }
 .avatar{
@@ -131,14 +136,15 @@ export default {
   position: absolute;
   bottom: -40px;
   right: 20px;
-  width: 92px;
-  height: 92px;
+  height: 94px;
   border: 1px solid rgba(0, 0, 0, .5);
   background-color: #fff;
 }
 .avatar image{
   width: 90px;
   height: 90px;
+  margin: 2px;
+  margin-bottom: 0px;
 }
 .bg{
   width: 100%;
