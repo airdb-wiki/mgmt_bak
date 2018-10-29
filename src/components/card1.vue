@@ -95,6 +95,7 @@ export default {
     formSubmit_addr (e) {
       console.log('addr submit事件', e.mp.detail.formId)
       console.log('address content is: ', e)
+      wx.authorize({scope: 'scope.userLocation'})
       // 跳转到地图页面
       wx.navigateTo({
         url: '/pages/location/main?UUID=' + e.currentTarget.id
