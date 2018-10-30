@@ -2,7 +2,6 @@
   <div class="container" @click="">
     <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">微信登录</button>
     <button open-type="contact">进入客服会话</button>
-
     <vfooter></vfooter>
   </div>
 </template>
