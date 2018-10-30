@@ -140,8 +140,8 @@ export default {
               res.data[i].Title = res.data[i].MissedProvince + '-' + res.data[i].MissedCity + ', 寻找' + res.data[i].Nickname
             }
           }
-
           that.database = that.database.concat(res.data)
+          console.log('加载更多后数据为: ', that.database)
           wx.setStorageSync('database', that.database)
         }
       })
@@ -151,29 +151,27 @@ export default {
   // 转发
   onPullDownRefresh: function () {
     var that = this
-    for (var j = 0; j < this.parms.page; j++) {
-      wx.request({
-        url: wx.getStorageSync('requestUrl') + '/small/article/topics',
-        method: 'GET',
-        data: {
-          type: that.parms.type,
-          page: j + 1
-        },
-        header: {
-          'content-type': 'application/json'
-        },
-        success: function (res) {
-          for (var i = 0; i < res.data.length; i++) {
-            if (res.data[i].Title === '') {
-              res.data[i].Title = res.data[i].MissedProvince + '-' + res.data[i].MissedCity + ', 寻找' + res.data[i].Nickname
-            }
-            that.database[i + j * 5] = res.data[i]
+    wx.request({
+      url: wx.getStorageSync('requestUrl') + '/small/article/topics',
+      method: 'GET',
+      data: {
+        type: that.parms.type,
+        page: 1
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        for (var i = 0; i < res.data.length; i++) {
+          if (res.data[i].Title === '') {
+            res.data[i].Title = res.data[i].MissedProvince + '-' + res.data[i].MissedCity + ', 寻找' + res.data[i].Nickname
           }
         }
-      })
-    }
-    wx.setStorageSync('database', that.database)
-    console.log('database:', that.database)
+        that.database = res.data
+        wx.setStorageSync('database', that.database)
+        console.log('database:', that.database)
+      }
+    })
   },
   onShareAppMessage: function () {
     return {
