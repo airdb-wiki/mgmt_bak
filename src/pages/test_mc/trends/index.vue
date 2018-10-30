@@ -15,7 +15,7 @@
     
     <div style="padding-top: 30px;background-color: #fff;">
       <div class="trend_container">
-        <div style="img">
+        <div class="img">
           <image src="/static/images/home/wx.png" style="width: 50px;height: 50px;"></image>
         </div>
         <div class="content">
@@ -32,7 +32,7 @@
         </div>
       </div>
       <div class="trend_container">
-        <div style="img">
+        <div class="img">
           <image src="/static/images/home/wx.png" style="width: 50px;height: 50px;"></image>
         </div>
         <div class="content">
@@ -49,7 +49,7 @@
         </div>
       </div>
       <div class="trend_container">
-        <div style="img">
+        <div class="img">
           <image src="/static/images/home/wx.png" style="width: 50px;height: 50px;"></image>
         </div>
         <div class="content">
@@ -208,6 +208,7 @@ export default {
   padding: 10px;
   padding-bottom: 5px;
   border-bottom: 1px solid #cccccc;
+  box-sizing: border-box;
 }
 .img{
   width: 50px;
