@@ -25,10 +25,53 @@
       <div v-if="!showTitle" class="title">详情</div>
       <div v-else class="title">{{item.Title}}</div>
     </div>
+    <!-- navigation -->
 
     <scroll-view>
       <detail :item="item"></detail>
     </scroll-view>
+    <!-- 内容 -->
+
+    <div class="weui-cells__title" style="font-size: 18px;">评论：</div>
+    <div class="talk_container">
+      <div class="together">
+        <div class="img">
+          <image src="/static/images/home/xiaolong.jpg" style="width: 40px;height: 40px;border-radius: 3px;"></image>
+        </div>
+        <div class="talk_content">
+          <div class="talker_info">
+            <div class="talker_name">仙人球</div>
+            <image src="/static/images/home/like.png" style="width: 20px;height: 20px;"></image>
+          </div>
+          <div class="talk">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
+        </div>
+      </div>
+      <div class="together">
+        <div class="img">
+          <image src="/static/images/home/xiaolong.jpg" style="width: 40px;height: 40px;border-radius: 3px;"></image>
+        </div>
+        <div class="talk_content">
+          <div class="talker_info">
+            <div class="talker_name">仙人球</div>
+            <image src="/static/images/home/like.png" style="width: 20px;height: 20px;"></image>
+          </div>
+          <div class="talk">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
+        </div>
+      </div>
+      <div class="together">
+        <div class="img">
+          <image src="/static/images/home/xiaolong.jpg" style="width: 40px;height: 40px;border-radius: 3px;"></image>
+        </div>
+        <div class="talk_content">
+          <div class="talker_info">
+            <div class="talker_name">仙人球</div>
+            <image src="/static/images/home/like.png" style="width: 20px;height: 20px;"></image>
+          </div>
+          <div class="talk">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
+        </div>
+      </div>
+    </div>
+    <!-- 评论区 -->
 
     <div class="footer">
       <form @submit="sub">
@@ -71,7 +114,8 @@ export default{
       showTitle: false,
       item: {},
       comment: [],
-      comment_value: ''
+      comment_value: '',
+      content: '早日回家'
     }
   },
   onPageScroll (res) {
@@ -229,7 +273,7 @@ export default{
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #fff;
+  background-color: rgb(255, 255, 255);
   z-index: 9999;
   display: flex;
   flex-direction: row;
@@ -298,5 +342,40 @@ export default{
 }
 .form_btn div{
   font-size: 12px;
+}
+.img{
+  float: left;
+  width: 40px;
+  height: 40px;
+}
+.talk_container{
+  padding: 5px 10px 70px;
+}
+.together{
+   border-bottom: 1px solid #bdbdbd;
+   padding: 5px;
+}
+.talk_content{
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+}
+.talker_info{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+}
+.talker_name{
+  font-size: 18px;
+  color: #929292;
+}
+.talker_info image{
+  position: absolute;
+  top: 4px;
+  right: 25px;
+}
+.talk{
+  width: 280px;
+  word-wrap:break-word
 }
 </style>

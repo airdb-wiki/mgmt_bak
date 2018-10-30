@@ -1,5 +1,5 @@
 <template>
-  <div style="margin: 61px 0 54px 0;">
+  <div style="margin: 61px 0 0px 0;">
   	<div class="weui-article">
       <div class="weui-article__h1" style="font-weight: bold;font-size: 22px;">{{content.title}}</div>
       <div class="notice">
