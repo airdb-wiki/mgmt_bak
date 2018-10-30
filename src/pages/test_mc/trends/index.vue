@@ -22,8 +22,8 @@
           <div style="font-size: 18px;font-weight: bold;">仙人球</div>
           <div>{{content}}</div>
           <div class="imgContainer">
-            <image class="weui-article__img" src="/static/images/home/sls.png" mode="aspectFill" @click="preview"/>
-            <image class="weui-article__img" src="/static/images/home/sls.png" mode="aspectFill" @click="preview"/>
+            <image src="/static/images/home/sls.png" mode="aspectFill" @click="preview"/>
+            <image src="/static/images/home/sls.png" mode="aspectFill" @click="preview"/>
           </div>
           <div class="talk">
             <div>{{time}}</div>
@@ -39,8 +39,12 @@
           <div style="font-size: 18px;font-weight: bold;">仙人球</div>
           <div>{{content}}</div>
           <div class="imgContainer">
-            <image class="weui-article__img" src="/static/images/home/sls.png" mode="aspectFill" @click="preview"/>
-            <image class="weui-article__img" src="/static/images/home/sls.png" mode="aspectFill" @click="preview"/>
+            <image src="/static/images/home/sls.png" mode="aspectFill" @click="preview"/>
+            <image src="/static/images/home/sls.png" mode="aspectFill" @click="preview"/>
+            <image src="/static/images/home/sls.png" mode="aspectFill" @click="preview"/>
+            <image src="/static/images/home/sls.png" mode="aspectFill" @click="preview"/>
+            <image src="/static/images/home/sls.png" mode="aspectFill" @click="preview"/>
+            <image src="/static/images/home/sls.png" mode="aspectFill" @click="preview"/>
           </div>
           <div class="talk">
             <div>{{time}}</div>
@@ -56,8 +60,8 @@
           <div style="font-size: 18px;font-weight: bold;">仙人球</div>
           <div>{{content}}</div>
           <div class="imgContainer">
-            <image class="weui-article__img" src="/static/images/home/sls.png" mode="aspectFill" @click="preview"/>
-            <image class="weui-article__img" src="/static/images/home/sls.png" mode="aspectFill" @click="preview"/>
+            <image src="/static/images/home/sls.png" mode="aspectFill" @click="preview"/>
+            <image src="/static/images/home/sls.png" mode="aspectFill" @click="preview"/>
           </div>
           <div class="talk">
             <div>{{time}}</div>
