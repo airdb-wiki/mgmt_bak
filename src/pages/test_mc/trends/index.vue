@@ -22,8 +22,8 @@
           <div style="font-size: 18px;font-weight: bold;">仙人球</div>
           <div>{{content}}</div>
           <div class="imgContainer">
-            <image class="weui-article__img" src="/static/images/home/sls.png" mode="aspectFill"/>
-            <image class="weui-article__img" src="/static/images/home/sls.png" mode="aspectFill"/>
+            <image class="weui-article__img" src="/static/images/home/sls.png" mode="aspectFill" @click="preview"/>
+            <image class="weui-article__img" src="/static/images/home/sls.png" mode="aspectFill" @click="preview"/>
           </div>
           <div class="talk">
             <div>{{time}}</div>
@@ -39,8 +39,8 @@
           <div style="font-size: 18px;font-weight: bold;">仙人球</div>
           <div>{{content}}</div>
           <div class="imgContainer">
-            <image class="weui-article__img" src="/static/images/home/sls.png" mode="aspectFill"/>
-            <image class="weui-article__img" src="/static/images/home/sls.png" mode="aspectFill"/>
+            <image class="weui-article__img" src="/static/images/home/sls.png" mode="aspectFill" @click="preview"/>
+            <image class="weui-article__img" src="/static/images/home/sls.png" mode="aspectFill" @click="preview"/>
           </div>
           <div class="talk">
             <div>{{time}}</div>
@@ -56,8 +56,8 @@
           <div style="font-size: 18px;font-weight: bold;">仙人球</div>
           <div>{{content}}</div>
           <div class="imgContainer">
-            <image class="weui-article__img" src="/static/images/home/sls.png" mode="aspectFill"/>
-            <image class="weui-article__img" src="/static/images/home/sls.png" mode="aspectFill"/>
+            <image class="weui-article__img" src="/static/images/home/sls.png" mode="aspectFill" @click="preview"/>
+            <image class="weui-article__img" src="/static/images/home/sls.png" mode="aspectFill" @click="preview"/>
           </div>
           <div class="talk">
             <div>{{time}}</div>
@@ -88,7 +88,13 @@ export default {
       style: 'background: rgba(255, 255, 255, 0)',
       content: '2014年6月8日，经人介绍，约32岁的陈连发在宝贝回家寻子网站进行了寻亲登记，寻家工作组志愿者精彩跟进该案例，及时和陈连发进行沟通',
       time: '一天前',
-      userInfo: {}
+      userInfo: {},
+      imgArr: [
+        'http://bpic.588ku.com/element_origin_min_pic/16/10/30/528aa13209e86d5d9839890967a6b9c1.jpg',
+        'http://bpic.588ku.com/element_origin_min_pic/16/10/30/54fcef525fa8f6037d180f3c26f3be65.jpg',
+        'http://bpic.588ku.com/element_origin_min_pic/16/10/30/62e3ca3a02dddb002eff00482078d194.jpg',
+        'http://bpic.588ku.com/element_origin_min_pic/16/10/31/c7167fcfb4ebcd12621c05b0c852e98e.jpg'
+      ]
     }
   },
   onShareAppMessage: function () {
@@ -104,6 +110,12 @@ export default {
   methods: {
     navTo () {
       wx.navigateTo({ url: '/pages/test_mc/successPage/main' })
+    },
+    preview () {
+      var that = this
+      wx.previewImage({
+        urls: that.imgArr
+      })
     }
   },
   onLoad () {

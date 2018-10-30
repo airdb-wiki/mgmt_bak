@@ -25,7 +25,7 @@
           <div class="weui-article__h3">失踪时间： {{item.MissedAt}} </div>
           <div class="weui-article__h3">跟进志愿者： {{item.Handler}}</div>
           <div class="weui-article__p">
-            <image class="weui-article__img" :src="item.AvatarUrl" mode="aspectFit" style="height: 180px" />
+            <image class="weui-article__img" :src="item.AvatarUrl" mode="aspectFit" style="height: 180px" @click="preview"/>
           </div>
         </div>
       </div>
@@ -90,6 +90,12 @@ export default{
     }, 1000)
   },
   methods: {
+    preview () {
+      var that = this
+      wx.previewImage({
+        urls: [that.item.AvatarUrl]
+      })
+    },
     download () {
       const ctx = wx.createCanvasContext('myCanvas')
       // 填充背景色

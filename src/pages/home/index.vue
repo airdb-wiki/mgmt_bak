@@ -121,12 +121,13 @@ export default {
     // 隐藏登陆框
     getTopicInfo () {
       var that = this
+      that.parms.page++
       wx.request({
         url: wx.getStorageSync('requestUrl') + '/small/article/topics',
         method: 'GET',
         data: {
-          type: this.parms.type,
-          page: this.parms.page
+          type: that.parms.type,
+          page: that.parms.page
         },
         header: {
           'content-type': 'application/json'
@@ -142,13 +143,38 @@ export default {
 
           that.database = that.database.concat(res.data)
           wx.setStorageSync('database', that.database)
-          that.parms.page++
         }
       })
     }
     // 下拉刷新后获取更多信息
   },
   // 转发
+  onPullDownRefresh: function () {
+    var that = this
+    for (var j = 0; j < this.parms.page; j++) {
+      wx.request({
+        url: wx.getStorageSync('requestUrl') + '/small/article/topics',
+        method: 'GET',
+        data: {
+          type: that.parms.type,
+          page: j + 1
+        },
+        header: {
+          'content-type': 'application/json'
+        },
+        success: function (res) {
+          for (var i = 0; i < res.data.length; i++) {
+            if (res.data[i].Title === '') {
+              res.data[i].Title = res.data[i].MissedProvince + '-' + res.data[i].MissedCity + ', 寻找' + res.data[i].Nickname
+            }
+            that.database[i + j * 5] = res.data[i]
+          }
+        }
+      })
+    }
+    wx.setStorageSync('database', that.database)
+    console.log('database:', that.database)
+  },
   onShareAppMessage: function () {
     return {
       title: '凝聚每一份爱的力量',
@@ -197,7 +223,6 @@ export default {
         }
         wx.setStorageSync('database', that.database)
         console.log('database:', that.database)
-        that.parms.page++
       }
     })
   }
