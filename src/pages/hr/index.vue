@@ -41,7 +41,7 @@
                         项目介绍： <a href="https://bbhj.airdb.io">https://bbhj.airdb.io</a>
                     </div>
                     <div class="weui-article__p">
-                      目前采用 MPVue + Golang 实现， Github地址： https://github.com/bbhj/mina
+                      <p>目前采用 MPVue + Golang 实现， Github地址： https://github.com/bbhj/mina
                       </p>
                       喜欢的同学，可以 Star 一下！
                     </div>
