@@ -172,6 +172,7 @@ export default {
         console.log('database:', that.database)
       }
     })
+    wx.stopPullDownRefresh()
   },
   onShareAppMessage: function () {
     return {

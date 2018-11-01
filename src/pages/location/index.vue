@@ -96,6 +96,9 @@ export default {
       console.log('form发生了submit事件', e.mp.detail.formId)
     }
   },
+  async onPullDownRefresh () {
+    wx.stopPullDownRefresh()
+  },
   onLoad (options) {
     var that = this
     // 获取用户位置信息
