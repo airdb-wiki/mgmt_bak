@@ -10,58 +10,19 @@
       </div>
     </div>
     <image src="/static/images/home/sls.png" mode="scaleToFill" class="bg"></image>
-
     <div class="more">+</div>
-    
-    <div style="padding-top: 30px;background-color: #fff;">
+
+    <div style="padding-top: 30px;background-color: #fff;" v-for="item in items">
       <div class="trend_container">
         <div class="img">
-          <image src="/static/images/home/wx.png" style="width: 50px;height: 50px;"></image>
+          <image :src=item.avatar style="width: 50px;height: 50px;"></image>
         </div>
         <div class="content">
-          <div style="font-size: 18px;font-weight: bold;">仙人球</div>
-          <div>{{content}}</div>
+          <div style="font-size: 18px;font-weight: bold;">{{item.nickname}}</div>
+          <div>{{item.textmsg}}</div>
           <div class="imgContainer">
-            <image src="/static/images/home/sls.png" mode="aspectFill" @click="preview"/>
-            <image src="/static/images/home/sls.png" mode="aspectFill" @click="preview"/>
-          </div>
-          <div class="talk">
-            <div>{{time}}</div>
-            <image src="/static/images/home/talk1.png"></image>
-          </div>
-        </div>
-      </div>
-      <div class="trend_container">
-        <div class="img">
-          <image src="/static/images/home/wx.png" style="width: 50px;height: 50px;"></image>
-        </div>
-        <div class="content">
-          <div style="font-size: 18px;font-weight: bold;">仙人球</div>
-          <div>{{content}}</div>
-          <div class="imgContainer">
-            <image src="/static/images/home/sls.png" mode="aspectFill" @click="preview"/>
-            <image src="/static/images/home/sls.png" mode="aspectFill" @click="preview"/>
-            <image src="/static/images/home/sls.png" mode="aspectFill" @click="preview"/>
-            <image src="/static/images/home/sls.png" mode="aspectFill" @click="preview"/>
-            <image src="/static/images/home/sls.png" mode="aspectFill" @click="preview"/>
-            <image src="/static/images/home/sls.png" mode="aspectFill" @click="preview"/>
-          </div>
-          <div class="talk">
-            <div>{{time}}</div>
-            <image src="/static/images/home/talk1.png"></image>
-          </div>
-        </div>
-      </div>
-      <div class="trend_container">
-        <div class="img">
-          <image src="/static/images/home/wx.png" style="width: 50px;height: 50px;"></image>
-        </div>
-        <div class="content">
-          <div style="font-size: 18px;font-weight: bold;">仙人球</div>
-          <div>{{content}}</div>
-          <div class="imgContainer">
-            <image src="/static/images/home/sls.png" mode="aspectFill" @click="preview"/>
-            <image src="/static/images/home/sls.png" mode="aspectFill" @click="preview"/>
+            <image :src=item.pictures[0] mode="aspectFill" @click="preview"/>
+            <image :src=item.pictures[1] mode="aspectFill" @click="preview"/>
           </div>
           <div class="talk">
             <div>{{time}}</div>
@@ -98,6 +59,39 @@ export default {
         'http://bpic.588ku.com/element_origin_min_pic/16/10/30/54fcef525fa8f6037d180f3c26f3be65.jpg',
         'http://bpic.588ku.com/element_origin_min_pic/16/10/30/62e3ca3a02dddb002eff00482078d194.jpg',
         'http://bpic.588ku.com/element_origin_min_pic/16/10/31/c7167fcfb4ebcd12621c05b0c852e98e.jpg'
+      ],
+      items: [
+        {
+          nickname: '宝贝回家',
+          avatar: '/static/images/home/wx.png',
+          badge: 'official',
+          type: 'text',
+          textmsg: '【宝贝回家：傅德元（苏石友）】1990年出生，三岁被拐，长大后得知自己身世，于2018年6月来到了宝贝回家登记寻家。而他的父母早在2016年就在宝贝回家网站注册了寻子信息。在志愿者和警方及社会各界的共同努力下，今天又一个孩子回家了。自己再也不是寄人篱下的孩子，重拾亲情的温暖。愿这个家庭从此不再有阴霾，幸福快乐♪٩',
+          pictures: [
+            '/static/images/home/sls.png',
+            '/static/images/home/sls.png'
+          ]
+        }, {
+          nickname: '志愿者-阿正',
+          avatar: '/static/images/home/wx.png',
+          badge: 'volunteer',
+          type: 'video',
+          textmsg: '【宝贝回家：韩冬梅】1988年4岁的宝贝女儿韩冬梅不慎丢失，泪雨苦寻二十多年后无果。后来寻子父母到了宝贝回家寻子网登记，志愿者们了解情况并展开寻找。在迷茫与等待中，志愿者多次鼓励寻子夫妇要不忘初心、耐心守候。三十载的寻子茫茫路终于有了一个确切令人满意的结果。今天，韩冬梅回家了~愿他们一家人，爱与欢乐从此常在！',
+          pictures: [
+            '/static/images/home/sls.png',
+            '/static/images/home/sls.png'
+          ]
+        }, {
+          nickname: '志愿者-仙人球',
+          avatar: '/static/images/home/wx.png',
+          badge: '',
+          type: 'artcile',
+          textmsg: '【宝贝回家：傅德元（苏石友）】1990年出生，三岁被拐，长大后得知自己身世，于2018年6月来到了宝贝回家登记寻家。而他的父母早在2016年就在宝贝回家网站注册了寻子信息。在志愿者和警方及社会各界的共同努力下，今天又一个孩子回家了。自己再也不是寄人篱下的孩子，重拾亲情的温暖。愿这个家庭从此不再有阴霾，幸福快乐♪٩(´ω`)و♪',
+          pictures: [
+            '/static/images/home/sls.png',
+            '/static/images/home/sls.png'
+          ]
+        }
       ]
     }
   },
