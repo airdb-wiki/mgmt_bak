@@ -37,7 +37,7 @@
           <icon type="clear" size="18" style="flex: 1;margin-top: 9px;" @click="clearSto"></icon>
         </div>
         <div class="history">
-          <navigator url="" v-for="(item, index) in searchData" :key="item.id">
+          <navigator url="" v-for="(item, index) in searchData" :key="index">
             <div v-if="index < searchData.length-1 && index < 8">
               <div>{{item}}</div>
             </div>
@@ -47,26 +47,11 @@
       
 
       <div class="weui-cells searchbar-result" v-if="inputVal.length > 0" :hidden="showSearchBar">
-        <navigator url="" class="weui-cell" hover-class="weui-cell_active">
+        <div @click="navTo" v-for="(item, index) in tipKeys" :key="index" :id="item.UUID">
           <div class="weui-cell__bd">
-            <div>实时搜索文本</div>
+            <div>{{item.Title}}</div>
           </div>
-        </navigator>
-        <navigator url="" class="weui-cell" hover-class="weui-cell_active">
-          <div class="weui-cell__bd">
-            <div>实时搜索文本</div>
-          </div>
-        </navigator>
-        <navigator url="" class="weui-cell" hover-class="weui-cell_active">
-          <div class="weui-cell__bd">
-            <div>实时搜索文本</div>
-          </div>
-        </navigator>
-        <navigator url="" class="weui-cell" hover-class="weui-cell_active">
-          <div class="weui-cell__bd">
-            <div>实时搜索文本</div>
-          </div>
-        </navigator>
+        </div>
       </div>
     </div>
   </div>
@@ -84,7 +69,9 @@ export default {
       inputVal: '',
       inputPla: '搜索',
       searchData: ['hahaha'],
-      showSearchBar: true
+      showSearchBar: true,
+      tipKeys: [],
+      items: []
     }
   },
   mounted () {
@@ -94,12 +81,19 @@ export default {
     }
   },
   methods: {
-    search () {
-      this.inputPla = this.inputVal
+    collect (content) {
+      this.inputPla = content
       this.showSearchBar = true
-      this.searchData = this.searchData.concat(this.inputVal)
       this.searchData.reverse()
+      this.searchData = this.searchData.concat(content)
+      console.log(this.searchData)
+      this.searchData.reverse()
+      console.log(this.searchData)
       wx.setStorageSync('searchData', this.searchData)
+    },
+    search () {
+      this.collect(this.inputVal)
+
       this.clearInput()
     },
     clearInput () {
@@ -110,6 +104,18 @@ export default {
       console.log(e)
       this.showSearchBar = false
       this.inputVal = e.mp.detail.value
+
+      var tipKeys = []
+      this.tipKeys = []
+      if (this.inputVal && this.inputVal.length > 0) {
+        for (var i = 0; i < this.items.length; i++) {
+          if (this.items[i].Title.indexOf(this.inputVal) !== -1) {
+            tipKeys.push(this.items[i])
+            console.log(this.items[i].Title)
+          }
+        }
+      }
+      this.tipKeys = tipKeys
     },
     back () {
       wx.navigateBack({
@@ -119,7 +125,26 @@ export default {
     clearSto () {
       this.searchData = ['hahaha']
       wx.setStorageSync('searchData', this.searchData)
+    },
+    navTo (e) {
+      var content
+      for (var i = 0; i < this.items.length; i++) {
+        if (this.items[i].UUID === e.currentTarget.id) {
+          content = this.items[i].Title
+          break
+        }
+      }
+      this.collect(content)
+
+      wx.navigateTo({
+        url: '../../pages/detail/main?id=' + e.currentTarget.id
+      })
+
+      this.clearInput()
     }
+  },
+  onLoad () {
+    this.items = wx.getStorageSync('database')
   }
 }
 </script>

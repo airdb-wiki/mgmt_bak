@@ -29,7 +29,7 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "宝贝回家",
     "navigationBarTextStyle": "black",
-    
+    "navigationStyle": "custom",
     "enablePullDownRefresh": true,
     "onReachBottomDistance": "-10px"
   },
