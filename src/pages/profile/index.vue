@@ -141,6 +141,9 @@ export default {
       imageUrl: '/static/images/home/vr.png'
     }
   },
+  async onPullDownRefresh () {
+    wx.stopPullDownRefresh()
+  },
   methods: {
     onPostClick () {
       wx.navigateTo({

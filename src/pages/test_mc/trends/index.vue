@@ -125,6 +125,9 @@ export default {
   onLoad () {
     this.userInfo = wx.getStorageSync('userInfo')
     console.log(this.userInfo)
+  },
+  async onPullDownRefresh () {
+    wx.stopPullDownRefresh()
   }
 }
 </script>

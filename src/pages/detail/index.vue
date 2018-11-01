@@ -140,6 +140,9 @@ export default{
     this.requestComment()
     // 从数据库获取评论信息
   },
+  async onPullDownRefresh () {
+    wx.stopPullDownRefresh()
+  },
   methods: {
     requestComment () {
       var that = this
