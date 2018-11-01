@@ -17,7 +17,7 @@
     <map
       :longitude="targetLocation.longitude"
       :latitude="targetLocation.latitude"
-      style="width: 100%; height: 400px;margin-top: 75px;"
+      class="map"
       :circles="circles"
       :markers="markers"
       scale="12"></map>
@@ -26,21 +26,24 @@
       <text>距离：{{distance/1000}}千米</text>
     </div>
 
-    <div class="weui-cells__title">失踪人信息</div>
-    <div class="weui-cells weui-cells_after-title">
-        <div class="weui-cell">
-          <div class="weui-cell__hd">
-            <image :src="item.AvatarUrl" style="vertical-align: middle;width:65px; height: 90px;border-radius: 5px;"></image>
+    <div style="position: absolute;bottom: 0;left: 5px;">
+      <div class="weui-cells__title">失踪人信息</div>
+      <div class="weui-cells weui-cells_after-title">
+          <div class="weui-cell">
+            <div class="weui-cell__hd">
+              <image :src="item.AvatarUrl" style="vertical-align: middle;width:65px; height: 90px;border-radius: 5px;"></image>
+            </div>
+            <div class="detail">
+              <div>姓名: {{item.Nickname}}</div>
+              <div v-if="item.Gender == 2">性别: 女</div>
+              <div v-else>性别: 男</div>
+              <div>编号: {{item.Babyid}}</div>
+              <div style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">失踪时间: {{item.MissedAt}}</div>
+            </div>
           </div>
-          <div class="detail">
-            <div>姓名: {{item.Nickname}}</div>
-            <div v-if="item.Gender == 2">性别: 女</div>
-            <div v-else>性别: 男</div>
-            <div>编号: {{item.Babyid}}</div>
-            <div style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">失踪时间: {{item.MissedAt}}</div>
-          </div>
-        </div>
+      </div>
     </div>
+    
 
     <ha></ha>
 </div>
@@ -156,6 +159,12 @@ export default {
   background-color: #fff;
   z-index: 999;
 }
+.map{
+  position: absolute;
+  top: 11%;
+  width: 100%;
+  height: 55%;
+}
 .btn{
   display: flex;
   flex-direction: row;
@@ -185,10 +194,12 @@ export default {
   height: 25px;
 }
 .distance{
+  position: absolute;
+  bottom: 23%;
+  left: 20px;
   text-align: center;
   vertical-align: middle;
-  padding: 12px 0;
-  margin: 5px 10px;
+  padding: 12px 40px;
   background-color: rgba(0, 255, 255, 0.555);
   border-radius: 10px;
 }
