@@ -37,11 +37,10 @@
           <icon type="clear" size="18" style="flex: 1;margin-top: 9px;" @click="clearSto"></icon>
         </div>
         <div class="history">
-          <navigator url="" v-for="(item, index) in searchData" :key="index">
-            <div v-if="index < searchData.length-1 && index < 8">
-              <div>{{item}}</div>
-            </div>
-          </navigator>
+          <div @click="stoNav" v-for="(item, index) in searchData" :key="index" 
+            :id="item" v-if="index < searchData.length-1 && index < 8">
+            <div class="result">{{item}}</div>
+          </div>
         </div>
       </div>
       
@@ -81,18 +80,62 @@ export default {
     }
   },
   methods: {
+    stoNav (e) {
+      console.log(e.currentTarget.id)
+      var title = e.currentTarget.id
+      var UUID = ''
+      for (var i = 0; i < this.items.length; i++) {
+        if (this.items[i].Title === title) {
+          UUID = this.items[i].UUID
+          break
+        }
+      }
+      console.log('UUID', UUID)
+      if (UUID === '') {
+        wx.showToast({
+          title: '搜索内容不存在',
+          icon: 'none',
+          duration: 2000,
+          mask: true
+        })
+        return
+      }
+
+      wx.navigateTo({
+        url: '../../pages/detail/main?id=' + UUID
+      })
+    },
     collect (content) {
       this.inputPla = content
       this.showSearchBar = true
       this.searchData.reverse()
       this.searchData = this.searchData.concat(content)
-      console.log(this.searchData)
       this.searchData.reverse()
-      console.log(this.searchData)
       wx.setStorageSync('searchData', this.searchData)
     },
+    // 存入搜索历史，设置placeholder
     search () {
       this.collect(this.inputVal)
+      var that = this
+
+      wx.request({
+        url: wx.getStorageSync('requestUrl') + '/small/article/keywords',
+        method: 'GET',
+        data: {
+          nickname: '',
+          babyid: that.inputVal
+        },
+        header: {
+          'content-type': 'application/json'
+        },
+        success: function (res) {
+          console.log('debug=====sucess')
+          console.log(res)
+        },
+        fail: function (res) {
+          console.log('debug=====fail')
+        }
+      })
 
       this.clearInput()
     },
@@ -109,7 +152,7 @@ export default {
       this.tipKeys = []
       if (this.inputVal && this.inputVal.length > 0) {
         for (var i = 0; i < this.items.length; i++) {
-          if (this.items[i].Title.indexOf(this.inputVal) !== -1) {
+          if (this.items[i].Title.indexOf(this.inputVal) !== -1 || this.items[i].UUID.indexOf(this.inputVal) !== -1) {
             tipKeys.push(this.items[i])
             console.log(this.items[i].Title)
           }
@@ -217,5 +260,11 @@ export default {
 .home{
   width: 17pt;
   height: 17pt;
+}
+.result{
+  max-width: 125px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 </style>
