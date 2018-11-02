@@ -348,8 +348,9 @@ export default{
 }
 .img{
   float: left;
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
+  margin-top: 5px;
 }
 .talk_container{
   padding: 5px 10px 70px;
