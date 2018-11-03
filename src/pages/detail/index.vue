@@ -65,7 +65,7 @@
         <div class="talk_content">
           <div class="talker_info">
             <div class="talker_name">仙人球</div>
-            <image src="/static/images/home/like.png" style="width: 20px;height: 20px;"></image>
+            <image src="/static/images/home/like.png" style="width: 18px;height: 18px;"></image>
           </div>
           <div class="talk">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
         </div>
@@ -368,9 +368,10 @@ export default{
   position: relative;
   display: flex;
   flex-direction: row;
+  line-height: 24px;
 }
 .talker_name{
-  font-size: 18px;
+  font-size: 16px;
   color: #929292;
 }
 .talker_info image{
