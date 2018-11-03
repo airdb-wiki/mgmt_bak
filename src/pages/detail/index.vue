@@ -32,31 +32,33 @@
     </scroll-view>
     <!-- 内容 -->
 
-    <div class="weui-cells__title" style="font-size: 18px;background-color: #f2f2f2;">评论：</div>
-    <div class="talk_container">
-      <div class="together" v-for="(item, index) in comment" :key="index">
-        <div class="img">
-          <image :src="item.AvatarUrl" style="width: 35px;height: 35px;border-radius: 3px;"></image>
-        </div>
-        <div class="talk_content">
-          <div class="talker_info">
-            <div class="talker_name">{{item.Nickname}}</div>
-            <image src="/static/images/home/like.png" style="width: 20px;height: 20px;"></image>
+    <div style="background-color: #f2f2f2;">
+      <div class="weui-cells__title" style="font-size: 18px;">评论：</div>
+      <div class="talk_container">
+        <div class="together" v-for="(item, index) in comment" :key="index">
+          <div class="img">
+            <image :src="item.AvatarUrl" style="width: 35px;height: 35px;border-radius: 3px;"></image>
           </div>
-          <div class="talk">{{item.Content}}</div>
-          <div v-if="item.reply !== ''">
-            <div class="talker_info" style="margin-top: 5px;">
-              <div style="border-left: 3px solid #16b015;padding: 0 5px;color: #929292;">作者</div>
+          <div class="talk_content">
+            <div class="talker_info">
+              <div class="talker_name">{{item.Nickname}}</div>
               <image src="/static/images/home/like.png" style="width: 20px;height: 20px;"></image>
             </div>
-            <div class="talk">{{item.reply}}</div>
+            <div class="talk">{{item.Content}}</div>
+            <div v-if="item.reply !== ''">
+              <div class="talker_info" style="margin-top: 5px;">
+                <div style="border-left: 3px solid #16b015;padding: 0 5px;color: #929292;">作者</div>
+                <image src="/static/images/home/like.png" style="width: 20px;height: 20px;"></image>
+              </div>
+              <div class="talk">{{item.reply}}</div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="divLine">
-        <div class="left"></div>
-        <div class="center"></div>
-        <div class="right"></div>
+        <div class="divLine">
+          <div class="left"></div>
+          <div class="center"></div>
+          <div class="right"></div>
+        </div>
       </div>
     </div>
     <!-- 评论区 -->
