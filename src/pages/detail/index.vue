@@ -32,18 +32,18 @@
     </scroll-view>
     <!-- 内容 -->
 
-    <div class="weui-cells__title" style="font-size: 18px;">评论：</div>
+    <div class="weui-cells__title" style="font-size: 18px;background-color: #f2f2f2;">评论：</div>
     <div class="talk_container">
-      <div class="together" v-for="(item, index) in talks" :key="index">
+      <div class="together" v-for="(item, index) in comment" :key="index">
         <div class="img">
-          <image :src="item.avatarUrl" style="width: 35px;height: 35px;border-radius: 3px;"></image>
+          <image :src="item.AvatarUrl" style="width: 35px;height: 35px;border-radius: 3px;"></image>
         </div>
         <div class="talk_content">
           <div class="talker_info">
-            <div class="talker_name">{{item.talker_name}}</div>
+            <div class="talker_name">{{item.Nickname}}</div>
             <image src="/static/images/home/like.png" style="width: 20px;height: 20px;"></image>
           </div>
-          <div class="talk">{{item.content}}</div>
+          <div class="talk">{{item.Content}}</div>
           <div v-if="item.reply !== ''">
             <div class="talker_info" style="margin-top: 5px;">
               <div style="border-left: 3px solid #16b015;padding: 0 5px;color: #929292;">作者</div>
@@ -85,6 +85,7 @@
 
 <script>
 import detail from '@/components/detail'
+import { formatTime } from '@/utils/index'
 
 export default{
   components: {
@@ -103,27 +104,7 @@ export default{
       item: {},
       comment: [],
       comment_value: '',
-      content: '早日回家',
-      talks: [
-        {
-          talker_name: '仙人球',
-          content: '早日回家',
-          avatarUrl: '/static/images/home/xiaolong.jpg',
-          reply: '谢谢'
-        },
-        {
-          talker_name: '仙人球',
-          content: '早日回家,祝福',
-          avatarUrl: '/static/images/home/xiaolong.jpg',
-          reply: ''
-        },
-        {
-          talker_name: '仙人球',
-          content: 'ddddddddddddddddddddddd',
-          avatarUrl: '/static/images/home/xiaolong.jpg',
-          reply: ''
-        }
-      ]
+      content: '早日回家'
     }
   },
   onPageScroll (res) {
@@ -155,17 +136,21 @@ export default{
     requestComment () {
       var that = this
       wx.request({
-        url: wx.getStorageSync('requestUrl') + '/small/comment',
-        data: {
-          UUID: that.item.UUID
-        },
+        url: wx.getStorageSync('requestUrl') + '/small/comment/' + that.item.UUID,
         method: 'GET',
-        dataType: 'json',
-        success: res => {
-          console.log('评论信息：', res)
+        data: {
         },
-        fail: () => {
-          console.log('fail')
+        header: {
+          'content-type': 'application/json',
+          Authorization: wx.getStorageSync('Authorization')
+        },
+        success: function (res) {
+          that.comment = res.data
+          for (var i = 0; i < that.comment.length; i++) {
+            that.comment[i].CreatedAt = formatTime(new Date(that.comment[i].CreatedAt))
+            that.comment[i].reply = ''
+          }
+          console.log('获取评论为：', that.comment)
         }
       })
     },
@@ -184,17 +169,18 @@ export default{
 
       var comment = {}
       comment.content = e.mp.detail.value.pl
-      comment.UUID = that.item.UUID
-      comment.AvatarUrl = wx.getStorageSync('userInfo').avatarUrl
-      comment.NickName = wx.getStorageSync('userInfo').nickName
-      that.commemt = that.comment.concat(comment)
+      comment.avatarUrl = wx.getStorageSync('userInfo').avatarUrl
+      comment.talker_name = wx.getStorageSync('userInfo').nickName
+      comment.reply = ''
+      that.commemt = that.comment.push(comment)
+      console.log('评论为：', that.comment)
       // 更新数据
 
       wx.request({
         url: wx.getStorageSync('requestUrl') + '/small/comment',
         method: 'POST',
         data: {
-          UUID: that.UUID,
+          UUID: that.item.UUID,
           AvatarUrl: wx.getStorageSync('userInfo').avatarUrl,
           Nickname: wx.getStorageSync('userInfo').nickName,
           Content: comment.content
@@ -204,7 +190,7 @@ export default{
         },
         success: function (res) {
           that.comment_value = ''
-          console.log(res.data)
+          console.log('提交回调函数', res.data)
           wx.showToast({
             title: '评论成功',
             icon: 'success',
@@ -396,31 +382,25 @@ export default{
   margin-top: 30px;
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
 .left{
-  flex: 2;
-  width: 2px;
-  height: 1px;
-  border-width: 2px 100px 2px 0;
-  border-style: solid;
-  border-color: transparent #e5e5e5 transparent transparent ;
+  width: 80px;
+  height: 2px;
+  background-color: aqua;
   padding: 0 8px;
 }
 .center{
-  flex: 1;
-  margin: 0 16px;
-  width: 5px;
-  height: 5px;
+  margin: 0 10px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  background-color: #e5e5e5;
+  background-color: aqua;
 }
 .right{
-  flex: 2;
-  width: 2px;
-  height: 1px;
-  border-width: 2px 0 2px 100px;
-  border-style: solid;
-  border-color: transparent transparent transparent #e5e5e5;
+  width: 80px;
+  height: 2px;
+  background-color: aqua;
   padding: 0 8px;
 }
 </style>
