@@ -44,6 +44,13 @@
             <image src="/static/images/home/like.png" style="width: 20px;height: 20px;"></image>
           </div>
           <div class="talk">{{item.content}}</div>
+          <div v-if="item.reply !== ''">
+            <div class="talker_info" style="margin-top: 5px;">
+              <div style="border-left: 3px solid #16b015;padding: 0 5px;color: #929292;">作者</div>
+              <image src="/static/images/home/like.png" style="width: 20px;height: 20px;"></image>
+            </div>
+            <div class="talk">{{item.reply}}</div>
+          </div>
         </div>
       </div>
       <div class="divLine">
@@ -101,17 +108,20 @@ export default{
         {
           talker_name: '仙人球',
           content: '早日回家',
-          avatarUrl: '/static/images/home/xiaolong.jpg'
+          avatarUrl: '/static/images/home/xiaolong.jpg',
+          reply: '谢谢'
         },
         {
           talker_name: '仙人球',
           content: '早日回家,祝福',
-          avatarUrl: '/static/images/home/xiaolong.jpg'
+          avatarUrl: '/static/images/home/xiaolong.jpg',
+          reply: ''
         },
         {
           talker_name: '仙人球',
           content: 'ddddddddddddddddddddddd',
-          avatarUrl: '/static/images/home/xiaolong.jpg'
+          avatarUrl: '/static/images/home/xiaolong.jpg',
+          reply: ''
         }
       ]
     }
@@ -361,7 +371,7 @@ export default{
 .talk_content{
   display: flex;
   flex-direction: column;
-  padding-left: 10px;
+  padding-left: 8px;
 }
 .talker_info{
   position: relative;
