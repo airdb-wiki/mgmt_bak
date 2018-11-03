@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="background-color: #fff;">
     <!-- 自定义navigation -->
     <!-- <div class="navigation">
       <button :plain="true" @click="back">
@@ -32,42 +32,32 @@
     </scroll-view>
     <!-- 内容 -->
 
-    <div class="weui-cells__title" style="font-size: 18px;">评论：</div>
-    <div class="talk_container">
-      <div class="together">
-        <div class="img">
-          <image src="/static/images/home/xiaolong.jpg" style="width: 40px;height: 40px;border-radius: 3px;"></image>
-        </div>
-        <div class="talk_content">
-          <div class="talker_info">
-            <div class="talker_name">仙人球</div>
-            <image src="/static/images/home/like.png" style="width: 20px;height: 20px;"></image>
+    <div style="background-color: #f2f2f2;">
+      <div class="weui-cells__title" style="font-size: 18px;">评论：</div>
+      <div class="talk_container">
+        <div class="together" v-for="(item, index) in comment" :key="index">
+          <div class="img">
+            <image :src="item.AvatarUrl" style="width: 35px;height: 35px;border-radius: 3px;"></image>
           </div>
-          <div class="talk">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
-        </div>
-      </div>
-      <div class="together">
-        <div class="img">
-          <image src="/static/images/home/xiaolong.jpg" style="width: 40px;height: 40px;border-radius: 3px;"></image>
-        </div>
-        <div class="talk_content">
-          <div class="talker_info">
-            <div class="talker_name">仙人球</div>
-            <image src="/static/images/home/like.png" style="width: 20px;height: 20px;"></image>
+          <div class="talk_content">
+            <div class="talker_info">
+              <div class="talker_name">{{item.Nickname}}</div>
+              <image src="/static/images/home/like.png" style="width: 20px;height: 20px;"></image>
+            </div>
+            <div class="talk">{{item.Content}}</div>
+            <div v-if="item.reply !== ''">
+              <div class="talker_info" style="margin-top: 5px;">
+                <div style="border-left: 3px solid #16b015;padding: 0 5px;color: #929292;">作者</div>
+                <image src="/static/images/home/like.png" style="width: 20px;height: 20px;"></image>
+              </div>
+              <div class="talk">{{item.reply}}</div>
+            </div>
           </div>
-          <div class="talk">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
         </div>
-      </div>
-      <div class="together">
-        <div class="img">
-          <image src="/static/images/home/xiaolong.jpg" style="width: 40px;height: 40px;border-radius: 3px;"></image>
-        </div>
-        <div class="talk_content">
-          <div class="talker_info">
-            <div class="talker_name">仙人球</div>
-            <image src="/static/images/home/like.png" style="width: 20px;height: 20px;"></image>
-          </div>
-          <div class="talk">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
+        <div class="divLine">
+          <div class="left"></div>
+          <div class="center"></div>
+          <div class="right"></div>
         </div>
       </div>
     </div>
@@ -97,6 +87,7 @@
 
 <script>
 import detail from '@/components/detail'
+import { formatTime } from '@/utils/index'
 
 export default{
   components: {
@@ -147,17 +138,21 @@ export default{
     requestComment () {
       var that = this
       wx.request({
-        url: wx.getStorageSync('requestUrl') + '/small/comment',
-        data: {
-          UUID: that.item.UUID
-        },
+        url: wx.getStorageSync('requestUrl') + '/small/comment/' + that.item.UUID,
         method: 'GET',
-        dataType: 'json',
-        success: res => {
-          console.log('评论信息：', res)
+        data: {
         },
-        fail: () => {
-          console.log('fail')
+        header: {
+          'content-type': 'application/json',
+          Authorization: wx.getStorageSync('Authorization')
+        },
+        success: function (res) {
+          that.comment = res.data
+          for (var i = 0; i < that.comment.length; i++) {
+            that.comment[i].CreatedAt = formatTime(new Date(that.comment[i].CreatedAt))
+            that.comment[i].reply = ''
+          }
+          console.log('获取评论为：', that.comment)
         }
       })
     },
@@ -176,17 +171,18 @@ export default{
 
       var comment = {}
       comment.content = e.mp.detail.value.pl
-      comment.UUID = that.item.UUID
-      comment.AvatarUrl = wx.getStorageSync('userInfo').avatarUrl
-      comment.NickName = wx.getStorageSync('userInfo').nickName
-      that.commemt = that.comment.concat(comment)
+      comment.avatarUrl = wx.getStorageSync('userInfo').avatarUrl
+      comment.talker_name = wx.getStorageSync('userInfo').nickName
+      comment.reply = ''
+      that.commemt = that.comment.push(comment)
+      console.log('评论为：', that.comment)
       // 更新数据
 
       wx.request({
         url: wx.getStorageSync('requestUrl') + '/small/comment',
         method: 'POST',
         data: {
-          UUID: that.UUID,
+          UUID: that.item.UUID,
           AvatarUrl: wx.getStorageSync('userInfo').avatarUrl,
           Nickname: wx.getStorageSync('userInfo').nickName,
           Content: comment.content
@@ -196,7 +192,7 @@ export default{
         },
         success: function (res) {
           that.comment_value = ''
-          console.log(res.data)
+          console.log('提交回调函数', res.data)
           wx.showToast({
             title: '评论成功',
             icon: 'success',
@@ -348,28 +344,31 @@ export default{
 }
 .img{
   float: left;
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
+  margin-top: 5px;
 }
 .talk_container{
-  padding: 5px 10px 70px;
+  padding: 5px 10px 100px;
+  background-color: #f2f2f2;
 }
 .together{
-   border-bottom: 1px solid #bdbdbd;
-   padding: 5px;
+  padding: 5px;
+  padding-bottom: 13px;
 }
 .talk_content{
   display: flex;
   flex-direction: column;
-  padding-left: 10px;
+  padding-left: 8px;
 }
 .talker_info{
   position: relative;
   display: flex;
   flex-direction: row;
+  line-height: 24px;
 }
 .talker_name{
-  font-size: 18px;
+  font-size: 16px;
   color: #929292;
 }
 .talker_info image{
@@ -380,5 +379,30 @@ export default{
 .talk{
   width: 280px;
   word-wrap:break-word
+}
+.divLine{
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.left{
+  width: 80px;
+  height: 2px;
+  background-color: aqua;
+  padding: 0 8px;
+}
+.center{
+  margin: 0 10px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: aqua;
+}
+.right{
+  width: 80px;
+  height: 2px;
+  background-color: aqua;
+  padding: 0 8px;
 }
 </style>
