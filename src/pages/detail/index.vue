@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="background-color: #fff;">
     <!-- 自定义navigation -->
     <!-- <div class="navigation">
       <button :plain="true" @click="back">
@@ -34,41 +34,22 @@
 
     <div class="weui-cells__title" style="font-size: 18px;">评论：</div>
     <div class="talk_container">
-      <div class="together">
+      <div class="together" v-for="(item, index) in talks" :key="index">
         <div class="img">
-          <image src="/static/images/home/xiaolong.jpg" style="width: 40px;height: 40px;border-radius: 3px;"></image>
+          <image :src="item.avatarUrl" style="width: 35px;height: 35px;border-radius: 3px;"></image>
         </div>
         <div class="talk_content">
           <div class="talker_info">
-            <div class="talker_name">仙人球</div>
+            <div class="talker_name">{{item.talker_name}}</div>
             <image src="/static/images/home/like.png" style="width: 20px;height: 20px;"></image>
           </div>
-          <div class="talk">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
+          <div class="talk">{{item.content}}</div>
         </div>
       </div>
-      <div class="together">
-        <div class="img">
-          <image src="/static/images/home/xiaolong.jpg" style="width: 40px;height: 40px;border-radius: 3px;"></image>
-        </div>
-        <div class="talk_content">
-          <div class="talker_info">
-            <div class="talker_name">仙人球</div>
-            <image src="/static/images/home/like.png" style="width: 20px;height: 20px;"></image>
-          </div>
-          <div class="talk">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
-        </div>
-      </div>
-      <div class="together">
-        <div class="img">
-          <image src="/static/images/home/xiaolong.jpg" style="width: 40px;height: 40px;border-radius: 3px;"></image>
-        </div>
-        <div class="talk_content">
-          <div class="talker_info">
-            <div class="talker_name">仙人球</div>
-            <image src="/static/images/home/like.png" style="width: 18px;height: 18px;"></image>
-          </div>
-          <div class="talk">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
-        </div>
+      <div class="divLine">
+        <div class="left"></div>
+        <div class="center"></div>
+        <div class="right"></div>
       </div>
     </div>
     <!-- 评论区 -->
@@ -115,7 +96,24 @@ export default{
       item: {},
       comment: [],
       comment_value: '',
-      content: '早日回家'
+      content: '早日回家',
+      talks: [
+        {
+          talker_name: '仙人球',
+          content: '早日回家',
+          avatarUrl: '/static/images/home/xiaolong.jpg'
+        },
+        {
+          talker_name: '仙人球',
+          content: '早日回家,祝福',
+          avatarUrl: '/static/images/home/xiaolong.jpg'
+        },
+        {
+          talker_name: '仙人球',
+          content: 'ddddddddddddddddddddddd',
+          avatarUrl: '/static/images/home/xiaolong.jpg'
+        }
+      ]
     }
   },
   onPageScroll (res) {
@@ -353,11 +351,12 @@ export default{
   margin-top: 5px;
 }
 .talk_container{
-  padding: 5px 10px 70px;
+  padding: 5px 10px 100px;
+  background-color: #f2f2f2;
 }
 .together{
-   border-bottom: 1px solid #bdbdbd;
-   padding: 5px;
+  padding: 5px;
+  padding-bottom: 13px;
 }
 .talk_content{
   display: flex;
@@ -382,5 +381,36 @@ export default{
 .talk{
   width: 280px;
   word-wrap:break-word
+}
+.divLine{
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+}
+.left{
+  flex: 2;
+  width: 2px;
+  height: 1px;
+  border-width: 2px 100px 2px 0;
+  border-style: solid;
+  border-color: transparent #e5e5e5 transparent transparent ;
+  padding: 0 8px;
+}
+.center{
+  flex: 1;
+  margin: 0 16px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #e5e5e5;
+}
+.right{
+  flex: 2;
+  width: 2px;
+  height: 1px;
+  border-width: 2px 0 2px 100px;
+  border-style: solid;
+  border-color: transparent transparent transparent #e5e5e5;
+  padding: 0 8px;
 }
 </style>
