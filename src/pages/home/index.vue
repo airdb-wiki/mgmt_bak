@@ -12,7 +12,7 @@
       previous-margin="-10px"
       class="mySwiper">
       <div v-for="item in imgUrls" :key="item.id">
-        <swiper-item style="border-radius: 10px;">
+        <swiper-item>
           <navigator url="" open-type="navigate" hover-class="none">
             <image :src="item" class="swiper_img"/>
           </navigator>
@@ -235,7 +235,7 @@ export default {
 
 <style scoped>
 #app{
-  background-color: #f2f2f2;
+  background-color: #f3f3f3;
 }
 .login{
   width: 100%;
@@ -284,14 +284,7 @@ export default {
   padding: 2px 0;
   position: relative;
 }
-.tab:hover{
-  font-weight: bold;
-  text-align: center;
-  font-size: 20px;
-  width: 100px;
-  display: inline-block;
-  box-sizing: border-box;
-}
+
 /* 假的空图层 */
 .navbar1{
   width: 100%;
@@ -329,21 +322,20 @@ export default {
   background-size: 140px 130px;
   background-position: -20px 82px;
   background-repeat: repeat;
-  opacity: .2;
+  opacity: .3;
 }
 
 
 .mySwiper{
   margin: auto;
   margin-top: 107px;
-  width: 330px;
+  width: 100%;
   height: 165px;
   border-radius: 10px;
 }
 .swiper_img{
-  width: 330px;
+  width: 100%;
   height: 165px;
-  border-radius: 10px;
   margin-left: 10px;
 }
 .bar::after{

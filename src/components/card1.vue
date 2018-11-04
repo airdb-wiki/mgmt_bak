@@ -1,16 +1,16 @@
 <template>
   <div>
     <scroll-view>
-      <div v-for="item in items" :key="item.id">
+      <div v-for="(item, index) in items" :key="index">
         <!-- 点击item时收集 -->
         <form class="form" @submit="formSubmit_item" report-submit="true">
           <div class="weui-cell" :id="item.UUID" @click="a">
             <!-- 获取formid的按钮 -->
             <button class='btn-submit' formType="submit"></button>
             <div class="weui-cell__hd">
-              <image :src="item.AvatarUrl" style="vertical-align: middle;width:65px; height: 90px;border-radius: 5px 0 0 5px;"></image>
+              <image :src="item.AvatarUrl" style="vertical-align: middle;width:114px; height: 116px;border-radius: 5px 0 0 5px;"></image>
             </div>
-            <div class="weui-cell__bd" style="margin-left: 8px;">
+            <div class="weui-cell__bd" style="margin-left: 10px;">
               <div class="title">
                 {{item.Title}}
               </div>
@@ -24,26 +24,27 @@
                 -->
               </div>
 
-              <div class="pub_info">
-                <!-- <navigator url="/pages/location/main?title=navigate" hover-class="navigator-hover">
-                  {{item.MissedAddress}}
-                </navigator> -->
+              <!-- <navigator url="/pages/location/main?title=navigate" hover-class="navigator-hover">
+                {{item.MissedAddress}}
+              </navigator> -->
 
-                <!-- 点击地址时收集 -->
-                <form @submit="formSubmit_addr" report-submit :id="item.UUID">
-                  <div class="addr-wrapper">
-                    <img src="/static/images/home/position.png" style="position: absolute; left: 5px;bottom: 4px;">
-                    <div class="text-addr" @click.stop="" id="address_content">
-                      <button class="btn-submit" formType="submit"></button>
-                      {{item.MissedAddress}}
-                    </div>
+              <!-- 点击地址时收集 -->
+              <form @submit="formSubmit_addr" report-submit :id="item.UUID">
+                <div class="addr-wrapper">
+                  <img src="/static/images/home/position.png" style="width: 20px;height: 20px;">
+                  <div class="text-addr" @click.stop="" id="address_content">
+                    <button class="btn-submit" formType="submit"></button>
+                    {{item.MissedAddress}}
                   </div>
-                </form>
-                <div class="people-wrapper">
-                  <img src="/static/images/home/notice.png" style="position: absolute; right: 45px;bottom: 4px;">
-                  <text style="position: absolute; right: 10px;line-height: 30px;">2000</text>
                 </div>
+              </form>
+              <div style="display: flex; flex-direction: row;">
+                <div>
+                  <img src="/static/images/home/notice.png" style="width: 20px;height: 20px;">
+                </div>
+                <div style="line-height: 20px;margin-left: 3px;">2000</div>
               </div>
+
             </div>
           </div>
         </form>
@@ -109,32 +110,21 @@ export default {
 .address{
   margin-left: 5px;
 }
-.pub_info{
-  position: relative;
-  display: flex;
-  height: 30px;
-  font-size: 14px;
-}
 .addr-wrapper{
   display: inline-flex;
   align-items: center;
 }
-.pub_info image{
-  width: 20px;
-  height: 20px;
-}
-.pub_info .text-addr{
+.text-addr{
   z-index: 3;
-  position: absolute;
-  margin-left: 32px;
+  margin-left: 3px;
   text-decoration:underline;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: 180px;
+  width: 200px;
 }
 .title{
-  width: 270px;
+  width: 230px;
   font-weight: bold;
   font-size: 18px;
   overflow: hidden;
@@ -151,7 +141,7 @@ export default {
 .weui-cell{
   position: relative;
   padding: 0;
-  margin: 8px 10px;
+  margin: 11px 10px;
   border: none;
   line-height: 28px;
   border-radius: 5px;
