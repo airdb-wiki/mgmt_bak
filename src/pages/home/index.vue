@@ -35,6 +35,11 @@
         <div v-for="tab in tabs" :key="tab.id" class="tab">{{tab}}</div>
       </scroll-view>
     </div>
+    <div class="bar1" style="color: rgba(0, 0, 0, 0);">
+      <scroll-view :scroll-x="true" class="navbar1">
+        <div v-for="tab in tabs" :key="tab.id" class="tab1">{{tab}}</div>
+      </scroll-view>
+    </div>
 
     <!-- 底部登陆按钮 -->
     <!--
@@ -261,7 +266,7 @@ export default {
   position: fixed;
   top: 53pt;
   left: 0;
-  z-index: 999;
+  z-index: 99;
   background-color: #fff;
   overflow: hidden;
 }
@@ -286,35 +291,48 @@ export default {
   width: 100px;
   display: inline-block;
   box-sizing: border-box;
-  background-image: url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1541312159946&di=698558c0ce1040cedf233c39b0d1841e&imgtype=0&src=http%3A%2F%2Fpic38.photophoto.cn%2F20160311%2F0021033817789866_b.jpg');
-  background-size: 80px 80px;
-  background-position: 5px 60px;
-  background-repeat: repeat;
 }
-/* .tab::after{
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  content: 'asfjadsfj';
-  color: rgba(0, 0, 0, 0);
-  width: 100px;
-  height: 100px;
-  background-image: url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1541312159946&di=698558c0ce1040cedf233c39b0d1841e&imgtype=0&src=http%3A%2F%2Fpic38.photophoto.cn%2F20160311%2F0021033817789866_b.jpg');
-  background-size: 80px 80px;
-  background-position: 5px 60px;
-  background-repeat: repeat;
-  opacity: .4;
+/* 假的空图层 */
+.navbar1{
+  width: 100%;
+  white-space: nowrap;
+  position: fixed;
+  top: 53pt;
+  left: 0;
+  z-index: 999;
+  background-color: transparent;
+  overflow: hidden;
 }
-.tab::after:hover{
-  position: absolute;
-  z-index: 9999;
-  top: 0px;
-  left: 0px;
-  content: 'asfjadsfj';
-  color: rgba(0, 0, 0, 0);
+::scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+.tab1{
+  text-align: center;
+  font-size: 20px;
   width: 100px;
-  height: 100px;
-} */
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 2px 0;
+  position: relative;
+}
+.tab1:hover{
+  color: black;
+  font-weight: bold;
+  text-align: center;
+  font-size: 20px;
+  width: 100px;
+  display: inline-block;
+  box-sizing: border-box;
+  background-image: url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1541312159946&di=698558c0ce1040cedf233c39b0d1841e&imgtype=0&src=http%3A%2F%2Fpic38.photophoto.cn%2F20160311%2F0021033817789866_b.jpg');
+  background-size: 140px 130px;
+  background-position: -20px 82px;
+  background-repeat: repeat;
+  opacity: .2;
+}
+
+
 .mySwiper{
   margin: auto;
   margin-top: 107px;
