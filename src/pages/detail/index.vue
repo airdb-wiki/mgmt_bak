@@ -32,7 +32,10 @@
     </scroll-view>
     <!-- 内容 -->
 
-    <div style="background-color: #f2f2f2;">
+    <ad unit-id="adunit-6a89174cc83e227f"></ad>
+    <!-- 广告 -->
+
+    <div style="background-color: #f2f2f2;padding-top: 10px;">
       <div class="weui-cells__title" style="font-size: 18px;">评论：</div>
       <div class="talk_container">
         <div class="together" v-for="(item, index) in comment" :key="index">
@@ -54,11 +57,11 @@
             </div>
           </div>
         </div>
-        <div class="divLine">
+        <!-- <div class="divLine">
           <div class="left"></div>
           <div class="center"></div>
           <div class="right"></div>
-        </div>
+        </div> -->
       </div>
     </div>
     <!-- 评论区 -->
