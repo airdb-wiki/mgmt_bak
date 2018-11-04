@@ -83,9 +83,8 @@ export default {
       duration: 1000,
       circular: true,
       imgUrls: [
-        '/static/images/home/sls.png',
-        '/static/images/home/vr.png',
-        '/static/images/home/xiaolong.jpg'
+        '/static/images/adsBanner/home1.jpg',
+        '/static/images/adsBanner/home2.jpg'
       ],
       cityList: [],
       parms: {
@@ -183,7 +182,7 @@ export default {
     return {
       title: '凝聚每一份爱的力量',
       path: '/pages/home/main?from=forward',
-      imageUrl: '/static/images/forward.png'
+      imageUrl: '/static/images/forward/home1.jpg'
     }
   },
   onReachBottom () {

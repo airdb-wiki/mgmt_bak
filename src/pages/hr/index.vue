@@ -71,7 +71,7 @@ export default {
     return {
       title: '志愿者招募计划',
       path: '/pages/hr/main?from=forward',
-      imageUrl: '/static/images/home/vr.png'
+      imageUrl: '/static/images/forward/home1.jpg'
     }
   }
 }
