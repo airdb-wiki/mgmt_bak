@@ -12,7 +12,13 @@
     <img src="/static/images/home/sls.png" mode="scaleToFill" class="bg">
     <button class="more" @click="plus">+</button>
 
+<<<<<<< HEAD
     <div style="padding-top: 30px;background-color: #fff" v-for="(item,index) in items" :key="index">
+=======
+    <tx-video vid="e0354z3cqjp"></tx-video>
+
+    <div style="padding-top: 30px;background-color: #fff;" v-for="item in items">
+>>>>>>> e97908b643a8dcc0ffe6b0c2bc0477b54f2ba542
       <div class="trend_container">
         <div class="img">
           <img :src="item.avatar" style="width: 50px;height: 50px;">
@@ -31,7 +37,8 @@
         </div>
       </div>
     </div>
-    
+  <tx-video vid="e0354z3cqjp"></tx-video>
+  
   </div>
 </template>
 
