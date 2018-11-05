@@ -29,15 +29,12 @@
               </navigator> -->
 
               <!-- 点击地址时收集 -->
-              <form @submit="formSubmit_addr" report-submit :id="item.UUID">
-                <div class="addr-wrapper">
-                  <img src="/static/images/home/position.png" style="width: 20px;height: 20px;">
-                  <div class="text-addr" @click.stop="" id="address_content">
-                    <button class="btn-submit" formType="submit"></button>
-                    {{item.MissedAddress}}
-                  </div>
+              <div class="addr-wrapper" @click="formSubmit_addr" :id="item.UUID">
+                <img src="/static/images/home/position.png" style="width: 20px;height: 20px;">
+                <div class="text-addr">
+                  {{item.MissedAddress}}
                 </div>
-              </form>
+              </div>
               <div style="display: flex; flex-direction: row;">
                 <div>
                   <img src="/static/images/home/notice.png" style="width: 20px;height: 20px;">
@@ -69,6 +66,7 @@ export default {
   },
   methods: {
     a (e) {
+      console.log('点击a函数进行跳转')
       wx.navigateTo({
         url: '../../pages/detail/main?id=' + e.currentTarget.id
       })
