@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/hr/main",
     "pages/home/main",
+    "pages/hr/main",
     "pages/test_mc/successPage/main",
     "pages/location/main",
     "pages/test_mc/hzw_map/main",
