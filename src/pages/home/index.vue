@@ -119,6 +119,32 @@ export default {
     changeTab (e) {
       this.activeIndex = e.currentTarget.id
     },
+    request () {
+      var that = this
+      wx.request({
+        url: wx.getStorageSync('requestUrl') + '/small/article/topics',
+        method: 'GET',
+        data: {
+          type: 'nearby',
+          page: '1'
+        },
+        header: {
+          'content-type': 'application/json'
+        },
+        success: function (res) {
+          // that.database[0] = res.data[0]
+          for (var i = 0; i < res.data.length; i++) {
+            console.log(res.data[i])
+            if (res.data[i].Title === '') {
+              res.data[i].Title = res.data[i].MissedProvince + '-' + res.data[i].MissedCity + ', 寻找' + res.data[i].Nickname
+            }
+            that.database = that.database.concat(res.data[i])
+          }
+          wx.setStorageSync('database', that.database)
+          console.log('database:', that.database)
+        }
+      })
+    },
     login () {
       var that = this
       console.log('login function', wx.getStorageSync('authSetting.userInfo'))
@@ -223,30 +249,7 @@ export default {
     this.logs = logs.map(log => formatTime(new Date(log)))
     // 获取用户授权
 
-    var that = this
-    wx.request({
-      url: wx.getStorageSync('requestUrl') + '/small/article/topics',
-      method: 'GET',
-      data: {
-        type: 'nearby',
-        page: '1'
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        // that.database[0] = res.data[0]
-        for (var i = 0; i < res.data.length; i++) {
-          console.log(res.data[i])
-          if (res.data[i].Title === '') {
-            res.data[i].Title = res.data[i].MissedProvince + '-' + res.data[i].MissedCity + ', 寻找' + res.data[i].Nickname
-          }
-          that.database = that.database.concat(res.data[i])
-        }
-        wx.setStorageSync('database', that.database)
-        console.log('database:', that.database)
-      }
-    })
+    this.request()
   }
 }
 </script>
