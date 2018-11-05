@@ -14,7 +14,7 @@
 
     <tx-video vid="e0354z3cqjp"></tx-video>
 
-    <div style="padding-top: 30px;background-color: #fff;" v-for="item in items">
+    <div style="padding-top: 30px;background-color: #fff;" v-for="(item, index) in items" :key="index">
       <div class="trend_container">
         <div class="img">
           <image :src=item.avatar style="width: 50px;height: 50px;"></image>

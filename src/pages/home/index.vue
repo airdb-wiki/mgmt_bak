@@ -20,26 +20,41 @@
       </div>
     </swiper>
 
+    <!-- 自定义navBar -->
+    <div class="bar">
+      <scroll-view :scroll-x="true" class="navbar">
+        <div v-for="(tab, index) in tabs" :key="tab.id" :class="[index == activeIndex ? 'item_on' : 'tab']" :id="index" @click="changeTab">{{tab}}</div>
+      </scroll-view>
+    </div>
+
     <!-- 内容 -->
     <!-- <form @submit="formSubmit_collect" report-submit="true"> -->
-    <div style="z-index: 0;">
+    <div style="z-index: 0;" v-if="activeIndex == 0">
       <!-- <button formType="submit"  hover-class="none" class='invisibleclass'></button> -->
       <!-- 在组件中收集formid -->
       <card :items="database"></card>
     </div>
+    <div style="z-index: 0;" v-if="activeIndex == 1">
+      <!-- <button formType="submit"  hover-class="none" class='invisibleclass'></button> -->
+      <!-- 在组件中收集formid -->
+      <div>老人走失</div>
+    </div>
+    <div style="z-index: 0;" v-if="activeIndex == 2">
+      <!-- <button formType="submit"  hover-class="none" class='invisibleclass'></button> -->
+      <!-- 在组件中收集formid -->
+      <div>离家出走</div>
+    </div>
+    <div style="z-index: 0;" v-if="activeIndex == 3">
+      <!-- <button formType="submit"  hover-class="none" class='invisibleclass'></button> -->
+      <!-- 在组件中收集formid -->
+      <div>人犯拐卖</div>
+    </div>
+    <div style="z-index: 0;" v-if="activeIndex == 4">
+      <!-- <button formType="submit"  hover-class="none" class='invisibleclass'></button> -->
+      <!-- 在组件中收集formid -->
+      <div>其他寻人</div>
+    </div>
     <!-- </form> -->
-
-    <!-- 自定义navBar -->
-    <div class="bar">
-      <scroll-view :scroll-x="true" class="navbar">
-        <div v-for="tab in tabs" :key="tab.id" class="tab">{{tab}}</div>
-      </scroll-view>
-    </div>
-    <div class="bar1" style="color: rgba(0, 0, 0, 0);">
-      <scroll-view :scroll-x="true" class="navbar1">
-        <div v-for="tab in tabs" :key="tab.id" class="tab1">{{tab}}</div>
-      </scroll-view>
-    </div>
 
     <!-- 底部登陆按钮 -->
     <!--
@@ -90,7 +105,8 @@ export default {
       parms: {
         type: 'nearby',
         page: 1
-      }
+      },
+      activeIndex: 0
     }
   },
   onShow () {
@@ -100,6 +116,9 @@ export default {
     // formSubmit_collect (e) {
     //   console.log('form发生了submit事件', e.mp.detail.formId)
     // },
+    changeTab (e) {
+      this.activeIndex = e.currentTarget.id
+    },
     login () {
       var that = this
       console.log('login function', wx.getStorageSync('authSetting.userInfo'))
@@ -282,6 +301,19 @@ export default {
   box-sizing: border-box;
   padding: 2px 0;
   position: relative;
+}
+.item_on{
+  color: #dc2323;;
+  font-weight: bold;
+  text-align: center;
+  font-size: 20px;
+  width: 100px;
+  display: inline-block;
+  box-sizing: border-box;
+  background-image: linear-gradient(to top, transparent 0, #fff 100%), url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1541312159946&di=698558c0ce1040cedf233c39b0d1841e&imgtype=0&src=http%3A%2F%2Fpic38.photophoto.cn%2F20160311%2F0021033817789866_b.jpg');
+  background-size: 140px 130px;
+  background-position: -20px 82px;
+  background-repeat: repeat;
 }
 .tab:hover{
   color: #dc2323;;
