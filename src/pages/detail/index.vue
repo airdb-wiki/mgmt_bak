@@ -9,22 +9,22 @@
       </button>
     </div> -->
 
-    <div class="navigation">
-      <div class="btn">
-        <navigator open-type="navigateBack">
-          <img src="/static/images/home/back.png" class="back">
-        </navigator>
+      <div class="navigation">
+        <div class="btn">
+          <navigator open-type="navigateBack">
+            <img src="/static/images/home/back.png" class="back">
+          </navigator>
 
-        <div style="border-left: 1px solid #e2e2e2;margin: 2px 10px 0 4px;height: 18px;"></div>
+          <div style="border-left: 1px solid #e2e2e2;margin: 2px 10px 0 4px;height: 18px;"></div>
 
-        <navigator open-type="reLaunch" url="/pages/home/main">
-          <img src="/static/images/home/home.png" class="home">
-        </navigator>
+          <navigator open-type="reLaunch" url="/pages/home/main">
+            <img src="/static/images/home/home.png" class="home">
+          </navigator>
+        </div>
+
+        <div v-if="!showTitle" class="title">详情</div>
+        <div v-else class="title">{{item.Title}}</div>
       </div>
-
-      <div v-if="!showTitle" class="title">详情</div>
-      <div v-else class="title">{{item.Title}}</div>
-    </div>
     <!-- navigation -->
 
     <scroll-view>

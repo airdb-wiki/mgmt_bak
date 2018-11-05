@@ -6,29 +6,29 @@
     <div class="trans" :style="style">
       <div class="nickName">{{userInfo.nickName}}</div>
       <div class="avatar">
-        <image :src="userInfo.avatarUrl"></image>
+        <img :src="userInfo.avatarUrl">
       </div>
     </div>
-    <image src="/static/images/home/sls.png" mode="scaleToFill" class="bg"></image>
-    <div class="more">+</div>
+    <img src="/static/images/home/sls.png" mode="scaleToFill" class="bg">
+    <button class="more" @click="plus">+</button>
 
+    <div style="padding-top: 30px;background-color: #fff" v-for="(item,index) in items" :key="index">
     <tx-video vid="e0354z3cqjp"></tx-video>
 
-    <div style="padding-top: 30px;background-color: #fff;" v-for="(item, index) in items" :key="index">
       <div class="trend_container">
         <div class="img">
-          <image :src=item.avatar style="width: 50px;height: 50px;"></image>
+          <img :src="item.avatar" style="width: 50px;height: 50px;">
         </div>
         <div class="content">
           <div style="font-size: 18px;font-weight: bold;">{{item.nickname}}</div>
           <div>{{item.textmsg}}</div>
           <div class="imgContainer">
-            <image :src=item.pictures[0] mode="aspectFill" @click="preview"/>
-            <image :src=item.pictures[1] mode="aspectFill" @click="preview"/>
+            <img :src=item.pictures[0] mode="aspectFill" @click="preview"/>
+            <img :src=item.pictures[1] mode="aspectFill" @click="preview"/>
           </div>
           <div class="talk">
-            <div>{{time}}</div>
-            <image src="/static/images/home/talk1.png"></image>
+            <div  class="talk_time">{{time}}</div>
+            <img src="/static/images/home/talk1.png">
           </div>
         </div>
       </div>
@@ -120,11 +120,27 @@ export default {
       wx.previewImage({
         urls: that.imgArr
       })
+    },
+
+    plus () {
+      wx.navigateTo({url: '/pages/newbg/main'})
+      // console.log('hello world')
     }
   },
+
   onLoad () {
     this.userInfo = wx.getStorageSync('userInfo')
     console.log(this.userInfo)
+  },
+
+  onShow () {
+    var newpost = wx.getStorageSync('newpost')
+    if (newpost) {
+      console.log('get post imgs')
+      console.log(newpost)
+      this.items.push(newpost)
+      wx.removeStorageSync('newpost')
+    }
   },
   async onPullDownRefresh () {
     wx.stopPullDownRefresh()
@@ -234,7 +250,9 @@ export default {
   height: 50px;
 }
 .content{
-  padding: 0px 40px 10px 10px;
+  /* padding: 0px 40px 10px 10px; */
+  display: flex;
+  flex-direction: column;
 }
 .imgContainer{
   display: flex;
@@ -247,17 +265,22 @@ export default {
   margin: 2px;
 }
 .talk{
-  position: relative;
+  /* position: relative; */
   display: flex;
+  flex-direction: row;
   padding-top: 5px;
 }
 .talk image{
   width: 20px;
   height: 20px;
-  padding-top: 5px;
-  position: absolute;
-  top: 5px;
-  right: 0;
+  /* padding-top: 5px; */
+  /* margin-right: 5px; */
+  /* position: absolute; */
+  /* top: 5px;
+  right: 0; */
+}
+.talk_time{
+  margin-right: 200px;
 }
 .more{
   position: fixed;
