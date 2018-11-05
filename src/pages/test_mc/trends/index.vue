@@ -12,6 +12,8 @@
     <image src="/static/images/home/sls.png" mode="scaleToFill" class="bg"></image>
     <div class="more">+</div>
 
+    <tx-video vid="e0354z3cqjp"></tx-video>
+
     <div style="padding-top: 30px;background-color: #fff;" v-for="item in items">
       <div class="trend_container">
         <div class="img">
@@ -31,7 +33,8 @@
         </div>
       </div>
     </div>
-    
+  <tx-video vid="e0354z3cqjp"></tx-video>
+  
   </div>
 </template>
 

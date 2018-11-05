@@ -14,6 +14,8 @@
       </div>
     </div>
 
+    <tx-video vid="m0028s08v11"></tx-video>
+
     <!-- 自定义navigation -->
     <!--
     <div class="navigation">

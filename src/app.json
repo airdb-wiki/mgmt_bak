@@ -24,6 +24,12 @@
     "pages/test_mc/trends/main",
     "pages/search/main"
   ],
+  "plugins": {
+    "tencentvideo": {
+      "version": "1.2.2",
+      "provider": "wxa75efa648b60994b"
+    }
+  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
