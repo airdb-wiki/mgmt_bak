@@ -16,6 +16,7 @@
     </div>
 
     <tx-video vid="m0028s08v11"></tx-video>
+    <img src="/static/images/home/like1.png" class="bg">
 
     <!-- 自定义navigation -->
     <!--
@@ -33,7 +34,8 @@
             <div class="weui-article__section">
                 <div class="weui-article__section">
                     <div class="weui-article__h1 myh">
-                      背景介绍
+                      <div style="background: linear-gradient(120deg, transparent 45%, #f3f3f3 60%, transparent 100%);">背景介绍</div>
+                      <img src="/static/images/home/like1.png">
                     </div>
                     <div class="weui-article__p">
                         宝贝回家小程序宗旨是为帮助寻找失踪儿童及一些流浪乞讨的孩子找家，为孩子家长及志愿者提供一个信息沟通的平台。  
@@ -51,7 +53,8 @@
                 </div>
                 <div class="weui-article__section">
                     <div class="weui-article__h1 myh">
-                      欢迎加入
+                      <div>欢迎加入</div>
+                      <img src="/static/images/home/like1.png" style="opacity: .5;">
                     </div>
                     <div class="weui-article__p">
                         如果您有足够的精力、技术投入，欢迎您的加入。 需至少满足如下条件一：
@@ -84,12 +87,17 @@ export default {
 
 <style scoped>
 .page{
-  background-color: #fff;
-  height: 100%;
-  background-image: linear-gradient(to top, transparent 0, #fff 100%), url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1541312159946&di=698558c0ce1040cedf233c39b0d1841e&imgtype=0&src=http%3A%2F%2Fpic38.photophoto.cn%2F20160311%2F0021033817789866_b.jpg');
-  background-size: 1080px 1040px;
-  background-position: -190px -190px;
-  background-repeat: no-repeat;
+  position: relative;
+}
+.bg{
+  z-index: -1;
+  position: absolute;
+  top: 100px;
+  left: 110px;
+  width: 460px;
+  height: 460px;
+  transform: rotate(-20deg);
+  opacity: .2;
 }
 .navigation {
   width: 100%;
@@ -112,6 +120,7 @@ export default {
   white-space: nowrap;
   line-height: 30pt;
   font-size: 18px;
+  font-weight: bold;
 }
 .btn {
   display: flex;
@@ -142,14 +151,24 @@ export default {
   height: 25px;
 }
 .myh{
+  margin: 0px;
+  position: relative;
+}
+.myh div{
   text-align: center;
   font-weight: bold;
-  line-height: 43px;
-  height: 50px;
-  margin: 0px;
-  background-image: linear-gradient(to top, transparent 0, #fff 100%), url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1541312159946&di=698558c0ce1040cedf233c39b0d1841e&imgtype=0&src=http%3A%2F%2Fpic38.photophoto.cn%2F20160311%2F0021033817789866_b.jpg');
-  background-size: 170px 140px;
-  background-position: 88px -52px;
-  background-repeat: no-repeat;
+  letter-spacing: 4px;
+  line-height: 49px;
+  z-index: 9999;
+  height: 52px;
+}
+.myh img{
+  position: absolute;
+  top: -4px;
+  left: 142px;
+  z-index: -1;
+  width: 60px;
+  height: 60px;
+  opacity: .7;
 }
 </style>
