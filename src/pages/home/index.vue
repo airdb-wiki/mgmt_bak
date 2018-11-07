@@ -196,6 +196,13 @@ export default {
   },
   // 转发
   onPullDownRefresh: function () {
+    wx.showLoading({
+      title: '正在更新...'
+    })
+    setTimeout(function () {
+      wx.hideLoading()
+    }, 500)
+
     var that = this
     wx.request({
       url: wx.getStorageSync('requestUrl') + '/small/article/topics',
