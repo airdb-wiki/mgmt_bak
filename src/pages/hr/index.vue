@@ -16,7 +16,7 @@
     </div>
 
     <tx-video vid="m0028s08v11"></tx-video>
-    <img src="/static/images/home/like1.png" class="bg">
+    <img src="https://wechat-1251018873.file.myqcloud.com/mina/base/icon/love-bg.png" class="bg">
 
     <!-- 自定义navigation -->
     <!--
@@ -35,7 +35,7 @@
                 <div class="weui-article__section">
                     <div class="weui-article__h1 myh">
                       <div style="background: linear-gradient(120deg, transparent 45%, #f3f3f3 60%, transparent 100%);">背景介绍</div>
-                      <img src="/static/images/home/like1.png">
+                      <img src="https://wechat-1251018873.file.myqcloud.com/mina/base/icon/love-bg.png">
                     </div>
                     <div class="weui-article__p">
                         宝贝回家小程序宗旨是为帮助寻找失踪儿童及一些流浪乞讨的孩子找家，为孩子家长及志愿者提供一个信息沟通的平台。  
@@ -54,7 +54,7 @@
                 <div class="weui-article__section">
                     <div class="weui-article__h1 myh">
                       <div>欢迎加入</div>
-                      <img src="/static/images/home/like1.png" style="opacity: .5;">
+                      <img src="https://wechat-1251018873.file.myqcloud.com/mina/base/icon/love-bg.png" style="opacity: .5;">
                     </div>
                     <div class="weui-article__p">
                         如果您有足够的精力、技术投入，欢迎您的加入。 需至少满足如下条件一：
