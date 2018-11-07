@@ -29,31 +29,23 @@
 
     <!-- 内容 -->
     <!-- <form @submit="formSubmit_collect" report-submit="true"> -->
-    <div style="z-index: 0;" v-if="activeIndex == 0">
-      <!-- <button formType="submit"  hover-class="none" class='invisibleclass'></button> -->
-      <!-- 在组件中收集formid -->
+    <div style="z-index: 0;">
       <card :items="database"></card>
     </div>
+    <!--
     <div style="z-index: 0;" v-if="activeIndex == 1">
-      <!-- <button formType="submit"  hover-class="none" class='invisibleclass'></button> -->
-      <!-- 在组件中收集formid -->
-      <div>老人走失</div>
+      <card :items="database"></card>
     </div>
     <div style="z-index: 0;" v-if="activeIndex == 2">
-      <!-- <button formType="submit"  hover-class="none" class='invisibleclass'></button> -->
-      <!-- 在组件中收集formid -->
-      <div>离家出走</div>
+      <card :items="database"></card>
     </div>
     <div style="z-index: 0;" v-if="activeIndex == 3">
-      <!-- <button formType="submit"  hover-class="none" class='invisibleclass'></button> -->
-      <!-- 在组件中收集formid -->
-      <div>人犯拐卖</div>
+      <card :items="database"></card>
     </div>
     <div style="z-index: 0;" v-if="activeIndex == 4">
-      <!-- <button formType="submit"  hover-class="none" class='invisibleclass'></button> -->
-      <!-- 在组件中收集formid -->
-      <div>其他寻人</div>
+      <card :items="database"></card>
     </div>
+    -->
     <!-- </form> -->
 
     <!-- 底部登陆按钮 -->
@@ -104,6 +96,8 @@ export default {
       cityList: [],
       parms: {
         type: 'nearby',
+        tag: '',
+        category: '',
         page: 1
       },
       activeIndex: 0
@@ -117,17 +111,20 @@ export default {
     //   console.log('form发生了submit事件', e.mp.detail.formId)
     // },
     changeTab (e) {
+      this.database = []
+      this.parms.page = 1
       this.activeIndex = e.currentTarget.id
+      this.parms.category = this.tabs[e.currentTarget.id]
+      console.log('-----------changeTab', e.currentTarget.id, this.parms.category)
+      this.request()
     },
     request () {
       var that = this
+      console.log(that.parms)
       wx.request({
         url: wx.getStorageSync('requestUrl') + '/small/article/topics',
         method: 'GET',
-        data: {
-          type: 'nearby',
-          page: '1'
-        },
+        data: that.parms,
         header: {
           'content-type': 'application/json'
         },

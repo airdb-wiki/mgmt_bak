@@ -135,6 +135,7 @@ export default {
   background: #e2e2e2;
   margin-right: 4px;
   font-size: 14px;
+  color: red;
 }
 .weui-cell{
   position: relative;
