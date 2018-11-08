@@ -317,10 +317,10 @@ export default {
   width: 100px;
   display: inline-block;
   box-sizing: border-box;
-  background-image: linear-gradient(to top, transparent 0, #fff 100%), url('https://wechat-1251018873.file.myqcloud.com/mina/base/icon/love-select.png');
-  background-size: 5px 3px;
-  background-position: -20px 82px;
-  background-repeat: repeat;
+  background-image: url('https://wechat-1251018873.file.myqcloud.com/mina/base/icon/love-select.png');
+  background-size: 50px 30px;
+  background-position: 23px -1px;
+  background-repeat: no-repeat;
 }
 .tab:hover{
   color: #dc2323;;
@@ -330,10 +330,10 @@ export default {
   width: 100px;
   display: inline-block;
   box-sizing: border-box;
-  background-image: linear-gradient(to top, transparent 0, #fff 100%), url('https://wechat-1251018873.file.myqcloud.com/mina/base/icon/love-select.png');
-  background-size: 32px 28px;
-  background-position: -20px 82px;
-  background-repeat: repeat;
+  background-image: url('https://wechat-1251018873.file.myqcloud.com/mina/base/icon/love-select.png');
+  background-size: 50px 30px;
+  background-position: 23px -1px;
+  background-repeat: no-repeat;
 }
 .mySwiper{
   margin: auto;
