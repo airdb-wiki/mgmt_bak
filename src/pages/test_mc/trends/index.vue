@@ -21,10 +21,11 @@
         </div>
         <div class="content">
           <div style="font-size: 18px;font-weight: bold;">{{item.nickname}}</div>
-          <div>{{item.textmsg}}</div>
+          <p style="word-break: break-all">{{item.textmsg}}</p>
           <div class="imgContainer">
-            <img :src=item.pictures[0] mode="aspectFill" @click="preview"/>
-            <img :src=item.pictures[1] mode="aspectFill" @click="preview"/>
+            <template  v-for="(pic,ind) in item.pictures">
+               <img :src=pic :key=ind mode="aspectFill" @click="preview"/>
+            </template> 
           </div>
           <div class="talk">
             <div  class="talk_time">{{time}}</div>
