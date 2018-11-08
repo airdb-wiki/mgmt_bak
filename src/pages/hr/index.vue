@@ -34,7 +34,7 @@
             <div class="weui-article__section">
                 <div class="weui-article__section">
                     <div class="weui-article__h1 myh">
-                      <div style="background: linear-gradient(120deg, transparent 45%, #f3f3f3 60%, transparent 100%);">背景介绍</div>
+                      <div>背景介绍</div>
                       <img src="https://wechat-1251018873.file.myqcloud.com/mina/base/icon/love-bg.png">
                     </div>
                     <div class="weui-article__p">

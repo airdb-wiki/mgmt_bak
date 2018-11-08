@@ -319,7 +319,7 @@ export default {
   box-sizing: border-box;
   background-image: url('https://wechat-1251018873.file.myqcloud.com/mina/base/icon/love-select.png');
   background-size: 50px 30px;
-  background-position: 23px -1px;
+  background-position: 23px 0px;
   background-repeat: no-repeat;
 }
 .tab:hover{
@@ -332,7 +332,7 @@ export default {
   box-sizing: border-box;
   background-image: url('https://wechat-1251018873.file.myqcloud.com/mina/base/icon/love-select.png');
   background-size: 50px 30px;
-  background-position: 23px -1px;
+  background-position: 23px 0px;
   background-repeat: no-repeat;
 }
 .mySwiper{
