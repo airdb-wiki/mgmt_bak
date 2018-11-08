@@ -89,7 +89,12 @@ export default {
           badge: ''
         }
         // console.log(postImgs);
-        wx.setStorageSync('newpost', post)
+        var localPosts = wx.getStorageSync('localPosts')
+        if (!localPosts) localPosts = []
+        localPosts.push(post)
+        console.log('get local', localPosts)
+        wx.setStorageSync('localPosts', localPosts)
+        // wx.setStorageSync('newpost', post)
         this.tempFilePaths = []
         this.content = ''
         this.hideAdd = 0

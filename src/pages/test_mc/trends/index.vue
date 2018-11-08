@@ -158,17 +158,23 @@ export default {
   },
 
   onShow () {
-    var newpost = wx.getStorageSync('newpost')
-    if (newpost) {
+    // var newpost = wx.getStorageSync('newpost')
+    var localPosts = wx.getStorageSync('localPosts')
+    if (localPosts) {
       console.log('get post imgs')
-      console.log(newpost)
-      this.items.push(newpost)
-      wx.removeStorageSync('newpost')
+      console.log(localPosts)
+      // this.items.push(newpost)
+      this.items = this.items.concat(localPosts)
+      console.log(this.items)
+      // wx.removeStorageSync('newpost')
     }
   },
   async onPullDownRefresh () {
     wx.stopPullDownRefresh()
   }
+  // onDestroy () {
+  //   wx.removeStorageSync('localPosts')
+  // }
 }
 </script>
 
