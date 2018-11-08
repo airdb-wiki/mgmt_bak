@@ -1,7 +1,7 @@
 <template>
    <div class="b-container">
 
-     <div class="navigation">
+    <div class="navigation">
       <div class="btn">
         <navigator open-type="navigateBack">
           <img src="/static/images/home/back.png" class="back">
@@ -11,8 +11,7 @@
           <img src="/static/images/home/home.png" class="home">
         </navigator>
       </div>
-      <div v-if="!showTitle" class="title">详情</div>
-      <div v-else class="title">宝贝回家</div>
+      <div class="title">宝贝回家</div>
     </div>
 
     <div class="f-container">

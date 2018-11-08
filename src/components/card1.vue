@@ -29,7 +29,7 @@
               </navigator> -->
 
               <!-- 点击地址时收集 -->
-              <div class="addr-wrapper" @click="formSubmit_addr" :id="item.UUID">
+              <div class="addr-wrapper" @click.stop="formSubmit_addr" :id="item.UUID">
                 <img src="/static/images/home/position.png" style="width: 20px;height: 20px;">
                 <div class="text-addr">
                   {{item.MissedAddress}}
@@ -135,6 +135,7 @@ export default {
   background: #e2e2e2;
   margin-right: 4px;
   font-size: 14px;
+  color: red;
 }
 .weui-cell{
   position: relative;

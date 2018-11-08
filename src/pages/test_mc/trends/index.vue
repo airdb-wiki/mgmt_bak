@@ -34,7 +34,26 @@
         </div>
       </div>
     </div>
-  <tx-video vid="e0354z3cqjp"></tx-video>
+
+    <!-- 测试 -->
+    <div class="trend_container" style="background-color: #fff;">
+        <div class="img">
+          <img :src="userInfo.avatarUrl" style="width: 50px;height: 50px;">
+        </div>
+        <div class="content">
+          <div style="font-size: 18px;font-weight: bold;">{{userInfo.nickName}}</div>
+          <div class="arc">
+            <img :src="arc.imgUrl">
+            <div>{{arc.title}}</div>
+          </div>
+          <div class="talk">
+            <div  class="talk_time">{{time}}</div>
+            <img src="/static/images/home/talk1.png">
+          </div>
+        </div>
+      </div>
+
+    <tx-video vid="e0354z3cqjp"></tx-video>
   
   </div>
 </template>
@@ -48,6 +67,10 @@ export default {
   },
   data () {
     return {
+      arc: {
+        imgUrl: '/static/images/home/sls.png',
+        title: '寻家工作组志愿者精彩跟进该案例，及时和陈连发进行沟通'
+      },
       tabs: [
         '家寻宝贝', '宝贝寻家', '救助寻亲', '流浪乞讨', '实时寻人', '其他寻人'
       ],
@@ -254,6 +277,7 @@ export default {
   /* padding: 0px 40px 10px 10px; */
   display: flex;
   flex-direction: column;
+  padding-left: 8px;
 }
 .imgContainer{
   display: flex;
@@ -296,5 +320,24 @@ export default {
   font-size: 35px;
   text-align: center;
   line-height: 45px;
+}
+.arc{
+  padding: 5px;
+  background-color: #c2c2c2;
+  display: flex;
+  flex-direction: row;
+}
+.arc img{
+  height: 42px;
+  width: 42px;
+  margin-top: 3px;
+}
+.arc div{
+  padding-left: 8px;
+  flex: 1;
+  width: 230px;
+  height: 28px;
+  text-overflow: ellipsis;
+  white-space:pre-wrap;
 }
 </style>

@@ -29,31 +29,23 @@
 
     <!-- 内容 -->
     <!-- <form @submit="formSubmit_collect" report-submit="true"> -->
-    <div style="z-index: 0;" v-if="activeIndex == 0">
-      <!-- <button formType="submit"  hover-class="none" class='invisibleclass'></button> -->
-      <!-- 在组件中收集formid -->
+    <div style="z-index: 0;">
       <card :items="database"></card>
     </div>
+    <!--
     <div style="z-index: 0;" v-if="activeIndex == 1">
-      <!-- <button formType="submit"  hover-class="none" class='invisibleclass'></button> -->
-      <!-- 在组件中收集formid -->
-      <div>老人走失</div>
+      <card :items="database"></card>
     </div>
     <div style="z-index: 0;" v-if="activeIndex == 2">
-      <!-- <button formType="submit"  hover-class="none" class='invisibleclass'></button> -->
-      <!-- 在组件中收集formid -->
-      <div>离家出走</div>
+      <card :items="database"></card>
     </div>
     <div style="z-index: 0;" v-if="activeIndex == 3">
-      <!-- <button formType="submit"  hover-class="none" class='invisibleclass'></button> -->
-      <!-- 在组件中收集formid -->
-      <div>人犯拐卖</div>
+      <card :items="database"></card>
     </div>
     <div style="z-index: 0;" v-if="activeIndex == 4">
-      <!-- <button formType="submit"  hover-class="none" class='invisibleclass'></button> -->
-      <!-- 在组件中收集formid -->
-      <div>其他寻人</div>
+      <card :items="database"></card>
     </div>
+    -->
     <!-- </form> -->
 
     <!-- 底部登陆按钮 -->
@@ -104,6 +96,8 @@ export default {
       cityList: [],
       parms: {
         type: 'nearby',
+        tag: '',
+        category: '',
         page: 1
       },
       activeIndex: 0
@@ -117,7 +111,36 @@ export default {
     //   console.log('form发生了submit事件', e.mp.detail.formId)
     // },
     changeTab (e) {
+      this.database = []
+      this.parms.page = 1
       this.activeIndex = e.currentTarget.id
+      this.parms.category = this.tabs[e.currentTarget.id]
+      console.log('-----------changeTab', e.currentTarget.id, this.parms.category)
+      this.request()
+    },
+    request () {
+      var that = this
+      console.log(that.parms)
+      wx.request({
+        url: wx.getStorageSync('requestUrl') + '/small/article/topics',
+        method: 'GET',
+        data: that.parms,
+        header: {
+          'content-type': 'application/json'
+        },
+        success: function (res) {
+          // that.database[0] = res.data[0]
+          for (var i = 0; i < res.data.length; i++) {
+            console.log(res.data[i])
+            if (res.data[i].Title === '') {
+              res.data[i].Title = res.data[i].MissedProvince + '-' + res.data[i].MissedCity + ', 寻找' + res.data[i].Nickname
+            }
+            that.database = that.database.concat(res.data[i])
+          }
+          wx.setStorageSync('database', that.database)
+          console.log('database:', that.database)
+        }
+      })
     },
     login () {
       var that = this
@@ -173,6 +196,13 @@ export default {
   },
   // 转发
   onPullDownRefresh: function () {
+    wx.showLoading({
+      title: '正在更新...'
+    })
+    setTimeout(function () {
+      wx.hideLoading()
+    }, 500)
+
     var that = this
     wx.request({
       url: wx.getStorageSync('requestUrl') + '/small/article/topics',
@@ -223,30 +253,7 @@ export default {
     this.logs = logs.map(log => formatTime(new Date(log)))
     // 获取用户授权
 
-    var that = this
-    wx.request({
-      url: wx.getStorageSync('requestUrl') + '/small/article/topics',
-      method: 'GET',
-      data: {
-        type: 'nearby',
-        page: '1'
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        // that.database[0] = res.data[0]
-        for (var i = 0; i < res.data.length; i++) {
-          console.log(res.data[i])
-          if (res.data[i].Title === '') {
-            res.data[i].Title = res.data[i].MissedProvince + '-' + res.data[i].MissedCity + ', 寻找' + res.data[i].Nickname
-          }
-          that.database = that.database.concat(res.data[i])
-        }
-        wx.setStorageSync('database', that.database)
-        console.log('database:', that.database)
-      }
-    })
+    this.request()
   }
 }
 </script>
@@ -310,10 +317,10 @@ export default {
   width: 100px;
   display: inline-block;
   box-sizing: border-box;
-  background-image: linear-gradient(to top, transparent 0, #fff 100%), url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1541312159946&di=698558c0ce1040cedf233c39b0d1841e&imgtype=0&src=http%3A%2F%2Fpic38.photophoto.cn%2F20160311%2F0021033817789866_b.jpg');
-  background-size: 140px 130px;
-  background-position: -20px 82px;
-  background-repeat: repeat;
+  background-image: url('https://wechat-1251018873.file.myqcloud.com/mina/base/icon/love-select.png');
+  background-size: 50px 30px;
+  background-position: 23px 0px;
+  background-repeat: no-repeat;
 }
 .tab:hover{
   color: #dc2323;;
@@ -323,10 +330,10 @@ export default {
   width: 100px;
   display: inline-block;
   box-sizing: border-box;
-  background-image: linear-gradient(to top, transparent 0, #fff 100%), url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1541312159946&di=698558c0ce1040cedf233c39b0d1841e&imgtype=0&src=http%3A%2F%2Fpic38.photophoto.cn%2F20160311%2F0021033817789866_b.jpg');
-  background-size: 140px 130px;
-  background-position: -20px 82px;
-  background-repeat: repeat;
+  background-image: url('https://wechat-1251018873.file.myqcloud.com/mina/base/icon/love-select.png');
+  background-size: 50px 30px;
+  background-position: 23px 0px;
+  background-repeat: no-repeat;
 }
 .mySwiper{
   margin: auto;

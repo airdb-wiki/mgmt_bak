@@ -34,6 +34,8 @@ export default {
 
     wx.setStorageSync('wecosSignatureUrl', wecosSignatureUrl)
 
+    wx.setStorageSync('cdn', 'https://wechat-1251018873.file.myqcloud.com')
+
     // 调用API从本地缓存中获取数据
     const logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())

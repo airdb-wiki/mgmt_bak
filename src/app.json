@@ -1,7 +1,7 @@
 {
   "pages": [
-    
     "pages/home/main",
+    "pages/hr/main",
     "pages/test_mc/successPage/main",
     "pages/location/main",
     "pages/test_mc/hzw_map/main",
@@ -10,7 +10,6 @@
     "pages/test_mc/hzw_text/main",
     "pages/test_mc/main",
     "pages/test_mc/voicemail/main",
-    "pages/hr/main",
     "pages/test/main",
     "pages/newbg/main",
     "pages/test_mc/serviceTime/main",
