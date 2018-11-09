@@ -322,19 +322,6 @@ export default {
   background-position: 23px 0px;
   background-repeat: no-repeat;
 }
-.tab:hover{
-  color: #dc2323;;
-  font-weight: bold;
-  text-align: center;
-  font-size: 20px;
-  width: 100px;
-  display: inline-block;
-  box-sizing: border-box;
-  background-image: url('https://wechat-1251018873.file.myqcloud.com/mina/base/icon/love-select.png');
-  background-size: 50px 30px;
-  background-position: 23px 0px;
-  background-repeat: no-repeat;
-}
 .mySwiper{
   margin: auto;
   margin-top: 107px;
@@ -356,7 +343,7 @@ export default {
   background: rgba(255, 255, 255, .8);
   z-index: 9999;
   height: 30px;
-  padding: 0 7px;
+  padding: 0 13px;
   top: 68px;
   right: 0px;
 }
