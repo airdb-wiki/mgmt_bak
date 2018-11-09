@@ -348,15 +348,16 @@ export default {
   margin-left: 10px;
 }
 .bar::after{
-  content: 'ab';
-  color: transparent;
-  line-height: 28px;
+  content: '';
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 35px;
   position: fixed;
-  background: linear-gradient(to right, transparent 20%, #fff 80%);
+  background: rgba(255, 255, 255, .8);
   z-index: 9999;
   height: 30px;
   padding: 0 7px;
-  top: 75px;
+  top: 68px;
   right: 0px;
 }
 </style>
