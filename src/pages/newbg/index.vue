@@ -43,11 +43,7 @@ export default {
       // isnull: true
     }
   },
-  // computed: {
-  //   isnull () {
-  //     return (this.content.length === 0) && (this.tempFilePaths.length === 0)
-  //   }
-  // },
+ 
   watch: {
     content () {
       this.isnull = (this.content.length === 0)
@@ -98,6 +94,7 @@ export default {
         this.tempFilePaths = []
         this.content = ''
         this.hideAdd = 0
+        this.isnull = 0
         console.log(post)
         wx.switchTab({
           url: '/pages/test_mc/trends/main'
@@ -168,7 +165,7 @@ export default {
   width: 250rpx;
   height: 100rpx;
   background-color: rgba(136, 123, 123, 0.205);
-  margin-right: s0rpx;
+  margin-right: 0rpx;
 }
 .navigation {
   width: 100%;
