@@ -44,11 +44,23 @@
         </div>
       </div>
       
-
-      <div class="weui-cells searchbar-result" v-if="inputVal.length > 0" :hidden="showSearchBar">
+      <div v-if="inputVal.length > 0" :hidden="showSearchBar"
+        style="font-size: 16px;color: #414141;">搜索结果</div>
+      <div class="weui-cells searchbar-result" v-if="inputVal.length > 0" :hidden="showSearchBar"
+        style="padding-top: 5px;margin-top: 0.1789em;">
         <div @click="navTo" v-for="(item, index) in tipKeys" :key="index" :id="item.UUID">
           <div class="weui-cell__bd">
-            <div>{{item.Title}}</div>
+            <div class="avatar">
+              <img :src="item.AvatarUrl">
+            </div>
+            <div class="info">
+              <div class="info_title">{{item.Title}}</div>
+              <div class="info_1">
+                <text v-if="item.Gender == 2">女</text>
+                <text v-else>男</text>
+                <text>{{item.Category}}</text>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -198,7 +210,6 @@ export default {
   height: 200px;
 }
 .searchbar-result {
-  margin-top: 30px;
   font-size: 14px;
 }
 .searchbar-result:before {
@@ -208,7 +219,39 @@ export default {
   padding: 12px 15px 12px 35px;
 }
 .weui-cell__bd{
+  padding: 0px 10px;
+  margin: 5px;
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid #e2e2e2;
+  padding-bottom: 5px;
+}
+.avatar{
+  width: 50px;
+  height: 50px;
+}
+.avatar img{
+  width: 50px;
+  height: 50px;
+  border-radius: 4px;
+}
+.info{
   padding: 5px 10px;
+}
+.info_title{
+  width: 270px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-bottom: 5px;
+}
+.info_1 text{
+  padding: 0px 10px;
+  border-radius: 5px;
+  background: #e2e2e2;
+  margin-right: 4px;
+  font-size: 14px;
+  color: red;
 }
 .history{
   display: flex;
