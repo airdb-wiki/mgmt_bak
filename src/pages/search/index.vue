@@ -91,6 +91,9 @@ export default {
       this.inputPla = '搜索'
     }
   },
+  async onPullDownRefresh () {
+    wx.stopPullDownRefresh()
+  },
   methods: {
     stoNav (e) {
       console.log(e.currentTarget.id)
@@ -134,15 +137,23 @@ export default {
         url: wx.getStorageSync('requestUrl') + '/small/article/keywords',
         method: 'GET',
         data: {
-          nickname: '',
-          babyid: that.inputVal
+          nickname: that.inputTyping
         },
         header: {
           'content-type': 'application/json'
         },
         success: function (res) {
-          console.log('debug=====sucess')
           console.log(res)
+          if (res.data.length === 0) {
+            wx.showToast({
+              title: '搜索内容不存在',
+              icon: 'none',
+              duration: 2000,
+              mask: true
+            })
+          } else {
+            that.tipKeys = that.tipKeys.concat(res.data[0])
+          }
         },
         fail: function (res) {
           console.log('debug=====fail')

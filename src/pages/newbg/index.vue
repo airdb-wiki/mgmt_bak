@@ -43,7 +43,7 @@ export default {
       // isnull: true
     }
   },
- 
+
   watch: {
     content () {
       this.isnull = (this.content.length === 0)
