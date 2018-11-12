@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-for="(item, index) in items" :key="index">
+    <!-- <div v-for="(item, index) in items" :key="index">
       <div class="time">
         <text>{{item.time}}</text>
       </div>
@@ -9,32 +9,52 @@
         <div class="title">{{item.title}}</div>
         <div class="general">{{item.general}}</div>
       </div>
-    </div>
+    </div> -->
+    <light-timeline :items='items'></light-timeline>
   </div>
 </template>
 
 <script>
+const theme = 'red'
 export default {
   data () {
     return {
+      // items: [
+      //   {
+      //     imgUrl: '/static/images/home/sls.png',
+      //     title: '到底什么算“精日”？南京这个条例给你答案！',
+      //     general: '“将改革开放进行到底”',
+      //     time: '10月10日 早上8:32'
+      //   },
+      //   {
+      //     imgUrl: '/static/images/home/sls.png',
+      //     title: '到底什么算“精日”？南京这个条例给你答案！',
+      //     general: '“将改革开放进行到底”',
+      //     time: '10月10日 早上8:32'
+      //   },
+      //   {
+      //     imgUrl: '/static/images/home/sls.png',
+      //     title: '到底什么算“精日”？南京这个条例给你答案！',
+      //     general: '“将改革开放进行到底”',
+      //     time: '10月10日 早上8:32'
+      //   }
+      // ],
       items: [
         {
-          imgUrl: '/static/images/home/sls.png',
-          title: '到底什么算“精日”？南京这个条例给你答案！',
-          general: '“将改革开放进行到底”',
-          time: '10月10日 早上8:32'
+          tag: '2018-01-12',
+          content: 'hallo'
         },
         {
-          imgUrl: '/static/images/home/sls.png',
-          title: '到底什么算“精日”？南京这个条例给你答案！',
-          general: '“将改革开放进行到底”',
-          time: '10月10日 早上8:32'
+          tag: '2018-01-13',
+          color: '#dcdcdc',
+          type: 'circle',
+          content: 'world'
         },
         {
-          imgUrl: '/static/images/home/sls.png',
-          title: '到底什么算“精日”？南京这个条例给你答案！',
-          general: '“将改革开放进行到底”',
-          time: '10月10日 早上8:32'
+          type: 'star',
+          tag: '2018-01-14',
+          htmlMode: true,
+          content: `<div style="color: ${theme};"> =v = </div>`
         }
       ]
     }
