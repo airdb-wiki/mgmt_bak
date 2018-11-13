@@ -88,6 +88,8 @@ export default {
 <style scoped>
 .page{
   position: relative;
+  width: 340px;
+  height: 100%;
 }
 .bg{
   z-index: -1;
@@ -165,7 +167,7 @@ export default {
 .myh img{
   position: absolute;
   top: -4px;
-  left: 142px;
+  left: 123px;
   z-index: -1;
   width: 60px;
   height: 60px;
