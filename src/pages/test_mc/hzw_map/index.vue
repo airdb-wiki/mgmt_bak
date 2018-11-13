@@ -45,12 +45,6 @@
           <div class='getAddress-text'>小程序Target</div>
         </div>
 
-        <div class='expressRecord-date' style="left: -10rpx;font-size: 16px;">
-          <div class='expressRecord-date-time' style="color: rgb(104, 173, 0);">
-            2018
-          </div>
-        </div>
-
         <!-- 顶部时间轴线 -->
         <div class='online-top-close'></div>
       </div>
@@ -62,17 +56,23 @@
       <div class='expressRecord-single-close' v-for="(item, index) in items" :key="index">
         <div class='expressRecord-single-noReach-online-top-close'>
           <div class='online-top-close'></div>
-          <div class='dot-close' :style="[index == 0 ? 'background: rgb(186, 255, 82);' : '']"></div>
+          <div class='dot-close' v-if="item.day.length == 4" style="background: cyan;"></div>
+          <div class='dot-close' v-else :style="[index == 1 ? 'background: rgb(186, 255, 82);' : '']"></div>
           <div class='online-bottom'></div>
         </div>
 
         <div class='expressRecord-text'>
           <div class='expressRecord-status'></div>
-          <div class='expressRecord-status-address'>{{item.content}}</div>
+          <div class='expressRecord-status-address' :style="[item.day.length == 4 ? 'color: cyan;font-weight: bold;' : '']">{{item.content}}</div>
         </div>
 
-        <div class='expressRecord-date'>
-          <div class='expressRecord-date-time' :style="[index == 0 ? 'margin-left: 6px;' : '']">
+        <div class='expressRecord-date' v-if="item.day.length == 4">
+          <div class='expressRecord-date-time' style="color: cyan;">
+            {{item.day}}
+          </div>
+        </div>
+        <div class='expressRecord-date' v-else>
+          <div class='expressRecord-date-time' :style="[index == 1 ? 'margin-left: 6px;' : '']">
             {{item.day}}
           </div>
         </div>
@@ -89,6 +89,9 @@ export default {
   data () {
     return {
       items: [{
+        day: '2018',
+        content: '———————————————————'
+      }, {
         content: '正在努力实现小程序插件的使用，欢迎大家加入',
         day: '今天'
       }, {
