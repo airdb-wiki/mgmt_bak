@@ -33,7 +33,14 @@
 
 <script>
 export default {
-  onLoad: function () {},
+  onLoad: function () {
+    var date = new Date().toString()
+    console.log('onload ', date)
+    this.content = ''
+    this.hideAdd = 0
+    this.tempFilePaths = []
+    this.isnull = true
+  },
   data () {
     return {
       tempFilePaths: [],
@@ -43,7 +50,6 @@ export default {
       // isnull: true
     }
   },
- 
   watch: {
     content () {
       this.isnull = (this.content.length === 0)

@@ -11,6 +11,7 @@
     </div>
     <img src="/static/images/home/sls.png" mode="scaleToFill" class="bg">
     <button class="more" @click="plus">+</button>
+    <button class="more" @click="clear" style="background-color: red; bottom:120px;">-</button>
 
     <div style="padding-top: 30px;background-color: #fff" v-for="(item,index) in items" :key="index">
     <tx-video vid="e0354z3cqjp"></tx-video>
@@ -23,8 +24,8 @@
           <div style="font-size: 18px;font-weight: bold;">{{item.nickname}}</div>
           <p style="word-break: break-all">{{item.textmsg}}</p>
           <div class="imgContainer">
-            <template  v-for="(pic,ind) in item.pictures">
-               <img :src=pic :key=ind mode="aspectFill" @click="preview"/>
+            <template  v-for="(pic,ind) in item.pictures" >
+               <img :src=pic :key=ind mode="aspectFill" @click="previewImg(index,pic,$event)"/>
             </template> 
           </div>
           <div class="talk">
@@ -139,20 +140,61 @@ export default {
     navTo () {
       wx.navigateTo({ url: '/pages/test_mc/successPage/main' })
     },
-    preview () {
-      var that = this
+    // preview () {
+    //   var that = this
+    //   wx.previewImage({
+    //     urls: that.imgArr
+    //   })
+    // },
+    previewImg: function (index, pic, e) {
+      // console.log(e.currentTarget.dataset.index)
+      // var that = this
+      // var index = e.currentTarget.dataset.index
+      var imgArr = this.items[index].pictures
+      // var current = pic
+      console.log(imgArr)
+      console.log(index)
+      console.log(pic)
       wx.previewImage({
-        urls: that.imgArr
+        current: pic, // 当前图片地址 imgArr[index]
+        urls: imgArr, // 所有要预览的图片的地址集合 数组形式
+        success: function (res) {}
       })
     },
+    // previewImg(ind){
+    //     let that = this
+    //     wx.showActionSheet({
+    //       itemList:["预览","删除"],
+    //       success: function(res) {
+    //         if(res.tapIndex === 0){
+    //           wx.previewImage({
+    //             current:that.urls[index],
+    //             urls:that.urls
+    //           });
+    //         } else {
+    //             that.urls.splice(index,1);
+    //             that.$emit("delete",that.urls);
+    //           }
+    //         }
+    //     })
+    // },
 
     plus () {
       wx.navigateTo({url: '/pages/newbg/main'})
       // console.log('hello world')
+    },
+    clear () {
+      wx.removeStorageSync('localPosts')
+      console.log('success')
+      wx.showToast({
+        title: '清除缓存成功,请刷新页面',
+        icon: 'none',
+        duration: 1000
+      })
     }
   },
-
   onLoad () {
+    console.log(' trends page onload')
     this.userInfo = wx.getStorageSync('userInfo')
     console.log(this.userInfo)
   },
