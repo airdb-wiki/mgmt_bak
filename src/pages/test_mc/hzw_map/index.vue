@@ -44,44 +44,25 @@
           </div>
           <div class='getAddress-text'>小程序Target</div>
         </div>
+
+        <div class='expressRecord-date' style="left: -10rpx;font-size: 16px;">
+          <div class='expressRecord-date-time' style="color: rgb(104, 173, 0);">
+            2018
+          </div>
+        </div>
+
         <!-- 顶部时间轴线 -->
         <div class='online-top-close'></div>
       </div>
 
 
-      <!-- Now时间节点 -->
-      <div class='expressRecord-single-close'>
-
-        <!-- 左边子容器 -->
-        <div class='expressRecord-single-noReach-online-top-close'>
-          <!-- 正在进行的时间轴上半个时间线 -->
-          <div class='online-top-close'></div>
-          <!-- 正在进行的时间轴点 -->
-          <div class='dot-close' style="background: rgb(186, 255, 82);"></div>
-          <!-- 正在进行的时间轴下半个时间线 -->
-          <div class='online-bottom'></div>
-        </div>
-
-        <!-- 右边子容器 -->
-        <div class='expressRecord-text'>
-          <div class='expressRecord-statusing'>开发中</div>
-          <div class='expressRecord-status-addressing'>正在努力实现小程序插件的使用，欢迎大家加入</div>
-        </div>
-
-        <!-- 相对父级容器绝对定位的日期 -->
-        <div class='expressRecord-dating'>
-          <div class='expressRecord-date-text' style="margin-left: 8rpx;">
-            今天
-          </div>
-        </div>
-      </div>
 
 
       <!-- 单个时间轴结点 -->
       <div class='expressRecord-single-close' v-for="(item, index) in items" :key="index">
         <div class='expressRecord-single-noReach-online-top-close'>
           <div class='online-top-close'></div>
-          <div class='dot-close'></div>
+          <div class='dot-close' :style="[index == 0 ? 'background: rgb(186, 255, 82);' : '']"></div>
           <div class='online-bottom'></div>
         </div>
 
@@ -91,12 +72,9 @@
         </div>
 
         <div class='expressRecord-date'>
-          <div class='expressRecord-date-text'>
-            {{item.year}}
-          </div>
-          <view class='expressRecord-date-time'>
+          <div class='expressRecord-date-time' :style="[index == 0 ? 'margin-left: 6px;' : '']">
             {{item.day}}
-        </view>
+          </div>
         </div>
       </div>
 
@@ -111,24 +89,19 @@ export default {
   data () {
     return {
       items: [{
+        content: '正在努力实现小程序插件的使用，欢迎大家加入',
+        day: '今天'
+      }, {
         content: '实现xxx功能',
-        year: '2018',
         day: '10-21'
       }, {
         content: '实现xxx功能',
-        year: '2018',
         day: '10-21'
       }, {
         content: '实现xxx功能',
-        year: '2018',
         day: '10-21'
       }, {
         content: '实现xxx功能',
-        year: '2018',
-        day: '10-21'
-      }, {
-        content: '实现xxx功能',
-        year: '2018',
         day: '10-21'
       }
       ]
@@ -196,7 +169,7 @@ page {
   width: 710rpx;
   height: 155rpx;
   background: #fff;
-  margin: 70px auto 10rpx;
+  margin: 146rpx auto 10rpx;
   display: flex;
   border-radius: 10rpx;
 }
@@ -247,6 +220,7 @@ page {
   color: #999;
   display: flex;
   margin-left: 40rpx;
+  position: relative;
 }
 
 .expressRecord-top {
@@ -356,6 +330,7 @@ page {
 .expressRecord-status-address {
   font-size: 12px;
   color: #999;
+  word-wrap: normal;
 }
 
 .expressRecord-dating {
