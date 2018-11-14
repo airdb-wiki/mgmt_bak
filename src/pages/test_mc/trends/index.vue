@@ -68,6 +68,7 @@ export default {
   },
   data () {
     return {
+      // flag: false,
       arc: {
         imgUrl: '/static/images/home/sls.png',
         title: '寻家工作组志愿者精彩跟进该案例，及时和陈连发进行沟通'
@@ -140,45 +141,15 @@ export default {
     navTo () {
       wx.navigateTo({ url: '/pages/test_mc/successPage/main' })
     },
-    // preview () {
-    //   var that = this
-    //   wx.previewImage({
-    //     urls: that.imgArr
-    //   })
-    // },
     previewImg: function (index, pic, e) {
-      // console.log(e.currentTarget.dataset.index)
-      // var that = this
-      // var index = e.currentTarget.dataset.index
       var imgArr = this.items[index].pictures
-      // var current = pic
-      console.log(imgArr)
-      console.log(index)
-      console.log(pic)
+      this.flag = true
       wx.previewImage({
         current: pic, // 当前图片地址 imgArr[index]
         urls: imgArr, // 所有要预览的图片的地址集合 数组形式
         success: function (res) {}
       })
     },
-    // previewImg(ind){
-    //     let that = this
-    //     wx.showActionSheet({
-    //       itemList:["预览","删除"],
-    //       success: function(res) {
-    //         if(res.tapIndex === 0){
-    //           wx.previewImage({
-    //             current:that.urls[index],
-    //             urls:that.urls
-    //           });
-    //         } else {
-    //             that.urls.splice(index,1);
-    //             that.$emit("delete",that.urls);
-    //           }
-    //         }
-    //     })
-    // },
-
     plus () {
       wx.navigateTo({url: '/pages/newbg/main'})
       // console.log('hello world')
@@ -196,17 +167,25 @@ export default {
   onLoad () {
     console.log(' trends page onload')
     this.userInfo = wx.getStorageSync('userInfo')
+    // this.items = this.defaultitems
     console.log(this.userInfo)
   },
-
   onShow () {
     // var newpost = wx.getStorageSync('newpost')
+    // if (this.flag) {
+    //   this.flag = false
+    //   return
+    // }
     var localPosts = wx.getStorageSync('localPosts')
     if (localPosts) {
       console.log('get post imgs')
       console.log(localPosts)
       // this.items.push(newpost)
-      this.items = this.items.concat(localPosts)
+      if (localPosts.length > this.items.length - 3) {
+        var newpost = localPosts[localPosts.length - 1]
+        console.log('new post ', newpost)
+        this.items.push(newpost)
+      }
       console.log(this.items)
       // wx.removeStorageSync('newpost')
     }
@@ -214,9 +193,6 @@ export default {
   async onPullDownRefresh () {
     wx.stopPullDownRefresh()
   }
-  // onDestroy () {
-  //   wx.removeStorageSync('localPosts')
-  // }
 }
 </script>
 
