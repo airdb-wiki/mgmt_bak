@@ -1,10 +1,10 @@
 {
   "pages": [
     "pages/home/main",
+    "pages/test_mc/hzw_map/main",
     "pages/hr/main",
     "pages/test_mc/successPage/main",
     "pages/location/main",
-    "pages/test_mc/hzw_map/main",
     "pages/topic/main",
     "pages/detail/main",
     "pages/test_mc/hzw_text/main",

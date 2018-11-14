@@ -1,14 +1,85 @@
 <template>
-  <div>
-    <div v-for="(item, index) in items" :key="index">
-      <div class="time">
-        <text>{{item.time}}</text>
+  <div class='g_con'>
+
+    <div class="navigation">
+      <div class="btn">
+        <navigator open-type="navigateBack">
+          <img src="/static/images/home/back.png" class="back">
+        </navigator>
+
+        <div style="border-left: 1px solid #e2e2e2;margin: 2px 10px 0 4px;height: 18px;"></div>
+
+        <navigator open-type="reLaunch" url="/pages/home/main">
+          <img src="/static/images/home/home.png" class="home">
+        </navigator>
       </div>
-      <div class="container">
-        <image :src="item.imgUrl"></image>
-        <div class="title">{{item.title}}</div>
-        <div class="general">{{item.general}}</div>
+
+      <div v-if="!showTitle" class="title">详情</div>
+      <div v-else class="title">{{item.Title}}</div>
+    </div>
+    <!-- navigation -->
+
+    <div class='topExpress'>
+
+      <div class='topExpress-left'>
+        <image src='/images/Exchange_goods_map_1.png' style='width:60rpx;height:60rpx;border-radius:50%;'></image>
       </div>
+      <div class='topExpress-right'>
+        <div class='topExpress-right-top'>宝贝回家小程序</div>
+        <div class='topExpress-right-middle'>开发过程</div>
+        <div class='topExpress-right-bottom'>联系方式 12321323(微信)</div>
+      </div>
+
+    </div>
+
+    <!-- 时间轴 -->
+    <div class='expressRecord'>
+
+
+      <!-- Target状态 -->
+      <div class='expressRecord-getAddress'>
+        <div class='expressRecord-top'>
+          <div class='getAddress-icon'>
+            Tar
+          </div>
+          <div class='getAddress-text'>小程序Target</div>
+        </div>
+
+        <!-- 顶部时间轴线 -->
+        <div class='online-top-close'></div>
+      </div>
+
+
+
+
+      <!-- 单个时间轴结点 -->
+      <div class='expressRecord-single-close' v-for="(item, index) in items" :key="index">
+        <div class='expressRecord-single-noReach-online-top-close'>
+          <div class='online-top-close'></div>
+          <div class='dot-close' v-if="item.day.length == 4" style="background: cyan;"></div>
+          <div class='dot-close' v-else :style="[index == 1 ? 'background: rgb(186, 255, 82);' : '']"></div>
+          <div class='online-bottom'></div>
+        </div>
+
+        <div class='expressRecord-text'>
+          <div class='expressRecord-status'></div>
+          <div class='expressRecord-status-address' :style="[item.day.length == 4 ? 'color: cyan;font-weight: bold;' : '']">{{item.content}}</div>
+        </div>
+
+        <div class='expressRecord-date' v-if="item.day.length == 4">
+          <div class='expressRecord-date-time' style="color: cyan;">
+            {{item.day}}
+          </div>
+        </div>
+        <div class='expressRecord-date' v-else>
+          <div class='expressRecord-date-time' :style="[index == 1 ? 'margin-left: 6px;' : '']">
+            {{item.day}}
+          </div>
+        </div>
+      </div>
+
+
+
     </div>
   </div>
 </template>
@@ -17,25 +88,25 @@
 export default {
   data () {
     return {
-      items: [
-        {
-          imgUrl: '/static/images/home/sls.png',
-          title: '到底什么算“精日”？南京这个条例给你答案！',
-          general: '“将改革开放进行到底”',
-          time: '10月10日 早上8:32'
-        },
-        {
-          imgUrl: '/static/images/home/sls.png',
-          title: '到底什么算“精日”？南京这个条例给你答案！',
-          general: '“将改革开放进行到底”',
-          time: '10月10日 早上8:32'
-        },
-        {
-          imgUrl: '/static/images/home/sls.png',
-          title: '到底什么算“精日”？南京这个条例给你答案！',
-          general: '“将改革开放进行到底”',
-          time: '10月10日 早上8:32'
-        }
+      items: [{
+        day: '2018',
+        content: '———————————————————'
+      }, {
+        content: '正在努力实现小程序插件的使用，欢迎大家加入',
+        day: '今天'
+      }, {
+        content: '实现xxx功能',
+        day: '10-21'
+      }, {
+        content: '实现xxx功能',
+        day: '10-21'
+      }, {
+        content: '实现xxx功能',
+        day: '10-21'
+      }, {
+        content: '实现xxx功能',
+        day: '10-21'
+      }
       ]
     }
   }
@@ -43,37 +114,259 @@ export default {
 </script>
 
 <style scoped>
-.container{
-  margin: 0 15px 10px;
-  border-radius: 4px;
+page {
+  background: #f4f4f4;
 }
-.time{
-  background-color: rgba(0, 0, 0, 0);
-  text-align: center;
-  padding: 10px 0 5px;
+
+.navigation{
+  width: 100%;
+  padding-top: 21pt;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgb(255, 255, 255);
+  z-index: 9999;
+  display: flex;
+  flex-direction: row;
 }
-.time text{
-  background-color: rgba(145, 145, 145, 0.3);
-  color: #fff;
-  border-radius: 3px;
-  padding: 2px 4px;
-}
-.container image{
-  width: 345px;
-  height: 150px;
-  border-radius: 4px 4px 0 0;
-}
-.container div{
-  padding: 2px 10px;
-}
+
 .title{
-  font-weight: bold;
+  width: 50%;
+  margin-left: 3pt;
+  text-align: center;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 30pt;
   font-size: 18px;
-  width: 340px;
 }
-.general{
+
+.btn{
+  display: flex;
+  flex-direction: row;
+  border-radius: 20px;
+  border: 1px solid #e2e2e2;
+  padding: 3pt 0pt 5pt 4pt;
+  margin-left: 6pt;
+  width: 56pt;
+  height: 15pt;
+}
+
+.back{
+  width: 20pt;
+  height: 20pt;
+}
+
+.home{
+  width: 17pt;
+  height: 17pt;
+}
+
+.g_con {
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+.topExpress {
+  width: 710rpx;
+  height: 155rpx;
+  background: #fff;
+  margin: 146rpx auto 10rpx;
+  display: flex;
+  border-radius: 10rpx;
+}
+
+.topExpress-left {
+  width: 100rpx;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.topExpress-right {
+  font-size: 26rpx;
+  color: #333;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20rpx 0;
+}
+
+.topExpress-right-top{
   font-size: 16px;
-  color: #a0a0a0;
-  width: 340px;
+}
+
+.topExpress-right-middle {
+  font-size: 14px;
+}
+
+.topExpress-right-bottom {
+  font-size: 14px;
+  color: #666;
+}
+
+.expressRecord {
+  width: 710rpx;
+  padding-top: 30rpx;
+  padding-bottom: 200rpx;
+  background: #fff;
+  margin: 0 auto;
+  border-radius: 10rpx;
+}
+
+.expressRecord-getAddress {
+  width: 100%;
+  font-size: 22rpx;
+  color: #999;
+  display: flex;
+  margin-left: 40rpx;
+  position: relative;
+}
+
+.expressRecord-top {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.getAddress-icon {
+  width: 45rpx;
+  height: 45rpx;
+  border-radius: 50%;
+  background: rgb(104, 173, 0);
+  font-size: 10px;
+  font-weight: bold;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 74rpx;
+}
+
+.getAddress-text {
+  margin-left: 20rpx;
+  font-size: 16px;
+  position: relative;
+}
+
+.getAddress-text::after{
+  content: '';
+  position: absolute;
+  top: 8px;
+  right: -28px;
+  width: 10px;
+  height: 0px;
+  border: 6px solid;
+  border-color:  transparent transparent transparent #999;
+}
+
+.expressRecord-single-close {
+  width: 100%;
+  height: 122rpx;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+}
+
+.expressRecord-single-noReach-online-top-close {
+  display: flex;
+  flex-direction: column;
+  margin-left: 40rpx;
+}
+
+.online-top-close {
+  width: 4rpx;
+  height: 50rpx;
+  background: #999;
+  margin-left: 95rpx;
+}
+
+.dot-close {
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: 50%;
+  margin-left: 86rpx;
+  margin-top: 6rpx;
+  margin-bottom: 6rpx;
+  background: #999;
+}
+
+.online-bottom {
+  width: 4rpx;
+  height: 50rpx;
+  background: #999;
+  margin-left: 95rpx;
+}
+
+.online-bottom-start {
+  width: 4rpx;
+  height: 50rpx;
+  /* background: #999; */
+  margin-left: 95rpx;
+}
+
+.expressRecord-text {
+  margin-left: 30rpx;
+}
+
+.expressRecord-statusing {
+  font-size: 26rpx;
+  color: #333;
+}
+
+.expressRecord-status-addressing {
+  font-size: 12px;
+  color: #333;
+}
+
+
+.expressRecord-status {
+  font-size: 26rpx;
+  color: #999;
+}
+
+.expressRecord-status-address {
+  font-size: 12px;
+  color: #999;
+  word-wrap: normal;
+}
+
+.expressRecord-dating {
+  position: absolute;
+  height: 100%;
+  /* top: 0;
+  bottom: 0; */
+  left: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #333;
+}
+
+.expressRecord-date {
+  position: absolute;
+  height: 100%;
+  /* top: 0;
+  bottom: 0; */
+  left: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #999;
+}
+
+.expressRecord-date-text {
+  font-size: 14px;
+}
+
+.expressRecord-date-time {
+  font-size: 16px;
 }
 </style>

@@ -3,7 +3,7 @@
     <scroll-view>
       <div v-for="(item, index) in items" :key="index">
         <!-- 点击item时收集 -->
-        <form class="form" @submit="formSubmit_item" report-submit="true">
+        <form class="form" @submit.stop="formSubmit_item" report-submit="true">
           <div class="weui-cell" :id="item.UUID" @click="a">
             <!-- 获取formid的按钮 -->
             <button class='btn-submit' formType="submit"></button>
@@ -29,9 +29,9 @@
               </navigator> -->
 
               <!-- 点击地址时收集 -->
-              <div class="addr-wrapper" @click="formSubmit_addr" :id="item.UUID">
+              <div class="addr-wrapper">
                 <img src="/static/images/home/position.png" style="width: 20px;height: 20px;">
-                <div class="text-addr">
+                <div class="text-addr" @click.stop="formSubmit_addr" :id="item.UUID">
                   {{item.MissedAddress}}
                 </div>
               </div>
