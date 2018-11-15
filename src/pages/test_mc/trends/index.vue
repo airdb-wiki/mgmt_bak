@@ -421,7 +421,7 @@ export default {
 }
 .arcCard img{
   width: 330px;
-  height: 120px;
+  height: 130px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }

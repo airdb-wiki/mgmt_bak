@@ -62,6 +62,7 @@
               </div>
             </div>
           </div>
+          <div style="padding: 0px 0 5px 20px;border-bottom: 1px solid #e2e2e2;">Babyid: {{item.Babyid}}</div>
         </div>
       </div>
     </div>
@@ -234,10 +235,9 @@ export default {
   margin: 5px;
   display: flex;
   flex-direction: row;
-  border-bottom: 1px solid #e2e2e2;
-  padding-bottom: 5px;
 }
 .avatar{
+  margin: auto;
   width: 50px;
   height: 50px;
 }
