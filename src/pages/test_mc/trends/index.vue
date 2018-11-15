@@ -36,24 +36,65 @@
       </div>
     </div>
 
-    <!-- 测试 -->
+    <!-- 文章链接测试1 -->
     <div class="trend_container" style="background-color: #fff;">
-        <div class="img">
-          <img :src="userInfo.avatarUrl" style="width: 50px;height: 50px;">
+      <div class="img">
+        <img :src="userInfo.avatarUrl" style="width: 50px;height: 50px;">
+      </div>
+      <div class="content">
+        <div style="font-size: 18px;font-weight: bold;">{{userInfo.nickName}}</div>
+        <div class="arc">
+          <img :src="arc.imgUrl">
+          <div>{{arc.title}}</div>
         </div>
-        <div class="content">
-          <div style="font-size: 18px;font-weight: bold;">{{userInfo.nickName}}</div>
-          <div class="arc">
-            <img :src="arc.imgUrl">
-            <div>{{arc.title}}</div>
-          </div>
-          <div class="talk">
-            <div  class="talk_time">{{time}}</div>
-            <img src="/static/images/home/talk1.png">
-          </div>
+        <div class="talk">
+          <div  class="talk_time">{{time}}</div>
+          <img src="/static/images/home/talk1.png">
         </div>
       </div>
+    </div>
 
+    <!-- 文章链接测试2 -->
+    <div class="trend_container" style="background-color: #fff;">
+      <div class="img">
+        <img :src="userInfo.avatarUrl" style="width: 50px;height: 50px;">
+      </div>
+      <div class="content">
+        <div style="font-size: 18px;font-weight: bold;">{{userInfo.nickName}}</div>
+        <div class="arcCard">
+          <img :src="arc.imgUrl">
+          <div class="arc_text">
+            <p class="p1">{{arc.title}}</p>
+            <p class="p2">{{arc.general}}</p>
+          </div>
+        </div>
+        <div class="talk">
+          <div  class="talk_time">{{time}}</div>
+          <img src="/static/images/home/talk1.png">
+        </div>
+      </div>
+    </div>
+
+    <!-- 文章链接测试3 -->
+    <div class="trend_container" style="background-color: #fff;">
+      <div class="img">
+        <img :src="userInfo.avatarUrl" style="width: 50px;height: 50px;">
+      </div>
+      <div class="content">
+        <div style="font-size: 18px;font-weight: bold;">{{userInfo.nickName}}</div>
+        <div class="arcCard">
+          <div style="position: relative;">
+            <img :src="arc.imgUrl">
+            <p class="p3" id="pt">{{arc.title}}</p>
+          </div>
+          <p class="p4">{{arc.general}}</p>
+        </div>
+        <div class="talk">
+          <div  class="talk_time">{{time}}</div>
+          <img src="/static/images/home/talk1.png">
+        </div>
+      </div>
+    </div>
     <tx-video vid="e0354z3cqjp"></tx-video>
   
   </div>
@@ -71,7 +112,8 @@ export default {
       // flag: false,
       arc: {
         imgUrl: '/static/images/home/sls.png',
-        title: '寻家工作组志愿者精彩跟进该案例，及时和陈连发进行沟通'
+        title: '寻家工作组志愿者精彩跟进该案例，及时和陈连发进行沟通',
+        general: '万事起于疏忽，量变引起质变'
       },
       tabs: [
         '家寻宝贝', '宝贝寻家', '救助寻亲', '流浪乞讨', '实时寻人', '其他寻人'
@@ -347,7 +389,7 @@ export default {
 }
 .arc{
   padding: 5px;
-  background-color: #c2c2c2;
+  background-color: #d8d8d8;
   display: flex;
   flex-direction: row;
 }
@@ -363,5 +405,40 @@ export default {
   height: 28px;
   text-overflow: ellipsis;
   white-space:pre-wrap;
+}
+.arcCard{
+  margin: 5px;
+  border-radius: 5px;
+  background: rgb(216, 255, 255);
+}
+.arcCard img{
+  width: 100%;
+  height: 120px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+/* 文章链接页面2 */
+.arc_text{
+  padding: 0 10px;
+}
+.p1{
+  color: #000;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+.p2{
+  color: #8f8f8f;
+}
+.p3{
+  padding: 0 10px;
+  color: #000;
+  font-weight: bold;
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+}
+.p4{
+  color: #8f8f8f;
+  padding: 5px 10px;
 }
 </style>
