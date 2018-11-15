@@ -61,6 +61,24 @@
       </div>
       <div class="content">
         <div style="font-size: 18px;font-weight: bold;">{{userInfo.nickName}}</div>
+        <div class="arc">
+          <div>{{arc.title}}</div>
+          <img :src="arc.imgUrl">
+        </div>
+        <div class="talk">
+          <div  class="talk_time">{{time}}</div>
+          <img src="/static/images/home/talk1.png">
+        </div>
+      </div>
+    </div>
+
+    <!-- 文章链接测试3 -->
+    <div class="trend_container" style="background-color: #fff;">
+      <div class="img">
+        <img :src="userInfo.avatarUrl" style="width: 50px;height: 50px;">
+      </div>
+      <div class="content">
+        <div style="font-size: 18px;font-weight: bold;">{{userInfo.nickName}}</div>
         <div class="arcCard">
           <img :src="arc.imgUrl">
           <div class="arc_text">
@@ -75,7 +93,7 @@
       </div>
     </div>
 
-    <!-- 文章链接测试3 -->
+    <!-- 文章链接测试4 -->
     <div class="trend_container" style="background-color: #fff;">
       <div class="img">
         <img :src="userInfo.avatarUrl" style="width: 50px;height: 50px;">
@@ -95,6 +113,10 @@
         </div>
       </div>
     </div>
+
+    
+
+
     <tx-video vid="e0354z3cqjp"></tx-video>
   
   </div>
@@ -389,7 +411,7 @@ export default {
 }
 .arc{
   padding: 5px;
-  background-color: #d8d8d8;
+  background-color: #e9e9e9;
   display: flex;
   flex-direction: row;
 }
@@ -409,7 +431,7 @@ export default {
 .arcCard{
   margin: 5px;
   border-radius: 5px;
-  background: rgb(216, 255, 255);
+  background: rgb(232, 255, 255);
 }
 .arcCard img{
   width: 100%;
