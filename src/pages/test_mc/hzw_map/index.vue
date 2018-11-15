@@ -22,7 +22,7 @@
     <div class='topExpress'>
 
       <div class='topExpress-left'>
-        <image src='/images/Exchange_goods_map_1.png' style='width:60rpx;height:60rpx;border-radius:50%;'></image>
+        <img src='/images/Exchange_goods_map_1.png' style='width:60rpx;height:60rpx;border-radius:50%;'>
       </div>
       <div class='topExpress-right'>
         <div class='topExpress-right-top'>宝贝回家小程序</div>

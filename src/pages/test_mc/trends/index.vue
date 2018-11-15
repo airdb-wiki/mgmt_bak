@@ -37,7 +37,7 @@
     </div>
 
     <!-- 文章链接测试1 -->
-    <div class="trend_container" style="background-color: #fff;">
+    <div class="trend_container" style="background-color: #fff;" @click="navToTime">
       <div class="img">
         <img :src="userInfo.avatarUrl" style="width: 50px;height: 50px;">
       </div>
@@ -45,7 +45,7 @@
         <div style="font-size: 18px;font-weight: bold;">{{userInfo.nickName}}</div>
         <div class="arc">
           <img :src="arc.imgUrl">
-          <div>{{arc.title}}</div>
+          <p>{{arc.title}}一二三四五六七八九十</p>
         </div>
         <div class="talk">
           <div  class="talk_time">{{time}}</div>
@@ -55,14 +55,14 @@
     </div>
 
     <!-- 文章链接测试2 -->
-    <div class="trend_container" style="background-color: #fff;">
+    <div class="trend_container" style="background-color: #fff;" @click="navToTime">
       <div class="img">
         <img :src="userInfo.avatarUrl" style="width: 50px;height: 50px;">
       </div>
       <div class="content">
         <div style="font-size: 18px;font-weight: bold;">{{userInfo.nickName}}</div>
         <div class="arc">
-          <div>{{arc.title}}</div>
+          <p>{{arc.title}}</p>
           <img :src="arc.imgUrl">
         </div>
         <div class="talk">
@@ -73,7 +73,7 @@
     </div>
 
     <!-- 文章链接测试3 -->
-    <div class="trend_container" style="background-color: #fff;">
+    <div class="trend_container" style="background-color: #fff;" @click="navToTime">
       <div class="img">
         <img :src="userInfo.avatarUrl" style="width: 50px;height: 50px;">
       </div>
@@ -94,7 +94,7 @@
     </div>
 
     <!-- 文章链接测试4 -->
-    <div class="trend_container" style="background-color: #fff;">
+    <div class="trend_container" style="background-color: #fff;" @click="navToTime">
       <div class="img">
         <img :src="userInfo.avatarUrl" style="width: 50px;height: 50px;">
       </div>
@@ -202,6 +202,9 @@ export default {
     this.style = 'background: rgba(255, 255, 255, ' + res.scrollTop / 150 + ')'
   },
   methods: {
+    navToTime () {
+      wx.navigateTo({ url: '/pages/test_mc/hzw_map/main' })
+    },
     navTo () {
       wx.navigateTo({ url: '/pages/test_mc/successPage/main' })
     },
@@ -416,15 +419,15 @@ export default {
   flex-direction: row;
 }
 .arc img{
-  height: 42px;
-  width: 42px;
-  margin-top: 3px;
+  max-width: 80px;
+  max-height: 80px;
+  margin-top: 2px;
 }
-.arc div{
-  padding-left: 8px;
+.arc p{
+  padding: 0 8px;
   flex: 1;
-  width: 230px;
-  height: 28px;
+  width: 195px;
+  margin: auto;
   text-overflow: ellipsis;
   white-space:pre-wrap;
 }
