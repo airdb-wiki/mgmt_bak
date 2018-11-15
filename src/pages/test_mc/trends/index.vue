@@ -13,13 +13,11 @@
     <button class="more" @click="plus">+</button>
     <button class="more" @click="clear" style="background-color: red; bottom:120px;">-</button>
 
-    <div style="padding-top: 30px;background-color: #fff" v-for="(item,index) in items" :key="index">
-    <tx-video vid="e0354z3cqjp"></tx-video>
+    <div :style="[ index == 0 ? 'padding-top: 30px;background-color: #fff;' : 'background-color: #fff;']"
+      v-for="(item,index) in items" :key="index">
+      <tx-video vid="e0354z3cqjp"></tx-video>
 
       <div class="trend_container">
-        <div class="img">
-          <img :src="item.avatar" style="width: 50px;height: 50px;">
-        </div>
         <div class="content">
           <div style="font-size: 18px;font-weight: bold;">{{item.nickname}}</div>
           <p style="word-break: break-all">{{item.textmsg}}</p>
@@ -38,9 +36,6 @@
 
     <!-- 文章链接测试1 -->
     <div class="trend_container" style="background-color: #fff;" @click="navToTime">
-      <div class="img">
-        <img :src="userInfo.avatarUrl" style="width: 50px;height: 50px;">
-      </div>
       <div class="content">
         <div style="font-size: 18px;font-weight: bold;">{{userInfo.nickName}}</div>
         <div class="arc">
@@ -56,9 +51,6 @@
 
     <!-- 文章链接测试2 -->
     <div class="trend_container" style="background-color: #fff;" @click="navToTime">
-      <div class="img">
-        <img :src="userInfo.avatarUrl" style="width: 50px;height: 50px;">
-      </div>
       <div class="content">
         <div style="font-size: 18px;font-weight: bold;">{{userInfo.nickName}}</div>
         <div class="arc">
@@ -74,9 +66,6 @@
 
     <!-- 文章链接测试3 -->
     <div class="trend_container" style="background-color: #fff;" @click="navToTime">
-      <div class="img">
-        <img :src="userInfo.avatarUrl" style="width: 50px;height: 50px;">
-      </div>
       <div class="content">
         <div style="font-size: 18px;font-weight: bold;">{{userInfo.nickName}}</div>
         <div class="arcCard">
@@ -95,17 +84,12 @@
 
     <!-- 文章链接测试4 -->
     <div class="trend_container" style="background-color: #fff;" @click="navToTime">
-      <div class="img">
-        <img :src="userInfo.avatarUrl" style="width: 50px;height: 50px;">
-      </div>
       <div class="content">
         <div style="font-size: 18px;font-weight: bold;">{{userInfo.nickName}}</div>
         <div class="arcCard">
-          <div style="position: relative;">
-            <img :src="arc.imgUrl">
-            <p class="p3" id="pt">{{arc.title}}</p>
-          </div>
-          <p class="p4">{{arc.general}}</p>
+          <img :src="arc.imgUrl">
+          <p class="p3">{{arc.title}}</p>
+          <p class="p2">{{arc.general}}</p>
         </div>
         <div class="talk">
           <div  class="talk_time">{{time}}</div>
@@ -368,7 +352,7 @@ export default {
   /* padding: 0px 40px 10px 10px; */
   display: flex;
   flex-direction: column;
-  padding-left: 8px;
+  padding: 9px;
 }
 .imgContainer{
   display: flex;
@@ -381,7 +365,7 @@ export default {
   margin: 2px;
 }
 .talk{
-  /* position: relative; */
+  position: relative;
   display: flex;
   flex-direction: row;
   padding-top: 5px;
@@ -389,11 +373,10 @@ export default {
 .talk image{
   width: 20px;
   height: 20px;
-  /* padding-top: 5px; */
-  /* margin-right: 5px; */
-  /* position: absolute; */
-  /* top: 5px;
-  right: 0; */
+  padding-top: 5px;
+  margin-right: 5px;
+  position: absolute;
+  right: 5px;
 }
 .talk_time{
   margin-right: 200px;
@@ -426,7 +409,7 @@ export default {
 .arc p{
   padding: 0 8px;
   flex: 1;
-  width: 195px;
+  width: 228px;
   margin: auto;
   text-overflow: ellipsis;
   white-space:pre-wrap;
@@ -437,7 +420,7 @@ export default {
   background: rgb(232, 255, 255);
 }
 .arcCard img{
-  width: 100%;
+  width: 330px;
   height: 120px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
@@ -455,12 +438,12 @@ export default {
   color: #8f8f8f;
 }
 .p3{
-  padding: 0 10px;
+  width: 300px;
   color: #000;
   font-weight: bold;
   position: absolute;
-  bottom: 10px;
-  left: 0;
+  bottom: 80px;
+  left: 35px;
 }
 .p4{
   color: #8f8f8f;

@@ -42,7 +42,7 @@
           <div class='getAddress-icon'>
             Tar
           </div>
-          <div class='getAddress-text'>小程序Target</div>
+          <div class='getAddress-text' @click="navToTarget">小程序Target</div>
         </div>
 
         <!-- 顶部时间轴线 -->
@@ -108,6 +108,11 @@ export default {
         day: '10-21'
       }
       ]
+    }
+  },
+  methods: {
+    navToTarget () {
+      wx.navigateTo({ url: '/pages/hr/main' })
     }
   }
 }
