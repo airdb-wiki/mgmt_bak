@@ -55,6 +55,7 @@
             </div>
             <div class="info">
               <div class="info_title">{{item.Title}}</div>
+              <div style="padding-bottom: 5px;">Babyid: {{item.Babyid}}</div>
               <div class="info_1">
                 <text v-if="item.Gender == 2">女</text>
                 <text v-else>男</text>
@@ -62,7 +63,6 @@
               </div>
             </div>
           </div>
-          <div style="padding: 0px 0 5px 20px;border-bottom: 1px solid #e2e2e2;">Babyid: {{item.Babyid}}</div>
         </div>
       </div>
     </div>
