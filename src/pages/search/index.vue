@@ -165,7 +165,6 @@ export default {
                 res.data[0].Title = res.data[0].MissedProvince + '-' + res.data[0].MissedCity + ', 寻找' + res.data[0].Nickname
               } // 判断是否有标题，若无，则添加默认标题
               that.tipKeys = that.tipKeys.concat(res.data[0])
-              console.log(that.tipKeys)
             }
           },
           fail: function (res) {
@@ -193,7 +192,14 @@ export default {
                   mask: true
                 })
               } else {
-                that.tipKeys = that.tipKeys.concat(res.data[0])
+                that.showSearchBar = false // 显示搜索结果框
+
+                if (res.data[0].Title === '') {
+                  res.data[0].Title = res.data[0].MissedProvince + '-' + res.data[0].MissedCity + ', 寻找' + res.data[0].Nickname
+                } // 判断是否有标题，若无，则添加默认标题
+                if (that.tipKeys.length === 0) {
+                  that.tipKeys = that.tipKeys.concat(res.data[0])
+                }
               }
             },
             fail: function (res) {
