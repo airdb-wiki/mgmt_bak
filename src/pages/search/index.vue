@@ -46,7 +46,7 @@
       
       <div v-if="inputVal.length > 0" :hidden="showSearchBar"
         style="font-size: 16px;color: #414141;">搜索结果</div>
-      <div class="weui-cells searchbar-result" v-if="inputVal.length > 0" :hidden="showSearchBar"
+      <div class="weui-cells searchbar-result" :hidden="showSearchBar"
         style="padding-top: 5px;margin-top: 0.1789em;">
         <div @click="navTo" v-for="(item, index) in tipKeys" :key="index" :id="item.UUID">
           <div class="weui-cell__bd">
@@ -134,32 +134,79 @@ export default {
       this.collect(this.inputVal)
       var that = this
 
-      wx.request({
-        url: wx.getStorageSync('requestUrl') + '/small/article/keywords',
-        method: 'GET',
-        data: {
-          nickname: that.inputTyping
-        },
-        header: {
-          'content-type': 'application/json'
-        },
-        success: function (res) {
-          console.log(res)
-          if (res.data.length === 0) {
-            wx.showToast({
-              title: '搜索内容不存在',
-              icon: 'none',
-              duration: 2000,
-              mask: true
-            })
-          } else {
-            that.tipKeys = that.tipKeys.concat(res.data[0])
+      var isnum = /^\d+$/.test(this.inputVal)
+      console.log('isnum :........', isnum)
+
+      var ischinese = /^[\u4E00-\u9FA5]{2,4}$/.test(this.inputVal)
+      console.log('is chinese :', ischinese)
+
+      if (isnum === true) {
+        wx.request({
+          url: wx.getStorageSync('requestUrl') + '/small/article/keywords',
+          method: 'GET',
+          data: {
+            babyid: that.inputVal
+          },
+          header: {
+            'content-type': 'application/json'
+          },
+          success: function (res) {
+            if (res.data.length === 0) {
+              wx.showToast({
+                title: '搜索内容不存在',
+                icon: 'none',
+                duration: 2000,
+                mask: true
+              })
+            } else {
+              that.showSearchBar = false
+              that.tipKeys = that.tipKeys.concat(res.data[0])
+              console.log(that.tipKeys)
+            }
+          },
+          fail: function (res) {
+            console.log('debug=====fail')
           }
-        },
-        fail: function (res) {
-          console.log('debug=====fail')
+        })
+      } else {
+        if (ischinese === true) {
+          wx.request({
+            url: wx.getStorageSync('requestUrl') + '/small/article/keywords',
+            method: 'GET',
+            data: {
+              nickname: that.inputVal
+            },
+            header: {
+              'content-type': 'application/json'
+            },
+            success: function (res) {
+              console.log(res)
+              if (res.data.length === 0) {
+                wx.showToast({
+                  title: '搜索内容不存在',
+                  icon: 'none',
+                  duration: 2000,
+                  mask: true
+                })
+              } else {
+                that.tipKeys = that.tipKeys.concat(res.data[0])
+              }
+            },
+            fail: function (res) {
+              console.log('debug=====fail')
+            }
+          })
         }
-      })
+      }
+
+      if (isnum !== true && ischinese !== true) {
+        wx.showToast({
+          title: '请输入正确的搜索内容',
+          icon: 'none',
+          duration: 2000,
+          mask: true
+        })
+      }
 
       this.clearInput()
     },
@@ -176,7 +223,7 @@ export default {
       this.tipKeys = []
       if (this.inputVal && this.inputVal.length > 0) {
         for (var i = 0; i < this.items.length; i++) {
-          if (this.items[i].Title.indexOf(this.inputVal) !== -1 || this.items[i].UUID.indexOf(this.inputVal) !== -1) {
+          if (this.items[i].Title.indexOf(this.inputVal) !== -1) {
             tipKeys.push(this.items[i])
             console.log(this.items[i].Title)
           }
