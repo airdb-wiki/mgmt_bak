@@ -44,7 +44,7 @@
         </div>
       </div>
       
-      <div v-if="inputVal.length > 0" :hidden="showSearchBar"
+      <div :hidden="showSearchBar"
         style="font-size: 16px;color: #414141;">搜索结果</div>
       <div class="weui-cells searchbar-result" :hidden="showSearchBar"
         style="padding-top: 5px;margin-top: 0.1789em;">
@@ -159,7 +159,11 @@ export default {
                 mask: true
               })
             } else {
-              that.showSearchBar = false
+              that.showSearchBar = false // 显示搜索结果框
+
+              if (res.data[0].Title === '') {
+                res.data[0].Title = res.data[0].MissedProvince + '-' + res.data[0].MissedCity + ', 寻找' + res.data[0].Nickname
+              } // 判断是否有标题，若无，则添加默认标题
               that.tipKeys = that.tipKeys.concat(res.data[0])
               console.log(that.tipKeys)
             }
@@ -280,8 +284,10 @@ export default {
 .weui-cell__bd{
   padding: 0px 10px;
   margin: 5px;
+  margin-top: 2px;
   display: flex;
   flex-direction: row;
+  border-bottom: 1px solid #e2e2e2;
 }
 .avatar{
   margin: auto;
@@ -294,7 +300,7 @@ export default {
   border-radius: 4px;
 }
 .info{
-  padding: 5px 10px;
+  padding: 0px 10px 5px;
 }
 .info_title{
   width: 270px;
