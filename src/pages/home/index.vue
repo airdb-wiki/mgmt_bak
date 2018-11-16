@@ -342,7 +342,7 @@ export default {
   position: fixed;
   background: rgba(255, 255, 255, .8);
   z-index: 9999;
-  height: 30px;
+  height: 35px;
   padding: 0 13px;
   top: 68px;
   right: 0px;
