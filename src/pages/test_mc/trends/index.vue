@@ -18,7 +18,7 @@
 
       <div class="trend_container">
         <div class="img">
-          <img :src="item.avatar" style="width: 50px;height: 50px;">
+          <img :src="userInfo.avatarUrl" style="width: 50px;height: 50px;">
         </div>
         <div class="content">
           <div style="font-size: 18px;font-weight: bold;">{{item.nickname}}</div>
@@ -143,7 +143,6 @@ export default {
     },
     previewImg: function (index, pic, e) {
       var imgArr = this.items[index].pictures
-      this.flag = true
       wx.previewImage({
         current: pic, // 当前图片地址 imgArr[index]
         urls: imgArr, // 所有要预览的图片的地址集合 数组形式
@@ -171,20 +170,24 @@ export default {
     console.log(this.userInfo)
   },
   onShow () {
-    // var newpost = wx.getStorageSync('newpost')
-    // if (this.flag) {
-    //   this.flag = false
-    //   return
-    // }
     var localPosts = wx.getStorageSync('localPosts')
     if (localPosts) {
       console.log('get post imgs')
       console.log(localPosts)
       // this.items.push(newpost)
-      if (localPosts.length > this.items.length - 3) {
+      // if (localPosts.length > this.items.length - 3) {
+      //   var newpost = localPosts[localPosts.length - 1]
+      //   console.log('new post ', newpost)
+      //   this.items.push(newpost)
+      // }
+      if (localPosts.length - this.items.length === -2) {
         var newpost = localPosts[localPosts.length - 1]
         console.log('new post ', newpost)
         this.items.push(newpost)
+      } else if (localPosts.length > this.items.length - 3) {
+        for (var i = 0; i < localPosts.length; i++) {
+          this.items.push(localPosts[i])
+        }
       }
       console.log(this.items)
       // wx.removeStorageSync('newpost')
