@@ -37,6 +37,26 @@
       </div>
     </div>
 
+    <!-- 文章链接测试5 -->
+    
+    
+    <div class="trend_container" style="background-color: #fff;">
+      <div class="img">
+        <img :src="userInfo.avatarUrl" style="width: 50px;height: 50px;">
+      </div>
+      <div class="content">
+        <div style="font-size: 18px;font-weight: bold;">{{userInfo.nickName}}</div>
+      <div class="article"  @click="navToTime">
+        <p>{{arc.title}}</p>
+        <img :src="arc.imgUrl">
+      </div>
+      <div class="talk">
+        <div  class="talk_time">{{time}}</div>
+          <img src="/static/images/home/talk1.png">
+        </div>
+      </div>
+    </div>
+
     <!-- 文章链接测试1 -->
     <div class="trend_container" style="background-color: #fff;" @click="navToTime">
       <div class="content">
@@ -101,7 +121,6 @@
       </div>
     </div>
 
-    
 
 
     <tx-video vid="e0354z3cqjp"></tx-video>
@@ -371,7 +390,7 @@ export default {
   margin: 2px;
 }
 .talk{
-  position: relative;
+  /* position: relative; */
   display: flex;
   flex-direction: row;
   padding-top: 5px;
@@ -381,8 +400,8 @@ export default {
   height: 20px;
   padding-top: 5px;
   margin-right: 5px;
-  position: absolute;
-  right: 5px;
+  /* position: absolute; */
+  /* right: 5px; */
 }
 .talk_time{
   margin-right: 200px;
@@ -454,5 +473,31 @@ export default {
 .p4{
   color: #8f8f8f;
   padding: 5px 10px;
+}
+/*newbg 新增文章链接样式*/
+.article{
+  width: 98%;
+  height: 130rpx; 
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* border: 1px solid; */
+  background-color: #e9e9e9;
+}
+.article img{
+  max-width: 65px;
+  max-height: 65px;
+  margin-right: 10px;
+}
+.article p{
+  /* border: 1px solid; */
+  font-size: 14px;
+  margin-right: 3px;
+  /* padding: 0 8px;
+  flex: 1;
+  width: 228px;
+  margin: auto;
+  text-overflow: ellipsis;
+  white-space:pre-wrap; */
 }
 </style>
