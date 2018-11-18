@@ -13,8 +13,9 @@
     <button class="more" @click="plus">+</button>
     <button class="more" @click="clear" style="background-color: red; bottom:120px;">-</button>
 
-    <div style="padding-top: 30px;background-color: #fff" v-for="(item,index) in items" :key="index">
-    <tx-video vid="e0354z3cqjp"></tx-video>
+    <div :style="[ index == 0 ? 'padding-top: 30px;background-color: #fff;' : 'background-color: #fff;']"
+      v-for="(item,index) in items" :key="index">
+      <tx-video vid="e0354z3cqjp"></tx-video>
 
       <div class="trend_container">
         <div class="img">
@@ -36,23 +37,72 @@
       </div>
     </div>
 
-    <!-- 测试 -->
-    <div class="trend_container" style="background-color: #fff;">
-        <div class="img">
-          <img :src="userInfo.avatarUrl" style="width: 50px;height: 50px;">
+    <!-- 文章链接测试1 -->
+    <div class="trend_container" style="background-color: #fff;" @click="navToTime">
+      <div class="content">
+        <div style="font-size: 18px;font-weight: bold;">{{userInfo.nickName}}</div>
+        <div class="arc">
+          <img :src="arc.imgUrl">
+          <p>{{arc.title}}一二三四五六七八九十</p>
         </div>
-        <div class="content">
-          <div style="font-size: 18px;font-weight: bold;">{{userInfo.nickName}}</div>
-          <div class="arc">
-            <img :src="arc.imgUrl">
-            <div>{{arc.title}}</div>
-          </div>
-          <div class="talk">
-            <div  class="talk_time">{{time}}</div>
-            <img src="/static/images/home/talk1.png">
-          </div>
+        <div class="talk">
+          <div  class="talk_time">{{time}}</div>
+          <img src="/static/images/home/talk1.png">
         </div>
       </div>
+    </div>
+
+    <!-- 文章链接测试2 -->
+    <div class="trend_container" style="background-color: #fff;" @click="navToTime">
+      <div class="content">
+        <div style="font-size: 18px;font-weight: bold;">{{userInfo.nickName}}</div>
+        <div class="arc">
+          <p>{{arc.title}}</p>
+          <img :src="arc.imgUrl">
+        </div>
+        <div class="talk">
+          <div  class="talk_time">{{time}}</div>
+          <img src="/static/images/home/talk1.png">
+        </div>
+      </div>
+    </div>
+
+    <!-- 文章链接测试3 -->
+    <div class="trend_container" style="background-color: #fff;" @click="navToTime">
+      <div class="content">
+        <div style="font-size: 18px;font-weight: bold;">{{userInfo.nickName}}</div>
+        <div class="arcCard">
+          <img :src="arc.imgUrl">
+          <div class="arc_text">
+            <p class="p1">{{arc.title}}</p>
+            <p class="p2">{{arc.general}}</p>
+          </div>
+        </div>
+        <div class="talk">
+          <div  class="talk_time">{{time}}</div>
+          <img src="/static/images/home/talk1.png">
+        </div>
+      </div>
+    </div>
+
+    <!-- 文章链接测试4 -->
+    <div class="trend_container" style="background-color: #fff;" @click="navToTime">
+      <div class="content">
+        <div style="font-size: 18px;font-weight: bold;">{{userInfo.nickName}}</div>
+        <div class="arcCard">
+          <img :src="arc.imgUrl">
+          <p class="p3">{{arc.title}}</p>
+          <p class="p2">{{arc.general}}</p>
+        </div>
+        <div class="talk">
+          <div  class="talk_time">{{time}}</div>
+          <img src="/static/images/home/talk1.png">
+        </div>
+      </div>
+    </div>
+
+    
+
 
     <tx-video vid="e0354z3cqjp"></tx-video>
   
@@ -71,7 +121,8 @@ export default {
       // flag: false,
       arc: {
         imgUrl: '/static/images/home/sls.png',
-        title: '寻家工作组志愿者精彩跟进该案例，及时和陈连发进行沟通'
+        title: '寻家工作组志愿者精彩跟进该案例，及时和陈连发进行沟通',
+        general: '万事起于疏忽，量变引起质变'
       },
       tabs: [
         '家寻宝贝', '宝贝寻家', '救助寻亲', '流浪乞讨', '实时寻人', '其他寻人'
@@ -138,6 +189,9 @@ export default {
     this.style = 'background: rgba(255, 255, 255, ' + res.scrollTop / 150 + ')'
   },
   methods: {
+    navToTime () {
+      wx.navigateTo({ url: '/pages/test_mc/hzw_map/main' })
+    },
     navTo () {
       wx.navigateTo({ url: '/pages/test_mc/successPage/main' })
     },
@@ -304,7 +358,7 @@ export default {
   /* padding: 0px 40px 10px 10px; */
   display: flex;
   flex-direction: column;
-  padding-left: 8px;
+  padding: 9px;
 }
 .imgContainer{
   display: flex;
@@ -317,7 +371,7 @@ export default {
   margin: 2px;
 }
 .talk{
-  /* position: relative; */
+  position: relative;
   display: flex;
   flex-direction: row;
   padding-top: 5px;
@@ -325,11 +379,10 @@ export default {
 .talk image{
   width: 20px;
   height: 20px;
-  /* padding-top: 5px; */
-  /* margin-right: 5px; */
-  /* position: absolute; */
-  /* top: 5px;
-  right: 0; */
+  padding-top: 5px;
+  margin-right: 5px;
+  position: absolute;
+  right: 5px;
 }
 .talk_time{
   margin-right: 200px;
@@ -350,21 +403,56 @@ export default {
 }
 .arc{
   padding: 5px;
-  background-color: #c2c2c2;
+  background-color: #e9e9e9;
   display: flex;
   flex-direction: row;
 }
 .arc img{
-  height: 42px;
-  width: 42px;
-  margin-top: 3px;
+  max-width: 80px;
+  max-height: 80px;
+  margin-top: 2px;
 }
-.arc div{
-  padding-left: 8px;
+.arc p{
+  padding: 0 8px;
   flex: 1;
-  width: 230px;
-  height: 28px;
+  width: 228px;
+  margin: auto;
   text-overflow: ellipsis;
   white-space:pre-wrap;
+}
+.arcCard{
+  margin: 5px;
+  border-radius: 5px;
+  background: rgb(232, 255, 255);
+}
+.arcCard img{
+  width: 330px;
+  height: 130px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+/* 文章链接页面2 */
+.arc_text{
+  padding: 0 10px;
+}
+.p1{
+  color: #000;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+.p2{
+  color: #8f8f8f;
+}
+.p3{
+  width: 300px;
+  color: #000;
+  font-weight: bold;
+  position: absolute;
+  bottom: 80px;
+  left: 35px;
+}
+.p4{
+  color: #8f8f8f;
+  padding: 5px 10px;
 }
 </style>

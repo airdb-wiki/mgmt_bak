@@ -44,9 +44,9 @@
         </div>
       </div>
       
-      <div v-if="inputVal.length > 0" :hidden="showSearchBar"
+      <div :hidden="showSearchBar"
         style="font-size: 16px;color: #414141;">搜索结果</div>
-      <div class="weui-cells searchbar-result" v-if="inputVal.length > 0" :hidden="showSearchBar"
+      <div class="weui-cells searchbar-result" :hidden="showSearchBar"
         style="padding-top: 5px;margin-top: 0.1789em;">
         <div @click="navTo" v-for="(item, index) in tipKeys" :key="index" :id="item.UUID">
           <div class="weui-cell__bd">
@@ -55,6 +55,7 @@
             </div>
             <div class="info">
               <div class="info_title">{{item.Title}}</div>
+              <div style="padding-bottom: 5px;">Babyid: {{item.Babyid}}</div>
               <div class="info_1">
                 <text v-if="item.Gender == 2">女</text>
                 <text v-else>男</text>
@@ -133,32 +134,89 @@ export default {
       this.collect(this.inputVal)
       var that = this
 
-      wx.request({
-        url: wx.getStorageSync('requestUrl') + '/small/article/keywords',
-        method: 'GET',
-        data: {
-          nickname: that.inputTyping
-        },
-        header: {
-          'content-type': 'application/json'
-        },
-        success: function (res) {
-          console.log(res)
-          if (res.data.length === 0) {
-            wx.showToast({
-              title: '搜索内容不存在',
-              icon: 'none',
-              duration: 2000,
-              mask: true
-            })
-          } else {
-            that.tipKeys = that.tipKeys.concat(res.data[0])
+      var isnum = /^\d+$/.test(this.inputVal)
+      console.log('isnum :........', isnum)
+
+      var ischinese = /^[\u4E00-\u9FA5]{2,4}$/.test(this.inputVal)
+      console.log('is chinese :', ischinese)
+
+      if (isnum === true) {
+        wx.request({
+          url: wx.getStorageSync('requestUrl') + '/small/article/keywords',
+          method: 'GET',
+          data: {
+            babyid: that.inputVal
+          },
+          header: {
+            'content-type': 'application/json'
+          },
+          success: function (res) {
+            if (res.data.length === 0) {
+              wx.showToast({
+                title: '搜索内容不存在',
+                icon: 'none',
+                duration: 2000,
+                mask: true
+              })
+            } else {
+              that.showSearchBar = false // 显示搜索结果框
+
+              if (res.data[0].Title === '') {
+                res.data[0].Title = res.data[0].MissedProvince + '-' + res.data[0].MissedCity + ', 寻找' + res.data[0].Nickname
+              } // 判断是否有标题，若无，则添加默认标题
+              that.tipKeys = that.tipKeys.concat(res.data[0])
+            }
+          },
+          fail: function (res) {
+            console.log('debug=====fail')
           }
-        },
-        fail: function (res) {
-          console.log('debug=====fail')
+        })
+      } else {
+        if (ischinese === true) {
+          wx.request({
+            url: wx.getStorageSync('requestUrl') + '/small/article/keywords',
+            method: 'GET',
+            data: {
+              nickname: that.inputVal
+            },
+            header: {
+              'content-type': 'application/json'
+            },
+            success: function (res) {
+              console.log(res)
+              if (res.data.length === 0) {
+                wx.showToast({
+                  title: '搜索内容不存在',
+                  icon: 'none',
+                  duration: 2000,
+                  mask: true
+                })
+              } else {
+                that.showSearchBar = false // 显示搜索结果框
+
+                if (res.data[0].Title === '') {
+                  res.data[0].Title = res.data[0].MissedProvince + '-' + res.data[0].MissedCity + ', 寻找' + res.data[0].Nickname
+                } // 判断是否有标题，若无，则添加默认标题
+                if (that.tipKeys.length === 0) {
+                  that.tipKeys = that.tipKeys.concat(res.data[0])
+                }
+              }
+            },
+            fail: function (res) {
+              console.log('debug=====fail')
+            }
+          })
         }
-      })
+      }
+
+      if (isnum !== true && ischinese !== true) {
+        wx.showToast({
+          title: '请输入正确的搜索内容',
+          icon: 'none',
+          duration: 2000,
+          mask: true
+        })
+      }
 
       this.clearInput()
     },
@@ -175,7 +233,7 @@ export default {
       this.tipKeys = []
       if (this.inputVal && this.inputVal.length > 0) {
         for (var i = 0; i < this.items.length; i++) {
-          if (this.items[i].Title.indexOf(this.inputVal) !== -1 || this.items[i].UUID.indexOf(this.inputVal) !== -1) {
+          if (this.items[i].Title.indexOf(this.inputVal) !== -1) {
             tipKeys.push(this.items[i])
             console.log(this.items[i].Title)
           }
@@ -232,12 +290,13 @@ export default {
 .weui-cell__bd{
   padding: 0px 10px;
   margin: 5px;
+  margin-top: 2px;
   display: flex;
   flex-direction: row;
   border-bottom: 1px solid #e2e2e2;
-  padding-bottom: 5px;
 }
 .avatar{
+  margin: auto;
   width: 50px;
   height: 50px;
 }
@@ -247,7 +306,7 @@ export default {
   border-radius: 4px;
 }
 .info{
-  padding: 5px 10px;
+  padding: 0px 10px 5px;
 }
 .info_title{
   width: 270px;
