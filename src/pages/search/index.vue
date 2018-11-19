@@ -83,7 +83,11 @@ export default {
       searchData: ['hahaha'],
       showSearchBar: true,
       tipKeys: [],
-      items: []
+      items: [],
+      parms: {
+        babyid: Number,
+        nickname: String
+      }
     }
   },
   mounted () {
@@ -134,89 +138,54 @@ export default {
       this.collect(this.inputVal)
       var that = this
 
+      that.parms.babyid = that.inputVal
+      that.parms.nickname = that.inputVal
+      // 赋值
+
       var isnum = /^\d+$/.test(this.inputVal)
-      console.log('isnum :........', isnum)
-
       var ischinese = /^[\u4E00-\u9FA5]{2,4}$/.test(this.inputVal)
-      console.log('is chinese :', ischinese)
-
-      if (isnum === true) {
-        wx.request({
-          url: wx.getStorageSync('requestUrl') + '/small/article/keywords',
-          method: 'GET',
-          data: {
-            babyid: that.inputVal
-          },
-          header: {
-            'content-type': 'application/json'
-          },
-          success: function (res) {
-            if (res.data.length === 0) {
-              wx.showToast({
-                title: '搜索内容不存在',
-                icon: 'none',
-                duration: 2000,
-                mask: true
-              })
-            } else {
-              that.showSearchBar = false // 显示搜索结果框
-
-              if (res.data[0].Title === '') {
-                res.data[0].Title = res.data[0].MissedProvince + '-' + res.data[0].MissedCity + ', 寻找' + res.data[0].Nickname
-              } // 判断是否有标题，若无，则添加默认标题
-              that.tipKeys = that.tipKeys.concat(res.data[0])
-            }
-          },
-          fail: function (res) {
-            console.log('debug=====fail')
-          }
-        })
-      } else {
-        if (ischinese === true) {
-          wx.request({
-            url: wx.getStorageSync('requestUrl') + '/small/article/keywords',
-            method: 'GET',
-            data: {
-              nickname: that.inputVal
-            },
-            header: {
-              'content-type': 'application/json'
-            },
-            success: function (res) {
-              console.log(res)
-              if (res.data.length === 0) {
-                wx.showToast({
-                  title: '搜索内容不存在',
-                  icon: 'none',
-                  duration: 2000,
-                  mask: true
-                })
-              } else {
-                that.showSearchBar = false // 显示搜索结果框
-
-                if (res.data[0].Title === '') {
-                  res.data[0].Title = res.data[0].MissedProvince + '-' + res.data[0].MissedCity + ', 寻找' + res.data[0].Nickname
-                } // 判断是否有标题，若无，则添加默认标题
-                if (that.tipKeys.length === 0) {
-                  that.tipKeys = that.tipKeys.concat(res.data[0])
-                }
-              }
-            },
-            fail: function (res) {
-              console.log('debug=====fail')
-            }
-          })
-        }
-      }
-
-      if (isnum !== true && ischinese !== true) {
+      if (isnum === false && ischinese === false) {
         wx.showToast({
           title: '请输入正确的搜索内容',
           icon: 'none',
           duration: 2000,
           mask: true
         })
+        return
       }
+      // 验证数据的合法性
+
+      wx.request({
+        url: wx.getStorageSync('requestUrl') + '/small/article/keywords',
+        method: 'GET',
+        data: {
+          nickname: that.parms.nickname,
+          babyid: that.parms.babyid
+        },
+        header: {
+          'content-type': 'application/json'
+        },
+        success: function (res) {
+          if (res.data.length === 0) {
+            wx.showToast({
+              title: '搜索内容不存在',
+              icon: 'none',
+              duration: 2000,
+              mask: true
+            })
+          } else {
+            that.showSearchBar = false // 显示搜索结果框，作为hidden属性的值
+
+            if (res.data[0].Title === '') {
+              res.data[0].Title = res.data[0].MissedProvince + '-' + res.data[0].MissedCity + ', 寻找' + res.data[0].Nickname
+            } // 判断是否有标题，若无，则添加默认标题
+            that.tipKeys = that.tipKeys.concat(res.data[0])
+          }
+        },
+        fail: function (res) {
+          console.log('debug=====fail')
+        }
+      })
 
       this.clearInput()
     },
