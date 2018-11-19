@@ -30,10 +30,10 @@
       
       <div class="after-userifo">
         <div class="weui-cell title">
-          <div class="weui-label">登记信息</div>
+          <div class="weui-label">联系我们</div>
         </div>
-        <div class="weui-grids">
-          <div class="weui-grid" v-for="(item, index) in items" :key="index">
+        <div class="weui-info">
+          <!-- <div class="weui-grid" v-for="(item, index) in items" :key="index">
             <navigator :url="item.url">
               <div class='weui-grid__bg'>
                 <div class="weui-grid__icon">
@@ -42,7 +42,11 @@
                 <text class="weui-grid__label">{{item.name}}</text>
               </div>
             </navigator>
-          </div>
+          </div> -->
+          <p class="weui-item">站务电话: 0435-3338090 (吉林通化)</p>
+          <p class="weui-item">QQ接待群: 1840533</p>
+          <p class="weui-item">咨询信箱: baobeihuijia@yeah.net</p>
+          <p class="weui-item"><a href="https:www.baobeihuijia.com/">网站: https:www.baobeihuijia.com/</a></p>
         </div>
       </div>
       <!-- after-userifo end -->
@@ -221,7 +225,7 @@ export default {
 .after-userifo{
   background: #fff;
 }
-.weui-grids {
+/* .weui-grids {
     position: relative;
     overflow: hidden;
 }
@@ -320,7 +324,29 @@ export default {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+} */
+.weui-info{
+  width: 100%;
+  height: 300rpx;
+  border: 0.2px solid #d9d9d9;
+  font-size: 16px;
 }
+.weui-info p{
+  margin-left:40px;
+}
+.weui-item{
+  margin-top: 17rpx;
+}
+.weui-label {
+    display: block;
+    text-align: center;
+    /* font-weight: bold; */
+    color: #000;
+    font-size: 19px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+} 
 .userinfo {
   display: flex;
   position:relative;
