@@ -312,6 +312,7 @@ export default {
   top: 72px;
   left: 0;
   z-index: -1;
+  border:2px solid;
 }
 .navbar{
   width: 100%;
@@ -487,7 +488,7 @@ export default {
 .article img{
   max-width: 65px;
   max-height: 65px;
-  margin-right: 10px;
+  /* margin-right: 10px; */
 }
 .article p{
   /* border: 1px solid; */
