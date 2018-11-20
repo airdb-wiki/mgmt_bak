@@ -38,7 +38,7 @@
         </div>
         <div class="history">
           <div @click="stoNav" v-for="(item, index) in searchData" :key="index" 
-            :id="item" v-if="index < searchData.length-1 && index < 8">
+            :id="item" v-if="index < searchData.length-1 && index < 6">
             <div class="result">{{item}}</div>
           </div>
         </div>
@@ -55,7 +55,7 @@
             </div>
             <div class="info">
               <div class="info_title">{{item.Title}}</div>
-              <div style="padding-bottom: 5px;">Babyid: {{item.Babyid}}</div>
+              <div style="padding-bottom: 5px;">档案编号: {{item.Babyid}}</div>
               <div class="info_1">
                 <text v-if="item.Gender == 2">女</text>
                 <text v-else>男</text>
@@ -79,7 +79,7 @@ export default {
   data () {
     return {
       inputVal: '',
-      inputPla: '搜索',
+      inputPla: '请输入姓名或档案编号',
       searchData: ['hahaha'],
       showSearchBar: true,
       tipKeys: [],
@@ -93,7 +93,10 @@ export default {
   mounted () {
     if (wx.getStorageSync('searchData') !== '') {
       this.searchData = wx.getStorageSync('searchData')
-      this.inputPla = '搜索'
+    }
+    if (wx.getStorageSync('inputPla') !== '') {
+      this.inputPla = wx.getStorageSync('inputPla')
+      console.log('inputplace is : ', wx.getStorageSync('inputPla'))
     }
   },
   async onPullDownRefresh () {
@@ -138,8 +141,16 @@ export default {
       this.collect(this.inputVal)
       var that = this
 
+      console.log('length is : ', that.tipKeys.length)
+      while (that.tipKeys.length !== 0) {
+        that.tipKeys.splice(this.tipKeys.length - 1, 1)
+        console.log('length is : ', that.tipKeys.length)
+      }
+      // 删除上次搜索匹配到的信息
+
       var isnum = /^\d+$/.test(this.inputVal)
-      var ischinese = /^[\u4E00-\u9FA5]{2,4}$/.test(this.inputVal)
+      var ischinese = /^[\u4E00-\u9FA5]{1,4}$/.test(this.inputVal)
+      console.log('input is chinese: ', ischinese)
       if (isnum === true) {
         that.parms.babyid = that.inputVal
       } else {
@@ -155,7 +166,7 @@ export default {
           return
         }
       }
-      // 验证数据的合法性
+      // 验证数据的合法性,并给data赋值
 
       wx.request({
         url: wx.getStorageSync('requestUrl') + '/small/article/keywords',
@@ -236,6 +247,10 @@ export default {
       wx.navigateTo({
         url: '../../pages/detail/main?id=' + e.currentTarget.id
       })
+
+      this.inputPla = this.inputVal
+      wx.setStorageSync('inputPla', this.inputPla)
+      // 保存这次搜索内容到搜索框placeholder
 
       this.clearInput()
     }
@@ -348,7 +363,8 @@ export default {
   height: 17pt;
 }
 .result{
-  max-width: 125px;
+  width: 64px;
+  text-align: center;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
