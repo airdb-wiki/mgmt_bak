@@ -33,20 +33,10 @@
           <div class="weui-label">联系我们</div>
         </div>
         <div class="weui-info">
-          <!-- <div class="weui-grid" v-for="(item, index) in items" :key="index">
-            <navigator :url="item.url">
-              <div class='weui-grid__bg'>
-                <div class="weui-grid__icon">
-                    <image :src="item.src"/>
-                </div>
-                <text class="weui-grid__label">{{item.name}}</text>
-              </div>
-            </navigator>
-          </div> -->
-          <p class="weui-item">站务电话: 0435-3338090 (吉林通化)</p>
-          <p class="weui-item">QQ接待群: 1840533</p>
-          <p class="weui-item">咨询信箱: baobeihuijia@yeah.net</p>
-          <p class="weui-item"><a href="https:www.baobeihuijia.com/">网站: https:www.baobeihuijia.com/</a></p>
+          <div class="weui-item">站务电话: <p style='display: inline'>0435-3338090</p> (吉林通化)</div>
+          <div class="weui-item">QQ接待群: <p class="weui-p" style='display: inline'>1840533</p></div>
+          <div class="weui-item">咨询信箱: <p class="weui-p" style='display: inline'>baobeihuijia@yeah.net</p></div>
+          <div class="weui-item">网站: <p class="weui-p" style='display: inline'>https:www.baobeihuijia.com/</p></div>
         </div>
       </div>
       <!-- after-userifo end -->
@@ -331,11 +321,12 @@ export default {
   border: 0.2px solid #d9d9d9;
   font-size: 16px;
 }
-.weui-info p{
-  margin-left:40px;
+.weui-p{
+  user-select:text;
 }
 .weui-item{
   margin-top: 17rpx;
+  margin-left:40px;
 }
 .weui-label {
     display: block;
