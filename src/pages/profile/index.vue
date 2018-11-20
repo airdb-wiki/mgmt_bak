@@ -36,7 +36,7 @@
           <div class="weui-item">站务电话: <p class="weui-phone" style='display: inline' @click="tel">0435-3338090</p> (吉林通化)</div>
           <div class="weui-item">QQ接待群: <p class="weui-p" style='display: inline'>1840533</p></div>
           <div class="weui-item">咨询信箱: <p class="weui-p" style='display: inline'>baobeihuijia@yeah.net</p></div>
-          <div class="weui-item">网站: <p class="weui-p" style='display: inline'>https:www.baobeihuijia.com/</p></div>
+          <div class="weui-item">网站: <p class="weui-p" style='display: inline'>www.baobeihuijia.com/</p></div>
         </div>
       </div>
       <!-- after-userifo end -->
@@ -89,6 +89,7 @@ export default {
   },
   data () {
     return {
+      isActive: 0,
       servicetime: 10,
       minaAuth: wx.getStorageSync('minaAuth'),
       isVolunteer: false,
