@@ -33,7 +33,7 @@
           <div class="weui-label">联系我们</div>
         </div>
         <div class="weui-info">
-          <div class="weui-item">站务电话: <p style='display: inline'>0435-3338090</p> (吉林通化)</div>
+          <div class="weui-item">站务电话: <p class="weui-phone" style='display: inline' @click="tel">0435-3338090</p> (吉林通化)</div>
           <div class="weui-item">QQ接待群: <p class="weui-p" style='display: inline'>1840533</p></div>
           <div class="weui-item">咨询信箱: <p class="weui-p" style='display: inline'>baobeihuijia@yeah.net</p></div>
           <div class="weui-item">网站: <p class="weui-p" style='display: inline'>https:www.baobeihuijia.com/</p></div>
@@ -183,6 +183,11 @@ export default {
       wx.navigateTo({
         url: '/pages/test_mc/myPrivilege/main'
       })
+    },
+    tel: function () {
+      wx.makePhoneCall({
+        phoneNumber: '0435-3338090'
+      })
     }
   },
   created () {
@@ -323,10 +328,17 @@ export default {
 }
 .weui-p{
   user-select:text;
+  color:#576b95;
+  font-size: 17px;
+  /* font-weight:bold; */
 }
 .weui-item{
   margin-top: 17rpx;
   margin-left:40px;
+}
+.weui-phone{
+  color:#576b95;;
+  font-size: 17px;
 }
 .weui-label {
     display: block;
