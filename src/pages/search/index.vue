@@ -85,8 +85,8 @@ export default {
       tipKeys: [],
       items: [],
       parms: {
-        babyid: Number,
-        nickname: String
+        babyid: '',
+        nickname: ''
       }
     }
   },
@@ -138,20 +138,22 @@ export default {
       this.collect(this.inputVal)
       var that = this
 
-      that.parms.babyid = that.inputVal
-      that.parms.nickname = that.inputVal
-      // 赋值
-
       var isnum = /^\d+$/.test(this.inputVal)
       var ischinese = /^[\u4E00-\u9FA5]{2,4}$/.test(this.inputVal)
-      if (isnum === false && ischinese === false) {
-        wx.showToast({
-          title: '请输入正确的搜索内容',
-          icon: 'none',
-          duration: 2000,
-          mask: true
-        })
-        return
+      if (isnum === true) {
+        that.parms.babyid = that.inputVal
+      } else {
+        if (ischinese === true) {
+          that.parms.nickname = that.inputVal
+        } else {
+          wx.showToast({
+            title: '请输入正确的搜索内容',
+            icon: 'none',
+            duration: 2000,
+            mask: true
+          })
+          return
+        }
       }
       // 验证数据的合法性
 
@@ -179,7 +181,9 @@ export default {
             if (res.data[0].Title === '') {
               res.data[0].Title = res.data[0].MissedProvince + '-' + res.data[0].MissedCity + ', 寻找' + res.data[0].Nickname
             } // 判断是否有标题，若无，则添加默认标题
-            that.tipKeys = that.tipKeys.concat(res.data[0])
+            if (that.tipKeys.length === 0) {
+              that.tipKeys = that.tipKeys.concat(res.data[0])
+            }
           }
         },
         fail: function (res) {

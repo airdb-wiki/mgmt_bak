@@ -66,7 +66,7 @@ export default {
 #search{
   margin-top: 20pt;
   border: 1px solid #e2e2e2;
-  width: 50%;
+  width: 48%;
   line-height: 21pt;
   height: 21pt;
   border-radius: 20px;
