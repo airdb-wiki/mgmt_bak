@@ -33,10 +33,10 @@
           <div class="weui-label">联系我们</div>
         </div>
         <div class="weui-info">
-          <div class="weui-item">站务电话: <p class="weui-phone" style='display: inline' @click="tel">0435-3338090</p> (吉林通化)</div>
-          <div class="weui-item" style="-webkit-user-select:text">QQ接待群: <p class="weui-p" style='display: inline'>1840533</p></div>
-          <div class="weui-item" style="-webkit-user-select:text">咨询信箱: <p class="weui-p" style='display: inline'>baobeihuijia@yeah.net</p></div>
           <div class="weui-item" style="-webkit-user-select:text">网站: <p class="weui-p" style='display: inline'>www.baobeihuijia.com</p></div>
+          <div class="weui-item" style="-webkit-user-select:text">咨询信箱: <p class="weui-p" style='display: inline'>baobeihuijia@yeah.net</p></div>
+          <div class="weui-item">站务电话: <p class="weui-phone" style='display: inline' @click="tel">0435-3338090</p></div>
+          <div class="weui-item" style="-webkit-user-select:text">QQ接待群: <p class="weui-p" style='display: inline'>1840533</p></div>  
         </div>
       </div>
       <!-- after-userifo end -->
@@ -331,15 +331,18 @@ export default {
   user-select:text;
   color:#576b95;
   font-size: 17px;
+  font-weight: 400;
   /* font-weight:bold; */
 }
 .weui-item{
   margin-top: 17rpx;
   margin-left:40px;
+  font-weight: 700;
 }
 .weui-phone{
   color:#576b95;;
   font-size: 17px;
+  font-weight: 400;
 }
 .weui-label {
     display: block;
