@@ -4,7 +4,7 @@
         <div>
         </div>
         <div class="weui-footer__links">
-          <navigator open-type="switchTab" url="/pages/test_mc/trends/main" class="weui-footer__link">项目进度</navigator>
+          <navigator url="/pages/test_mc/hzw_map/main" class="weui-footer__link">项目进度</navigator>
           <navigator url="/pages/hr/main" class="weui-footer__link">加入我们</navigator>
         </div>
         <div class="weui-footer__text">Copyright © 2008-2018 宝贝科技</div>
