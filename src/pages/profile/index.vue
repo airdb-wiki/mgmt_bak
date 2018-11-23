@@ -33,7 +33,7 @@
           <div class="weui-label">联系我们</div>
         </div>
         <div class="weui-info">
-          <div class="weui-item" style="-webkit-user-select:text">网站: <p class="weui-p" style='display: inline'>www.baobeihuijia.com</p></div>
+          <div class="weui-item" style="-webkit-user-select:text">官方网站: <p class="weui-p" style='display: inline'>www.baobeihuijia.com</p></div>
           <div class="weui-item" style="-webkit-user-select:text">咨询信箱: <p class="weui-p" style='display: inline'>baobeihuijia@yeah.net</p></div>
           <div class="weui-item">站务电话: <p class="weui-phone" style='display: inline' @click="tel">0435-3338090</p></div>
           <div class="weui-item" style="-webkit-user-select:text">QQ接待群: <p class="weui-p" style='display: inline'>1840533</p></div>  

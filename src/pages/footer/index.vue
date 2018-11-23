@@ -1,12 +1,10 @@
 <template>
   <div class="page">
-
     <div class="weui-footer">
         <div>
-
         </div>
         <div class="weui-footer__links">
-          <navigator url="/pages/licence/main" class="weui-footer__link">相关条款</navigator>
+          <navigator open-type="switchTab" url="/pages/test_mc/trends/main" class="weui-footer__link">项目进度</navigator>
           <navigator url="/pages/hr/main" class="weui-footer__link">加入我们</navigator>
         </div>
         <div class="weui-footer__text">Copyright © 2008-2018 宝贝科技</div>
@@ -17,7 +15,6 @@
 
 <script>
 export default {
-
 }
 </script>
 
