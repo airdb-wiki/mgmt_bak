@@ -21,9 +21,6 @@
 
     <div class='topExpress'>
 
-      <div class='topExpress-left'>
-        <img src='/images/Exchange_goods_map_1.png' style='width:60rpx;height:60rpx;border-radius:50%;'>
-      </div>
       <div class='topExpress-right'>
         <div class='topExpress-right-top'>宝贝回家小程序</div>
         <div class='topExpress-right-middle'>开发过程</div>
@@ -56,8 +53,12 @@
       <div class='expressRecord-single-close' v-for="(item, index) in items" :key="index">
         <div class='expressRecord-single-noReach-online-top-close'>
           <div class='online-top-close'></div>
-          <div class='dot-close' v-if="item.day.length == 4" style="background: cyan;"></div>
-          <div class='dot-close' v-else :style="[index == 1 ? 'background: rgb(186, 255, 82);' : '']"></div>
+          <!-- <div class='dot-close' v-if="item.day.length == 4" style="background: cyan;"></div>
+          <div class='dot-close' v-else :style="[index == 1 ? 'background: rgb(186, 255, 82);' : '']"></div> -->
+          <div class="dot">
+            <img :style="[item.day.length == 4 ? 'width: 25px;height: 25px;margin-left: 75rpx;' : '']"
+            :src="item.day.length == 2 ? images.now : (item.day.length==5 ? images.history: images.year)">
+          </div>
           <div class='online-bottom'></div>
         </div>
 
@@ -107,7 +108,12 @@ export default {
         content: '实现xxx功能',
         day: '10-21'
       }
-      ]
+      ],
+      images: {
+        'now': '/static/images/home/now.png',
+        'history': '/static/images/home/history.png',
+        'year': '/static/images/home/year.png'
+      }
     }
   },
   methods: {
@@ -197,7 +203,7 @@ page {
   justify-content: space-around;
   flex-direction: column;
   align-items: flex-start;
-  padding: 20rpx 0;
+  padding: 20rpx 30px;
 }
 
 .topExpress-right-top{
@@ -289,6 +295,7 @@ page {
   height: 50rpx;
   background: #999;
   margin-left: 95rpx;
+  margin-top: 10rpx;
 }
 
 .dot-close {
@@ -306,6 +313,7 @@ page {
   height: 50rpx;
   background: #999;
   margin-left: 95rpx;
+  margin-bottom: 10rpx;
 }
 
 .online-bottom-start {
@@ -373,5 +381,15 @@ page {
 
 .expressRecord-date-time {
   font-size: 16px;
+}
+
+.dot{
+  width: 20px;
+  height: 20px;
+}
+.dot img{
+  width: 20px;
+  height: 20px;
+  margin-left: 77rpx;
 }
 </style>
