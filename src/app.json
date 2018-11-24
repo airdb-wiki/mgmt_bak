@@ -44,12 +44,9 @@
         "text": "首页",
         "iconPath": "/static/images/reading.png",
         "selectedIconPath": "/static/images/reading_active.png"
-      }, {
-        "pagePath": "pages/test_mc/trends/main",
-        "text": "动态",
-        "iconPath": "/static/images/music.png",
-        "selectedIconPath": "/static/images/music_active.png"
-      }, {
+      },
+      
+       {
         "pagePath": "pages/profile/main",
         "text": "我的",
         "iconPath": "/static/images/user.png",

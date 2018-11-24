@@ -1,6 +1,5 @@
 <template>
   <div class="page">
-
     <div class="weui-footer">
         <div class="weui-footer__links">
           <navigator url="pagea" class="weui-footer__link">友情链接</navigator>

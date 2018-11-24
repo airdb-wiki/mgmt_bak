@@ -115,6 +115,12 @@ export default {
     }
   }
 }
+// {
+//   "pagePath": "pages/test_mc/trends/main",
+//   "text": "动态",
+//   "iconPath": "/static/images/music.png",
+//   "selectedIconPath": "/static/images/music_active.png"
+// },
 </script>
  <style>
 .b-container {
