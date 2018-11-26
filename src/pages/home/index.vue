@@ -26,27 +26,14 @@
         <div v-for="(tab, index) in tabs" :key="tab.id" :class="[index == activeIndex ? 'item_on' : 'tab']" :id="index" @click="changeTab">{{tab}}</div>
       </scroll-view>
     </div>
+    
+    <!-- <div style="z-index: 0;">
+      <card :items="database"></card>
+    </div> -->
 
-    <!-- 内容 -->
-    <!-- <form @submit="formSubmit_collect" report-submit="true"> -->
     <div style="z-index: 0;">
-      <card :items="database"></card>
+      <card2 :items="database"></card2>
     </div>
-    <!--
-    <div style="z-index: 0;" v-if="activeIndex == 1">
-      <card :items="database"></card>
-    </div>
-    <div style="z-index: 0;" v-if="activeIndex == 2">
-      <card :items="database"></card>
-    </div>
-    <div style="z-index: 0;" v-if="activeIndex == 3">
-      <card :items="database"></card>
-    </div>
-    <div style="z-index: 0;" v-if="activeIndex == 4">
-      <card :items="database"></card>
-    </div>
-    -->
-    <!-- </form> -->
 
     <!-- 底部登陆按钮 -->
     <!--
@@ -65,6 +52,7 @@
 <script>
 import { formatTime } from '@/utils/index'
 import card from '@/components/card1'
+import card2 from '@/components/card2'
 import navbar from '@/components/navbar'
 import navigation from '@/components/navigation'
 var fmt = require('../../utils/index.js')
@@ -73,7 +61,8 @@ export default {
   components: {
     card,
     navbar,
-    navigation
+    navigation,
+    card2
   },
   data () {
     return {
