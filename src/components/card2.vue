@@ -1,7 +1,8 @@
 <template>
   <div class="page">
     <div v-for="(item, index) in items" :key="index" class="container">
-        <div :style="[show ? '' : 'max-height: 130px;overflow: hidden;']">
+        <div :style="[show ? '' : 'max-height: 130px;overflow: hidden;']"
+          @click="navToDetail" :id="item.UUID">
             <div class="head">
                 <div class="avatar"><img :src="item.AvatarUrl"></div>
                 <div class="content">
@@ -24,7 +25,9 @@
             <p>aaa</p>
             <p>aaa</p>
         </div>
-        <div class="more" @click="showDetail"><img :src="icon"></div>
+        <div class="more" @click="showDetail">
+            <img :src="icon" :style="[show ? 'width: 1.5em;height: 1.5em;' : '']">
+        </div>
         <div class="other">
             <div class="t_container">
                 <span class="icon"><img src="/static/images/home/notice.png"></span>
@@ -35,7 +38,7 @@
                 <span class="num">11</span>
             </div>
             <div class="t_container">
-                <span class="icon"><img src="/static/images/home/down.png"></span>
+                <span class="icon"><img src="/static/images/home/shareNum.png"></span>
                 <span class="num">22</span>
             </div>
         </div>
@@ -64,6 +67,11 @@ export default {
         this.show = false
         this.icon = '/static/images/home/down.png'
       }
+    },
+    navToDetail (e) {
+      wx.navigateTo({
+        url: '../../pages/detail/main?id=' + e.currentTarget.id
+      })
     }
   }
 }
@@ -76,7 +84,7 @@ export default {
 .container{
     margin: 1em;
     padding: 0;
-    border: 1px solid #bababa;
+    border: 1px solid #a7a7a7;
     border-radius: 0.5em;
 }
 .head{
@@ -108,14 +116,23 @@ export default {
 }
 .more{
     margin: auto;
+    transition: ro
 }
 .more img{
     width: 2em;
     height: 2em;
 }
+/* .moreIcon:active{
+    animation: myfirst 5s;
+}
+@keyframes myfirst
+{
+    from {transform: rotate(0deg);}
+    to {transform: rotate(180deg);}
+} */
 .other{
     width: 100%;
-    border-top: 1px dashed #bababa;
+    border-top: 1px dashed #a7a7a7;
     display: flex;
     flex-direction: row;
 }
