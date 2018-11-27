@@ -57,9 +57,13 @@ export default {
   },
   methods: {
     showDetail () {
-      console.log('click')
-      this.show = true
-      this.icon = '/static/images/home/up.png'
+      if (!this.show) {
+        this.show = true
+        this.icon = '/static/images/home/up.png'
+      } else {
+        this.show = false
+        this.icon = '/static/images/home/down.png'
+      }
     }
   }
 }
