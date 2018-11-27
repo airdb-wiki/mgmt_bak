@@ -1,23 +1,30 @@
 <template>
   <div class="page">
     <div v-for="(item, index) in items" :key="index" class="container">
-        <div class="head">
-            <div class="avatar"><img :src="item.AvatarUrl"></div>
-            <div class="content">
-                <div class="se_container">
-                    <div class="name">{{item.Nickname}}</div>
-                    <div class="age">{{item.Age}}岁</div>
+        <div :style="[show ? '' : 'max-height: 130px;overflow: hidden;']">
+            <div class="head">
+                <div class="avatar"><img :src="item.AvatarUrl"></div>
+                <div class="content">
+                    <div class="se_container">
+                        <div class="name">{{item.Nickname}}</div>
+                        <div class="age">{{item.Age}}岁</div>
+                    </div>
+                    <div class="se_container">
+                        <div class="time">{{item.MissedAt}}</div>
+                    </div>
+                    <div class="se_container">
+                        <div class="missPlace">{{item.MissedAddress}}</div>
+                    </div>
+                    <div class="distance">100</div>
                 </div>
-                <div class="se_container">
-                    <div class="time">{{item.MissedAt}}</div>
-                </div>
-                <div class="se_container">
-                    <div class="missPlace">{{item.MissedAddress}}</div>
-                </div>
-                <div class="distance">100</div>
             </div>
+            <p>aaa</p>
+            <p>aaa</p>
+            <p>aaa</p>
+            <p>aaa</p>
+            <p>aaa</p>
         </div>
-        <span class="more"><img src="/static/images/home/down.png" alt=""></span>
+        <div class="more" @click="showDetail"><img :src="icon"></div>
         <div class="other">
             <div class="t_container">
                 <span class="icon"><img src="/static/images/home/notice.png"></span>
@@ -42,10 +49,18 @@ export default {
   props: ['items'],
   data () {
     return {
-
+      show: false,
+      icon: '/static/images/home/down.png'
     }
   },
   onLoad () {
+  },
+  methods: {
+    showDetail () {
+      console.log('click')
+      this.show = true
+      this.icon = '/static/images/home/up.png'
+    }
   }
 }
 </script>
@@ -114,6 +129,7 @@ export default {
 .icon img{
     width: 1.6em;
     height: 1.6em;
+    margin-right: .3em;
 }
 .num{
     display: inline-block;
