@@ -62,11 +62,12 @@ export default {
     }
   },
   methods: {
-    showDetail (e) {
+    showDetail (e) { // 该函数存在bug，不知道为什么当同时点开多个详情时，需要点三次，页面才会变化
       var index = e.currentTarget.id
+      console.log(index, 'card', this.show[index])
       if (!this.show[index]) {
         this.show[index] = true
-        this.icon = '/static/images/home/up.png'
+        this.icon = '/static/images/home/up.png' // bug2， 虽然代码里没用icon，但这里删除后，会导致card不会变长
       } else {
         this.show[index] = false
         this.icon = '/static/images/home/down.png'
