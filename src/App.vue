@@ -2,9 +2,32 @@
 <script>
 var QQMapWX = require('../static/qqmap-wx-jssdk.min.js')
 export default {
-  onLaunch (res) {
-    console.log('open app scene info', res.scene)
-    console.log('shareTicket is: ', res.shareTicket)
+  onLaunch (launch) {
+    console.log('app launch scene info: ', launch.scene, launch.path, launch.shareTicket)
+    wx.login({
+      success: function (res) {
+        if (res.code) {
+          wx.request({
+            url: 'https://wechat.baobeihuijia.com/dev/lastest/wechatapi/wechat/login',
+            method: 'Get',
+            header: {
+              'content-type': 'application/json'
+            },
+            data: {
+              code: res.code,
+              scene: launch.scene,
+              shareTicket: launch.shareTicket,
+              path: launch.path
+            },
+            success: function (res) {
+              console.log('xxxx')
+            }
+          })
+        } else {
+          console.log('登录失败！' + res.errMsg)
+        }
+      }
+    })
   },
   onPageNotFound () {
     wx.redirectTo({

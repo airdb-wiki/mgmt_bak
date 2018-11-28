@@ -25,7 +25,7 @@
   ],
   "plugins": {
     "tencentvideo": {
-      "version": "1.2.2",
+      "version": "1.2.3",
       "provider": "wxa75efa648b60994b"
     }
   },
