@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <div v-for="(item, index) in items" :key="index" class="container">
-        <div :style="[show ? '' : 'max-height: 130px;overflow: hidden;']"
+        <div :style="[show[index] ? '' : 'max-height: 130px;overflow: hidden;']"
           @click="navToDetail" :id="item.UUID">
             <div class="head">
                 <div class="avatar"><img :src="item.AvatarUrl"></div>
@@ -25,8 +25,8 @@
             <p>aaa</p>
             <p>aaa</p>
         </div>
-        <div class="more" @click="showDetail">
-            <img :src="icon" :style="[show ? 'width: 1.5em;height: 1.5em;' : '']">
+        <div class="more" @click="showDetail" :id="index">
+            <img src="/static/images/home/down.png" :style="[show[index] ? 'transform: rotate(180deg);' : '']">
         </div>
         <div class="other">
             <div class="t_container">
@@ -52,19 +52,23 @@ export default {
   props: ['items'],
   data () {
     return {
-      show: false,
+      show: [],
       icon: '/static/images/home/down.png'
     }
   },
   onLoad () {
+    for (var i = 0; i < this.items.length; i++) {
+      this.show = this.show.concat(false)
+    }
   },
   methods: {
-    showDetail () {
-      if (!this.show) {
-        this.show = true
+    showDetail (e) {
+      var index = e.currentTarget.id
+      if (!this.show[index]) {
+        this.show[index] = true
         this.icon = '/static/images/home/up.png'
       } else {
-        this.show = false
+        this.show[index] = false
         this.icon = '/static/images/home/down.png'
       }
     },
