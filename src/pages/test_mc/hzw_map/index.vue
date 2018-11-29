@@ -64,7 +64,10 @@
 
         <div class='expressRecord-text'>
           <div class='expressRecord-status'></div>
-          <div class='expressRecord-status-address' :style="[item.day.length == 4 ? 'color: cyan;font-weight: bold;' : '']">{{item.content}}</div>
+          <div class='expressRecord-status-address' @click="showDetail(index)"
+            :style="[item.day.length == 4 ? 'color: cyan;font-weight: bold;' : '']">
+            {{item.content}}
+          </div>
         </div>
 
         <div class='expressRecord-date' v-if="item.day.length == 4">
@@ -79,8 +82,26 @@
         </div>
       </div>
 
+    </div>
 
-
+    <div class="card">
+      <div class="time">{{detailShowed.time}}2018-7-13</div>
+      <div>
+        <div class="title">
+          <div>
+            <span><img src="/static/images/home/parter.png"></span>
+            <span class="text">贡献者</span>
+          </div>
+          <div></div>
+        </div>
+        <div class="title">
+          <div>
+            <span><img src="/static/images/home/parter.png"></span>
+            <span class="text">Achievement</span>
+          </div>
+          <div>{{detailShowed.content}}</div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -113,12 +134,20 @@ export default {
         'now': '/static/images/home/now.png',
         'history': '/static/images/home/history.png',
         'year': '/static/images/home/year.png'
-      }
+      },
+      detailShowed: {
+        time: '',
+        content: ''
+      },
+      show: false
     }
   },
   methods: {
     navToTarget () {
       wx.navigateTo({ url: '/pages/hr/main' })
+    },
+    showDetail () {
+
     }
   }
 }
@@ -391,5 +420,30 @@ page {
   width: 20px;
   height: 20px;
   margin-left: 77rpx;
+}
+.card{
+  border-radius: 15px;
+  max-width: 200px;
+  max-height: 200px;
+  margin: auto;
+  z-index: 9999;
+  background: aqua;
+}
+.time{
+  padding: 5px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+}
+.title{
+  padding: 5px 10px;
+}
+.title img{
+  width: 20px;
+  height: 20px;
+  margin: 5px 5px 0 0;
+}
+.text{
+  display: inline-block;
 }
 </style>
