@@ -4,7 +4,7 @@
         <div :style="[show[index] ? '' : 'max-height: 130px;overflow: hidden;']"
           @click="navToDetail" :id="item.UUID">
             <div class="head">
-                <div class="avatar"><img :src="item.AvatarUrl"></div>
+                <div class="avatar"><img :src="item.AvatarUrl" @click.stop="previewImg(index)"></div>
                 <div class="content">
                     <div class="se_container">
                         <div class="name">{{item.Nickname}}</div>
@@ -62,6 +62,15 @@ export default {
     }
   },
   methods: {
+    previewImg: function (index) {
+      var imgArr = []
+      imgArr[0] = this.items[index].AvatarUrl
+      wx.previewImage({
+        current: this.items[index].AvatarUrl, // 当前图片地址 imgArr[index]
+        urls: imgArr, // 所有要预览的图片的地址集合 数组形式
+        success: function (res) {}
+      })
+    },
     showDetail (e) { // 该函数存在bug，不知道为什么当同时点开多个详情时，需要点三次，页面才会变化
       var index = e.currentTarget.id
       console.log(index, 'card', this.show[index])
@@ -161,3 +170,5 @@ export default {
     display: inline-block;
 }
 </style>
+
+
