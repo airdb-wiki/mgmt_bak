@@ -85,21 +85,29 @@
     </div>
 
     <div class="card">
-      <div class="time">{{detailShowed.time}}2018-7-13</div>
+      <div class="time">{{detailShowed.time}}</div>
       <div>
-        <div class="title">
-          <div>
+        <div class="title1">
+          <div class="title1_container">
             <span><img src="/static/images/home/parter.png"></span>
             <span class="text">贡献者</span>
           </div>
-          <div></div>
+          <div class="list">
+            <ul>
+              <li v-for="(contributer, index) in detailShowed.contributers" :key="index">
+                {{contributer}}
+              </li>
+            </ul>
+          </div>
         </div>
-        <div class="title">
-          <div>
-            <span><img src="/static/images/home/parter.png"></span>
+        <div class="title1">
+          <div class="title1_container">
+            <span><img src="/static/images/home/achieve.png"></span>
             <span class="text">Achievement</span>
           </div>
-          <div>{{detailShowed.content}}</div>
+          <div class="list">
+            <p>{{detailShowed.content}}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -136,8 +144,12 @@ export default {
         'year': '/static/images/home/year.png'
       },
       detailShowed: {
-        time: '',
-        content: ''
+        time: '2018-7-12',
+        content: '正在努力实现小程序插件的使用，欢迎大家加入实现xxx功能件的使用，欢迎大家加入实现xxx功能',
+        contributers: [
+          'IWTF',
+          'Dean'
+        ]
       },
       show: false
     }
@@ -416,34 +428,52 @@ page {
   width: 20px;
   height: 20px;
 }
+
 .dot img{
   width: 20px;
   height: 20px;
   margin-left: 77rpx;
 }
+
 .card{
+  padding: 15px 0;
   border-radius: 15px;
   max-width: 200px;
-  max-height: 200px;
   margin: auto;
   z-index: 9999;
-  background: aqua;
+  background: rgb(127, 255, 255);
+  box-shadow: 0 8px 10px aqua;
+  margin-bottom: 30px;
 }
+
 .time{
-  padding: 5px 20px;
+  margin-bottom: 5px;
   font-size: 18px;
   font-weight: bold;
   text-align: center;
 }
-.title{
-  padding: 5px 10px;
+
+.title1{
+  margin: 10px 20px 5px;
+  text-align: left;
 }
-.title img{
-  width: 20px;
-  height: 20px;
+
+.title1 img{
+  vertical-align: top;
+  display: inline-block;
+  width: 18px;
+  height: 18px;
   margin: 5px 5px 0 0;
 }
+
 .text{
-  display: inline-block;
+  font-size: 16px;
+  border-bottom: 1px solid #ff3499;
+}
+
+.list{
+  margin-top: 5px;
+  margin-left: 5px;
+  font-size: 12px;
 }
 </style>
