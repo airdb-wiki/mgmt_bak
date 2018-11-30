@@ -53,8 +53,6 @@
       <div class='expressRecord-single-close' v-for="(item, index) in items" :key="index">
         <div class='expressRecord-single-noReach-online-top-close'>
           <div class='online-top-close'></div>
-          <!-- <div class='dot-close' v-if="item.day.length == 4" style="background: cyan;"></div>
-          <div class='dot-close' v-else :style="[index == 1 ? 'background: rgb(186, 255, 82);' : '']"></div> -->
           <div class="dot">
             <img :style="[item.day.length == 4 ? 'width: 25px;height: 25px;margin-left: 75rpx;' : '']"
             :src="item.day.length == 2 ? images.now : (item.day.length==5 ? images.history: images.year)">
@@ -65,7 +63,7 @@
         <div class='expressRecord-text'>
           <div class='expressRecord-status'></div>
           <div class='expressRecord-status-address' @click="showDetail(index)"
-            :style="[item.day.length == 4 ? 'color: cyan;font-weight: bold;' : '']">
+            :style="[item.day.length == 4 ? 'color: cyan;font-weight: 800;' : '']">
             {{item.content}}
           </div>
         </div>
@@ -84,29 +82,31 @@
 
     </div>
 
-    <div class="card">
-      <div class="time">{{detailShowed.time}}</div>
-      <div>
-        <div class="title1">
-          <div class="title1_container">
-            <span><img src="/static/images/home/parter.png"></span>
-            <span class="text">贡献者</span>
+    <div class="bg" :hidden="!show" @click="hiddenDetail()">
+      <div class="card">
+        <div class="time">{{detailShowed.time}}</div>
+        <div>
+          <div class="title1">
+            <div class="title1_container">
+              <span><img src="/static/images/home/parter.png"></span>
+              <span class="text">贡献者</span>
+            </div>
+            <div class="list">
+              <ul>
+                <li v-for="(contributer, index) in detailShowed.contributers" :key="index">
+                  {{contributer}}
+                </li>
+              </ul>
+            </div>
           </div>
-          <div class="list">
-            <ul>
-              <li v-for="(contributer, index) in detailShowed.contributers" :key="index">
-                {{contributer}}
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="title1">
-          <div class="title1_container">
-            <span><img src="/static/images/home/achieve.png"></span>
-            <span class="text">Achievement</span>
-          </div>
-          <div class="list">
-            <p>{{detailShowed.content}}</p>
+          <div class="title1">
+            <div class="title1_container">
+              <span><img src="/static/images/home/achieve.png"></span>
+              <span class="text">Achievement</span>
+            </div>
+            <div class="list">
+              <p>{{detailShowed.content}}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -158,8 +158,27 @@ export default {
     navToTarget () {
       wx.navigateTo({ url: '/pages/hr/main' })
     },
-    showDetail () {
+    showDetail (index) {
+      if (this.items[index].day.length === 4) {
+        return
+      }
 
+      var year
+      for (var i = index; i >= 0; i--) {
+        if (this.items[i].day.length === 4) {
+          year = this.items[i].day
+        }
+      }
+
+      if (this.items[index].day.length === 5) {
+        this.detailShowed.time = year + '-' + this.items[index].day
+      }
+      this.detailShowed.content = this.items[index].content
+
+      this.show = true
+    },
+    hiddenDetail () {
+      this.show = false
     }
   }
 }
@@ -475,5 +494,15 @@ page {
   margin-top: 5px;
   margin-left: 5px;
   font-size: 12px;
+}
+
+.bg{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  padding-top: 170px;
+  top: 0px;
+  left: 0;
+  background: rgba(255, 255, 255, .5);
 }
 </style>
