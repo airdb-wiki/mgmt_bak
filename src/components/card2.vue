@@ -7,23 +7,23 @@
                 <div class="avatar"><img :src="item.AvatarUrl" @click.stop="previewImg(index)"></div>
                 <div class="content">
                     <div class="se_container">
-                        <div class="name">{{item.Nickname}}</div>
-                        <div class="age">{{item.Age}}岁</div>
+                        <div style="width: 165px;">{{item.Nickname}}</div>
+                        <div style="margin-left: 50px;">{{item.Age}}岁</div>
                     </div>
                     <div class="se_container">
-                        <div class="time">{{item.MissedAt}}</div>
+                        <div>BabyId：</div>
+                        <div>{{item.Babyid}}</div>
                     </div>
                     <div class="se_container">
-                        <div class="missPlace">{{item.MissedAddress}}</div>
+                        <div>距离您：</div>
+                        <div>100公里</div>
                     </div>
-                    <div class="distance">100</div>
                 </div>
             </div>
-            <p>aaa</p>
-            <p>aaa</p>
-            <p>aaa</p>
-            <p>aaa</p>
-            <p>aaa</p>
+            <p>失踪地：{{item.MissedAddress}}</p>
+            <p>失踪时间：{{item.MissedAt}}</p>
+            <div style="padding: 0 20px;">特征:</div>
+            <p>{{item.Characters}}</p>
         </div>
         <div class="more" @click="showDetail" :id="index">
             <img src="/static/images/home/down.png" :style="[show[index] ? 'transform: rotate(180deg);' : '']">
@@ -101,6 +101,9 @@ export default {
     border: 1px solid #a7a7a7;
     border-radius: 0.5em;
 }
+.container p{
+    padding: 0 20px;
+}
 .head{
     margin: 0.5em;
     margin-left: 0px;
@@ -120,13 +123,13 @@ export default {
 }
 .content{
     flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 .se_container{
+    flex: 1;
     display: flex;
     flex-direction: row;
-}
-.age{
-    margin-left: 120px;
 }
 .more{
     margin: auto;
@@ -136,14 +139,6 @@ export default {
     width: 2em;
     height: 2em;
 }
-/* .moreIcon:active{
-    animation: myfirst 5s;
-}
-@keyframes myfirst
-{
-    from {transform: rotate(0deg);}
-    to {transform: rotate(180deg);}
-} */
 .other{
     width: 100%;
     border-top: 1px dashed #a7a7a7;
