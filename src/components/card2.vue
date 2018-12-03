@@ -1,28 +1,30 @@
 <template>
   <div class="page">
     <div v-for="(item, index) in items" :key="index" class="container">
-        <div :style="[show[index] ? '' : 'max-height: 130px;overflow: hidden;']"
+        <div :style="[show[index] ? '' : 'max-height: 210rpx;overflow: hidden;']"
           @click="navToDetail" :id="item.UUID">
             <div class="head">
                 <div class="avatar"><img :src="item.AvatarUrl" @click.stop="previewImg(index)"></div>
                 <div class="content">
                     <div class="se_container">
-                        <div style="width: 165px;">{{item.Nickname}}</div>
-                        <div style="margin-left: 50px;">{{item.Age}}岁</div>
+                        <div class="important" style="width: 320rpx;">{{item.Nickname}}</div>
+                        <div class="important" style="margin-left: 50rpx;">{{item.Age}}岁</div>
                     </div>
                     <div class="se_container">
-                        <div>BabyId：</div>
+                        <div class="important">档案ID：</div>
                         <div>{{item.Babyid}}</div>
                     </div>
                     <div class="se_container">
-                        <div>距离您：</div>
+                        <div class="important">距离您：</div>
                         <div>100公里</div>
                     </div>
                 </div>
             </div>
-            <p>失踪地：{{item.MissedAddress}}</p>
-            <p>失踪时间：{{item.MissedAt}}</p>
-            <div style="padding: 0 20px;">特征:</div>
+            <div class="t_title">失踪地：</div>
+            <p>{{item.MissedAddress}}</p>
+            <div class="t_title">失踪时间：</div>
+            <p>{{item.MissedAt}}</p>
+            <div class="t_title">特征:</div>
             <p>{{item.Characters}}</p>
         </div>
         <div class="more" @click="showDetail" :id="index">
@@ -93,7 +95,7 @@ export default {
 
 <style scoped>
 .page{
-    margin-top: 20px;
+    margin-top: 40rpx;
 }
 .container{
     margin: 1em;
@@ -112,14 +114,14 @@ export default {
 }
 .avatar{
     flex: 1;
-    max-width: 7em;
-    max-height: 7em;
+    max-width: 6.5em;
+    max-height: 6.5em;
     margin-right: 0.3em;
     vertical-align: top;
 }
 .avatar img{
-    max-width: 7em;
-    max-height: 7em;
+    max-width: 6.5em;
+    max-height: 6.5em;
 }
 .content{
     flex: 1;
@@ -163,6 +165,13 @@ export default {
 }
 .num{
     display: inline-block;
+}
+.t_title{
+    padding: 0 20px;
+    font-weight: bold;
+}
+.important{
+    font-weight: bold;
 }
 </style>
 
