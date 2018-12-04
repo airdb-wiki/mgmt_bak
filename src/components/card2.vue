@@ -12,7 +12,10 @@
           </div>
           <div class="se_container">
             <div class="important">档案ID：</div>
-            <div>{{item.Babyid}}</div>
+            <div>
+              {{item.Babyid}}
+              <span class="status" :hidden="item.status">已找到</span>
+            </div>
           </div>
           <div class="se_container">
             <div class="important">距离您：</div>
@@ -20,10 +23,14 @@
           </div>
         </div>
       </div>
-      <div class="t_title">失踪地：</div>
-      <p>{{item.MissedAddress}}</p>
-      <div class="t_title">失踪时间：</div>
-      <p>{{item.MissedAt}}</p>
+      <div>
+        <span class="t_title">失踪地：</span>
+        <span>{{item.MissedAddress}}</span>
+      </div>
+      <div>
+        <span class="t_title">失踪时间：</span>
+        <span>{{item.MissedAt}}</span>
+      </div>
       <div class="t_title">特征:</div>
       <p>{{item.Characters}}</p>
     </div>
@@ -58,11 +65,6 @@ export default {
       icon: '/static/images/home/down.png'
     }
   },
-  // onLoad () {
-  //   for (var i = 0; i < this.items.length; i++) {
-  //     this.show = this.show.concat(false)
-  //   }
-  // },
   methods: {
     previewImg: function (index) {
       var imgArr = []
@@ -73,16 +75,9 @@ export default {
         success: function (res) {}
       })
     },
-    toggleDetail (e) { // 该函数存在bug，不知道为什么当同时点开多个详情时，需要点三次，页面才会变化
+    toggleDetail (e) {
       var index = e.currentTarget.id
       this.$emit('toggleDetail', index)
-      // if (!this.show[index]) {
-      //   this.show[index] = true
-      //   this.icon = '/static/images/home/up.png' // bug2， 虽然代码里没用icon，但这里删除后，会导致card不会变长
-      // } else {
-      //   this.show[index] = false
-      //   this.icon = '/static/images/home/down.png'
-      // }
     },
     navToDetail (e) {
       wx.navigateTo({
@@ -172,6 +167,16 @@ export default {
 }
 .important{
   font-weight: bold;
+}
+.status{
+  border: 4px solid #ff0000;
+  color: #ff0000;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  width: 210rpx;
+  float: right;
+  transform: rotate(-20deg);
 }
 </style>
 
