@@ -24,14 +24,14 @@
         </div>
       </div>
       <div>
-        <span class="t_title">失踪地：</span>
+        <span class="t_title">失踪地点：</span>
         <span>{{item.MissedAddress}}</span>
       </div>
       <div>
         <span class="t_title">失踪时间：</span>
         <span>{{item.MissedAt}}</span>
       </div>
-      <div class="t_title">特征:</div>
+      <div class="t_title">失踪特征:</div>
       <p>{{item.Characters}}</p>
     </div>
     <div class="more" @click="toggleDetail" :id="index">
@@ -97,6 +97,7 @@ export default {
   padding: 0;
   border: 1px solid #a7a7a7;
   border-radius: 0.5em;
+  position: relative;
 }
 .container p{
   padding: 0 20px;
@@ -106,7 +107,6 @@ export default {
   margin-left: 0px;
   display: flex;
   flex-direction: row;
-  position: relative;
 }
 .avatar{
   flex: 1;
@@ -172,7 +172,7 @@ export default {
 .status{
   position: absolute;
   top: 64rpx;
-  right: 0rpx;
+  right: 15rpx;
   height: 140rpx;
   width: 210rpx;
   transform: rotate(-16deg);
