@@ -51,12 +51,11 @@
 </template>
 
 <script>
-import { formatTime } from '@/utils/index'
+import { formatTime, formatTimeMin, jsGetAge } from '@/utils/index'
 import card from '@/components/card1'
 import card2 from '@/components/card2'
 import navbar from '@/components/navbar'
 import navigation from '@/components/navigation'
-var fmt = require('../../utils/index.js')
 
 export default {
   components: {
@@ -128,7 +127,12 @@ export default {
             console.log(res.data[i])
             if (res.data[i].Title === '') {
               res.data[i].Title = res.data[i].MissedProvince + '-' + res.data[i].MissedCity + ', 寻找' + res.data[i].Nickname
-              res.data[i].show = false
+            }
+            res.data[i].show = false
+            res.data[i].MissedAt = formatTimeMin(new Date(res.data[i].MissedAt))
+            res.data[i].Age = jsGetAge(res.data[i].BirthedAt)
+            if (res.data[i].Age > 150) {
+              res.data[i].Age = '不详'
             }
             that.database = that.database.concat(res.data[i])
           }
@@ -175,11 +179,14 @@ export default {
         },
         success: function (res) {
           for (var i = 0; i < res.data.length; i++) {
-            res.data[i].MissedAt = fmt.formatTimeMin(new Date(res.data[i].MissedAt))
-            res.data[i].BirthedAt = fmt.formatTime(new Date(res.data[i].BirthedAt))
             if (res.data[i].Title === '') {
               res.data[i].Title = res.data[i].MissedProvince + '-' + res.data[i].MissedCity + ', 寻找' + res.data[i].Nickname
-              res.data[i].show = false
+            }
+            res.data[i].show = false
+            res.data[i].MissedAt = formatTimeMin(new Date(res.data[i].MissedAt))
+            res.data[i].Age = jsGetAge(res.data[i].BirthedAt)
+            if (res.data[i].Age > 150) {
+              res.data[i].Age = '不详'
             }
           }
           that.database = that.database.concat(res.data)
@@ -214,7 +221,12 @@ export default {
         for (var i = 0; i < res.data.length; i++) {
           if (res.data[i].Title === '') {
             res.data[i].Title = res.data[i].MissedProvince + '-' + res.data[i].MissedCity + ', 寻找' + res.data[i].Nickname
-            res.data[i].show = false
+          }
+          res.data[i].show = false
+          res.data[i].MissedAt = formatTimeMin(new Date(res.data[i].MissedAt))
+          res.data[i].Age = jsGetAge(res.data[i].BirthedAt)
+          if (res.data[i].Age > 150) {
+            res.data[i].Age = '不详'
           }
         }
         that.database = res.data
