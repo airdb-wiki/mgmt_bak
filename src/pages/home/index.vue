@@ -32,7 +32,8 @@
     </div> -->
 
     <div style="z-index: 0;">
-      <card2 :items="database"></card2>
+      <!-- 监听切换事件 -->
+      <card2 :items="database" @toggleDetail="toggleDetail"></card2>
     </div>
 
     <!-- 底部登陆按钮 -->
@@ -107,6 +108,10 @@ export default {
       console.log('-----------changeTab', e.currentTarget.id, this.parms.category)
       this.request()
     },
+    // 切换状态
+    toggleDetail (index) {
+      this.database[index].show = !this.database[index].show
+    },
     request () {
       var that = this
       console.log(that.parms)
@@ -123,6 +128,7 @@ export default {
             console.log(res.data[i])
             if (res.data[i].Title === '') {
               res.data[i].Title = res.data[i].MissedProvince + '-' + res.data[i].MissedCity + ', 寻找' + res.data[i].Nickname
+              res.data[i].show = false
             }
             that.database = that.database.concat(res.data[i])
           }
@@ -173,6 +179,7 @@ export default {
             res.data[i].BirthedAt = fmt.formatTime(new Date(res.data[i].BirthedAt))
             if (res.data[i].Title === '') {
               res.data[i].Title = res.data[i].MissedProvince + '-' + res.data[i].MissedCity + ', 寻找' + res.data[i].Nickname
+              res.data[i].show = false
             }
           }
           that.database = that.database.concat(res.data)
@@ -207,6 +214,7 @@ export default {
         for (var i = 0; i < res.data.length; i++) {
           if (res.data[i].Title === '') {
             res.data[i].Title = res.data[i].MissedProvince + '-' + res.data[i].MissedCity + ', 寻找' + res.data[i].Nickname
+            res.data[i].show = false
           }
         }
         that.database = res.data
