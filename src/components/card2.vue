@@ -4,6 +4,7 @@
       <div :style="item.show ? '' : 'max-height: 210rpx;overflow: hidden;'"
       @click="navToDetail" :id="item.UUID">
       <div class="head">
+        <img class="status" :hidden="item.status" src="/static/images/home/find.png">
         <div class="avatar"><img :src="item.AvatarUrl" @click.stop="previewImg(index)"></div>
         <div class="content">
           <div class="se_container">
@@ -14,7 +15,6 @@
             <div class="important">档案ID：</div>
             <div>
               {{item.Babyid}}
-              <span class="status" :hidden="item.status">已找到</span>
             </div>
           </div>
           <div class="se_container">
@@ -106,6 +106,7 @@ export default {
   margin-left: 0px;
   display: flex;
   flex-direction: row;
+  position: relative;
 }
 .avatar{
   flex: 1;
@@ -169,14 +170,12 @@ export default {
   font-weight: bold;
 }
 .status{
-  border: 4px solid #ff0000;
-  color: #ff0000;
-  font-size: 20px;
-  font-weight: bold;
-  text-align: center;
+  position: absolute;
+  top: 64rpx;
+  right: 0rpx;
+  height: 140rpx;
   width: 210rpx;
-  float: right;
-  transform: rotate(-20deg);
+  transform: rotate(-16deg);
 }
 </style>
 

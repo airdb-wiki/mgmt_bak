@@ -194,6 +194,12 @@ export default {
             if (res.data[i].Age > 150) {
               res.data[i].Age = '不详'
             }
+            var a = Math.random()
+            if (a > 0.5) {
+              res.data[i].status = 1
+            } else {
+              res.data[i].status = 0
+            }
           }
           that.database = that.database.concat(res.data)
           console.log('加载更多后数据为: ', that.database)
@@ -233,6 +239,12 @@ export default {
           res.data[i].Age = jsGetAge(res.data[i].BirthedAt)
           if (res.data[i].Age > 150) {
             res.data[i].Age = '不详'
+          }
+          var a = Math.random()
+          if (a > 0.5) {
+            res.data[i].status = 1
+          } else {
+            res.data[i].status = 0
           }
         }
         that.database = res.data
