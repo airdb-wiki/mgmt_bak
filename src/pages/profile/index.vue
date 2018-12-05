@@ -197,9 +197,6 @@ export default {
     font-size: 16px;
     margin-left: 30rpx;
     font-family: Helvetica;
-    /* white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden; */
 } 
 .weui-label-contract{
   color: #000;
@@ -233,21 +230,6 @@ export default {
   font-size:34rpx;
   font-family: Helvetica
 }
-/* .userinfo-volunt {
-  position: absolute;
-  top: 50rpx;
-  right: 20rpx;
-  color: #fff;
-} */
-/* .userinfo-volunt .icon-dot {
-  display: inline-block;
-  vertical-align: 3rpx;
-  width: 16rpx;
-  height: 16rpx;
-  margin-right: 6rpx;
-  border-radius: 100%;
-  background: #fff;
-} */
 .bh-profile-page {
   display: flex;
   flex-direction: column;

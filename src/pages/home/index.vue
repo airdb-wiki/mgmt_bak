@@ -1,52 +1,76 @@
 <template>
-  <div id="app">
-    <!-- 自定义navigation -->
-    <navigation :search='true' :propArray="cityList" :yourcity="minaAuth.yourcity ? minaAuth.yourcity : '定位中...'"></navigation>
-    
-    <!-- swiper轮播图 -->
-    <swiper :indicator-dots="true"
-      :autoplay="true"
-      :circular="circular"
-      :interval="interval"
-      :duration="duration"
-      previous-margin="-10px"
-      class="mySwiper">
-      <div v-for="item in imgUrls" :key="item.id">
-        <swiper-item>
-          <navigator url="" open-type="navigate" hover-class="none">
-            <image :src="item" class="swiper_img"/>
-          </navigator>
-        </swiper-item>
+    <div id="app">
+      <!-- 自定义navigation -->
+      <navigation :search='true' :propArray="cityList" :yourcity="minaAuth.yourcity ? minaAuth.yourcity : '定位中...'"></navigation>
+      
+      <!-- swiper轮播图 -->
+      <swiper :indicator-dots="true"
+        :autoplay="true"
+        :circular="circular"
+        :interval="interval"
+        :duration="duration"
+        previous-margin="-10px"
+        class="mySwiper">
+        <div v-for="item in imgUrls" :key="item.id">
+          <swiper-item>
+            <navigator url="" open-type="navigate" hover-class="none">
+              <image :src="item" class="swiper_img"/>
+            </navigator>
+          </swiper-item>
+        </div>
+      </swiper>
+
+      <!-- 自定义navBar -->
+      <div class="bar">
+        <scroll-view :scroll-x="true" class="navbar">
+          <div v-for="(tab, index) in tabs" :key="tab.id" :class="[index == activeIndex ? 'item_on' : 'tab']" :id="index" @click="changeTab">{{tab}}</div>
+        </scroll-view>
       </div>
-    </swiper>
+      
+      <!-- <div style="z-index: 0;">
+        <card :items="database"></card>
+      </div> -->
 
-    <!-- 自定义navBar -->
-    <div class="bar">
-      <scroll-view :scroll-x="true" class="navbar">
-        <div v-for="(tab, index) in tabs" :key="tab.id" :class="[index == activeIndex ? 'item_on' : 'tab']" :id="index" @click="changeTab">{{tab}}</div>
-      </scroll-view>
-    </div>
-    
-    <!-- <div style="z-index: 0;">
-      <card :items="database"></card>
-    </div> -->
+      <div style="z-index: 0;">
+        <!-- 监听切换事件 -->
+        <card2 :items="database" @toggleDetail="toggleDetail"></card2>
+      </div>
 
-    <div style="z-index: 0;">
-      <!-- 监听切换事件 -->
-      <card2 :items="database" @toggleDetail="toggleDetail"></card2>
-    </div>
-
-    <!-- 底部登陆按钮 -->
-    <!--
-    <div class="login" v-if="!authSetting.userInfo" :hidden="!showLogin">
-      <div class="myModal">
-        <div style="font-size: 20px;margin: 12px;">欢迎</div>
-        <div style="font-size: 18px;margin: 12px;">请允许授权后放心使用小程序，您的信息和数据将受到保护</div>
-        <button open-type="getUserInfo" @click="login" class="shou">微信授权登陆{{authSetting.userInfo}}</button>
-        <button @click="cancel" style="background-color: #fff;color: #000;">回到小程序首页</button>
+      <!-- 底部登陆按钮 -->
+      <!--
+      <div class="login" v-if="!authSetting.userInfo" :hidden="!showLogin">
+        <div class="myModal">
+          <div style="font-size: 20px;margin: 12px;">欢迎</div>
+          <div style="font-size: 18px;margin: 12px;">请允许授权后放心使用小程序，您的信息和数据将受到保护</div>
+          <button open-type="getUserInfo" @click="login" class="shou">微信授权登陆{{authSetting.userInfo}}</button>
+          <button @click="cancel" style="background-color: #fff;color: #000;">回到小程序首页</button>
+        </div>
+      </div>
+      -->
+    <div class="shade" v-if="hidden">
+      <div class="t_w">
+        <!--右上角图标开始-->
+        <div class="t_image"  bindtap="conceal">
+          <img class="t_image1" src="/images/camera.png" >
+        </div>
+        <!--右上角图标结束-->
+        <!--弹出框开始-->
+        <div class="tanchu_view">
+          <div>
+            <div class="bg_view">遮罩层</div>
+            <div class="txtys">点击确定遮罩层</div>
+            <!--确定开始-->
+            <div class="txtsure"  >
+              <div class="txtsurebg" @click="conceal">
+                  <text class="txtsurename">确定</text>
+              </div>        
+            </div>
+            <!--确定结束-->
+          </div>
+        </div>
+        <!--弹出框结束-->
       </div>
     </div>
-    -->
   </div>
 </template>
 
@@ -66,6 +90,7 @@ export default {
   },
   data () {
     return {
+      hidden: 1,
       tabs: [
         '儿童走失', '老人走失', '离家出走', '人贩拐卖', '其他寻人'
       ],
@@ -96,9 +121,10 @@ export default {
     this.minaAuth = wx.getStorageSync('minaAuth')
   },
   methods: {
-    // formSubmit_collect (e) {
-    //   console.log('form发生了submit事件', e.mp.detail.formId)
-    // },
+    conceal: function () {
+      this.hidden = 0
+      console.log('666')
+    },
     changeTab (e) {
       this.database = []
       this.parms.page = 1
@@ -356,4 +382,92 @@ export default {
   top: 68px;
   right: 0px;
 }
+/*測試版遮罩樣式*/
+.shade{
+  position:fixed;
+  width:100%;
+  height:100%;
+  top:0px;
+  background:rgba(0,0,0,0.4);
+  overflow: hidden;
+  }
+.t_w{
+  position:relative;
+  }
+.tanchu_view{
+  width: 80%;
+  margin:25% auto;
+  overflow: hidden;
+  background-color: #fff1e6;
+  border-radius: 10rpx;
+  padding: 4rpx;
+  }
+ 
+ 
+.bg_view{
+  margin:30rpx auto 30rpx auto;
+  color:#fcb712;
+  font-size:50rpx;
+  background-color: #fff1e6;
+  padding:0rpx 30rpx;
+  text-align: center;
+  }
+ 
+ 
+  .txtys{
+    font-size: 50rpx;
+    text-align: center;
+    margin-bottom: 200rpx;
+  }
+ 
+.txtsure{
+ width: 100%;
+ height: 100%;
+ display: flex;
+ justify-content: center;
+ margin: 20rpx;
+}
+ 
+/*确定背景*/
+.txtsurebg{
+  width: 300rpx;
+  height: 300rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  margin: 50rpx;
+  background-color: burlywood;
+   flex-direction: column;
+}
+ 
+/*确定图标*/
+.txtsureimg{
+  display:block;
+  width:120rpx;
+  height:120rpx;
+}
+ 
+/*确定文本*/
+.txtsurename{
+   margin-bottom: 0rpx;
+   color: white;
+   font-size: 70rpx;
+}
+ 
+/*右上角图标*/
+.t_image{
+  width:204rpx;
+  height:200rpx;
+  position: absolute;
+  top: -6%;
+  left:88%;
+  }
+ 
+/*右上角图标*/
+.t_image1{
+  display:block;
+  width:60rpx;
+  height:60rpx;
+  }
 </style>
