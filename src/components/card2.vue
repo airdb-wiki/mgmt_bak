@@ -4,7 +4,7 @@
       <div :style="item.show ? '' : 'max-height: 210rpx;overflow: hidden;'"
       @click="navToDetail" :id="item.UUID">
       <div class="head">
-        <img class="status" :hidden="item.status" src="/static/images/home/find.png">
+        <img class="status" :hidden="!item.Status" src="/static/images/home/find.png">
         <div class="avatar"><img :src="item.AvatarUrl" @click.stop="previewImg(index)"></div>
         <div class="content">
           <div class="se_container">
