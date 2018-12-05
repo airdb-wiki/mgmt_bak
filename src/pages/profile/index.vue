@@ -61,17 +61,13 @@
 
     </div>
     <!-- profile-page-main end -->
-
     <!-- 右下角加号新建 -->
     <!-- <button open-type="contact" session-from="weixin-baobeihuijia">
       <img src="/static/images/CustomerService.png" class="btn-post">
     </button> -->
-
-
-    <!-- <div class="profile-page-footer">
-      <vfooter></vfooter>
-    </div> -->
+    <vfooter></vfooter>
     
+   
   </div>
 </template>
 
