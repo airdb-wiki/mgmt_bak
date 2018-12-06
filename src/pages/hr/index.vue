@@ -316,32 +316,38 @@ export default {
     color: #fff;
     font-size:18px;
     font-family: Microsoft Yahei;
-  }
-  .container_four{
-    border:solid 1px;
-    width: 200px;
-    border-radius: 50%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    letter-spacing:6px;
   }
   .container_one{
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    margin-top: 12px;
+    /* justify-content: center; */
   }
   .container_two{
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+    margin-top: 12px;
+    margin-left: 0px;
+  }
+  .container_three{
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  .container_three{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    margin-top: 12px;
    }
-  .trans_text{
-    margin-left: 20px;
+  .container_four{
+    border:solid 1px;
+    width: 150px;
+    height: 30px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-left: 100px;
   }
   .trans1{
     width: 150px;
@@ -349,11 +355,14 @@ export default {
     margin-left: 10px;
   }
   .trans2{
+    margin-left: 18px;
     width: 90%;
-    height: 150px;
+    height: 140px;
+    margin-top: 10px;
   }
   .trans3{
     width:90%;
-    height: 250px;
+    height: 180px;
+    margin-top: 10px;
   }
 </style>
