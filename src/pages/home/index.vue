@@ -47,30 +47,6 @@
         </div>
       </div>
       -->
-    <div class="shade" v-if="hidden">
-      <div class="t_w">
-        <!--右上角图标开始-->
-        <div class="t_image"  bindtap="conceal">
-          <img class="t_image1" src="/images/camera.png" >
-        </div>
-        <!--右上角图标结束-->
-        <!--弹出框开始-->
-        <div class="tanchu_view">
-          <div>
-            <div class="bg_view">遮罩层</div>
-            <div class="txtys">点击确定遮罩层</div>
-            <!--确定开始-->
-            <div class="txtsure"  >
-              <div class="txtsurebg" @click="conceal">
-                  <text class="txtsurename">确定</text>
-              </div>        
-            </div>
-            <!--确定结束-->
-          </div>
-        </div>
-        <!--弹出框结束-->
-      </div>
-    </div>
   </div>
 </template>
 
@@ -90,7 +66,6 @@ export default {
   },
   data () {
     return {
-      hidden: 1,
       tabs: [
         '儿童走失', '老人走失', '离家出走', '人贩拐卖', '其他寻人'
       ],
@@ -121,10 +96,6 @@ export default {
     this.minaAuth = wx.getStorageSync('minaAuth')
   },
   methods: {
-    conceal: function () {
-      this.hidden = 0
-      console.log('666')
-    },
     changeTab (e) {
       this.database = []
       this.parms.page = 1
@@ -382,92 +353,4 @@ export default {
   top: 68px;
   right: 0px;
 }
-/*測試版遮罩樣式*/
-.shade{
-  position:fixed;
-  width:100%;
-  height:100%;
-  top:0px;
-  background:rgba(0,0,0,0.4);
-  overflow: hidden;
-  }
-.t_w{
-  position:relative;
-  }
-.tanchu_view{
-  width: 80%;
-  margin:25% auto;
-  overflow: hidden;
-  background-color: #fff1e6;
-  border-radius: 10rpx;
-  padding: 4rpx;
-  }
- 
- 
-.bg_view{
-  margin:30rpx auto 30rpx auto;
-  color:#fcb712;
-  font-size:50rpx;
-  background-color: #fff1e6;
-  padding:0rpx 30rpx;
-  text-align: center;
-  }
- 
- 
-  .txtys{
-    font-size: 50rpx;
-    text-align: center;
-    margin-bottom: 200rpx;
-  }
- 
-.txtsure{
- width: 100%;
- height: 100%;
- display: flex;
- justify-content: center;
- margin: 20rpx;
-}
- 
-/*确定背景*/
-.txtsurebg{
-  width: 300rpx;
-  height: 300rpx;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  margin: 50rpx;
-  background-color: burlywood;
-   flex-direction: column;
-}
- 
-/*确定图标*/
-.txtsureimg{
-  display:block;
-  width:120rpx;
-  height:120rpx;
-}
- 
-/*确定文本*/
-.txtsurename{
-   margin-bottom: 0rpx;
-   color: white;
-   font-size: 70rpx;
-}
- 
-/*右上角图标*/
-.t_image{
-  width:204rpx;
-  height:200rpx;
-  position: absolute;
-  top: -6%;
-  left:88%;
-  }
- 
-/*右上角图标*/
-.t_image1{
-  display:block;
-  width:60rpx;
-  height:60rpx;
-  }
 </style>
