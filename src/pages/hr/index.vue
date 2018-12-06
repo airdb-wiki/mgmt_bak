@@ -325,11 +325,12 @@ export default {
     /* justify-content: center; */
   }
   .container_two{
-    /* display: flex;
-    flex-direction: column;
-    align-items: center; */
     margin-top: 12px;
     margin-left: 0px;
+  }
+  .trans_text{
+    margin-left: 30px;
+    margin-right: 5px;
   }
   .container_three{
     display: flex;
@@ -340,7 +341,7 @@ export default {
   .container_four{
     border:solid 1px;
     width: 150px;
-    height: 30px;
+    height: 35px;
     border-radius: 15px;
     display: flex;
     flex-direction: row;
@@ -351,17 +352,17 @@ export default {
   }
   .trans1{
     width: 150px;
-    height: 50px;
+    height: 40px;
     margin-left: 10px;
   }
   .trans2{
-    margin-left: 18px;
-    width: 90%;
+    margin-left: 25px;
+    width: 84%;
     height: 140px;
     margin-top: 10px;
   }
   .trans3{
-    width:90%;
+    width:84%;
     height: 180px;
     margin-top: 10px;
   }
