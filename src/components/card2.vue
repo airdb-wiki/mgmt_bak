@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <div v-for="(item, index) in items" :key="index" class="container">
-      <div :style="item.show ? '' : 'max-height: 210rpx;overflow: hidden;'"
+      <div :style="item.show ? '' : 'max-height: 245rpx;overflow: hidden;'"
       @click="navToDetail" :id="item.UUID">
       <div class="head">
         <img class="status" :hidden="!item.Status" src="/static/images/home/find.png">
@@ -17,22 +17,28 @@
               {{item.Babyid}}
             </div>
           </div>
-          <div class="se_container">
+          <div class="place_container">
+            <div class="important">失踪地点：</div>
+            <div>{{item.MissedAddress}}</div>
+          </div>
+          <!-- <div class="se_container">
             <div class="important">距离您：</div>
             <div>100公里</div>
-          </div>
+          </div> -->
         </div>
       </div>
-      <div>
+      <!-- <div>
         <span class="t_title">失踪地点：</span>
         <span>{{item.MissedAddress}}</span>
+      </div> -->
+      <div class="down-container">
+        <div>
+          <span class="t_title">失踪时间：</span>
+          <span>{{item.MissedAt}}</span>
+        </div>
+        <div class="t_title">失踪特征:</div>
+        <p>{{item.Characters}}</p>
       </div>
-      <div>
-        <span class="t_title">失踪时间：</span>
-        <span>{{item.MissedAt}}</span>
-      </div>
-      <div class="t_title">失踪特征:</div>
-      <p>{{item.Characters}}</p>
     </div>
     <div class="more" @click="toggleDetail" :id="index">
       <img src="/static/images/home/down.png" :style="item.show ? 'transform: rotate(180deg);' : ''">
@@ -98,6 +104,7 @@ export default {
   border: 1px solid #a7a7a7;
   border-radius: 0.5em;
   position: relative;
+  margin-bottom: 10px;
 }
 .container p{
   padding: 0 20px;
@@ -128,6 +135,7 @@ export default {
   flex: 1;
   display: flex;
   flex-direction: row;
+  /* flex-wrap: nowrap; */
 }
 .more{
   margin: auto;
@@ -163,11 +171,14 @@ export default {
   display: inline-block;
 }
 .t_title{
-  padding: 0 20px;
+  padding: 0 40rpx;
   font-weight: bold;
 }
 .important{
   font-weight: bold;
+  /* flex-wrap: nowrap; */
+  /* word-wrap: break-word;  */
+  /* word-break: break-all; */
 }
 .status{
   position: absolute;
@@ -176,6 +187,16 @@ export default {
   height: 140rpx;
   width: 210rpx;
   transform: rotate(-16deg);
+}
+.place_container{
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid; */
+  
+}
+.down-container{
+  /* border: 1px solid; */
+  margin-top: 32rpx;
 }
 </style>
 
