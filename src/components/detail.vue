@@ -19,10 +19,10 @@
           <div class="weui-article__h3">户籍地点：{{item.BirthedProvince}} {{item.BirthedCity}} </div>
           <div class="weui-article__h3">失踪时间：{{item.MissedAt}}</div>
           <div class="weui-article__h3">失踪地点：{{item.MissedProvince}} {{item.MissedAddress}}</div>
-          <div class="weui-article__h3">失踪时身高：120厘米左右 {{item.Height}}</div>
-          <div class="weui-article__h3">寻亲者特征描述: {{item.Characters}}</div>
+          <div class="weui-article__h3">失踪时身高： {{item.Height}}</div>
+          <div class="weui-article__h3">失踪人特征: {{item.Characters}}</div>
           <div class="weui-article__h3">其他资料：{{item.Details}}</div>
-          <div class="weui-article__h3">失踪时间： {{item.MissedAt}} </div>
+          <!-- <div class="weui-article__h3">失踪时间： {{item.MissedAt}} </div> -->
           <div class="weui-article__h3">跟进志愿者： {{item.Handler}}</div>
           <div class="weui-article__p">
             <image class="weui-article__img" :src="item.AvatarUrl" mode="aspectFit" style="height: 180px" @click="preview"/>
@@ -38,6 +38,7 @@
 
     <!-- 分享图片生成的画布 -->
     <!-- 画板的层级问题可以用cover-view解决 -->
+    <!-- 约1986年出生1990年与小朋友离家玩耍时走失疑时广西桂林人的秦干寻亲 -->
     <canvas canvas-id="myCanvas">
       <cover-view></cover-view>
     </canvas>
@@ -51,7 +52,7 @@ export default{
   data () {
     return {
       content: {
-        title: '约1986年出生1990年与小朋友离家玩耍时走失疑时广西桂林人的秦干寻亲',
+        title: '',
         notice: '本站不保证寻子家人酬金承诺的有效性，请亲自与寻子家长联系确认，本网站及志愿者提供的寻人服务均是免费的'
       },
       src2: ''
