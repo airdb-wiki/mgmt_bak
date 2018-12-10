@@ -194,6 +194,9 @@ export default {
 }
 .t_title{
   /* padding: 0 40rpx; */
+  /* word-wrap: break-word; 
+  word-break: break-all; */
+  white-space:nowrap;
   font-weight: bold;
   margin-left: 20rpx;
 }
