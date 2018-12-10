@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <div v-for="(item, index) in items" :key="index" class="container">
-      <div :style="item.show ? '' : 'max-height: 245rpx;overflow: hidden;'"
+      <div :style="item.show ? '' : 'max-height:218rpx;overflow: hidden;'"
       @click="navToDetail" :id="item.UUID">
       <div class="head">
         <img class="status" :hidden="!item.Status" src="/static/images/home/find.png">
@@ -17,14 +17,15 @@
               {{item.Babyid}}
             </div>
           </div>
+          <div class="se_container">
+            <div class="important">距离您：</div>
+            <div>100公里</div>
+          </div>
           <div class="place_container">
             <div class="important">失踪地点：</div>
             <div>{{item.MissedAddress}}</div>
           </div>
-          <!-- <div class="se_container">
-            <div class="important">距离您：</div>
-            <div>100公里</div>
-          </div> -->
+        
         </div>
       </div>
       <!-- <div>
@@ -105,6 +106,7 @@ export default {
   border-radius: 0.5em;
   position: relative;
   margin-bottom: 10px;
+  font-size: 14px;
 }
 .container p{
   padding: 0 20px;
@@ -190,13 +192,13 @@ export default {
 }
 .place_container{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   /* border: 1px solid; */
   
 }
 .down-container{
   /* border: 1px solid; */
-  margin-top: 32rpx;
+  margin-top: 10rpx;
 }
 </style>
 
