@@ -45,6 +45,8 @@ export default {
     var loginInfo = {} // 用户登录信息
 
     // console.log('=====',wxConfig.envVersion)
+    wx.setStorageSync('env', env)
+    // console.log(wxConfig.envVersion)
     console.log('app created, env:', wx.getStorageSync('env'))
 
     if (wx.getStorageSync('env') === 'prod') {
