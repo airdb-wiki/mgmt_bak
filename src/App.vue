@@ -1,6 +1,6 @@
 
 <script>
-var QQMapWX = require('../static/qqmap-wx-jssdk.min.js')
+import { weixinUpdate } from '@/utils/update'
 export default {
   onLaunch (launch) {
     console.log('app launch scene info: ', launch.scene, launch.path, launch.shareTicket)
@@ -8,7 +8,7 @@ export default {
       success: function (res) {
         if (res.code) {
           wx.request({
-            url: 'https://wechat.baobeihuijia.com/dev/lastest/wechatapi/wechat/login',
+            url: wx.getStorageSync('domain') + '/lastest/wechatapi/user/login',
             method: 'Get',
             header: {
               'content-type': 'application/json'
@@ -19,8 +19,8 @@ export default {
               shareTicket: launch.shareTicket,
               path: launch.path
             },
-            success: function (res) {
-              console.log('xxxx')
+            success: function (profile) {
+              console.log('xxxx', profile.data.isFirstLogin)
             }
           })
         } else {
@@ -35,12 +35,16 @@ export default {
     })
   },
   created () {
-    var env = 'test'
+    var env = 'dev'
+    var domain = 'https://wechat.baobeihuijia.com' + '/' + env
+
+    wx.setStorageSync('env', env)
+    wx.setStorageSync('domain', domain)
+
     var userInfo = {} // 微信用户信息
     var loginInfo = {} // 用户登录信息
 
-    wx.setStorageSync('env', env)
-    // console.log(wxConfig.envVersion)
+    // console.log('=====',wxConfig.envVersion)
     console.log('app created, env:', wx.getStorageSync('env'))
 
     if (wx.getStorageSync('env') === 'prod') {
@@ -64,40 +68,7 @@ export default {
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
 
-    // 获取小程序更新机制兼容
-    if (wx.canIUse('getUpdateManager')) {
-      const updateManager = wx.getUpdateManager()
-      updateManager.onCheckForUpdate(function (res) {
-        // 请求完新版本信息的回调
-        if (res.hasUpdate) {
-          updateManager.onUpdateReady(function () {
-            wx.showModal({
-              title: '更新提示',
-              content: '新版本已经准备好，是否重启应用？',
-              success: function (res) {
-                if (res.confirm) {
-                  // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
-                  updateManager.applyUpdate()
-                }
-              }
-            })
-          })
-          updateManager.onUpdateFailed(function () {
-            // 新的版本下载失败
-            wx.showModal({
-              title: '已经有新版本了哟~',
-              content: '新版本已经上线啦~，请您删除当前小程序，重新搜索打开哟~'
-            })
-          })
-        }
-      })
-    } else {
-      // 如果希望用户在最新版本的客户端上体验您的小程序，可以这样子提示
-      wx.showModal({
-        title: '提示',
-        content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'
-      })
-    }
+    weixinUpdate()
 
     // 用户网络类型
     wx.getNetworkType({
@@ -149,26 +120,6 @@ export default {
             loginInfo['longitude'] = res.longitude
             loginInfo['latitude'] = res.latitude
             wx.setStorageSync('userLocation', res)
-
-            // 获取用户的地理位置
-            var qqmapsdk = new QQMapWX({
-              key: 'F6JBZ-3NM33-LDK3V-3TWWM-KC2N6-WZBCW'
-            })
-
-            qqmapsdk.reverseGeocoder({
-              location: {
-                latitude: res.latitude,
-                longitude: res.longitude
-              },
-              success: function (addressRes) {
-                var address = addressRes.result.ad_info.city
-                console.log('position', addressRes.result.ad_info.city)
-                wx.setStorageSync('address', address)
-              },
-              fail: function (e) {
-                console.log('fail', e)
-              }
-            })
           } catch (e) {
             console.log('getLocation failed App.vue')
           }
