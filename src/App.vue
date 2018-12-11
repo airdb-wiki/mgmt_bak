@@ -8,7 +8,7 @@ export default {
       success: function (res) {
         if (res.code) {
           wx.request({
-            url: 'https://wechat.baobeihuijia.com/dev/lastest/wechatapi/wechat/login',
+            url: 'https://wechat.baobeihuijia.com/dev/lastest/wechatapi/user/login',
             method: 'Get',
             header: {
               'content-type': 'application/json'
@@ -19,8 +19,8 @@ export default {
               shareTicket: launch.shareTicket,
               path: launch.path
             },
-            success: function (res) {
-              console.log('xxxx')
+            success: function (res2) {
+              console.log('登陆成功,dev返回值为:' + res2)
             }
           })
         } else {
@@ -38,7 +38,7 @@ export default {
     var env = 'test'
     var userInfo = {} // 微信用户信息
     var loginInfo = {} // 用户登录信息
-
+    // var openid = {}
     wx.setStorageSync('env', env)
     // console.log(wxConfig.envVersion)
     console.log('app created, env:', wx.getStorageSync('env'))
