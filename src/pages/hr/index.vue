@@ -68,20 +68,7 @@
         </div>
     </div>
     <ha></ha>
-    <div class="shade" v-if="hidden" catchtouchmove='preventTouchMove'>
-      <!-- <div class="t_w">
-        <div class="tanchu_view">
-          <div>
-            <div class="bg_view">遮罩层</div>
-            <div class="txtys">点击确定遮罩层</div>
-            <div class="txtsure"  >
-              <div class="txtsurebg" @click="conceal">
-                  <text class="txtsurename">确定</text>
-              </div>        
-            </div>
-          </div>
-        </div>
-      </div> -->
+    <!-- <div class="shade" v-if="hidden" catchtouchmove='preventTouchMove'>
       <div class="container_one">
         <div class="trans_text">1.点击</div>
         <img src="/static/images/trans1.jpg" alt="" class="trans1">
@@ -95,7 +82,7 @@
         <img src="/static/images/trans3.jpg" alt="" class="trans3">
       </div>
       <div class="container_four" @click="conceal">我知道了</div>
-    </div>
+    </div> -->
 </div>
 </template>
 
@@ -217,94 +204,8 @@ export default {
   height: 60px;
   opacity: .7;
 }
-/*測試版遮罩樣式*/
-/* .shade{
-  position:fixed;
-  width:100%;
-  height:100%;
-  top:50px;
-  background:rgba(0,0,0,0.4);
-  overflow: hidden;
-  } */
-.t_w{
-  position:relative;
-  }
-.tanchu_view{
-  width: 80%;
-  margin:25% auto;
-  overflow: hidden;
-  background-color: #fff1e6;
-  border-radius: 10rpx;
-  padding: 4rpx;
-  }
- 
- 
-.bg_view{
-  margin:30rpx auto 30rpx auto;
-  color:#fcb712;
-  font-size:50rpx;
-  background-color: #fff1e6;
-  padding:0rpx 30rpx;
-  text-align: center;
-  }
- 
- 
-  .txtys{
-    font-size: 50rpx;
-    text-align: center;
-    margin-bottom: 200rpx;
-  }
- 
-.txtsure{
- width: 100%;
- height: 100%;
- display: flex;
- justify-content: center;
- margin: 20rpx;
-}
- 
-/*确定背景*/
-.txtsurebg{
-  width: 300rpx;
-  height: 300rpx;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  margin: 50rpx;
-  background-color: burlywood;
-   flex-direction: column;
-}
- 
-/*确定图标*/
-.txtsureimg{
-  display:block;
-  width:120rpx;
-  height:120rpx;
-}
- 
-/*确定文本*/
-.txtsurename{
-   margin-bottom: 0rpx;
-   color: white;
-   font-size: 70rpx;
-}
- 
-/*右上角图标*/
-.t_image{
-  width:204rpx;
-  height:200rpx;
-  position: absolute;
-  top: -6%;
-  left:88%;
-  }
- 
-/*右上角图标*/
-.t_image1{
-  display:block;
-  width:60rpx;
-  height:60rpx;
-  }
+
+
   /*正式版本样式*/
   .shade{
     position:fixed;

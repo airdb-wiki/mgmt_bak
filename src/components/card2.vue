@@ -20,8 +20,8 @@
                 </div>
               </div>
               <div class="se_container">
-                <div class="important">距离您：</div>
-                <div>100公里</div>
+                <div class="important">失踪城市：</div>
+                <div>{{item.MissedCity}}</div>
               </div>
             </div>
           </div>
@@ -115,7 +115,11 @@ export default {
   font-size: 14px;
 }
 .container p{
-  padding: 0 20px;
+  /* padding: 0 20px; */
+  text-align: justify;
+  margin-top: -28rpx;
+  margin-left: -7rpx;
+  /* border: 1px solid; */
 }
 .head{
   width: 100%;
@@ -218,6 +222,7 @@ export default {
 .down-info{
   display: flex;
   flex-direction: row;
+  /* align-items: flex-start; */
   /* border: 1px solid; */
   
 }

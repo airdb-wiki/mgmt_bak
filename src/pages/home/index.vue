@@ -27,26 +27,27 @@
         </scroll-view>
       </div>
       
-      <!-- <div style="z-index: 0;">
-        <card :items="database"></card>
-      </div> -->
-
+      <!-- 卡片效果 -->
       <div style="z-index: 0;">
-        <!-- 监听切换事件 -->
         <card2 :items="database" @toggleDetail="toggleDetail"></card2>
       </div>
 
-      <!-- 底部登陆按钮 -->
-      <!--
-      <div class="login" v-if="!authSetting.userInfo" :hidden="!showLogin">
-        <div class="myModal">
-          <div style="font-size: 20px;margin: 12px;">欢迎</div>
-          <div style="font-size: 18px;margin: 12px;">请允许授权后放心使用小程序，您的信息和数据将受到保护</div>
-          <button open-type="getUserInfo" @click="login" class="shou">微信授权登陆{{authSetting.userInfo}}</button>
-          <button @click="cancel" style="background-color: #fff;color: #000;">回到小程序首页</button>
+      <!-- 遮罩效果 -->
+      <div class="shade" v-if="hidden" catchtouchmove='preventTouchMove'>
+        <div class="container_one">
+          <div class="trans_text">1.点击</div>
+          <img src="/static/images/trans1.jpg" alt="" class="trans1">
         </div>
-      </div>
-      -->
+        <div class="container_two">
+          <div class="trans_text">2.点击 [添加到我的小程序]</div>
+          <img src="/static/images/trans2.jpg" alt="" class="trans2">
+        </div>
+        <div class="container_three">
+          <div class="trans_text">3.在微信首页下拉,快速进入"宝贝回家"</div>
+          <img src="/static/images/trans3.jpg" alt="" class="trans3">
+        </div>
+      <div class="container_four" @click="conceal">我知道了</div>
+    </div>
   </div>
 </template>
 
@@ -66,6 +67,7 @@ export default {
   },
   data () {
     return {
+      hidden: 0,
       tabs: [
         '儿童走失', '老人走失', '离家出走', '人贩拐卖', '其他寻人'
       ],
@@ -92,10 +94,18 @@ export default {
       activeIndex: 0
     }
   },
+  onLoad () {
+    var profile = wx.getStorageSync('profile')
+    this.hidden = profile.data.isFirstLogin
+    console.log('profile:666', profile.data.isFirstLogin)
+  },
   onShow () {
     this.minaAuth = wx.getStorageSync('minaAuth')
   },
   methods: {
+    conceal: function () {
+      this.hidden = 0
+    },
     changeTab (e) {
       this.database = []
       this.parms.page = 1
@@ -110,7 +120,7 @@ export default {
     },
     request () {
       var that = this
-      console.log(that.parms)
+      console.log('parms:', that.parms)
       wx.request({
         url: wx.getStorageSync('requestUrl') + '/small/article/topics',
         method: 'GET',
@@ -121,7 +131,7 @@ export default {
         success: function (res) {
           // that.database[0] = res.data[0]
           for (var i = 0; i < res.data.length; i++) {
-            console.log(res.data[i])
+            console.log('res.data:', res.data[i])
             if (res.data[i].Title === '') {
               res.data[i].Title = res.data[i].MissedProvince + '-' + res.data[i].MissedCity + ', 寻找' + res.data[i].Nickname
             }
@@ -353,4 +363,66 @@ export default {
   top: 68px;
   right: 0px;
 }
+/*正式版遮罩样式*/
+  .shade{
+    position:fixed;
+    width:100%;
+    height:85%;
+    top:200rpx;
+    background:rgba(0,0,0,0.4);
+    overflow: hidden;
+    color: #fff;
+    font-size:16px;
+    font-weight: 400;
+    font-family: Microsoft Yahei;
+    letter-spacing:6px;
+  }
+  .container_one{
+    display: flex;
+    flex-direction: row;
+    margin-top: 14rpx;
+    /* justify-content: center; */
+  }
+  .container_two{
+    margin-top: 12px;
+    margin-left: 0px;
+  }
+  .trans_text{
+    margin-left: 30px;
+    margin-right: 5px;
+  }
+  .container_three{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 12px;
+   }
+  .container_four{
+    border:solid 1px;
+    width: 150px;
+    height: 35px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 60rpx;
+    margin-left: 100px;
+  }
+  .trans1{
+    width: 150px;
+    height: 40px;
+    margin-left: 10px;
+  }
+  .trans2{
+    margin-left: 25px;
+    width: 84%;
+    height: 140px;
+    margin-top: 10px;
+  }
+  .trans3{
+    width:84%;
+    height: 245rpx;
+    margin-top: 10px;
+  }
 </style>

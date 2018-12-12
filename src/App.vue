@@ -21,6 +21,7 @@ export default {
             },
             success: function (profile) {
               console.log('xxxx', profile.data.isFirstLogin)
+              wx.setStorageSync('profile', profile)
             }
           })
         } else {
@@ -35,12 +36,12 @@ export default {
     })
   },
   created () {
-    var env = 'dev'
+    var env = 'test'
     var domain = 'https://wechat.baobeihuijia.com' + '/' + env
 
     wx.setStorageSync('env', env)
     wx.setStorageSync('domain', domain)
-
+    // wx.setStorageSync('profile', profile)
     var userInfo = {} // 微信用户信息
     var loginInfo = {} // 用户登录信息
 
