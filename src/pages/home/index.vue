@@ -67,7 +67,7 @@ export default {
   },
   data () {
     return {
-      hidden: 0,
+      hidden: 1,
       tabs: [
         '儿童走失', '老人走失', '离家出走', '人贩拐卖', '其他寻人'
       ],
@@ -95,9 +95,9 @@ export default {
     }
   },
   onLoad () {
-    var profile = wx.getStorageSync('profile')
-    this.hidden = profile.data.isFirstLogin
-    console.log('profile:666', profile.data.isFirstLogin)
+    // var profile = wx.getStorageSync('profile')
+    // this.hidden = profile.data.isFirstLogin
+    // console.log('profile:666', profile.data.isFirstLogin)
   },
   onShow () {
     this.minaAuth = wx.getStorageSync('minaAuth')
@@ -365,10 +365,11 @@ export default {
 }
 /*正式版遮罩样式*/
   .shade{
+    z-index: 9999;
     position:fixed;
     width:100%;
-    height:85%;
-    top:200rpx;
+    height:100%;
+    top:0rpx;
     background:rgba(0,0,0,0.4);
     overflow: hidden;
     color: #fff;
@@ -380,7 +381,7 @@ export default {
   .container_one{
     display: flex;
     flex-direction: row;
-    margin-top: 14rpx;
+    margin-top: 65rpx;
     /* justify-content: center; */
   }
   .container_two{
@@ -422,7 +423,7 @@ export default {
   }
   .trans3{
     width:84%;
-    height: 245rpx;
+    height: 350rpx;
     margin-top: 10px;
   }
 </style>
