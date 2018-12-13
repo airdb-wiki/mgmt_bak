@@ -51,16 +51,16 @@ export default {
     console.log('app created, env:', wx.getStorageSync('env'))
 
     if (wx.getStorageSync('env') === 'prod') {
-      wx.setStorageSync('requestUrl', 'https://wechat.baobeihuijia.com/lastest/wechatapi')
+      // wx.setStorageSync('requestUrl', 'https://wechat.baobeihuijia.com/lastest/wechatapi')
     } else {
       wx.setNavigationBarTitle({
         title: '宝贝回家-体验版'
       })
-      wx.setStorageSync('requestUrl', 'https://wechat.baobeihuijia.com/test/lastest/wechatapi')
+      // wx.setStorageSync('requestUrl', 'https://wechat.baobeihuijia.com/test/lastest/wechatapi')
     }
 
     // 填写自己的鉴权服务器地址
-    var wecosSignatureUrl = wx.getStorageSync('requestUrl') + '/qcloud/wecos/auth'
+    var wecosSignatureUrl = wx.getStorageSync('domain') + '/lastest/wechatapi/qcloud/wecos/auth'
 
     wx.setStorageSync('wecosSignatureUrl', wecosSignatureUrl)
 
@@ -141,7 +141,7 @@ export default {
               success: function (res) {
                 if (res.code) {
                   wx.request({
-                    url: wx.getStorageSync('requestUrl') + '/small/user/login',
+                    url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/user/login',
                     method: 'POST',
                     header: {
                       'content-type': 'application/json'
@@ -188,7 +188,7 @@ export default {
     }
 
     wx.request({
-      url: wx.getStorageSync('requestUrl') + '/small/config',
+      url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/config',
       method: 'GET',
       data: {
       },

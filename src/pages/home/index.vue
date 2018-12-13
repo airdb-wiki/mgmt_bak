@@ -29,7 +29,7 @@
       
       <!-- 卡片效果 -->
       <div style="z-index: 0;">
-        <card2 :items="database" @toggleDetail="toggleDetail"></card2>
+        <card2 :items="database"></card2>
       </div>
 
       <!-- 遮罩效果 -->
@@ -74,7 +74,7 @@ export default {
       authSetting: {
         userInfo: wx.getStorageSync('authSetting.userInfo')
       },
-      showLogin: true,
+      showLogin: false,
       database: [],
       minaAuth: wx.getStorageSync('minaAuth'),
       interval: 5000,
@@ -95,9 +95,9 @@ export default {
     }
   },
   onLoad () {
-    // var profile = wx.getStorageSync('profile')
-    // this.hidden = profile.data.isFirstLogin
-    // console.log('profile:666', profile.data.isFirstLogin)
+    var profile = wx.getStorageSync('profile')
+    this.hidden = profile.data.isFirstLogin
+    console.log('profile:666', profile.data.isFirstLogin)
   },
   onShow () {
     this.minaAuth = wx.getStorageSync('minaAuth')
@@ -115,14 +115,11 @@ export default {
       this.request()
     },
     // 切换状态
-    toggleDetail (index) {
-      this.database[index].show = !this.database[index].show
-    },
     request () {
       var that = this
       console.log('parms:', that.parms)
       wx.request({
-        url: wx.getStorageSync('requestUrl') + '/small/article/topics',
+        url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/article/summary',
         method: 'GET',
         data: that.parms,
         header: {
@@ -130,12 +127,13 @@ export default {
         },
         success: function (res) {
           // that.database[0] = res.data[0]
+          console.log('res.data999999999999:', res)
           for (var i = 0; i < res.data.length; i++) {
             console.log('res.data:', res.data[i])
             if (res.data[i].Title === '') {
               res.data[i].Title = res.data[i].MissedProvince + '-' + res.data[i].MissedCity + ', 寻找' + res.data[i].Nickname
             }
-            res.data[i].show = false
+            // res.data[i].show = false
             res.data[i].MissedAt = formatTimeMin(new Date(res.data[i].MissedAt))
             res.data[i].Age = jsGetAge(res.data[i].BirthedAt)
             if (res.data[i].Age > 150) {
@@ -147,6 +145,21 @@ export default {
           console.log('database:', that.database)
         }
       })
+      //  请求浏览数,评论数,点赞数
+      // wx.request({
+      //   url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/article/summary',
+      //   method: 'GET',
+      //   header: {
+      //     'content-type': 'application/json'
+      //   },
+      //   success: function (res2) {
+      //     console.log('8888888888888888888888', res2)
+      //     that.Visit = res2.data.Visit
+      //     that.Forward = res2.data.Forward
+      //     that.Comment = res2.data.Comment
+      //     console.log('summary:', res2)
+      //   }
+      // })
     },
     login () {
       var that = this
@@ -175,7 +188,7 @@ export default {
       var that = this
       that.parms.page++
       wx.request({
-        url: wx.getStorageSync('requestUrl') + '/small/article/topics',
+        url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/article/summmary',
         method: 'GET',
         data: {
           type: that.parms.type,
@@ -215,7 +228,7 @@ export default {
 
     var that = this
     wx.request({
-      url: wx.getStorageSync('requestUrl') + '/small/article/topics',
+      url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/article/summmary',
       method: 'GET',
       data: {
         type: that.parms.type,
@@ -229,7 +242,6 @@ export default {
           if (res.data[i].Title === '') {
             res.data[i].Title = res.data[i].MissedProvince + '-' + res.data[i].MissedCity + ', 寻找' + res.data[i].Nickname
           }
-          res.data[i].show = false
           res.data[i].MissedAt = formatTimeMin(new Date(res.data[i].MissedAt))
           res.data[i].Age = jsGetAge(res.data[i].BirthedAt)
           if (res.data[i].Age > 150) {

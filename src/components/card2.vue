@@ -1,69 +1,63 @@
 <template>
   <div class="page">
-    <div v-for="(item, index) in items" :key="index" class="container">
-      <div :style="item.show ? '' : 'max-height:237rpx;overflow: hidden;'"
-      @click="navToDetail" :id="item.UUID">
-        <div class="head">
-          <img class="status" :hidden="!item.Status" src="/static/images/home/find.png">
-          <!-- <div class="avatar"><img :src="item.AvatarUrl" @click.stop="previewImg(index)"></div> -->
-          <div class="content">
-            <div class="avatar"><img :src="item.AvatarUrl" @click.stop="previewImg(index)"></div>
-            <div>
-              <div class="se_container">
-                <div class="important" style="width: 320rpx;">{{item.Nickname}}</div>
-                <div class="important" style="margin-left: 37rpx;">{{item.Age}}岁</div>
-              </div>
-              <div class="se_container">
-                <div class="important">档案ID：</div>
-                <div>
-                  {{item.Babyid}}
+    <div v-for="(item, index) in items" :key="index" :summary=summary class="container">
+        <div :style="show[index] ? '' : 'max-height:237rpx;overflow: hidden;'"
+        @click="navToDetail" :id="item.UUID">
+          <div class="head">
+            <img class="status" :hidden="!item.Status" src="/static/images/home/find.png">
+            <!-- <div class="avatar"><img :src="item.AvatarUrl" @click.stop="previewImg(index)"></div> -->
+            <div class="content">
+              <div class="avatar"><img :src="item.AvatarUrl" @click.stop="previewImg(index)"></div>
+              <div>
+                <div class="se_container">
+                  <div class="important" style="width: 320rpx;">{{item.Nickname}}</div>
+                  <div class="important" style="margin-left: 80rpx;">{{item.Age}}岁</div>
                 </div>
-              </div>
-              <div class="se_container">
-                <div class="important">失踪城市：</div>
-                <div>{{item.MissedCity}}</div>
+                <div class="se_container">
+                  <div class="important">档案ID：</div>
+                  <div>
+                    {{item.Babyid}}
+                  </div>
+                </div>
+                <div class="se_container">
+                  <div class="important">失踪城市：</div>
+                  <div>{{item.MissedCity}}</div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <!-- <div>
-          <span class="t_title">失踪地点：</span>
-          <span>{{item.MissedAddress}}</span>
-        </div> -->
-        
-
-        <div class="down-container">
-          <div class="space-info">
-            <div class="t_title">失踪地点：</div>
-            <div>{{item.MissedAddress}}</div>
-          </div>
-          <div class="down-info">
-            <span class="t_title">失踪时间：</span>
-            <span>{{item.MissedAt}}</span>
-          </div>
-          <div class="down-info">
-            <div class="t_title">失踪特征:</div>
-            <p>{{item.Characters}}</p>
+          <div class="down-container">
+            <div class="space-info">
+              <div class="t_title">失踪地点：</div>
+              <div>{{item.MissedAddress}}</div>
+            </div>
+            <div class="down-info">
+              <span class="t_title">失踪时间：</span>
+              <span>{{item.MissedAt}}</span>
+            </div>
+            <div class="down-info">
+              <div class="t_title">失踪特征:</div>
+              <p>{{item.Characters}}</p>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="more" @click="toggleDetail" :id="index">
-        <img src="/static/images/home/down.png" :style="item.show ? 'transform: rotate(180deg);' : ''">
-      </div>
-      <div class="other">
-        <div class="t_container">
-          <span class="icon"><img src="/static/images/home/notice.png"></span>
-          <span class="num">15</span>
+        <div class="more" @click="toggleDetail" :id="index">
+          <img src="/static/images/home/down.png" :style="show[index] ? 'transform: rotate(180deg);' : ''">
         </div>
-        <div class="t_container">
-          <span class="icon"><img src="/static/images/home/talk.png"></span>
-          <span class="num">11</span>
+        <div class="other">
+          <div class="t_container">
+            <span class="icon"><img src="/static/images/home/notice.png"></span>
+            <span class="num">{{item.Visit}}</span>
+          </div>
+          <div class="t_container">
+            <span class="icon"><img src="/static/images/home/talk.png"></span>
+            <span class="num">{{item.Comment}}</span>
+          </div>
+          <div class="t_container">
+            <span class="icon"><img src="/static/images/home/shareNum.png"></span>
+            <span class="num">{{item.Forward}}</span>
+          </div>
         </div>
-        <div class="t_container">
-          <span class="icon"><img src="/static/images/home/shareNum.png"></span>
-          <span class="num">22</span>
-        </div>
-      </div>
   </div>
 </div>
 </template>
@@ -74,8 +68,16 @@ export default {
   props: ['items'],
   data () {
     return {
-      // show: [],
+      show: null,
       icon: '/static/images/home/down.png'
+    }
+  },
+  onLoad () {
+    var length = this.items.length
+    console.log('length:', length)
+    this.show = new Array(length)
+    for (var i = 0; i < length; i++) {
+      this.show[i] = false
     }
   },
   methods: {
@@ -90,7 +92,12 @@ export default {
     },
     toggleDetail (e) {
       var index = e.currentTarget.id
-      this.$emit('toggleDetail', index)
+      // this.$emit('toggleDetail', index)
+      console.log('click!', index)
+      console.log('this:', this)
+      var arr = new Array(...this.show)
+      arr[index] = !arr[index]
+      this.show = arr
     },
     navToDetail (e) {
       wx.navigateTo({
@@ -103,16 +110,25 @@ export default {
 
 <style scoped>
 .page{
-  margin-top: 40rpx;
+  margin-top: 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .container{
   /* margin: 1em; */
   /* padding: 0; */
   border: 1px solid #a7a7a7;
   border-radius: 0.5em;
-  position: relative;
+  /* border: 2px solid ; */
   margin-bottom: 10px;
   font-size: 14px;
+  width: 94%;
+  /* height:400rpx; */
+  /* flex: 1; */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 .container p{
   /* padding: 0 20px; */
