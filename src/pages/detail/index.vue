@@ -8,7 +8,6 @@
         <img src="/static/images/home/home.png" class="home">
       </button>
     </div> -->
-
       <div class="navigation">
         <div class="btn">
           <navigator open-type="navigateBack">
@@ -57,11 +56,6 @@
             </div>
           </div>
         </div>
-        <!-- <div class="divLine">
-          <div class="left"></div>
-          <div class="center"></div>
-          <div class="right"></div>
-        </div> -->
       </div>
     </div>
     <!-- 评论区 -->
@@ -85,6 +79,7 @@
         </div>
       </form>
     </div>
+    
   </div>
 </template>
 
@@ -141,7 +136,7 @@ export default{
     requestComment () {
       var that = this
       wx.request({
-        url: wx.getStorageSync('requestUrl') + '/small/comment/' + that.item.UUID,
+        url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/comment/' + that.item.UUID,
         method: 'GET',
         data: {
         },
@@ -182,7 +177,7 @@ export default{
       // 更新数据
 
       wx.request({
-        url: wx.getStorageSync('requestUrl') + '/small/comment',
+        url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/comment',
         method: 'POST',
         data: {
           UUID: that.item.UUID,

@@ -3,9 +3,9 @@
     <div v-for="(item, index) in items" :key="index" :summary=summary class="container">
         <div :style="show[index] ? '' : 'max-height:237rpx;overflow: hidden;'"
         @click="navToDetail" :id="item.UUID">
+          <!-- 卡片显示信息 -->
           <div class="head">
             <img class="status" :hidden="!item.Status" src="/static/images/home/find.png">
-            <!-- <div class="avatar"><img :src="item.AvatarUrl" @click.stop="previewImg(index)"></div> -->
             <div class="content">
               <div class="avatar"><img :src="item.AvatarUrl" @click.stop="previewImg(index)"></div>
               <div>
@@ -26,6 +26,7 @@
               </div>
             </div>
           </div>
+          <!-- 卡片隐藏信息 -->
           <div class="down-container">
             <div class="space-info">
               <div class="t_title">失踪地点：</div>
@@ -41,9 +42,11 @@
             </div>
           </div>
         </div>
+        <!-- 卡片展开 -->
         <div class="more" @click="toggleDetail" :id="index">
           <img src="/static/images/home/down.png" :style="show[index] ? 'transform: rotate(180deg);' : ''">
         </div>
+        <!-- 评论,浏览,点赞 -->
         <div class="other">
           <div class="t_container">
             <span class="icon"><img src="/static/images/home/notice.png"></span>
@@ -72,15 +75,16 @@ export default {
       icon: '/static/images/home/down.png'
     }
   },
+  // 卡片状态数组初始化
   onLoad () {
     var length = this.items.length
-    console.log('length:', length)
     this.show = new Array(length)
     for (var i = 0; i < length; i++) {
       this.show[i] = false
     }
   },
   methods: {
+    // 图片预览
     previewImg: function (index) {
       var imgArr = []
       imgArr[0] = this.items[index].AvatarUrl
@@ -90,15 +94,14 @@ export default {
         success: function (res) {}
       })
     },
+    // 控制卡片展开状态,新数组替换实现重新渲染
     toggleDetail (e) {
       var index = e.currentTarget.id
-      // this.$emit('toggleDetail', index)
-      console.log('click!', index)
-      console.log('this:', this)
       var arr = new Array(...this.show)
       arr[index] = !arr[index]
       this.show = arr
     },
+    // 跳转到详情页面
     navToDetail (e) {
       wx.navigateTo({
         url: '../../pages/detail/main?id=' + e.currentTarget.id
@@ -116,45 +119,28 @@ export default {
   align-items: center;
 }
 .container{
-  /* margin: 1em; */
-  /* padding: 0; */
   border: 1px solid #a7a7a7;
   border-radius: 0.5em;
-  /* border: 2px solid ; */
   margin-bottom: 10px;
   font-size: 14px;
   width: 94%;
-  /* height:400rpx; */
-  /* flex: 1; */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 .container p{
-  /* padding: 0 20px; */
   text-align: justify;
   margin-top: -28rpx;
   margin-left: -7rpx;
-  /* border: 1px solid; */
 }
 .head{
   width: 100%;
   margin: 0.5em;
-  /* margin-right: 20rpx; */
   display: flex;
+  position: relative;
   flex-direction: row;
 }
-.avatar{
-  /* flex: 1; */
-  /* max-width: 6.5em;
-  max-height: 6.5em; */
- 
-  margin-right: 0;
-  /* vertical-align: top; */
-}
 .avatar img{
-  /* max-width: 6.5em;
-  max-height: 6.5em; */
   width: 150rpx;
   height: 150rpx;
   margin-left: 10rpx;
@@ -164,7 +150,6 @@ export default {
   flex: 1;
   display: flex;
   flex-direction: row;
-  /* border:1px solid; */
 }
 .space-info{
     flex: 1;
@@ -176,8 +161,6 @@ export default {
   display: flex;
   flex-direction: row;
   margin-top: 8rpx;
-  /* flex-wrap: nowrap; */
-  /* border:1px solid; */
 }
 .more{
   margin: auto;
@@ -213,37 +196,28 @@ export default {
   display: inline-block;
 }
 .t_title{
-  /* padding: 0 40rpx; */
-  /* word-wrap: break-word; 
-  word-break: break-all; */
   white-space:nowrap;
   font-weight: bold;
   margin-left: 20rpx;
 }
 .important{
   font-weight: bold;
-  /* margin-left: 10rpx; */
-  /* flex-wrap: nowrap; */
-  /* word-wrap: break-word;  */
-  /* word-break: break-all; */
 }
 .status{
   position: absolute;
-  top: 64rpx;
-  right: 15rpx;
+  top: 5rpx;
+  right: 10rpx;
   height: 140rpx;
   width: 210rpx;
+  /* z-index: 999; */
   transform: rotate(-16deg);
 }
 .down-info{
   display: flex;
   flex-direction: row;
-  /* align-items: flex-start; */
-  /* border: 1px solid; */
   
 }
 .down-container{
-  /* border: 1px solid; */
   margin-top: 8rpx;
 }
 </style>

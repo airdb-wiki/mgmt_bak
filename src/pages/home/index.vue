@@ -1,51 +1,51 @@
 <template>
-    <div id="app">
-      <!-- 自定义navigation -->
-      <navigation :search='true' :propArray="cityList" :yourcity="minaAuth.yourcity ? minaAuth.yourcity : '定位中...'"></navigation>
-      
-      <!-- swiper轮播图 -->
-      <swiper :indicator-dots="true"
-        :autoplay="true"
-        :circular="circular"
-        :interval="interval"
-        :duration="duration"
-        previous-margin="-10px"
-        class="mySwiper">
-        <div v-for="item in imgUrls" :key="item.id">
-          <swiper-item>
-            <navigator url="" open-type="navigate" hover-class="none">
-              <image :src="item" class="swiper_img"/>
-            </navigator>
-          </swiper-item>
-        </div>
-      </swiper>
-
-      <!-- 自定义navBar -->
-      <div class="bar">
-        <scroll-view :scroll-x="true" class="navbar">
-          <div v-for="(tab, index) in tabs" :key="tab.id" :class="[index == activeIndex ? 'item_on' : 'tab']" :id="index" @click="changeTab">{{tab}}</div>
-        </scroll-view>
+  <div id="app">
+    <!-- 自定义navigation -->
+    <navigation :search='true' :propArray="cityList" :yourcity="minaAuth.yourcity ? minaAuth.yourcity : '定位中...'"></navigation>
+    
+    <!-- swiper轮播图 -->
+    <swiper :indicator-dots="true"
+      :autoplay="true"
+      :circular="circular"
+      :interval="interval"
+      :duration="duration"
+      previous-margin="-10px"
+      class="mySwiper">
+      <div v-for="item in imgUrls" :key="item.id">
+        <swiper-item>
+          <navigator url="" open-type="navigate" hover-class="none">
+            <image :src="item" class="swiper_img"/>
+          </navigator>
+        </swiper-item>
       </div>
-      
-      <!-- 卡片效果 -->
-      <div style="z-index: 0;">
-        <card2 :items="database"></card2>
-      </div>
+    </swiper>
 
-      <!-- 遮罩效果 -->
-      <div class="shade" v-if="hidden" catchtouchmove='preventTouchMove'>
-        <div class="container_one">
-          <div class="trans_text">1.点击</div>
-          <img src="/static/images/trans1.jpg" alt="" class="trans1">
-        </div>
-        <div class="container_two">
-          <div class="trans_text">2.点击 [添加到我的小程序]</div>
-          <img src="/static/images/trans2.jpg" alt="" class="trans2">
-        </div>
-        <div class="container_three">
-          <div class="trans_text">3.在微信首页下拉,快速进入"宝贝回家"</div>
-          <img src="/static/images/trans3.jpg" alt="" class="trans3">
-        </div>
+    <!-- 自定义navBar -->
+    <div class="bar">
+      <scroll-view :scroll-x="true" class="navbar">
+        <div v-for="(tab, index) in tabs" :key="tab.id" :class="[index == activeIndex ? 'item_on' : 'tab']" :id="index" @click="changeTab">{{tab}}</div>
+      </scroll-view>
+    </div>
+    
+    <!-- 卡片效果 -->
+    <div style="z-index: 0;">
+      <card2 :items="database"></card2>
+    </div>
+
+    <!-- 遮罩效果 -->
+    <div class="shade" v-if="hidden" catchtouchmove='preventTouchMove'>
+      <div class="container_one">
+        <div class="trans_text">1.点击</div>
+        <img src="/static/images/trans1.jpg" alt="" class="trans1">
+      </div>
+      <div class="container_two">
+        <div class="trans_text">2.点击 [添加到我的小程序]</div>
+        <img src="/static/images/trans2.jpg" alt="" class="trans2">
+      </div>
+      <div class="container_three">
+        <div class="trans_text">3.在微信首页下拉,快速进入"宝贝回家"</div>
+        <img src="/static/images/trans3.jpg" alt="" class="trans3">
+      </div>
       <div class="container_four" @click="conceal">我知道了</div>
     </div>
   </div>
@@ -94,15 +94,18 @@ export default {
       activeIndex: 0
     }
   },
+  // 控制遮罩显示状态
   onLoad () {
     var profile = wx.getStorageSync('profile')
     this.hidden = profile.data.isFirstLogin
     console.log('profile:666', profile.data.isFirstLogin)
   },
+  // 获取缓存
   onShow () {
     this.minaAuth = wx.getStorageSync('minaAuth')
   },
   methods: {
+    // 隐藏遮罩
     conceal: function () {
       this.hidden = 0
     },
@@ -126,16 +129,16 @@ export default {
           'content-type': 'application/json'
         },
         success: function (res) {
-          // that.database[0] = res.data[0]
-          console.log('res.data999999999999:', res)
+          console.log('card-info:', res)
           for (var i = 0; i < res.data.length; i++) {
             console.log('res.data:', res.data[i])
+            // 格式化标题,失踪时间,年龄
             if (res.data[i].Title === '') {
               res.data[i].Title = res.data[i].MissedProvince + '-' + res.data[i].MissedCity + ', 寻找' + res.data[i].Nickname
             }
-            // res.data[i].show = false
             res.data[i].MissedAt = formatTimeMin(new Date(res.data[i].MissedAt))
             res.data[i].Age = jsGetAge(res.data[i].BirthedAt)
+            // 有效性判断
             if (res.data[i].Age > 150) {
               res.data[i].Age = '不详'
             }
@@ -145,22 +148,8 @@ export default {
           console.log('database:', that.database)
         }
       })
-      //  请求浏览数,评论数,点赞数
-      // wx.request({
-      //   url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/article/summary',
-      //   method: 'GET',
-      //   header: {
-      //     'content-type': 'application/json'
-      //   },
-      //   success: function (res2) {
-      //     console.log('8888888888888888888888', res2)
-      //     that.Visit = res2.data.Visit
-      //     that.Forward = res2.data.Forward
-      //     that.Comment = res2.data.Comment
-      //     console.log('summary:', res2)
-      //   }
-      // })
     },
+    // 获取用户信息
     login () {
       var that = this
       console.log('login function', wx.getStorageSync('authSetting.userInfo'))
@@ -202,7 +191,6 @@ export default {
             if (res.data[i].Title === '') {
               res.data[i].Title = res.data[i].MissedProvince + '-' + res.data[i].MissedCity + ', 寻找' + res.data[i].Nickname
             }
-            res.data[i].show = false
             res.data[i].MissedAt = formatTimeMin(new Date(res.data[i].MissedAt))
             res.data[i].Age = jsGetAge(res.data[i].BirthedAt)
             if (res.data[i].Age > 150) {
@@ -225,7 +213,6 @@ export default {
     setTimeout(function () {
       wx.hideLoading()
     }, 500)
-
     var that = this
     wx.request({
       url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/article/summmary',

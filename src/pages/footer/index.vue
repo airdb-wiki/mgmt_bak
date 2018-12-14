@@ -19,8 +19,4 @@ export default {
   padding: 20rpx 0 30rpx;
   margin-bottom: 100rpx;
 }
-/* .weui-footer_fixed-bottom {
-  margin-bottom: 0;
-} */
-
 </style>

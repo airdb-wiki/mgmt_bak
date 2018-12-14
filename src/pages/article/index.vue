@@ -59,7 +59,7 @@
     <div class="bhui-comments">
         <span class="bhui-comments__btn" @click="clickCommentBtn">提供线索</span>
         <ul class="bhui-comments__list">
-          <li class="bhui-comments__item"  v-for="comment in comments" :key="index" >
+          <li class="bhui-comments__item"  v-for="(comment,index) in comments" :key="index" >
             <div class="bhui-comments__avatar">
               <image :src="comment.AvatarUrl" alt="用户头像" />
             </div>
@@ -143,7 +143,7 @@ export default {
         return
       }
       wx.request({
-        url: wx.getStorageSync('requestUrl') + '/small/article/' + uuid,
+        url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/article/' + uuid,
         method: 'GET',
         data: {
           phone_model: 'b'
@@ -171,7 +171,7 @@ export default {
         return
       }
       wx.request({
-        url: wx.getStorageSync('requestUrl') + '/small/comment/' + vm.uuid,
+        url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/summary/' + vm.uuid,
         method: 'GET',
         data: {
         },

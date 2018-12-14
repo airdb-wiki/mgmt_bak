@@ -16,7 +16,7 @@
       </navigator>
       <navigator v-else url="/pages/detail/main" hover-class="none">
         <div>
-          <img v-bind:src="item.url" class="img"></img>
+          <img v-bind:src="item.url" class="img">
           <p>{{item.title}}</p>
           <div class="editor">
             <img class="img1" v-bind:src="item.avatarUrl">
