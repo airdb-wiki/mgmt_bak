@@ -89,7 +89,7 @@ export default {
         type: 'nearby',
         tag: '',
         category: '',
-        page: 1
+        page: 0
       },
       activeIndex: 0
     }
@@ -117,38 +117,6 @@ export default {
       console.log('-----------changeTab', e.currentTarget.id, this.parms.category)
       this.request()
     },
-    // 切换状态
-    request () {
-      var that = this
-      console.log('parms:', that.parms)
-      wx.request({
-        url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/article/summary',
-        method: 'GET',
-        data: that.parms,
-        header: {
-          'content-type': 'application/json'
-        },
-        success: function (res) {
-          console.log('card-info:', res)
-          for (var i = 0; i < res.data.length; i++) {
-            console.log('res.data:', res.data[i])
-            // 格式化标题,失踪时间,年龄
-            if (res.data[i].Title === '') {
-              res.data[i].Title = res.data[i].MissedProvince + '-' + res.data[i].MissedCity + ', 寻找' + res.data[i].Nickname
-            }
-            res.data[i].MissedAt = formatTimeMin(new Date(res.data[i].MissedAt))
-            res.data[i].Age = jsGetAge(res.data[i].BirthedAt)
-            // 有效性判断
-            if (res.data[i].Age > 150) {
-              res.data[i].Age = '不详'
-            }
-            that.database = that.database.concat(res.data[i])
-          }
-          wx.setStorageSync('database', that.database)
-          console.log('database:', that.database)
-        }
-      })
-    },
     // 获取用户信息
     login () {
       var that = this
@@ -173,21 +141,26 @@ export default {
       this.showLogin = false
     },
     // 隐藏登陆框
-    getTopicInfo () {
+    getArticleOverview (parms) {
       var vm = this
       // 每次取一页, 每页默认是5条数据.
-      vm.parms.page++
       wx.request({
         url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/article/summary',
         method: 'GET',
         data: {
-          type: vm.parms.type,
-          page: vm.parms.page
+          type: parms.type,
+          page: parms.page
         },
         header: {
           'content-type': 'application/json'
         },
         success: function (res) {
+          if (res.data === null) {
+            console.log('拉到底了！ server return data is null, url: ', '/lastest/wechatapi/small/article/summary')
+            // 应该弹框通知下用户
+            return
+          }
+
           console.log('first database:', vm.database.length)
           console.log('database.data', res.data)
           // return
@@ -200,24 +173,13 @@ export default {
             if (res.data[i].Age > 150) {
               res.data[i].Age = '不详'
             }
-            // 判断新获取的数据是否在原数组中,如果不在,进行concat操作(-1表示不在)
-            // if (vm.database.indexOf(res.data[i]) === -1) {
-            //   console.log('================')
-            //   console.log(typeof (res.data[i]), typeof (vm.database))
-            //   console.log(vm.database.indexOf(res.data[i]))
-            //   vm.database = vm.database.concat(res.data[i])
-            // }
-            // for (var j = 0; j < vm.database.length; j++) {
-            //   if (res.data[i] === vm.database[j]) {
-            //     console.log('==========same')
-            //   } else {
-            //     console.log('==========different')
-            //   }
-            // }
+            vm.database = vm.database.concat(res.data[i])
           }
           // console.log(vm.database)
           console.log('加载更多后数据为: ', vm.database)
           wx.setStorageSync('database', vm.database)
+        },
+        fail: function (res) {
         }
       })
     }
@@ -243,6 +205,8 @@ export default {
         'content-type': 'application/json'
       },
       success: function (res) {
+        // 判断这是最新了。。。。。
+        // 并通弹窗通知用户
         for (var i = 0; i < res.data.length; i++) {
           if (res.data[i].Title === '') {
             res.data[i].Title = res.data[i].MissedProvince + '-' + res.data[i].MissedCity + ', 寻找' + res.data[i].Nickname
@@ -271,12 +235,13 @@ export default {
   },
   onReachBottom () {
     var vm = this
+    vm.parms.page++
     wx.showLoading({
       title: '正在加载...'
     })
     setTimeout(function () {
       wx.hideLoading()
-      vm.getTopicInfo()
+      vm.getArticleOverview(vm.parms)
     }, 500)
   },
   // 触底加载更多刷新
@@ -287,8 +252,7 @@ export default {
     const logs = (wx.getStorageSync('logs') || [])
     this.logs = logs.map(log => formatTime(new Date(log)))
     // 获取用户授权
-
-    this.request()
+    this.getArticleOverview(this.parms)
   }
 }
 </script>
