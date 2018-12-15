@@ -97,8 +97,8 @@ export default {
   // 控制遮罩显示状态
   onLoad () {
     var profile = wx.getStorageSync('profile')
-    this.hidden = !profile.data.isFirstLogin
-    console.log('profile:666', profile.data.isFirstLogin)
+    this.hidden = !profile.isFirstLogin
+    console.log('profile information:', profile)
   },
   // 获取缓存
   onShow () {
@@ -281,9 +281,9 @@ export default {
   },
   // 触底加载更多刷新
   created () {
-    console.log('==authSetting==', wx.getStorageSync('authSetting.userInfo'), this.authSetting.userInfo)
+    // console.log('==authSetting==', wx.getStorageSync('authSetting.userInfo'), this.authSetting.userInfo)
     this.authSetting.userInfo = wx.getStorageSync('authSetting.userInfo')
-    console.log('create====', this.authSetting.userInfo)
+    // console.log('create====', this.authSetting.userInfo)
     const logs = (wx.getStorageSync('logs') || [])
     this.logs = logs.map(log => formatTime(new Date(log)))
     // 获取用户授权

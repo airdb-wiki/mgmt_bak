@@ -20,8 +20,8 @@ export default {
               path: launch.path
             },
             success: function (profile) {
-              console.log('xxxx', profile.data.isFirstLogin)
-              wx.setStorageSync('profile', profile)
+              wx.setStorageSync('profile', profile.data)
+              // console.log('profile===', profile.data)
             }
           })
         } else {
@@ -49,7 +49,6 @@ export default {
     wx.setStorageSync('env', env)
     // console.log(wxConfig.envVersion)
     console.log('app created, env:', wx.getStorageSync('env'))
-
     if (wx.getStorageSync('env') === 'prod') {
       // wx.setStorageSync('requestUrl', 'https://wechat.baobeihuijia.com/lastest/wechatapi')
     } else {
@@ -196,7 +195,7 @@ export default {
         'content-type': 'application/json'
       },
       success: function (res) {
-        console.log('get config: ', res.data.WeCosUrl)
+        // console.log('get config: ', res.data.WeCosUrl)
         wx.setStorageSync('wecosUrl', res.data.WeCosUrl)
       }
     })
