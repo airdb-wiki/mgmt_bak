@@ -161,6 +161,11 @@ export default {
           if (res.data === null) {
             console.log('拉到底了！ server return data is null, url: ', '/lastest/wechatapi/small/article/summary')
             // 应该弹框通知下用户
+            wx.showToast({
+              title: '已加载全部内容',
+              icon: 'success',
+              duration: 2000
+            })
             return
           }
 

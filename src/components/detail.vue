@@ -58,14 +58,15 @@ export default{
       src2: ''
     }
   },
+  beforeUpdate () {
+    var title = this.item.MissedCity + '——' + this.item.Nickname
+    this.content.title = title
+  },
   onLoad () {
     var that = this
     var minaAuth = wx.getStorageSync('minaAuth')
     that.access_token = minaAuth.accessToken
-    // 获取access_taken
-    console.log('=====', this.item)
-    var title = this.item.MissedCity + this.item.Nickname
-    this.content.title = title
+    console.log('=====onload this item: ', this.item.Nickname)
     setTimeout(function () {
       if (that.access_token === '') {
         console.log('error')

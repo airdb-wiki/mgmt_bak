@@ -70,7 +70,7 @@
               <div>评论</div>
             </div>
           </button>
-          <button @click="shareToFriends" open-type='share' :plain='true'>
+          <button open-type='share' :plain='true'>
             <div class="form_btn">
               <img src="/static/images/home/wx.png">
               <div>分享</div>
@@ -91,10 +91,51 @@ export default{
   components: {
     detail
   },
-  onShareAppMessage () {
+  // 发送给好友
+  onShareAppMessage (ops) {
+    if (ops.from === 'button') {
+      // 来自页面内转发按钮
+      console.log('====', ops.target)
+    }
+    var vm = this
     return {
       title: '约1986年出生1990年与小朋友离家玩耍时走失疑时广西桂林人的秦干寻亲',
-      path: '/pages/detail/main'
+      path: '/pages/detail/main',
+      success: function (res) {
+        // 从缓存中获取信息
+        var items = wx.getStorageSync('database')
+        // console.log('options info: ', options.id)
+        console.log('items=========', items)
+        for (var i = 0; i < items.length; i++) {
+          if (vm.item.UUID === items[i].UUID) {
+            items[i].Forward += 1
+          }
+        }
+        wx.setStorageSync('database', items)
+        wx.request({
+          url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/article/updateCount',
+          method: 'GET',
+          data: {
+            babyid: vm.item.Babyid,
+            column: 'Forward'
+          },
+          header: {
+            'content-type': 'application/json'
+          },
+          success: function (res) {
+            console.log('forward_res:', res)
+          }
+        })
+        // 转发成功
+        console.log('转发成功:' + JSON.stringify(res))
+      },
+      fail: function (res) {
+        // 转发失败
+        console.log('转发失败:' + JSON.stringify(res))
+      },
+      complete: function (res) {
+        console.log('complete: ' + JSON.stringify(res))
+      }
     }
   },
   data () {
@@ -129,6 +170,10 @@ export default{
       }
     }
     wx.setStorageSync('database', items)
+    wx.showShareMenu({
+      // 要求小程序返回分享目标信息
+      withShareTicket: true
+    })
     wx.request({
       url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/article/updateCount',
       method: 'GET',
