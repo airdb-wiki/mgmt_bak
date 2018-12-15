@@ -147,65 +147,48 @@ export default {
     getArticleOverview (parms) {
       var vm = this
       // 每次取一页, 每页默认是5条数据.
-      wx.request({
-        url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/article/summary',
-        method: 'GET',
-        data: {
-          type: parms.type,
-          page: parms.page
-        },
-        header: {
-          'content-type': 'application/json'
-        },
-        success: function (res) {
-          if (res.data === null) {
-            console.log('拉到底了！ server return data is null, url: ', '/lastest/wechatapi/small/article/summary')
-            // 应该弹框通知下用户
-            wx.showToast({
-              title: '已加载全部内容',
-              icon: 'success',
-              duration: 2000
-            })
-            return
-          }
-
-          console.log('first database:', vm.database.length)
-          console.log('database.data', res.data)
-          // return
-          for (var i = 0; i < res.data.length; i++) {
-            if (res.data[i].Title === '') {
-              res.data[i].Title = res.data[i].MissedProvince + '-' + res.data[i].MissedCity + ', 寻找' + res.data[i].Nickname
-            }
-            res.data[i].MissedAt = formatTimeMin(new Date(res.data[i].MissedAt))
-            res.data[i].Age = jsGetAge(res.data[i].BirthedAt)
-            if (res.data[i].Age > 150) {
-              res.data[i].Age = '不详'
-            }
-            // var tmpurl = res.data[i].DataFrom
-            var tmpurl = res.data[i].DataFrom.split('/')
-            // console.log(tmpurl.split('/'))
-            if (tmpurl.length > 3) {
-              res.data[i].DataFrom = tmpurl[2]
-            }
-            console.log('==-----datafrom---', res.data[i].DataFrom)
-          }
-
-          // 历史数据是追加，所以放在最后。 新增加数据放在最前。 默认是历史数据，进行追加。
-          if (vm.parms.pullData === 'new') {
-            vm.database = res.data
-          } else {
-            vm.database = vm.database.concat(res.data)
-          }
-
-          // console.log(vm.database)
-          console.log('加载更多后数据为: ', vm.database)
-          wx.setStorageSync('database', vm.database)
-        },
-        fail: function (res) {
+      this.$get('/lastest/wechatapi/small/article/summary', parms).then((res) => {
+        console.log('this.$get===getArticleOverview==', res)
+        if (res.data === null) {
+          console.log('拉到底了！ server return data is null.')
+          // 应该弹框通知下用户
+          wx.showToast({
+            title: '已加载全部内容',
+            icon: 'success',
+            duration: 2000
+          })
+          return
         }
+
+        for (var i = 0; i < res.data.length; i++) {
+          if (res.data[i].Title === '') {
+            res.data[i].Title = res.data[i].MissedProvince + '-' + res.data[i].MissedCity + ', 寻找' + res.data[i].Nickname
+          }
+          res.data[i].MissedAt = formatTimeMin(new Date(res.data[i].MissedAt))
+          res.data[i].Age = jsGetAge(res.data[i].BirthedAt)
+          if (res.data[i].Age > 150) {
+            res.data[i].Age = '不详'
+          }
+          // var tmpurl = res.data[i].DataFrom
+          var tmpurl = res.data[i].DataFrom.split('/')
+          // console.log(tmpurl.split('/'))
+          if (tmpurl.length > 3) {
+            res.data[i].DataFrom = tmpurl[2]
+          }
+          console.log('==-----datafrom---', res.data[i].DataFrom)
+        }
+
+        // 历史数据是追加，所以放在最后。 新增加数据放在最前。 默认是历史数据，进行追加。
+        if (vm.parms.pullData === 'new') {
+          vm.database = res.data
+        } else {
+          vm.database = vm.database.concat(res.data)
+        }
+
+        console.log('加载更多后数据为: ', vm.database)
+        wx.setStorageSync('database', vm.database)
       })
     }
-    // 下拉刷新后获取更多信息
   },
   // 转发
   onPullDownRefresh: function () {

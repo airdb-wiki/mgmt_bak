@@ -1,6 +1,7 @@
 
 <script>
 import { weixinUpdate } from '@/utils/update'
+
 export default {
   data () {
     return {
@@ -13,6 +14,10 @@ export default {
   },
   onLaunch (launch) {
     console.log('app launch scene info: ', launch.scene, launch.path, launch.shareTicket)
+
+    this.$get('/lastest/wechatapi/user/login', '').then((response) => {
+      console.log('this.$get=====', response)
+    })
     wx.login({
       success: function (res) {
         if (res.code) {
