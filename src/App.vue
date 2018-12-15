@@ -2,6 +2,15 @@
 <script>
 import { weixinUpdate } from '@/utils/update'
 export default {
+  data () {
+    return {
+      env: 'test',
+      domain: 'https://wechat.baobeihuijia.com',
+      userInfo: {},
+      loginInfo: {}, // 用户登录信息
+      profile: {}
+    }
+  },
   onLaunch (launch) {
     console.log('app launch scene info: ', launch.scene, launch.path, launch.shareTicket)
     wx.login({
@@ -19,9 +28,9 @@ export default {
               shareTicket: launch.shareTicket,
               path: launch.path
             },
-            success: function (profile) {
-              wx.setStorageSync('profile', profile.data)
-              // console.log('profile===', profile.data)
+            success: function (userProfile) {
+              wx.setStorageSync('profile', userProfile.data)
+              // console.log('profile===', userProfile.data)
             }
           })
         } else {
@@ -36,17 +45,12 @@ export default {
     })
   },
   created () {
-    var env = 'test'
-    var domain = 'https://wechat.baobeihuijia.com' + '/' + env
-
-    wx.setStorageSync('env', env)
-    wx.setStorageSync('domain', domain)
-    // wx.setStorageSync('profile', profile)
+    wx.setStorageSync('env', this.env)
+    wx.setStorageSync('domain', this.domain + '/' + this.env)
     var userInfo = {} // 微信用户信息
     var loginInfo = {} // 用户登录信息
 
     // console.log('=====',wxConfig.envVersion)
-    wx.setStorageSync('env', env)
     // console.log(wxConfig.envVersion)
     console.log('app created, env:', wx.getStorageSync('env'))
     if (wx.getStorageSync('env') === 'prod') {
@@ -128,6 +132,8 @@ export default {
         }
       })
     }
+    let vm = this
+    vm.profile = wx.getStorageSync('profile')
 
     // 获取用户信息
     if (wx.getStorageSync('authSetting.userInfo')) {
@@ -135,48 +141,44 @@ export default {
         success: (res) => {
           try {
             userInfo = res.userInfo
+            console.log('-----profile', vm.profile.Openid)
+            console.log('-----userinfo', userInfo)
             wx.setStorageSync('userInfo', res.userInfo)
-            wx.login({
+            wx.request({
+              url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/user/updateUserInfo',
+              method: 'POST',
+              header: {
+                'content-type': 'application/json'
+              },
+              data: {
+                openid: vm.profile.Openid,
+                platform: loginInfo['platform'],
+                system: loginInfo['system'],
+                brand: loginInfo['brand'],
+                pmodel: loginInfo['pmodel'],
+                networkType: loginInfo['networkType'],
+                longitude: loginInfo['longitude'],
+                latitude: loginInfo['latitude'],
+                nickName: userInfo.nickName,
+                avatarUrl: userInfo.avatarUrl,
+                // 性别 0：未知、1：男、2：女
+                gender: userInfo.gender,
+                country: userInfo.country,
+                province: userInfo.province,
+                city: userInfo.city,
+                language: userInfo.language
+              },
               success: function (res) {
-                if (res.code) {
-                  wx.request({
-                    url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/user/login',
-                    method: 'POST',
-                    header: {
-                      'content-type': 'application/json'
-                    },
-                    data: {
-                      code: res.code,
-                      platform: loginInfo['platform'],
-                      system: loginInfo['system'],
-                      brand: loginInfo['brand'],
-                      pmodel: loginInfo['pmodel'],
-                      networkType: loginInfo['networkType'],
-                      longitude: loginInfo['longitude'],
-                      latitude: loginInfo['latitude'],
-                      nickName: userInfo.nickName,
-                      avatarUrl: userInfo.avatarUrl,
-                      // 性别 0：未知、1：男、2：女
-                      gender: userInfo.gender,
-                      country: userInfo.country,
-                      province: userInfo.province,
-                      city: userInfo.city,
-                      language: userInfo.language
-                    },
-                    success: function (res) {
-                      var obj = JSON.parse(res.data)
-                      console.log('wechat login: ', res.data)
-                      wx.setStorageSync('minaAuth', obj)
-                      var ss = wx.getStorageSync('minaAuth')
-                      console.log('access_token is:', ss)
-                      wx.showToast({
-                        title: '公益时长 +3',
-                        icon: 'success',
-                        duration: 2000
-                      })
-                    }
-                  })
-                }
+                var obj = JSON.parse(res.data)
+                console.log('wechat login: ', res.data)
+                wx.setStorageSync('minaAuth', obj)
+                var ss = wx.getStorageSync('minaAuth')
+                console.log('access_token is:', ss)
+                wx.showToast({
+                  title: '公益时长 +3',
+                  icon: 'success',
+                  duration: 2000
+                })
               }
             })
           } catch (e) {
