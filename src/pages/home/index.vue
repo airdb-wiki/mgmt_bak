@@ -233,6 +233,7 @@ export default {
     // 触底加载历史数据,  默认就是这种模式
     var vm = this
     vm.parms.page++
+    vm.parms.pullData = 'old'
     wx.showLoading({
       title: '正在加载...'
     })
