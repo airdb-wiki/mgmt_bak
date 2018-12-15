@@ -89,7 +89,8 @@ export default {
         type: 'nearby',
         tag: '',
         category: '',
-        page: 0
+        page: 0,
+        pullData: 'old'
       },
       activeIndex: 0
     }
@@ -173,8 +174,15 @@ export default {
             if (res.data[i].Age > 150) {
               res.data[i].Age = '不详'
             }
-            vm.database = vm.database.concat(res.data[i])
           }
+
+          // 历史数据是追加，所以放在最后。 新增加数据放在最前。 默认是历史数据，进行追加。
+          if (vm.parms.pullData === 'new') {
+            vm.database = res.data.concat(vm.database)
+          } else {
+            vm.database = vm.database.concat(res.data)
+          }
+
           // console.log(vm.database)
           console.log('加载更多后数据为: ', vm.database)
           wx.setStorageSync('database', vm.database)
@@ -194,36 +202,10 @@ export default {
       wx.hideLoading()
     }, 500)
     var vm = this
-    wx.request({
-      url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/article/summmary',
-      method: 'GET',
-      data: {
-        type: vm.parms.type,
-        page: 1
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        // 判断这是最新了。。。。。
-        // 并通弹窗通知用户
-        for (var i = 0; i < res.data.length; i++) {
-          if (res.data[i].Title === '') {
-            res.data[i].Title = res.data[i].MissedProvince + '-' + res.data[i].MissedCity + ', 寻找' + res.data[i].Nickname
-          }
-          // 2018-12-15T09:42:00Z 2018-12-15 09....
-          res.data[i].MissedAt = formatTimeMin(new Date(res.data[i].MissedAt))
-          res.data[i].Age = jsGetAge(res.data[i].BirthedAt)
-          if (res.data[i].Age > 150) {
-            res.data[i].Age = '不详'
-          }
-        }
-        vm.database = res.data
-        wx.setStorageSync('database', vm.database)
-        console.log('database:', vm.database)
-        console.log('database legth==:', vm.database.length)
-      }
-    })
+    // 第次都拉第一页， 对应后台需要倒序，返回最新的数据
+    vm.parms.page = 0
+    vm.parms.pullData = 'new'
+    vm.getArticleOverview(vm.parms)
     wx.stopPullDownRefresh()
   },
   onShareAppMessage: function () {
@@ -234,6 +216,7 @@ export default {
     }
   },
   onReachBottom () {
+    // 触底加载历史数据,  默认就是这种模式
     var vm = this
     vm.parms.page++
     wx.showLoading({
@@ -244,7 +227,6 @@ export default {
       vm.getArticleOverview(vm.parms)
     }, 500)
   },
-  // 触底加载更多刷新
   created () {
     // console.log('==authSetting==', wx.getStorageSync('authSetting.userInfo'), this.authSetting.userInfo)
     this.authSetting.userInfo = wx.getStorageSync('authSetting.userInfo')
