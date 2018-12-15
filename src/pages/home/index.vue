@@ -33,7 +33,7 @@
     </div>
 
     <!-- 遮罩效果 -->
-    <div class="shade" v-if="!hidden" catchtouchmove='preventTouchMove'>
+    <div class="shade" v-if="isFirstShow" catchtouchmove='preventTouchMove'>
       <div class="container_one">
         <div class="trans_text">1.点击</div>
         <img src="/static/images/trans1.jpg" alt="" class="trans1">
@@ -47,6 +47,7 @@
         <img src="/static/images/trans3.jpg" alt="" class="trans3">
       </div>
       <div class="container_four" @click="conceal">我知道了</div>
+
     </div>
   </div>
 </template>
@@ -67,7 +68,7 @@ export default {
   },
   data () {
     return {
-      hidden: 1,
+      isFirstShow: true,
       tabs: [
         '儿童走失', '老人走失', '离家出走', '人贩拐卖', '其他寻人'
       ],
@@ -98,17 +99,18 @@ export default {
   // 控制遮罩显示状态
   onLoad () {
     var profile = wx.getStorageSync('profile')
-    this.hidden = !profile.isFirstLogin
+    this.isFirstShow = profile.isFirstLogin
     console.log('profile information:', profile)
   },
   // 获取缓存
   onShow () {
     this.minaAuth = wx.getStorageSync('minaAuth')
+    this.database = wx.getStorageSync('database')
   },
   methods: {
     // 隐藏遮罩
     conceal: function () {
-      this.hidden = 0
+      this.isFirstShow = false
     },
     changeTab (e) {
       this.database = []

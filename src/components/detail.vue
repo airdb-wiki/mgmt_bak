@@ -63,7 +63,9 @@ export default{
     var minaAuth = wx.getStorageSync('minaAuth')
     that.access_token = minaAuth.accessToken
     // 获取access_taken
-
+    console.log('=====', this.item)
+    var title = this.item.MissedCity + this.item.Nickname
+    this.content.title = title
     setTimeout(function () {
       if (that.access_token === '') {
         console.log('error')

@@ -311,7 +311,7 @@ export default {
       let vm = this
       console.log('debug=====start')
       wx.request({
-        url: wx.getStorageSync('requestUrl') + '/small/article/keywords',
+        url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/article/summary',
         method: 'GET',
         data: {
           nickname: '',
@@ -385,7 +385,7 @@ export default {
     getLocationMarkers () {
       let vm = this
       wx.request({
-        url: wx.getStorageSync('requestUrl') + '/small/location/markers' + '?latitude=' + wx.getStorageSync('userLocation').latitude + '&longitude=' + wx.getStorageSync('userLocation').longitude,
+        url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/location/markers' + '?latitude=' + wx.getStorageSync('userLocation').latitude + '&longitude=' + wx.getStorageSync('userLocation').longitude,
         method: 'GET',
         data: {
         },
