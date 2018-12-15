@@ -33,7 +33,7 @@
     </div>
 
     <!-- 遮罩效果 -->
-    <div class="shade" v-if="hidden" catchtouchmove='preventTouchMove'>
+    <div class="shade" v-if="!hidden" catchtouchmove='preventTouchMove'>
       <div class="container_one">
         <div class="trans_text">1.点击</div>
         <img src="/static/images/trans1.jpg" alt="" class="trans1">
@@ -97,7 +97,7 @@ export default {
   // 控制遮罩显示状态
   onLoad () {
     var profile = wx.getStorageSync('profile')
-    this.hidden = profile.data.isFirstLogin
+    this.hidden = !profile.data.isFirstLogin
     console.log('profile:666', profile.data.isFirstLogin)
   },
   // 获取缓存

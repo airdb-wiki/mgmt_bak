@@ -120,13 +120,14 @@ export default{
     var that = this
     // 从缓存中获取信息
     var items = wx.getStorageSync('database')
+    console.log('items=========', items)
     for (var i = 0; i < items.length; i++) {
       if (options.id === items[i].UUID) {
         that.item = items[i]
       }
     }
     wx.request({
-      url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/article/updateCount?babyid=285183&column=visit',
+      url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/article/updateCount?babyid=' + that.item.Babyid + '&column=visit',
       method: 'GET',
       // data: ,
       header: {
