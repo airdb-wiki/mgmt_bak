@@ -173,6 +173,7 @@ export default {
                 console.log('wechat login: ', res.data)
                 wx.setStorageSync('minaAuth', obj)
                 var ss = wx.getStorageSync('minaAuth')
+                wx.setStorageSync('wecosUrl', ss.weCosUrl)
                 console.log('access_token is:', ss)
                 wx.showToast({
                   title: '公益时长 +3',
@@ -187,20 +188,6 @@ export default {
         }
       })
     }
-
-    wx.request({
-      url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/config',
-      method: 'GET',
-      data: {
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        // console.log('get config: ', res.data.WeCosUrl)
-        wx.setStorageSync('wecosUrl', res.data.WeCosUrl)
-      }
-    })
   }
 }
 </script>

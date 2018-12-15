@@ -229,7 +229,7 @@ export default {
     this.showItem = this.items[0]
   },
   created: function () {
-    this.getLocationMarkers()
+    // this.getLocationMarkers()
     // this.getSummary()
     wx.getStorage({
       key: 'nickname',
@@ -383,37 +383,6 @@ export default {
       console.log('chooseResult xxxxxxx', e.mp)
     },
     getLocationMarkers () {
-      let vm = this
-      wx.request({
-        url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/location/markers' + '?latitude=' + wx.getStorageSync('userLocation').latitude + '&longitude=' + wx.getStorageSync('userLocation').longitude,
-        method: 'GET',
-        data: {
-        },
-        header: {
-          'content-type': 'application/json'
-        },
-        success: function (res) {
-          if (res.statusCode === 200) {
-            vm.markers = res.data
-            console.log('getLocationMarkers====items', vm.markers)
-          } else {
-            wx.showLoading({
-              title: '加载失败 : ' + res.statusCode
-            })
-            setTimeout(function () {
-              wx.hideLoading()
-            }, 2000)
-          }
-        },
-        fail: function (res) {
-          wx.showLoading({
-            title: '网络 : ' + res.statusCode
-          })
-          setTimeout(function () {
-            wx.hideLoading()
-          }, 2000)
-        }
-      })
     },
     openSuccess () {
       wx.navigateTo({

@@ -181,6 +181,13 @@ export default {
             if (res.data[i].Age > 150) {
               res.data[i].Age = '不详'
             }
+            // var tmpurl = res.data[i].DataFrom
+            var tmpurl = res.data[i].DataFrom.split('/')
+            // console.log(tmpurl.split('/'))
+            if (tmpurl.length > 3) {
+              res.data[i].DataFrom = tmpurl[2]
+            }
+            console.log('==-----datafrom---', res.data[i].DataFrom)
           }
 
           // 历史数据是追加，所以放在最后。 新增加数据放在最前。 默认是历史数据，进行追加。
