@@ -1,9 +1,17 @@
 # Mina
 
-> A Mpvue project
+> A Mpvue project.
+
+Use vue + aixos + mpvue-weui. 
+
+> Environment Require: 
+
+  1. Wechat Debug Lib:  >= 2.3.0
+  2. Node: v8.10.0
+  3. Npm: 5.6.0
 
 宝贝回家小程序
-![宝贝回家小程序](https://github.com/bbhj/mina/blob/master/static/images/mina/8.jpg)
+![宝贝回家小程序](http://airdb.io/zh/latest/images/mina/8.jpg)
 
 ## Build Setup
 
