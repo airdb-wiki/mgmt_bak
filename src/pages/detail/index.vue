@@ -117,19 +117,25 @@ export default{
     }
   },
   onLoad (options) {
-    var that = this
+    var vm = this
     // 从缓存中获取信息
     var items = wx.getStorageSync('database')
+    console.log('options info: ', options.id)
     console.log('items=========', items)
     for (var i = 0; i < items.length; i++) {
       if (options.id === items[i].UUID) {
-        that.item = items[i]
+        vm.item = items[i]
+        items[i].Visit += 1
       }
     }
+    wx.setStorageSync('database', items)
     wx.request({
-      url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/article/updateCount?babyid=' + that.item.Babyid + '&column=visit',
+      url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/article/updateCount',
       method: 'GET',
-      // data: ,
+      data: {
+        babyid: vm.item.Babyid,
+        column: 'visit'
+      },
       header: {
         'content-type': 'application/json'
       },
