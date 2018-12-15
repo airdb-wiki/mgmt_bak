@@ -73,3 +73,14 @@ export function jsGetAge (strBirthday) {
   }
   return returnAge
 }
+
+// 数组去重
+export function UniqArray (array) {
+  var temp = []
+  for (var i = 0; i < array.length; i++) {
+    if (temp.indexOf(array[i]) === -1) {
+      temp.push(array[i])
+    }
+  }
+  return temp
+}

@@ -39,18 +39,18 @@
       <div class="talk_container">
         <div class="together" v-for="(item, index) in comment" :key="index">
           <div class="img">
-            <image :src="item.AvatarUrl" style="width: 35px;height: 35px;border-radius: 3px;"></image>
+            <img :src="item.AvatarUrl" style="width: 35px;height: 35px;border-radius: 3px;">
           </div>
           <div class="talk_content">
             <div class="talker_info">
               <div class="talker_name">{{item.Nickname}}</div>
-              <image src="/static/images/home/like.png" style="width: 20px;height: 20px;"></image>
+              <img src="/static/images/home/like.png" style="width: 20px;height: 20px;">
             </div>
             <div class="talk">{{item.Content}}</div>
             <div v-if="item.reply !== ''">
               <div class="talker_info" style="margin-top: 5px;">
                 <div style="border-left: 3px solid #16b015;padding: 0 5px;color: #929292;">作者</div>
-                <image src="/static/images/home/like.png" style="width: 20px;height: 20px;"></image>
+                <img src="/static/images/home/like.png" style="width: 20px;height: 20px;">
               </div>
               <div class="talk">{{item.reply}}</div>
             </div>
@@ -79,7 +79,7 @@
         </div>
       </form>
     </div>
-    
+
   </div>
 </template>
 
@@ -118,14 +118,24 @@ export default{
   },
   onLoad (options) {
     var that = this
+    // 从缓存中获取信息
     var items = wx.getStorageSync('database')
     for (var i = 0; i < items.length; i++) {
       if (options.id === items[i].UUID) {
         that.item = items[i]
       }
     }
-    // 从缓存中获取信息
-
+    wx.request({
+      url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/article/updateCount?babyid=285183&column=visit',
+      method: 'GET',
+      // data: ,
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        console.log('visit_res:', res)
+      }
+    })
     this.requestComment()
     // 从数据库获取评论信息
   },

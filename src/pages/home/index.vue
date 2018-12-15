@@ -174,19 +174,23 @@ export default {
     },
     // 隐藏登陆框
     getTopicInfo () {
-      var that = this
-      that.parms.page++
+      var vm = this
+      // 每次取一页, 每页默认是5条数据.
+      vm.parms.page++
       wx.request({
-        url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/article/summmary',
+        url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/article/summary',
         method: 'GET',
         data: {
-          type: that.parms.type,
-          page: that.parms.page
+          type: vm.parms.type,
+          page: vm.parms.page
         },
         header: {
           'content-type': 'application/json'
         },
         success: function (res) {
+          console.log('first database:', vm.database.length)
+          console.log('database.data', res.data)
+          // return
           for (var i = 0; i < res.data.length; i++) {
             if (res.data[i].Title === '') {
               res.data[i].Title = res.data[i].MissedProvince + '-' + res.data[i].MissedCity + ', 寻找' + res.data[i].Nickname
@@ -196,10 +200,24 @@ export default {
             if (res.data[i].Age > 150) {
               res.data[i].Age = '不详'
             }
+            // 判断新获取的数据是否在原数组中,如果不在,进行concat操作(-1表示不在)
+            // if (vm.database.indexOf(res.data[i]) === -1) {
+            //   console.log('================')
+            //   console.log(typeof (res.data[i]), typeof (vm.database))
+            //   console.log(vm.database.indexOf(res.data[i]))
+            //   vm.database = vm.database.concat(res.data[i])
+            // }
+            // for (var j = 0; j < vm.database.length; j++) {
+            //   if (res.data[i] === vm.database[j]) {
+            //     console.log('==========same')
+            //   } else {
+            //     console.log('==========different')
+            //   }
+            // }
           }
-          that.database = that.database.concat(res.data)
-          console.log('加载更多后数据为: ', that.database)
-          wx.setStorageSync('database', that.database)
+          // console.log(vm.database)
+          console.log('加载更多后数据为: ', vm.database)
+          wx.setStorageSync('database', vm.database)
         }
       })
     }
@@ -213,12 +231,12 @@ export default {
     setTimeout(function () {
       wx.hideLoading()
     }, 500)
-    var that = this
+    var vm = this
     wx.request({
       url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/article/summmary',
       method: 'GET',
       data: {
-        type: that.parms.type,
+        type: vm.parms.type,
         page: 1
       },
       header: {
@@ -229,15 +247,17 @@ export default {
           if (res.data[i].Title === '') {
             res.data[i].Title = res.data[i].MissedProvince + '-' + res.data[i].MissedCity + ', 寻找' + res.data[i].Nickname
           }
+          // 2018-12-15T09:42:00Z 2018-12-15 09....
           res.data[i].MissedAt = formatTimeMin(new Date(res.data[i].MissedAt))
           res.data[i].Age = jsGetAge(res.data[i].BirthedAt)
           if (res.data[i].Age > 150) {
             res.data[i].Age = '不详'
           }
         }
-        that.database = res.data
-        wx.setStorageSync('database', that.database)
-        console.log('database:', that.database)
+        vm.database = res.data
+        wx.setStorageSync('database', vm.database)
+        console.log('database:', vm.database)
+        console.log('database legth==:', vm.database.length)
       }
     })
     wx.stopPullDownRefresh()
@@ -250,13 +270,13 @@ export default {
     }
   },
   onReachBottom () {
-    var that = this
+    var vm = this
     wx.showLoading({
       title: '正在加载...'
     })
     setTimeout(function () {
       wx.hideLoading()
-      that.getTopicInfo()
+      vm.getTopicInfo()
     }, 500)
   },
   // 触底加载更多刷新
