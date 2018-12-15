@@ -192,7 +192,7 @@ export default {
 
           // 历史数据是追加，所以放在最后。 新增加数据放在最前。 默认是历史数据，进行追加。
           if (vm.parms.pullData === 'new') {
-            vm.database = res.data.concat(vm.database)
+            vm.database = res.data
           } else {
             vm.database = vm.database.concat(res.data)
           }

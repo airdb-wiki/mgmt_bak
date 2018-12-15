@@ -22,7 +22,7 @@
         </div>
 
         <div v-if="!showTitle" class="title">详情</div>
-        <div v-else class="title">{{item.Title}}</div>
+        <div v-else class="title">{{item.MissedCity}}-{{item.Nickname}}</div>
       </div>
     <!-- navigation -->
 
