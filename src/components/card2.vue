@@ -82,6 +82,7 @@ export default {
     for (var i = 0; i < length; i++) {
       this.show[i] = false
     }
+    console.log('card2 onload====================', typeof (this.items))
   },
   methods: {
     // 图片预览

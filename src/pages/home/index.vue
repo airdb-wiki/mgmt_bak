@@ -54,14 +54,14 @@
 
 <script>
 import { formatTime, formatTimeMin, jsGetAge } from '@/utils/index'
-import card from '@/components/card1'
+// import card from '@/components/card1'
 import card2 from '@/components/card2'
 import navbar from '@/components/navbar'
 import navigation from '@/components/navigation'
 
 export default {
   components: {
-    card,
+    // card,
     navbar,
     navigation,
     card2
@@ -105,7 +105,14 @@ export default {
   // 获取缓存
   onShow () {
     this.minaAuth = wx.getStorageSync('minaAuth')
-    this.database = wx.getStorageSync('database')
+    var db = wx.getStorageSync('database')
+    if (db.length === 0) {
+      this.database = []
+    } else {
+      this.database = JSON.parse(db)
+    }
+    console.log('home first show================', this.database.length)
+    console.log(typeof (this.database))
   },
   methods: {
     // 隐藏遮罩
@@ -148,17 +155,18 @@ export default {
       var vm = this
       // 每次取一页, 每页默认是5条数据.
       this.$get('/lastest/wechatapi/small/article/summary', parms).then((res) => {
-        console.log('this.$get===getArticleOverview==', res)
-        if (res.data === null) {
-          console.log('拉到底了！ server return data is null.')
-          // 应该弹框通知下用户
-          wx.showToast({
-            title: '已加载全部内容',
-            icon: 'success',
-            duration: 2000
-          })
-          return
-        }
+        console.log('when get article overview: ', new Date().toString())
+        console.log('this.$get===getArticleOverview==', typeof (res))
+        // if (res.data === '') {
+        //   console.log('拉到底了！ server return data is null.')
+        //   // 应该弹框通知下用户
+        //   wx.showToast({
+        //     title: '已加载全部内容',
+        //     icon: 'success',
+        //     duration: 2000
+        //   })
+        //   return
+        // }
 
         for (var i = 0; i < res.data.length; i++) {
           if (res.data[i].Title === '') {
@@ -187,6 +195,16 @@ export default {
 
         console.log('加载更多后数据为: ', vm.database)
         wx.setStorageSync('database', vm.database)
+      }).catch((err) => {
+        console.log('error:  ', err)
+        console.log('拉到底了！ server return data is null.')
+        // 应该弹框通知下用户
+        wx.showToast({
+          title: '已加载全部内容',
+          icon: 'success',
+          duration: 1000
+        })
+        // return
       })
     }
   },
