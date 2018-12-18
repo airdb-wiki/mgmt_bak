@@ -219,7 +219,8 @@ export default{
     sub (e) {
       var that = this
       if (e.mp.detail.value.pl === '') {
-        wx.showLoading({
+        wx.showToast({
+          icon: 'none',
           title: '留言不能为空！'
         })
         setTimeout(function () {

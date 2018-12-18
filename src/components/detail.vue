@@ -8,22 +8,22 @@
       </div>
       <div class="weui-article__h1 title" >01  登记信息</div>
       <div class="weui-article__section" id="content">
-        <div class="weui-article__title">信息来源： {{item.DataFrom}}</div>
+        <div class="weui-article__title">信息来源： <span class="words">{{item.DataFrom}}</span></div>
         <div class="weui-article__section">
-          <div class="weui-article__h3">寻亲类别：{{item.Category}}</div>
-          <div class="weui-article__h3">寻亲编号：{{item.Babyid}}</div>
-          <div class="weui-article__h3">姓 名：{{item.Nickname}} </div>
-          <div class="weui-article__h3" v-if="item.Gender == 2">性 别：女 </div>
-          <div class="weui-article__h3" v-else>性 别：男 </div>
-          <div class="weui-article__h3">出生日期：{{item.BirthedAt}} </div>
-          <div class="weui-article__h3">户籍地点：{{item.BirthedProvince}} {{item.BirthedCity}} </div>
-          <div class="weui-article__h3">失踪时间：{{item.MissedAt}}</div>
-          <div class="weui-article__h3">失踪地点：{{item.MissedProvince}} {{item.MissedAddress}}</div>
-          <div class="weui-article__h3">失踪时身高： {{item.Height}}</div>
-          <div class="weui-article__h3">失踪人特征: {{item.Characters}}</div>
-          <div class="weui-article__h3">其他资料：{{item.Details}}</div>
+          <div class="weui-article__h3">寻亲类别：<span class="words">{{item.Category}}</span></div>
+          <div class="weui-article__h3">寻亲编号：<span class="words">{{item.Babyid}}</span></div>
+          <div class="weui-article__h3">姓 名：<span class="words">{{item.Nickname}}</span> </div>
+          <div class="weui-article__h3" v-if="item.Gender == 2"><span class="words">性 别：女 </span></div>
+          <div class="weui-article__h3" v-else><span class="words">性 别：男</span> </div>
+          <div class="weui-article__h3">出生日期：<span class="words">{{item.BirthedAt}}</span> </div>
+          <div class="weui-article__h3">户籍地点：<span class="words">{{item.BirthedProvince}} {{item.BirthedCity}} </span></div>
+          <div class="weui-article__h3">失踪时间：<span class="words">{{item.MissedAt}}</span></div>
+          <div class="weui-article__h3">失踪地点：<span class="words">{{item.MissedProvince}} {{item.MissedAddress}}</span></div>
+          <div class="weui-article__h3">失踪时身高：<span class="words">{{item.Height}}</span></div>
+          <div class="weui-article__h3">失踪人特征: <span class="words"> {{item.Characters}}</span></div>
+          <div class="weui-article__h3">其他资料：<span class="words">{{item.Details}}</span></div>
           <!-- <div class="weui-article__h3">失踪时间： {{item.MissedAt}} </div> -->
-          <div class="weui-article__h3">跟进志愿者： {{item.Handler}}</div>
+          <div class="weui-article__h3">跟进志愿者：<span class="words"> {{item.Handler}}</span></div>
           <div class="weui-article__p">
             <image class="weui-article__img" :src="item.AvatarUrl" mode="aspectFit" style="height: 180px" @click="preview"/>
           </div>
@@ -58,6 +58,12 @@ export default{
       src2: ''
     }
   },
+  // computed: {
+  //   birthAt () {
+  //     console.log('this.item.BirthAt============', typeof (this.item.BirthedAt))
+  //     return this.item.BirthedAt.toString()
+  //   }
+  // },
   beforeUpdate () {
     var title = this.item.MissedCity + '——' + this.item.Nickname
     this.content.title = title
@@ -215,6 +221,7 @@ export default{
   margin: 10px;
   padding: 10px 5px;
   background-color: #e3fff0;
+  font-weight: bold
 }
 .share{
   position:fixed;
@@ -233,11 +240,19 @@ export default{
   height: 35px;
   margin-top: 7px;
 }
+.weui-article__h3{
+  font-weight: bold
+}
 canvas{
   position: fixed;
   bottom: 0;
   left: -9999px;
   width: 420px;
   height: 615px;
+}
+.words{
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 15px;
+  font-weight: 400
 }
 </style>

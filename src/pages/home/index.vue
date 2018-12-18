@@ -101,6 +101,7 @@ export default {
     var profile = wx.getStorageSync('profile')
     this.isFirstShow = profile.isFirstLogin
     console.log('profile information:', profile)
+    wx.removeStorageSync('database')
   },
   // 获取缓存
   onShow () {
@@ -109,16 +110,20 @@ export default {
     if (db.length === 0) {
       this.database = []
     } else {
-      this.database = JSON.parse(db)
+      this.database = db
     }
     console.log('home first show================', this.database.length)
     console.log(typeof (this.database))
   },
+  // onUnload () {
+  //   wx.removeStorageSync('database')
+  // },
   methods: {
     // 隐藏遮罩
     conceal: function () {
       this.isFirstShow = false
     },
+    //  顶部tab栏切换
     changeTab (e) {
       this.database = []
       this.parms.page = 1
@@ -157,6 +162,7 @@ export default {
       this.$get('/lastest/wechatapi/small/article/summary', parms).then((res) => {
         console.log('when get article overview: ', new Date().toString())
         console.log('this.$get===getArticleOverview==', typeof (res))
+        console.log('res info ==============', res)
         // if (res.data === '') {
         //   console.log('拉到底了！ server return data is null.')
         //   // 应该弹框通知下用户
@@ -167,7 +173,6 @@ export default {
         //   })
         //   return
         // }
-
         for (var i = 0; i < res.data.length; i++) {
           if (res.data[i].Title === '') {
             res.data[i].Title = res.data[i].MissedProvince + '-' + res.data[i].MissedCity + ', 寻找' + res.data[i].Nickname
@@ -190,6 +195,21 @@ export default {
         if (vm.parms.pullData === 'new') {
           vm.database = res.data
         } else {
+          console.log('66666666666666')
+          console.log('typeof(res.data)', typeof (res.data))
+          console.log('typeof(vm.database)', vm.database)
+          // for (var k = 0; k < res.data.length; k++) {
+          //   var flag = 1
+          //   for (var j = 0; j < vm.datbase.length; j++) {
+          //     if (vm.database[j] === res.data[k]) {
+          //       flag = 0
+          //     }
+          //   }
+          //   // console.log('66666666666666')
+          //   if (flag === 1) {
+          //     vm.database = vm.database.concat(res.data)
+          //   }
+          // }
           vm.database = vm.database.concat(res.data)
         }
 
