@@ -101,7 +101,7 @@ export default {
     var profile = wx.getStorageSync('profile')
     this.isFirstShow = profile.isFirstLogin
     console.log('profile information:', profile)
-    wx.removeStorageSync('database')
+    // wx.removeStorageSync('database')
   },
   // 获取缓存
   onShow () {
@@ -125,12 +125,12 @@ export default {
     },
     //  顶部tab栏切换
     changeTab (e) {
-      this.database = []
+      // this.database = []
       this.parms.page = 1
       this.activeIndex = e.currentTarget.id
       this.parms.category = this.tabs[e.currentTarget.id]
       console.log('-----------changeTab', e.currentTarget.id, this.parms.category)
-      this.request()
+      // this.request()
     },
     // 获取用户信息
     login () {
@@ -210,7 +210,10 @@ export default {
           //     vm.database = vm.database.concat(res.data)
           //   }
           // }
-          vm.database = vm.database.concat(res.data)
+          var db = vm.database.concat(res.data)
+          var r = db.filter((item, index, self) => self.indexOf(item) === index)
+          console.log('filtered===============', r)
+          vm.database = r
         }
 
         console.log('加载更多后数据为: ', vm.database)
