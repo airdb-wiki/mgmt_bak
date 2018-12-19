@@ -160,19 +160,8 @@ export default {
       var vm = this
       // 每次取一页, 每页默认是5条数据.
       this.$get('/lastest/wechatapi/small/article/summary', parms).then((res) => {
-        console.log('when get article overview: ', new Date().toString())
-        console.log('this.$get===getArticleOverview==', typeof (res))
-        console.log('res info ==============', res)
-        // if (res.data === '') {
-        //   console.log('拉到底了！ server return data is null.')
-        //   // 应该弹框通知下用户
-        //   wx.showToast({
-        //     title: '已加载全部内容',
-        //     icon: 'success',
-        //     duration: 2000
-        //   })
-        //   return
-        // }
+        console.log('res.data=======', res.data)
+        console.log('typeof(res.data)', typeof (res.data))
         for (var i = 0; i < res.data.length; i++) {
           if (res.data[i].Title === '') {
             res.data[i].Title = res.data[i].MissedProvince + '-' + res.data[i].MissedCity + ', 寻找' + res.data[i].Nickname
@@ -182,43 +171,54 @@ export default {
           if (res.data[i].Age > 150) {
             res.data[i].Age = '不详'
           }
-          // var tmpurl = res.data[i].DataFrom
+          console.log('======datafrom', res.data[i].DataFrom)
           var tmpurl = res.data[i].DataFrom.split('/')
-          // console.log(tmpurl.split('/'))
           if (tmpurl.length > 3) {
             res.data[i].DataFrom = tmpurl[2]
           }
           console.log('==-----datafrom---', res.data[i].DataFrom)
         }
-
-        // 历史数据是追加，所以放在最后。 新增加数据放在最前。 默认是历史数据，进行追加。
-        if (vm.parms.pullData === 'new') {
-          vm.database = res.data
+        // ********************************************** */
+        var db = []
+        var data = res.data
+        data.map((item, index) => {
+          if (vm.database.findIndex(elem => (elem.Babyid === item.Babyid)) === -1) {
+            db.push(item)
+            console.log('filtered item===================', item)
+          }
+        })
+        // 当重新打开页面时,缓存仍存在(缓存数据无需reachdown即可全部显示),如果db为空,则已经加载全部内容
+        if (db.length === 0) {
+          // 拉取不到新数据
+          if (vm.parms.pull === 'new') {
+            wx.showToast({
+              title: '已是最新数据',
+              icon: 'success',
+              duration: 1000
+            })
+          } else {
+            console.log('拉到底了！ server return data is null.')
+            wx.showToast({
+              title: '已加载全部内容',
+              icon: 'success',
+              duration: 1000
+            })
+            // 应该弹框通知下用户
+          }
         } else {
-          console.log('66666666666666')
-          console.log('typeof(res.data)', typeof (res.data))
-          console.log('typeof(vm.database)', vm.database)
-          // for (var k = 0; k < res.data.length; k++) {
-          //   var flag = 1
-          //   for (var j = 0; j < vm.datbase.length; j++) {
-          //     if (vm.database[j] === res.data[k]) {
-          //       flag = 0
-          //     }
-          //   }
-          //   // console.log('66666666666666')
-          //   if (flag === 1) {
-          //     vm.database = vm.database.concat(res.data)
-          //   }
-          // }
-          var db = vm.database.concat(res.data)
-          var r = db.filter((item, index, self) => self.indexOf(item) === index)
-          console.log('filtered===============', r)
-          vm.database = r
+          // 拉取到新数据
+          if (vm.parms.pull === 'new') {
+            vm.database = db.concat(vm.database)
+          } else {
+            vm.database = vm.database.concat(db)
+          }
         }
-
+        // ******************************************************* */
+        // 历史数据是追加，所以放在最后。 新增加数据放在最前。 默认是历史数据，进行追加。
         console.log('加载更多后数据为: ', vm.database)
         wx.setStorageSync('database', vm.database)
       }).catch((err) => {
+        // 当res返回的数据为空,即加载全部内容,执行err函数
         console.log('error:  ', err)
         console.log('拉到底了！ server return data is null.')
         // 应该弹框通知下用户
@@ -227,7 +227,6 @@ export default {
           icon: 'success',
           duration: 1000
         })
-        // return
       })
     }
   },
