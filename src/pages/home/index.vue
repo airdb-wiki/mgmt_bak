@@ -190,13 +190,16 @@ export default {
         // 当重新打开页面时,缓存仍存在(缓存数据无需reachdown即可全部显示),如果db为空,则已经加载全部内容
         if (db.length === 0) {
           // 拉取不到新数据
-          if (vm.parms.pull === 'new') {
+          console.log('=====', vm.parms.pullData)
+          if (vm.parms.pullData === 'new') {
+            console.log('============6')
             wx.showToast({
               title: '已是最新数据',
               icon: 'success',
               duration: 1000
             })
           } else {
+            console.log('============66')
             console.log('拉到底了！ server return data is null.')
             wx.showToast({
               title: '已加载全部内容',
