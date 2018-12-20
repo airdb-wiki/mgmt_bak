@@ -62,10 +62,6 @@ export default {
               },
               success: function (res) {
                 console.log(res.data)
-                // this.setData({
-                //  openid: 111111,
-                //  session_key: 2222222
-                // })
               }
             })
           } else {

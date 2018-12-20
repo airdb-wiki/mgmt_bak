@@ -112,19 +112,12 @@ export default{
           }
         }
         wx.setStorageSync('database', items)
-        wx.request({
-          url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/article/updateCount',
-          method: 'GET',
-          data: {
-            babyid: vm.item.Babyid,
-            column: 'Forward'
-          },
-          header: {
-            'content-type': 'application/json'
-          },
-          success: function (res) {
-            console.log('forward_res:', res)
-          }
+        var data = {
+          babyid: vm.item.Babyid,
+          column: 'Forward'
+        }
+        this.$get('/lastest/wechatapi/small/article/updateCount', data).then((res) => {
+          console.log('forward_res:', res)
         })
         // 转发成功
         console.log('转发成功:' + JSON.stringify(res))
@@ -174,19 +167,12 @@ export default{
       // 要求小程序返回分享目标信息
       withShareTicket: true
     })
-    wx.request({
-      url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/article/updateCount',
-      method: 'GET',
-      data: {
-        babyid: vm.item.Babyid,
-        column: 'visit'
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        console.log('visit_res:', res)
-      }
+    var data = {
+      babyid: vm.item.Babyid,
+      column: 'visit'
+    }
+    this.$get('/lastest/wechatapi/small/article/summary', data).then((res) => {
+      console.log('visit_res:', res)
     })
     this.requestComment()
     // 从数据库获取评论信息
@@ -196,24 +182,14 @@ export default{
   },
   methods: {
     requestComment () {
-      var that = this
-      wx.request({
-        url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/comment/' + that.item.UUID,
-        method: 'GET',
-        data: {
-        },
-        header: {
-          'content-type': 'application/json',
-          Authorization: wx.getStorageSync('Authorization')
-        },
-        success: function (res) {
-          that.comment = res.data
-          for (var i = 0; i < that.comment.length; i++) {
-            that.comment[i].CreatedAt = formatTime(new Date(that.comment[i].CreatedAt))
-            that.comment[i].reply = ''
-          }
-          console.log('获取评论为：', that.comment)
+      var vm = this
+      this.$get(`/lastest/wechatapi/small/comment/${vm.item.UUID}`, '').then((res) => {
+        vm.comment = res.data
+        for (var i = 0; i < vm.comment.length; i++) {
+          vm.comment[i].CreatedAt = formatTime(new Date(vm.comment[i].CreatedAt))
+          vm.comment[i].reply = ''
         }
+        console.log('获取评论为：', vm.comment)
       })
     },
     sub (e) {
@@ -238,31 +214,20 @@ export default{
       that.commemt = that.comment.push(comment)
       console.log('评论为：', that.comment)
       // 更新数据
-
-      wx.request({
-        url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/comment',
-        method: 'POST',
-        data: {
-          UUID: that.item.UUID,
-          AvatarUrl: wx.getStorageSync('userInfo').avatarUrl,
-          Nickname: wx.getStorageSync('userInfo').nickName,
-          Content: comment.content
-        },
-        header: {
-          'content-type': 'application/json'
-        },
-        success: function (res) {
-          that.comment_value = ''
-          console.log('提交回调函数', res.data)
-          wx.showToast({
-            title: '评论成功',
-            icon: 'success',
-            duration: 2000
-          })
-        },
-        fail: function () {
-          console.log('上传失败')
-        }
+      var data = {
+        UUID: that.item.UUID,
+        AvatarUrl: wx.getStorageSync('userInfo').avatarUrl,
+        Nickname: wx.getStorageSync('userInfo').nickName,
+        Content: comment.content
+      }
+      this.$post('/lastest/wechatapi/small/comment', data).then((res) => {
+        that.comment_value = ''
+        console.log('提交回调函数', res.data)
+        wx.showToast({
+          title: '评论成功',
+          icon: 'success',
+          duration: 2000
+        })
       })
       // 将评论上传至数据库
     },

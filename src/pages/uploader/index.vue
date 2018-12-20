@@ -141,48 +141,33 @@ export default {
     },
     uploaderImage (e) {
       var vm = this
-      wx.request({
-        url: wx.getStorageSync('wecosSignatureUrl'),
-        success: function (cosRes) {
-          // 签名
-          var signature = cosRes.data
-          console.log('signature====', signature)
-          for (var i = 0, h = vm.files.length; i < h; i++) {
-            console.log(vm.files[i])
-            var filePath = vm.files[i]
-            var fileName = filePath.match(/(wxfile:\/\/tmp_)(.+)/)
-            if (wx.getStorageSync('loginInfo') === 'devtools') {
-              fileName = filePath.match(/(http:\/\/tmp\/)(.+)/)
-            }
-            // var fileName = filePath.match(/(http:\/\/tmp\/)(.+)/)
-            // var fileName = filePath.match(/(wxfile:\/\/tmp_)(.+)/)
-            fileName = fileName[2]
-
-            console.log('fileName: ', fileName)
-            vm.wecosUpload(signature, filePath, fileName)
+      vm.$get(wx.getStorageSync('wecosSignatureUrl'), '').then((cosRes) => {
+        var signature = cosRes.data
+        console.log('signature====', signature)
+        for (var i = 0, h = vm.files.length; i < h; i++) {
+          console.log(vm.files[i])
+          var filePath = vm.files[i]
+          var fileName = filePath.match(/(wxfile:\/\/tmp_)(.+)/)
+          if (wx.getStorageSync('loginInfo') === 'devtools') {
+            fileName = filePath.match(/(http:\/\/tmp\/)(.+)/)
           }
-        },
-        fail: function (e) {
-          console.log('e', e)
+          // var fileName = filePath.match(/(http:\/\/tmp\/)(.+)/)
+          // var fileName = filePath.match(/(wxfile:\/\/tmp_)(.+)/)
+          fileName = fileName[2]
+          console.log('fileName: ', fileName)
+          vm.wecosUpload(signature, filePath, fileName)
         }
       })
     },
     updateImageInfo () {
-      wx.request({
-        url: wx.getStorageSync('requestUrl') + '/qcloud/wecos/upload',
-        method: 'POST',
-        data: {
-          openid: 'open_id test',
-          unionid: 'union_id test',
-          uuid: 'uuid test',
-          url: 'xxxxxx url '
-        },
-        success: function (cosRes) {
-          console.log('updateImageInfo: ', cosRes)
-        },
-        fail: function (e) {
-          console.log('updateImageInfo e:', e)
-        }
+      var data = {
+        openid: 'open_id test',
+        unionid: 'union_id test',
+        uuid: 'uuid test',
+        url: 'xxxxxx url '
+      }
+      this.$post('/lastest/wechatapi/qcloud/wecos/upload', data).then((cosRes) => {
+        console.log('updateImageInfo: ', cosRes)
       })
     }
   }

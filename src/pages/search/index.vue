@@ -167,41 +167,28 @@ export default {
         }
       }
       // 验证数据的合法性,并给data赋值
-
-      wx.request({
-        url: wx.getStorageSync('requestUrl') + '/small/article/keywords',
-        method: 'GET',
-        data: {
-          nickname: that.parms.nickname,
-          babyid: that.parms.babyid
-        },
-        header: {
-          'content-type': 'application/json'
-        },
-        success: function (res) {
-          if (res.data.length === 0) {
-            wx.showToast({
-              title: '搜索内容不存在',
-              icon: 'none',
-              duration: 2000,
-              mask: true
-            })
-          } else {
-            that.showSearchBar = false // 显示搜索结果框，作为hidden属性的值
-
-            if (res.data[0].Title === '') {
-              res.data[0].Title = res.data[0].MissedProvince + '-' + res.data[0].MissedCity + ', 寻找' + res.data[0].Nickname
-            } // 判断是否有标题，若无，则添加默认标题
-            if (that.tipKeys.length === 0) {
-              that.tipKeys = that.tipKeys.concat(res.data[0])
-            }
+      var data = {
+        nickname: that.parms.nickname,
+        babyid: that.parms.babyid
+      }
+      this.$get('/lastest/wechatapi/small/article/keywords', data).then((res) => {
+        if (res.data.length === 0) {
+          wx.showToast({
+            title: '搜索内容不存在',
+            icon: 'none',
+            duration: 2000,
+            mask: true
+          })
+        } else {
+          that.showSearchBar = false // 显示搜索结果框，作为hidden属性的值
+          if (res.data[0].Title === '') {
+            res.data[0].Title = res.data[0].MissedProvince + '-' + res.data[0].MissedCity + ', 寻找' + res.data[0].Nickname
+          } // 判断是否有标题，若无，则添加默认标题
+          if (that.tipKeys.length === 0) {
+            that.tipKeys = that.tipKeys.concat(res.data[0])
           }
-        },
-        fail: function (res) {
-          console.log('debug=====fail')
         }
       })
-
       this.clearInput()
     },
     clearInput () {

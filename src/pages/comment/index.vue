@@ -61,22 +61,15 @@ export default {
         return
       }
       console.log('comments====', vm.comment.Content)
-      wx.request({
-        url: wx.getStorageSync('requestUrl') + '/small/comment',
-        method: 'POST',
-        data: {
-          UUID: vm.uuid,
-          AvatarUrl: wx.getStorageSync('userInfo').avatarUrl,
-          Nickname: wx.getStorageSync('userInfo').nickName,
-          Content: vm.comment.Content
-        },
-        header: {
-          'content-type': 'application/json'
-        },
-        success: function (res) {
-          console.log(res.data)
-          vm.items = res.data
-        }
+      var data = {
+        UUID: vm.uuid,
+        AvatarUrl: wx.getStorageSync('userInfo').avatarUrl,
+        Nickname: wx.getStorageSync('userInfo').nickName,
+        Content: vm.comment.Content
+      }
+      vm.$get('/lastest/wechatapi/small/comment', data).then((res) => {
+        console.log(res.data)
+        vm.items = res.data
       })
       wx.showToast({
         title: '发布成功',

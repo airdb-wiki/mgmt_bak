@@ -196,7 +196,7 @@ export default {
             wx.showToast({
               title: '已是最新数据',
               icon: 'success',
-              duration: 1000
+              duration: 1500
             })
           } else {
             console.log('============66')
@@ -204,7 +204,7 @@ export default {
             wx.showToast({
               title: '已加载全部内容',
               icon: 'success',
-              duration: 1000
+              duration: 1500
             })
             // 应该弹框通知下用户
           }

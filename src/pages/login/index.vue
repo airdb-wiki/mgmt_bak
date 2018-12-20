@@ -29,29 +29,23 @@ export default {
       wx.navigateTo({ url })
     },
     getUserInfo () {
+      var vm = this
       // 调用登录接口
       wx.login({
         success: function (res) {
           console.log('login====', wx.getStorageSync('userInfo'))
           if (res.code) {
-            wx.request({
-              url: wx.getStorageSync('requestUrl') + '/small/user/login',
-              method: 'POST',
-              data: {
-                code: res.code,
-                longitude: wx.getStorageSync('userLocation').longitude,
-                latitude: wx.getStorageSync('userLocation').latitude,
-                phone_network: wx.getStorageSync('networkType'),
-                phone_brand: wx.getStorageSync('systemInfo').brand,
-                phone_model: wx.getStorageSync('systemInfo').model,
-                userInfo: JSON.stringify(wx.getStorageSync('userInfo'))
-              },
-              header: {
-                'content-type': 'application/json'
-              },
-              success: function (res) {
-                console.log(res.data)
-              }
+            var data = {
+              code: res.code,
+              longitude: wx.getStorageSync('userLocation').longitude,
+              latitude: wx.getStorageSync('userLocation').latitude,
+              phone_network: wx.getStorageSync('networkType'),
+              phone_brand: wx.getStorageSync('systemInfo').brand,
+              phone_model: wx.getStorageSync('systemInfo').model,
+              userInfo: JSON.stringify(wx.getStorageSync('userInfo'))
+            }
+            vm.$post('/lastest/wechatapi/small/user/login', data).then((res) => {
+              console.log(res.data)
             })
           }
         }

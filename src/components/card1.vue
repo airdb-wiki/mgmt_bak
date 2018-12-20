@@ -75,21 +75,21 @@ export default {
       console.log('item submit事件', e.mp.detail.formId)
       var ss = wx.getStorageSync('minaAuth')
 
-      wx.request({
-        url: wx.getStorageSync('requestUrl') + '/small/user/formid',
-        method: 'POST',
-        data: {
-          openid: ss.openid,
-          formid: e.mp.detail.formId,
-          status: 1
-        },
-        header: {
-          'content-type': 'application/json'
-        },
-        success: function (res) {
-          console.log('collect formid success, info: ', res.data)
-        }
-      })
+      // wx.request({
+      //   url: wx.getStorageSync('requestUrl') + '/small/user/formid',
+      //   method: 'POST',
+      //   data: {
+      //     openid: ss.openid,
+      //     formid: e.mp.detail.formId,
+      //     status: 1
+      //   },
+      //   header: {
+      //     'content-type': 'application/json'
+      //   },
+      //   success: function (res) {
+      //     console.log('collect formid success, info: ', res.data)
+      //   }
+      // })
     },
     formSubmit_addr (e) {
       console.log('addr submit事件', e.mp.detail.formId)

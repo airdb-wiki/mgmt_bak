@@ -118,28 +118,17 @@ export default {
     },
     getTopicInfo () {
       let vm = this
-      wx.request({
-        url: wx.getStorageSync('requestUrl') + '/small/article/topics',
-        method: 'GET',
-        data: {
-          type: this.parms.type,
-          page: this.parms.page
-        },
-        header: {
-          'content-type': 'application/json'
-        },
-        success: function (res) {
-          for (var i = 0; i < res.data.length; i++) {
-            res.data[i].MissedAt = formatTimeMin(new Date(res.data[i].MissedAt))
-            res.data[i].BirthedAt = formatTime(new Date(res.data[i].BirthedAt))
-          }
-
-          vm.items = vm.items.concat(res.data)
-          console.log('not 0, add 5 , xxx', vm.items)
-        },
-        compelte: function (e) {
-          console.log('e', e, vm.items)
+      var data = {
+        type: this.parms.type,
+        page: this.parms.page
+      }
+      this.$get('/lastest/wechatapi/small/article/topics', data).then((res) => {
+        for (var i = 0; i < res.data.length; i++) {
+          res.data[i].MissedAt = formatTimeMin(new Date(res.data[i].MissedAt))
+          res.data[i].BirthedAt = formatTime(new Date(res.data[i].BirthedAt))
         }
+        vm.items = vm.items.concat(res.data)
+        console.log('not 0, add 5 , xxx', vm.items)
       })
     },
     openSuccess () {

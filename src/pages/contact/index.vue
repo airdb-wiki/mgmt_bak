@@ -170,25 +170,18 @@ export default {
     submit () {
       console.log(this.contact)
       let vm = this
-      wx.request({
-        url: wx.getStorageSync('requestUrl') + '/small/contact',
-        method: 'POST',
-        data: {
-          Name: this.contact.Name,
-          Address: this.contact.Address,
-          Mail: this.contact.Mail,
-          Wechat: this.contact.Wechat,
-          Phone: this.contact.Phone,
-          Remark: this.contact.Remark
-        },
-        header: {
-          'content-type': 'application/json'
-        },
-        success: function (res) {
-          console.log(res.data)
-          vm.items = res.data
-          vm.preview()
-        }
+      var data = {
+        Name: this.contact.Name,
+        Address: this.contact.Address,
+        Mail: this.contact.Mail,
+        Wechat: this.contact.Wechat,
+        Phone: this.contact.Phone,
+        Remark: this.contact.Remark
+      }
+      vm.$post('/lastest/wechatapi/small/contact', data).then((res) => {
+        console.log(res.data)
+        vm.items = res.data
+        vm.preview()
       })
     }
   }

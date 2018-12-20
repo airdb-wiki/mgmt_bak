@@ -310,32 +310,18 @@ export default {
     getHotTopic () {
       let vm = this
       console.log('debug=====start')
-      wx.request({
-        url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/article/summary',
-        method: 'GET',
-        data: {
-          nickname: '',
-          babyid: ''
-        },
-        header: {
-          'content-type': 'application/json'
-        },
-        success: function (res) {
-          console.log('debug=====sucess')
-          for (var i = 0; i < res.data.length; i++) {
-            res.data[i].MissedAt = formatTimeMin(new Date(res.data[i].MissedAt))
-            res.data[i].BirthedAt = formatTime(new Date(res.data[i].BirthedAt))
-          }
-          vm.items = vm.items.concat(res.data)
-          console.log('debug=====', vm.items)
-        },
-        fail: function (res) {
-          console.log('debug=====fail')
-        },
-        compelte: function (e) {
-          console.log('==', this.keyWords)
-          // console.log('e', e, vm.items)
+      var data = {
+        nickname: '',
+        babyid: ''
+      }
+      vm.$get('/lastest/wechatapi/small/article/summary', data).then((res) => {
+        console.log('debug=====sucess')
+        for (var i = 0; i < res.data.length; i++) {
+          res.data[i].MissedAt = formatTimeMin(new Date(res.data[i].MissedAt))
+          res.data[i].BirthedAt = formatTime(new Date(res.data[i].BirthedAt))
         }
+        vm.items = vm.items.concat(res.data)
+        console.log('debug=====', vm.items)
       })
     },
     getArticle (uuid) {
@@ -344,33 +330,47 @@ export default {
       }
       console.log('getArticle====', uuid)
       let vm = this
-
-      wx.request({
-        url: vm.apiurl + uuid,
-        method: 'GET',
-        data: {
-        },
-        header: {
-          'content-type': 'application/json'
-        },
-        success: function (res) {
-          if (res.statusCode === 200) {
-            vm.items = res.data
-            vm.items.MissedAt = formatTimeMin(new Date(vm.items.MissedAt))
-            vm.items.BirthedAt = formatTime(new Date(vm.items.BirthedAt))
-            console.log('getArticle====items', vm.items)
-          } else {
-            wx.showLoading({
-              title: '加载失败 : ' + res.statusCode
-            })
-            setTimeout(function () {
-              wx.hideLoading()
-            }, 2000)
-          }
-        },
-        fail: function (res) {
+      // wx.request({
+      //   url: vm.apiurl + uuid,
+      //   method: 'GET',
+      //   data: {
+      //   },
+      //   header: {
+      //     'content-type': 'application/json'
+      //   },
+      //   success: function (res) {
+      //     if (res.statusCode === 200) {
+      //       vm.items = res.data
+      //       vm.items.MissedAt = formatTimeMin(new Date(vm.items.MissedAt))
+      //       vm.items.BirthedAt = formatTime(new Date(vm.items.BirthedAt))
+      //       console.log('getArticle====items', vm.items)
+      //     } else {
+      //       wx.showLoading({
+      //         title: '加载失败 : ' + res.statusCode
+      //       })
+      //       setTimeout(function () {
+      //         wx.hideLoading()
+      //       }, 2000)
+      //     }
+      //   },
+      //   fail: function (res) {
+      //     wx.showLoading({
+      //       title: '网络 : ' + res.statusCode
+      //     })
+      //     setTimeout(function () {
+      //       wx.hideLoading()
+      //     }, 2000)
+      //   }
+      // })
+      vm.$get(vm.apiurl + uuid, '').then((res) => {
+        if (res.statusCode === 200) {
+          vm.items = res.data
+          vm.items.MissedAt = formatTimeMin(new Date(vm.items.MissedAt))
+          vm.items.BirthedAt = formatTime(new Date(vm.items.BirthedAt))
+          console.log('getArticle====items', vm.items)
+        } else {
           wx.showLoading({
-            title: '网络 : ' + res.statusCode
+            title: '加载失败 : ' + res.statusCode
           })
           setTimeout(function () {
             wx.hideLoading()

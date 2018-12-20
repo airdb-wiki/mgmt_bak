@@ -142,25 +142,18 @@ export default {
       if (vm.uuid === '') {
         return
       }
-      wx.request({
-        url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/article/' + uuid,
-        method: 'GET',
-        data: {
-          phone_model: 'b'
-        },
-        header: {
-          'content-type': 'application/json'
-        },
-        success: function (res) {
-          console.log(res.data)
-          vm.article = res.data
-          vm.article.MissedAt = formatTime(new Date(vm.article.MissedAt))
-          vm.article.BirthedAt = formatTime(new Date(vm.article.BirthedAt))
-          if (vm.article.Gender === 1) {
-            vm.gender = '男'
-          } else if (vm.article.Gender === 2) {
-            vm.gender = '女'
-          }
+      var data = {
+        phone_model: 'b'
+      }
+      vm.$get(`/lastest/wechatapi/small/article/${uuid}`, data).then((res) => {
+        console.log(res.data)
+        vm.article = res.data
+        vm.article.MissedAt = formatTime(new Date(vm.article.MissedAt))
+        vm.article.BirthedAt = formatTime(new Date(vm.article.BirthedAt))
+        if (vm.article.Gender === 1) {
+          vm.gender = '男'
+        } else if (vm.article.Gender === 2) {
+          vm.gender = '女'
         }
       })
       console.log(vm.article)
@@ -170,29 +163,19 @@ export default {
       if (vm.uuid === '') {
         return
       }
-      wx.request({
-        url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/summary/' + vm.uuid,
-        method: 'GET',
-        data: {
-        },
-        header: {
-          'content-type': 'application/json',
-          Authorization: wx.getStorageSync('Authorization')
-        },
-        success: function (res) {
-          if (res.statusCode === 200) {
-            vm.comments = res.data
-            for (var i = 0; i < vm.comments.length; i++) {
-              vm.comments[i].CreatedAt = formatTime(new Date(vm.comments[i].CreatedAt))
-            }
-          } else {
-            wx.showLoading({
-              title: '加载失败 : ' + res.statusCode
-            })
-            setTimeout(function () {
-              wx.hideLoading()
-            }, 2000)
+      vm.$get(`/lastest/wechatapi/small/summary/${vm.uuid}`, '').then((res) => {
+        if (res.statusCode === 200) {
+          vm.comments = res.data
+          for (var i = 0; i < vm.comments.length; i++) {
+            vm.comments[i].CreatedAt = formatTime(new Date(vm.comments[i].CreatedAt))
           }
+        } else {
+          wx.showLoading({
+            title: '加载失败 : ' + res.statusCode
+          })
+          setTimeout(function () {
+            wx.hideLoading()
+          }, 2000)
         }
       })
     },

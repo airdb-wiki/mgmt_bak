@@ -107,38 +107,24 @@ export default {
     },
     publish () {
       var vm = this
-      wx.request({
-        url: wx.getStorageSync('requestUrl') + '/small/article',
-        method: 'POST',
-        data: {
-          article: JSON.stringify(vm.article)
-        },
-        header: {
-          'content-type': 'application/json'
-        },
-        success: function (res) {
-          console.log(res.data)
-          console.log('vm====', vm.files)
-          if (res.data.uuid !== '') {
-            vm.uploaderImage(res.data.uuid, vm.files)
-          }
-          vm.items = res.data
-          wx.showToast({
-            title: '发布成功',
-            icon: 'success',
-            duration: 1500,
-            mask: true,
-            complete: function () {
-            }
-          })
-        },
-        complete: function () {
-          /*
-          wx.switchTab({
-            url: '/pages/profile/main'
-          })
-          */
+      var data = {
+        article: JSON.stringify(vm.article)
+      }
+      vm.$post('/lastest/wechatapi/small/article', data).then((res) => {
+        console.log(res.data)
+        console.log('vm====', vm.files)
+        if (res.data.uuid !== '') {
+          vm.uploaderImage(res.data.uuid, vm.files)
         }
+        vm.items = res.data
+        wx.showToast({
+          title: '发布成功',
+          icon: 'success',
+          duration: 1500,
+          mask: true,
+          complete: function () {
+          }
+        })
       })
     },
     uploaderImage (uuid, files) {
