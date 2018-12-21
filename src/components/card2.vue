@@ -20,8 +20,10 @@
                   </div>
                 </div>
                 <div class="se_container">
-                  <div class="important">失踪城市：</div>
-                  <div>{{item.MissedCity}}</div>
+                  <!-- <div class="important">失踪城市：</div>
+                  <div>{{item.MissedCity}}</div> -->
+                  <span class="important">失踪时间：</span>
+                  <span>{{item.MissedAt}}</span>
                 </div>
               </div>
             </div>
@@ -33,8 +35,8 @@
               <div>{{item.MissedAddress}}</div>
             </div>
             <div class="down-info">
-              <span class="t_title">失踪时间：</span>
-              <span>{{item.MissedAt}}</span>
+              <!-- <span class="t_title">失踪时间：</span>
+              <span>{{item.MissedAt}}</span> -->
             </div>
             <div class="down-info">
               <div class="t_title">失踪特征:</div>

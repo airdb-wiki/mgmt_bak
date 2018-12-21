@@ -62,7 +62,7 @@
                   <div>具体岗位信息</div>
                   <img src="https://wechat-1251018873.file.myqcloud.com/mina/base/icon/love-bg.png" style="opacity: .5;">
                 </div>
-                <div class='hire-title'>产品经理</div>
+                <div class='hire-title hirer'>产品经理</div>
                 <div>
                   工作地点: 在线兼职, 招聘人数: 1~2名<br>
                   <div class='hire-title'>岗位描述:</div>
@@ -77,6 +77,21 @@
                   4.收集市场反馈与用户行为及需求,提升用户体验;<br>
                   5.撰写详细的产品需求文档及原型设计文档,跟踪产品研发进度;<br>
                   6.负责把控产品推进进度、协调突发问题与质量管理工作.
+                </div>
+                
+                <div class='hire-title space-top hirer' >产品运营</div>
+                <div>
+                  工作地点: 在线兼职, 招聘人数: 1~2名<br>
+                  <div class='hire-title'>岗位描述:</div>
+                  1.日常运营宝贝回家公众号及小程序，对日常数据进行监控，整理，分析，定期形成数据分析报告<br>
+                  2.结合实时热点，运营宝贝回家寻人品牌<br>
+                  3.整合寻人公益平台,整合相关数据,挖掘更多公益价值
+                </div>
+                <div>
+                  <div class='hire-title'>职位要求:</div>
+                  1.专业不限,富有创意,有自己独特的构思和见解<br>
+                  2.工作耐心细致，能够关注每项指标的变化，提高运营效果<br>
+                  3.有一定数据分析能力，能够形成自己专属的运营方法论<br>
                 </div>
               </div>
             </div>
@@ -284,5 +299,12 @@ export default {
   }
   .hire-title{
     font-weight: 700;
+  }
+  .space-top{
+    margin-top:30px;
+  }
+  .hirer{
+    font-size: 20px;
+    /* font-weight: 700; */
   }
 </style>

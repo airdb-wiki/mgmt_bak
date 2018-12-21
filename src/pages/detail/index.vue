@@ -39,14 +39,14 @@
       <div class="talk_container">
         <div class="together" v-for="(item, index) in comment" :key="index">
           <div class="img">
-            <img :src="item.AvatarUrl" style="width: 35px;height: 35px;border-radius: 3px;">
+            <img :src="item.avatarUrl" style="width: 35px;height: 35px;border-radius: 3px;">
           </div>
           <div class="talk_content">
             <div class="talker_info">
               <div class="talker_name">{{item.Nickname}}</div>
               <img src="/static/images/home/like.png" style="width: 20px;height: 20px;">
             </div>
-            <div class="talk">{{item.Content}}</div>
+            <div class="talk">{{item.content}}</div>
             <div v-if="item.reply !== ''">
               <div class="talker_info" style="margin-top: 5px;">
                 <div style="border-left: 3px solid #16b015;padding: 0 5px;color: #929292;">作者</div>
@@ -211,7 +211,7 @@ export default{
       comment.avatarUrl = wx.getStorageSync('userInfo').avatarUrl
       comment.talker_name = wx.getStorageSync('userInfo').nickName
       comment.reply = ''
-      that.commemt = that.comment.push(comment)
+      that.comment = that.comment.concat([comment])
       console.log('评论为：', that.comment)
       // 更新数据
       var data = {
@@ -222,12 +222,14 @@ export default{
       }
       this.$post('/lastest/wechatapi/small/comment', data).then((res) => {
         that.comment_value = ''
-        console.log('提交回调函数', res.data)
+        console.log('提交回调函数', res)
         wx.showToast({
           title: '评论成功',
           icon: 'success',
           duration: 2000
         })
+      }).catch(err => {
+        console.log('onsubmit error==========================', err)
       })
       // 将评论上传至数据库
     },

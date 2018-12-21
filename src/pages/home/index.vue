@@ -175,7 +175,10 @@ export default {
           if (res.data[i].Title === '') {
             res.data[i].Title = res.data[i].MissedProvince + '-' + res.data[i].MissedCity + ', 寻找' + res.data[i].Nickname
           }
+          res.data[i].MissedAddress = res.data[i].MissedCity + res.data[i].MissedAddress
           res.data[i].MissedAt = formatTimeMin(new Date(res.data[i].MissedAt))
+          res.data[i].BirthedAt = formatTimeMin(new Date(res.data[i].BirthedAt))
+          console.log('res.data.BirthedAt============================================================================', res.data[i].BirthedAt || 'none')
           res.data[i].Age = jsGetAge(res.data[i].BirthedAt)
           if (res.data[i].Age > 150) {
             res.data[i].Age = '不详'
