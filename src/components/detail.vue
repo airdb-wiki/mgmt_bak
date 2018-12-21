@@ -13,13 +13,13 @@
           <div class="weui-article__h3">寻亲类别：<span class="words">{{item.Category}}</span></div>
           <div class="weui-article__h3">寻亲编号：<span class="words">{{item.Babyid}}</span></div>
           <div class="weui-article__h3">姓 名：<span class="words">{{item.Nickname}}</span> </div>
-          <div class="weui-article__h3" v-if="item.Gender == 2"><span class="words">性 别：女 </span></div>
-          <div class="weui-article__h3" v-else><span class="words">性 别：男</span> </div>
+          <div class="weui-article__h3" v-if="item.Gender == 2">性 别：<span class="words">女 </span></div>
+          <div class="weui-article__h3" v-else>性 别：<span class="words">男</span> </div>
           <div class="weui-article__h3">出生日期：<span class="words">{{item.BirthedAt}}</span> </div>
           <div class="weui-article__h3">户籍地点：<span class="words">{{item.BirthedProvince}} {{item.BirthedCity}} </span></div>
           <div class="weui-article__h3">失踪时间：<span class="words">{{item.MissedAt}}</span></div>
           <div class="weui-article__h3">失踪地点：<span class="words">{{item.MissedProvince}} {{item.MissedAddress}}</span></div>
-          <div class="weui-article__h3">失踪时身高：<span class="words">{{item.Height}}</span></div>
+          <!-- <div class="weui-article__h3">失踪时身高：<span class="words">{{item.Height}}</span></div> -->
           <div class="weui-article__h3">失踪人特征: <span class="words"> {{item.Characters}}</span></div>
           <div class="weui-article__h3">其他资料：<span class="words">{{item.Details}}</span></div>
           <!-- <div class="weui-article__h3">失踪时间： {{item.MissedAt}} </div> -->
@@ -65,6 +65,9 @@ export default{
   //   }
   // },
   beforeUpdate () {
+    if (this.item.MissedCity === '不详') {
+      this.item.MissedCity = '失踪地点不详'
+    }
     var title = this.item.MissedCity + '——' + this.item.Nickname
     this.content.title = title
   },

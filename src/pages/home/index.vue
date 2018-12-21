@@ -21,11 +21,11 @@
     </swiper>
 
     <!-- 自定义navBar -->
-    <div class="bar">
+    <!-- <div class="bar">
       <scroll-view :scroll-x="true" class="navbar">
         <div v-for="(tab, index) in tabs" :key="tab.id" :class="[index == activeIndex ? 'item_on' : 'tab']" :id="index" @click="changeTab">{{tab}}</div>
       </scroll-view>
-    </div>
+    </div> -->
     
     <!-- 卡片效果 -->
     <div style="z-index: 0;">
@@ -163,6 +163,15 @@ export default {
         console.log('res.data=======', res.data)
         console.log('typeof(res.data)', typeof (res.data))
         for (var i = 0; i < res.data.length; i++) {
+          if (res.data[i].MissedCity === '') {
+            res.data[i].MissedCity = '不详'
+          }
+          if (res.data[i].Characters === '') {
+            res.data[i].Characters = '不详'
+          }
+          if (res.data[i].MissedAddress === '') {
+            res.data[i].MissedAddress = '不详'
+          }
           if (res.data[i].Title === '') {
             res.data[i].Title = res.data[i].MissedProvince + '-' + res.data[i].MissedCity + ', 寻找' + res.data[i].Nickname
           }
@@ -311,7 +320,7 @@ export default {
   width: 100%;
   white-space: nowrap;
   position: fixed;
-  top: 53pt;
+  /* top: 53pt; */
   left: 0;
   z-index: 99;
   background-color: #fff;
@@ -346,7 +355,7 @@ export default {
 }
 .mySwiper{
   margin: auto;
-  margin-top: 107px;
+  margin-top: 145rpx;
   width: 100%;
   height: 165px;
   border-radius: 10px;

@@ -1,5 +1,6 @@
 <template>
   <div class="page">
+    <!-- 自定义导航栏 -->
     <div class="navigation">
       <div class="btn">
         <navigator open-type="navigateBack">
@@ -17,53 +18,67 @@
 
     <tx-video vid="m0028s08v11"></tx-video>
     <img src="https://wechat-1251018873.file.myqcloud.com/mina/base/icon/love-bg.png" class="bg">
-
-    <!-- 自定义navigation -->
-    <!--
-    <div class="navigation">
-      <button :plain="true" @click="back">
-        <img src="/static/images/home/back.png" class="back">
-        <div style="border: 1px solid #e2e2e2;margin: 0 10px 0 4px;"></div>
-        <img src="/static/images/home/home.png" class="home">
-      </button>
-    </div>
-    -->
     <div class="page__bd" style="margin-top: 60px;">
         <div class="weui-article">
 
             <div class="weui-article__section">
-                <div class="weui-article__section">
-                    <div class="weui-article__h1 myh">
-                      <div>背景介绍</div>
-                      <img src="https://wechat-1251018873.file.myqcloud.com/mina/base/icon/love-bg.png">
-                    </div>
-                    <div class="weui-article__p">
-                        宝贝回家小程序宗旨是为帮助寻找失踪儿童及一些流浪乞讨的孩子找家，为孩子家长及志愿者提供一个信息沟通的平台。  
-                    </div>
-                    <div class="weui-article__p">
-                        项目介绍： 
-                        <a href="https://bbhj.airdb.io" style="color: deepskyblue;">https://bbhj.airdb.io</a>
-                    </div>
-                    <div class="weui-article__p">
-                      <p>目前采用 MPVue + Golang 实现， Github地址： 
-                        <a style="color: deepskyblue;">https://github.com/bbhj/mina</a>
-                      </p>
-                      喜欢的同学，可以 Star 一下！
-                    </div>
+              
+              <div class="weui-article__section">
+                <div class="weui-article__h1 myh">
+                  <div>背景介绍</div>
+                  <img src="https://wechat-1251018873.file.myqcloud.com/mina/base/icon/love-bg.png">
                 </div>
-                <div class="weui-article__section">
-                    <div class="weui-article__h1 myh">
-                      <div>欢迎加入</div>
-                      <img src="https://wechat-1251018873.file.myqcloud.com/mina/base/icon/love-bg.png" style="opacity: .5;">
-                    </div>
-                    <div class="weui-article__p">
-                        如果您有足够的精力、技术投入，欢迎您的加入。 需至少满足如下条件一：
-                        <p>\t1. 希望您比较了解 vue、小程序等前端技术；</p>
-                        <p>\t2. 希望您能够使用 Golang 编程, 有一定的代码规范；</p>
-                        <p>\t3. 希望您有自己的 Github, 有一定的代码提交；</p>
-                        <p>\t4. 希望您有一颗追求技术、技术公益的心。</p>
-                    </div>
+                <div class="weui-article__p">
+                    宝贝回家小程序宗旨是为帮助寻找失踪儿童及一些流浪乞讨的孩子找家，为孩子家长及志愿者提供一个信息沟通的平台。  
                 </div>
+                <div class="weui-article__p">
+                    项目介绍： 
+                    <a href="https://bbhj.airdb.io" style="color: deepskyblue;">https://bbhj.airdb.io</a>
+                </div>
+                <div class="weui-article__p">
+                  <p>目前采用 MPVue + Golang 实现， Github地址： 
+                    <a style="color: deepskyblue;">https://github.com/bbhj/mina</a>
+                  </p>
+                  喜欢的同学，可以 Star 一下！
+                </div>
+              </div>
+
+              <div class="weui-article__section">
+                <div class="weui-article__h1 myh">
+                  <div>欢迎加入</div>
+                  <img src="https://wechat-1251018873.file.myqcloud.com/mina/base/icon/love-bg.png" style="opacity: .5;">
+                </div>
+                <div class="weui-article__p">
+                  如果您有足够的精力、技术投入，欢迎您的加入。 需至少满足如下条件一：
+                  <p>\t1. 希望您比较了解 vue、小程序等前端技术；</p>
+                  <p>\t2. 希望您能够使用 Golang 编程, 有一定的代码规范；</p>
+                  <p>\t3. 希望您有自己的 Github, 有一定的代码提交；</p>
+                  <p>\t4. 希望您有一颗追求技术、技术公益的心。</p>
+                </div>
+              </div>
+
+              <div>
+                <div class="weui-article__h1 myh">
+                  <div>具体岗位信息</div>
+                  <img src="https://wechat-1251018873.file.myqcloud.com/mina/base/icon/love-bg.png" style="opacity: .5;">
+                </div>
+                <div class='hire-title'>产品经理</div>
+                <div>
+                  工作地点: 在线兼职, 招聘人数: 1~2名<br>
+                  <div class='hire-title'>岗位描述:</div>
+                  1.设计宝贝回家小程序,新论坛及主站点<br>
+                  2.把握宝贝回家产品方向,更好的让线下公益组织与线上结合
+                </div>
+                <div>
+                  <div class='hire-title'>职位要求:</div>
+                  1.熟悉产品从业务调研、需求分析到实现过程、产品发布的整个流程;<br>
+                  2.负责新产品的创新和预研,完成新产品的用户需求定义、产品功能/UI/交互的设计;<br>
+                  3.负责制定项目开发计划并跟踪进度,确保项目如期完成;<br>
+                  4.收集市场反馈与用户行为及需求,提升用户体验;<br>
+                  5.撰写详细的产品需求文档及原型设计文档,跟踪产品研发进度;<br>
+                  6.负责把控产品推进进度、协调突发问题与质量管理工作.
+                </div>
+              </div>
             </div>
         </div>
     </div>
@@ -266,5 +281,8 @@ export default {
     width:84%;
     height: 180px;
     margin-top: 10px;
+  }
+  .hire-title{
+    font-weight: 700;
   }
 </style>

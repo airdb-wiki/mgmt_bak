@@ -7,11 +7,11 @@
         <card :text="userInfo.nickName"></card>
       </div>
     </div>
-    {{userInfo.gender}}</p>
-    {{userInfo.city}}</p>
-    {{userInfo.province}}</p>
-    {{userInfo.country}}</p>
-    {{userInfo.language}}</p>
+    <p>{{userInfo.gender}}</p>
+    <p>{{userInfo.city}}</p>
+    <p>{{userInfo.province}}</p>
+    <p>{{userInfo.country}}</p>
+    <p>{{userInfo.language}}</p>
 
     <button @click="getUserInfo">获取用户唯一标识openid</button>  
     openid:{{openid}}session_key:{{session_key}}  

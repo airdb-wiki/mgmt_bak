@@ -330,38 +330,6 @@ export default {
       }
       console.log('getArticle====', uuid)
       let vm = this
-      // wx.request({
-      //   url: vm.apiurl + uuid,
-      //   method: 'GET',
-      //   data: {
-      //   },
-      //   header: {
-      //     'content-type': 'application/json'
-      //   },
-      //   success: function (res) {
-      //     if (res.statusCode === 200) {
-      //       vm.items = res.data
-      //       vm.items.MissedAt = formatTimeMin(new Date(vm.items.MissedAt))
-      //       vm.items.BirthedAt = formatTime(new Date(vm.items.BirthedAt))
-      //       console.log('getArticle====items', vm.items)
-      //     } else {
-      //       wx.showLoading({
-      //         title: '加载失败 : ' + res.statusCode
-      //       })
-      //       setTimeout(function () {
-      //         wx.hideLoading()
-      //       }, 2000)
-      //     }
-      //   },
-      //   fail: function (res) {
-      //     wx.showLoading({
-      //       title: '网络 : ' + res.statusCode
-      //     })
-      //     setTimeout(function () {
-      //       wx.hideLoading()
-      //     }, 2000)
-      //   }
-      // })
       vm.$get(vm.apiurl + uuid, '').then((res) => {
         if (res.statusCode === 200) {
           vm.items = res.data
