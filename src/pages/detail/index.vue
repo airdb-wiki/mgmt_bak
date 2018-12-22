@@ -36,27 +36,34 @@
 
     <div style="background-color: #f2f2f2;padding-top: 10px;">
       <div class="weui-cells__title" style="font-size: 18px;">评论：</div>
-      <div class="talk_container">
+      <scroll-view :scroll-y="true" class="talk_container">
         <div class="together" v-for="(item, index) in comment" :key="index">
+          
           <div class="img">
             <img :src="item.avatarUrl" style="width: 35px;height: 35px;border-radius: 3px;">
           </div>
+
           <div class="talk_content">
+
             <div class="talker_info">
               <div class="talker_name">{{item.Nickname}}</div>
               <img src="/static/images/home/like.png" style="width: 20px;height: 20px;">
             </div>
+
             <div class="talk">{{item.content}}</div>
-            <div v-if="item.reply !== ''">
+
+            <!-- <div v-if="item.reply !== ''">
               <div class="talker_info" style="margin-top: 5px;">
                 <div style="border-left: 3px solid #16b015;padding: 0 5px;color: #929292;">作者</div>
                 <img src="/static/images/home/like.png" style="width: 20px;height: 20px;">
               </div>
               <div class="talk">{{item.reply}}</div>
-            </div>
+            </div> -->
+
           </div>
+
         </div>
-      </div>
+      </scroll-view>
     </div>
     <!-- 评论区 -->
 
@@ -137,6 +144,7 @@ export default{
       showTitle: false,
       item: {},
       comment: [],
+      imgUrls: [],
       comment_value: '',
       content: '早日回家'
     }
@@ -169,11 +177,20 @@ export default{
     })
     var data = {
       babyid: vm.item.Babyid,
-      column: 'visit'
+      column: 'Visit'
     }
     this.$get('/lastest/wechatapi/small/article/summary', data).then((res) => {
       console.log('visit_res:', res)
     })
+    var data2 = {
+      babyid: vm.item.Babyid,
+      uuid: vm.item.UUID
+    }
+    this.$get('/lastest/wechatapi/small/image/getList', data2).then((res) => {
+      console.log('关联图片', res.data)
+      // vm.Urls = res.data.
+    })
+    // 获取关联图片
     this.requestComment()
     // 从数据库获取评论信息
   },
@@ -233,6 +250,23 @@ export default{
       })
       // 将评论上传至数据库
     },
+    // getList (options) {
+    //   var item = {}
+    //   var items = wx.getStorageSync('database')
+    //   for (var i = 0; i < items.length; i++) {
+    //     if (options.id === items[i].UUID) {
+    //       item = items[i]
+    //     }
+    //   }
+    //   var data = {
+    //     babyid: item.Babyid,
+    //     uuid: item.UUID
+    //   }
+    //   this.$get('/lastest/wechatapi/small/image/getList', data).then((res) => {
+    //     console.log('关联图片', res.data)
+    //   })
+    // },
+    //  获取关联图片
     download () {
       var that = this
       that.canvasHidden = false
@@ -381,8 +415,8 @@ export default{
   background-color: #f2f2f2;
 }
 .together{
-  padding: 5px;
-  padding-bottom: 13px;
+  padding: 26rpx;
+  padding-bottom: 35rpx;
 }
 .talk_content{
   display: flex;

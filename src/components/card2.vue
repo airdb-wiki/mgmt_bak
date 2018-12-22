@@ -14,10 +14,10 @@
                   <div class="important" style="margin-left: 80rpx;">{{item.Age}}岁</div>
                 </div>
                 <div class="se_container">
-                  <div class="important">档案ID：</div>
-                  <div>
+                  <span class="important">分类: &nbsp;   </span>{{item.Category}} &nbsp; &nbsp;  <span class="important">档案ID: </span>&nbsp; {{item.Babyid}}
+                  <!-- <div>
                     {{item.Babyid}}
-                  </div>
+                  </div> -->
                 </div>
                 <div class="se_container">
                   <!-- <div class="important">失踪城市：</div>

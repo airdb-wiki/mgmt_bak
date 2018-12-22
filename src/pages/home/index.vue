@@ -100,8 +100,7 @@ export default {
   onLoad () {
     var profile = wx.getStorageSync('profile')
     this.isFirstShow = profile.isFirstLogin
-    console.log('profile information:', profile)
-    // wx.removeStorageSync('database')
+    // console.log('profile information:', profile)
   },
   // 获取缓存
   onShow () {
@@ -112,12 +111,9 @@ export default {
     } else {
       this.database = db
     }
-    console.log('home first show================', this.database.length)
-    console.log(typeof (this.database))
+    // console.log('home first show================', this.database.length)
+    // console.log(typeof (this.database))
   },
-  // onUnload () {
-  //   wx.removeStorageSync('database')
-  // },
   methods: {
     // 隐藏遮罩
     conceal: function () {
@@ -129,7 +125,7 @@ export default {
       this.parms.page = 1
       this.activeIndex = e.currentTarget.id
       this.parms.category = this.tabs[e.currentTarget.id]
-      console.log('-----------changeTab', e.currentTarget.id, this.parms.category)
+      // console.log('-----------changeTab', e.currentTarget.id, this.parms.category)
       // this.request()
     },
     // 获取用户信息
@@ -139,11 +135,11 @@ export default {
       setTimeout(function () {
         wx.getSetting({
           success: res => {
-            console.log('setting', res)
-            console.log('setting', res.authSetting['scope.userInfo'])
+            // console.log('setting', res)
+            // console.log('setting', res.authSetting['scope.userInfo'])
             if (res.authSetting['scope.userInfo'] === true) {
               // this.getUserInfo = res.authSetting['scope.userInfo']
-              console.log('====', res.authSetting['scope.userInfo'])
+              // console.log('====', res.authSetting['scope.userInfo'])
               that.authSetting.userInfo = res.authSetting['scope.userInfo']
               wx.setStorageSync('authSetting.userInfo', res.authSetting['scope.userInfo'])
             }
@@ -161,7 +157,7 @@ export default {
       // 每次取一页, 每页默认是5条数据.
       this.$get('/lastest/wechatapi/small/article/summary', parms).then((res) => {
         console.log('res.data=======', res.data)
-        console.log('typeof(res.data)', typeof (res.data))
+        // console.log('typeof(res.data)', typeof (res.data))
         for (var i = 0; i < res.data.length; i++) {
           if (res.data[i].MissedCity === '') {
             res.data[i].MissedCity = '不详'
@@ -169,13 +165,15 @@ export default {
           if (res.data[i].Characters === '') {
             res.data[i].Characters = '不详'
           }
-          if (res.data[i].MissedAddress === '') {
-            res.data[i].MissedAddress = '不详'
-          }
           if (res.data[i].Title === '') {
             res.data[i].Title = res.data[i].MissedProvince + '-' + res.data[i].MissedCity + ', 寻找' + res.data[i].Nickname
           }
-          res.data[i].MissedAddress = res.data[i].MissedCity + res.data[i].MissedAddress
+          if (res.data[i].MissedCity === '') {
+            res.data[i].MissedAddress = res.data[i].MissedCity
+          } else {
+            res.data[i].MissedAddress = res.data[i].MissedCity + res.data[i].MissedAddress
+          }
+          // res.data[i].MissedAddress = res.data[i].MissedCity + res.data[i].MissedAddress
           res.data[i].MissedAt = formatTimeMin(new Date(res.data[i].MissedAt))
           res.data[i].BirthedAt = formatTimeMin(new Date(res.data[i].BirthedAt))
           console.log('res.data.BirthedAt============================================================================', res.data[i].BirthedAt || 'none')
@@ -183,26 +181,25 @@ export default {
           if (res.data[i].Age > 150) {
             res.data[i].Age = '不详'
           }
-          console.log('======datafrom', res.data[i].DataFrom)
+          // console.log('======datafrom', res.data[i].DataFrom)
           var tmpurl = res.data[i].DataFrom.split('/')
           if (tmpurl.length > 3) {
             res.data[i].DataFrom = tmpurl[2]
           }
-          console.log('==-----datafrom---', res.data[i].DataFrom)
+          // console.log('==-----datafrom---', res.data[i].DataFrom)
         }
-        // ********************************************** */
         var db = []
         var data = res.data
         data.map((item, index) => {
           if (vm.database.findIndex(elem => (elem.Babyid === item.Babyid)) === -1) {
             db.push(item)
-            console.log('filtered item===================', item)
+            // console.log('filtered item===================', item)
           }
         })
         // 当重新打开页面时,缓存仍存在(缓存数据无需reachdown即可全部显示),如果db为空,则已经加载全部内容
         if (db.length === 0) {
           // 拉取不到新数据
-          console.log('=====', vm.parms.pullData)
+          // console.log('=====', vm.parms.pullData)
           if (vm.parms.pullData === 'new') {
             console.log('============6')
             wx.showToast({
@@ -228,7 +225,6 @@ export default {
             vm.database = vm.database.concat(db)
           }
         }
-        // ******************************************************* */
         // 历史数据是追加，所以放在最后。 新增加数据放在最前。 默认是历史数据，进行追加。
         console.log('加载更多后数据为: ', vm.database)
         wx.setStorageSync('database', vm.database)

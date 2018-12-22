@@ -27,6 +27,17 @@
           <div class="weui-article__p">
             <image class="weui-article__img" :src="item.AvatarUrl" mode="aspectFit" style="height: 180px" @click="preview"/>
           </div>
+
+           <!-- <swiper 
+            :autoplay="false"
+            previous-margin="-10px"
+            class="weui-article__img">
+            <div v-for="item in imgUrls" :key="item.id">
+              <swiper-item>
+                  <image :src="item" class="swiper_img"/>
+              </swiper-item>
+            </div>
+          </swiper> -->
         </div>
       </div>
     </div>
@@ -48,7 +59,7 @@
 <script>
 export default{
   name: 'detail',
-  props: ['item'],
+  props: ['item', 'imgUrls'],
   data () {
     return {
       content: {
@@ -58,12 +69,6 @@ export default{
       src2: ''
     }
   },
-  // computed: {
-  //   birthAt () {
-  //     console.log('this.item.BirthAt============', typeof (this.item.BirthedAt))
-  //     return this.item.BirthedAt.toString()
-  //   }
-  // },
   beforeUpdate () {
     if (this.item.MissedCity === '不详') {
       this.item.MissedCity = '失踪地点不详'
