@@ -9,37 +9,22 @@ export default {
       domain: 'https://wechat.baobeihuijia.com',
       userInfo: {},
       loginInfo: {}, // 用户登录信息
-      profile: {}
+      profile: {},
+      prams: {}
     }
   },
   onLaunch (launch) {
     console.log('app launch scene info: ', launch.scene, launch.path, launch.shareTicket)
 
-    this.$get('/lastest/wechatapi/user/login', '').then((response) => {
-      console.log('this.$get=====', response)
-    })
     var vm = this
     wx.login({
       success: function (res) {
         if (res.code) {
-          // wx.request({
-          //   url: wx.getStorageSync('domain') + '/lastest/wechatapi/user/login',
-          //   method: 'Get',
-          //   header: {
-          //     'content-type': 'application/json'
-          //   },
-          var data = {
-            code: res.code,
-            scene: launch.scene,
-            shareTicket: launch.shareTicket,
-            path: launch.path
-          }
-          //   success: function (userProfile) {
-          //     wx.setStorageSync('profile', userProfile.data)
-          //     console.log('===================newbg', userProfile)
-          //   }
-          // })
-          vm.$get('/lastest/wechatapi/user/login', data).then((userProfile) => {
+          vm.prams.code = res.code
+          vm.prams.scene = launch.scene
+          vm.prams.shareTicket = launch.shareTicket
+          vm.prams.path = launch.path
+          vm.$get('/lastest/wechatapi/user/login', vm.prams).then((userProfile) => {
             wx.setStorageSync('profile', userProfile.data)
           })
         } else {
@@ -62,13 +47,10 @@ export default {
     // console.log('=====',wxConfig.envVersion)
     // console.log(wxConfig.envVersion)
     console.log('app created, env:', wx.getStorageSync('env'))
-    if (wx.getStorageSync('env') === 'prod') {
-      // wx.setStorageSync('requestUrl', 'https://wechat.baobeihuijia.com/lastest/wechatapi')
-    } else {
+    if (wx.getStorageSync('env') !== 'prod') {
       wx.setNavigationBarTitle({
         title: '宝贝回家-体验版'
       })
-      // wx.setStorageSync('requestUrl', 'https://wechat.baobeihuijia.com/test/lastest/wechatapi')
     }
 
     // 填写自己的鉴权服务器地址

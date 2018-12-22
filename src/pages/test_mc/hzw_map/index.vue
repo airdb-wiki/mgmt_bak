@@ -23,8 +23,8 @@
 
       <div class='topExpress-right'>
         <div class='topExpress-right-top'>宝贝回家小程序</div>
-        <div class='topExpress-right-middle'>开发过程</div>
-        <div class='topExpress-right-bottom'>联系方式 12321323(微信)</div>
+        <div class='topExpress-right-middle'>项目进度</div>
+        <div class='topExpress-right-bottom'></div>
       </div>
 
     </div>
@@ -122,20 +122,20 @@ export default {
         day: '2018',
         content: '———————————————————'
       }, {
-        content: '正在努力实现小程序插件的使用，欢迎大家加入',
+        content: '正在优化当前功能',
         day: '今天'
       }, {
-        content: '实现xxx功能',
-        day: '10-21'
+        content: '实现 BBS 数据格式化, 关联图片抓取',
+        day: '11-20'
       }, {
-        content: '实现xxx功能',
-        day: '10-21'
+        content: '新加入一位',
+        day: '11-05'
       }, {
-        content: '实现xxx功能',
-        day: '10-21'
+        content: '第一期 首版本上线',
+        day: '10-28'
       }, {
-        content: '实现xxx功能',
-        day: '10-21'
+        content: '正式启动项目',
+        day: '10-01'
       }
       ],
       images: {
