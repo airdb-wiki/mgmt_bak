@@ -46,7 +46,7 @@
           <div class="talk_content">
 
             <div class="talker_info">
-              <div class="talker_name">{{item.Nickname}}</div>
+              <div class="talker_name">{{item.talker_name}}</div>
               <img src="/static/images/home/like.png" style="width: 20px;height: 20px;">
             </div>
 
@@ -125,6 +125,8 @@ export default{
         }
         this.$get('/lastest/wechatapi/small/article/updateCount', data).then((res) => {
           console.log('forward_res:', res)
+        }).catch((err) => {
+          console.log('fordward_error!!!!!!!!!!!!!!!!!!!!', err)
         })
         // 转发成功
         console.log('转发成功:' + JSON.stringify(res))
@@ -179,8 +181,10 @@ export default{
       babyid: vm.item.Babyid,
       column: 'Visit'
     }
-    this.$get('/lastest/wechatapi/small/article/summary', data).then((res) => {
+    this.$get('/lastest/wechatapi/small/article/updateCount', data).then((res) => {
       console.log('visit_res:', res)
+    }).catch(err => {
+      console.log('visit count update error!!!!!!!!!!!!!!!!!!!!!!', err)
     })
     var data2 = {
       babyid: vm.item.Babyid,
@@ -198,15 +202,47 @@ export default{
     wx.stopPullDownRefresh()
   },
   methods: {
+    // requestComment () {
+    //   var vm = this
+    //   this.$get(`/lastest/wechatapi/small/comment/${vm.item.UUID}`, {
+    //     header: {
+    //       Authorization: wx.getStorageSync('Authorization')
+    //     }
+    //   }).then((res) => {
+    //     vm.comment = JSON.parse(res.data)
+    //     console.log('获取评论为: ', res.data)
+    //     for (var i = 0; i < vm.comment.length; i++) {
+    //       vm.comment[i].CreatedAt = formatTime(new Date(vm.comment[i].CreatedAt))
+    //       vm.comment[i].reply = ''
+    //     }
+    //     // console.log('获取评论为：', vm.comment)
+    //   }).catch(err => {
+    //     console.log('request comments error!!!!!!!!!!!!!!!!!!!!!!1111', err)
+    //   })
+    // },
     requestComment () {
-      var vm = this
-      this.$get(`/lastest/wechatapi/small/comment/${vm.item.UUID}`, '').then((res) => {
-        vm.comment = res.data
-        for (var i = 0; i < vm.comment.length; i++) {
-          vm.comment[i].CreatedAt = formatTime(new Date(vm.comment[i].CreatedAt))
-          vm.comment[i].reply = ''
+      var that = this
+      wx.request({
+        url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/comment/' + that.item.UUID,
+        method: 'GET',
+        data: {
+        },
+        header: {
+          'content-type': 'application/json',
+          Authorization: wx.getStorageSync('Authorization')
+        },
+        success: function (res) {
+          console.log('request comments res======', res)
+          that.comment = res.data
+          for (var i = 0; i < that.comment.length; i++) {
+            that.comment[i].CreatedAt = formatTime(new Date(that.comment[i].CreatedAt))
+            that.comment[i].reply = ''
+          }
+          console.log('获取评论为：', that.comment)
+        },
+        fail: function (res) {
+          console.log('获取评价fail')
         }
-        console.log('获取评论为：', vm.comment)
       })
     },
     sub (e) {
@@ -228,8 +264,8 @@ export default{
       comment.avatarUrl = wx.getStorageSync('userInfo').avatarUrl
       comment.talker_name = wx.getStorageSync('userInfo').nickName
       comment.reply = ''
-      that.comment = that.comment.concat([comment])
-      console.log('评论为：', that.comment)
+      console.log('评论为：', comment)
+      that.comment.push(comment)
       // 更新数据
       var data = {
         UUID: that.item.UUID,
