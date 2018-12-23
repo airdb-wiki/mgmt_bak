@@ -156,6 +156,10 @@ export default {
       var vm = this
       // 每次取一页, 每页默认是5条数据.
       this.$get('/lastest/wechatapi/small/article/summary', parms).then((res) => {
+        if (res.data === null) {
+          console.log('没有新数据了。')
+          return
+        }
         console.log('res.data=======', res.data)
         // console.log('typeof(res.data)', typeof (res.data))
         for (var i = 0; i < res.data.length; i++) {
@@ -176,7 +180,6 @@ export default {
           // res.data[i].MissedAddress = res.data[i].MissedCity + res.data[i].MissedAddress
           res.data[i].MissedAt = formatTimeMin(new Date(res.data[i].MissedAt))
           res.data[i].BirthedAt = formatTimeMin(new Date(res.data[i].BirthedAt))
-          console.log('res.data.BirthedAt============================================================================', res.data[i].BirthedAt || 'none')
           res.data[i].Age = jsGetAge(res.data[i].BirthedAt)
           if (res.data[i].Age > 150) {
             res.data[i].Age = '不详'
@@ -201,14 +204,12 @@ export default {
           // 拉取不到新数据
           // console.log('=====', vm.parms.pullData)
           if (vm.parms.pullData === 'new') {
-            console.log('============6')
             wx.showToast({
               title: '已是最新数据',
               icon: 'success',
               duration: 1500
             })
           } else {
-            console.log('============66')
             console.log('拉到底了！ server return data is null.')
             wx.showToast({
               title: '已加载全部内容',
