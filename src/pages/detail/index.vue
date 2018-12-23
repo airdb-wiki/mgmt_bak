@@ -34,37 +34,62 @@
     <ad unit-id="adunit-6a89174cc83e227f"></ad>
     <!-- 广告 -->
 
-    <div style="background-color: #f2f2f2;padding-top: 10px;">
+    <!-- <div style="background-color: #f2f2f2;padding-top: 10px;">
       <div class="weui-cells__title" style="font-size: 18px;">评论：</div>
       <scroll-view :scroll-y="true" class="talk_container">
         <div class="together" v-for="(item, index) in comment" :key="index">
           
           <div class="img">
-            <img :src="item.avatarUrl" style="width: 35px;height: 35px;border-radius: 3px;">
+            <img :src="item.AvatarUrl" style="width: 35px;height: 35px;border-radius: 3px;">
           </div>
 
           <div class="talk_content">
 
             <div class="talker_info">
-              <div class="talker_name">{{item.talker_name}}</div>
+              <div class="talker_name">{{item.Nickname}}</div>
               <img src="/static/images/home/like.png" style="width: 20px;height: 20px;">
             </div>
 
-            <div class="talk">{{item.content}}</div>
+            <div class="talk">{{item.Content}}</div>
 
-            <!-- <div v-if="item.reply !== ''">
+            <div v-if="item.reply !== ''">
               <div class="talker_info" style="margin-top: 5px;">
                 <div style="border-left: 3px solid #16b015;padding: 0 5px;color: #929292;">作者</div>
                 <img src="/static/images/home/like.png" style="width: 20px;height: 20px;">
               </div>
               <div class="talk">{{item.reply}}</div>
-            </div> -->
+            </div>
 
           </div>
 
         </div>
       </scroll-view>
+    </div> -->
+    <div style="background-color: #f2f2f2;padding-top: 10px;">
+      <div class="weui-cells__title" style="font-size: 18px;">评论：</div>
+      <div class="talk_container">
+        <div class="together" v-for="(item, index) in comment" :key="index">
+          <div class="img">
+            <img :src="item.AvatarUrl" style="width: 35px;height: 35px;border-radius: 3px;">
+          </div>
+          <div class="talk_content">
+            <div class="talker_info">
+              <div class="talker_name">{{item.Nickname}}</div>
+              <img src="/static/images/home/like.png" style="width: 20px;height: 20px;">
+            </div>
+            <div class="talk">{{item.Content}}</div>
+            <div v-if="item.reply !== ''">
+              <div class="talker_info" style="margin-top: 5px;">
+                <div style="border-left: 3px solid #16b015;padding: 0 5px;color: #929292;">作者</div>
+                <img src="/static/images/home/like.png" style="width: 20px;height: 20px;">
+              </div>
+              <div class="talk">{{item.reply}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+    <!-- 评论区 -->
     <!-- 评论区 -->
 
     <div class="footer">
@@ -177,6 +202,8 @@ export default{
       // 要求小程序返回分享目标信息
       withShareTicket: true
     })
+
+    // 更新visit count
     var data = {
       babyid: vm.item.Babyid,
       column: 'Visit'
@@ -186,6 +213,8 @@ export default{
     }).catch(err => {
       console.log('visit count update error!!!!!!!!!!!!!!!!!!!!!!', err)
     })
+
+    // 获取关联图片
     var data2 = {
       babyid: vm.item.Babyid,
       uuid: vm.item.UUID
@@ -194,57 +223,88 @@ export default{
       console.log('关联图片', res.data)
       // vm.Urls = res.data.
     })
-    // 获取关联图片
-    this.requestComment()
+
     // 从数据库获取评论信息
+    this.requestComment()
   },
   async onPullDownRefresh () {
     wx.stopPullDownRefresh()
   },
   methods: {
-    // requestComment () {
-    //   var vm = this
-    //   this.$get(`/lastest/wechatapi/small/comment/${vm.item.UUID}`, {
+    // requestComment_old () {
+    //   var that = this
+    //   wx.request({
+    //     url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/comment/' + that.item.UUID,
+    //     method: 'GET',
+    //     data: {
+    //     },
     //     header: {
-    //       Authorization: wx.getStorageSync('Authorization')
+    //       'content-type': 'application/json'
+    //       // Authorization: wx.getStorageSync('Authorization')
+    //     },
+    //     success: function (res) {
+    //       that.comment = res.data
+    //       for (var i = 0; i < that.comment.length; i++) {
+    //         that.comment[i].CreatedAt = formatTime(new Date(that.comment[i].CreatedAt))
+    //         that.comment[i].reply = ''
+    //       }
+    //       console.log('获取评论为：', that.comment)
     //     }
-    //   }).then((res) => {
-    //     vm.comment = JSON.parse(res.data)
-    //     console.log('获取评论为: ', res.data)
-    //     for (var i = 0; i < vm.comment.length; i++) {
-    //       vm.comment[i].CreatedAt = formatTime(new Date(vm.comment[i].CreatedAt))
-    //       vm.comment[i].reply = ''
-    //     }
-    //     // console.log('获取评论为：', vm.comment)
-    //   }).catch(err => {
-    //     console.log('request comments error!!!!!!!!!!!!!!!!!!!!!!1111', err)
     //   })
     // },
     requestComment () {
-      var that = this
-      wx.request({
-        url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/comment/' + that.item.UUID,
-        method: 'GET',
-        data: {
-        },
-        header: {
-          'content-type': 'application/json',
-          Authorization: wx.getStorageSync('Authorization')
-        },
-        success: function (res) {
-          console.log('request comments res======', res)
-          that.comment = res.data
-          for (var i = 0; i < that.comment.length; i++) {
-            that.comment[i].CreatedAt = formatTime(new Date(that.comment[i].CreatedAt))
-            that.comment[i].reply = ''
+      var vm = this
+      vm.$get(`/lastest/wechatapi/small/comment/${vm.item.UUID}`)
+        .then((res) => {
+          vm.comment = res.data
+          for (var i = 0; i < vm.comment.length; i++) {
+            vm.comment[i].CreatedAt = formatTime(new Date(vm.comment[i].CreatedAt))
+            vm.comment[i].reply = ''
           }
-          console.log('获取评论为：', that.comment)
-        },
-        fail: function (res) {
-          console.log('获取评价fail')
-        }
-      })
+          console.log('获取评论为：', vm.comment)
+        })
     },
+    // sub_new (e) {
+    //   let vm = this
+    //   if (e.mp.detail.value.pl === '') {
+    //     wx.showToast({
+    //       icon: 'none',
+    //       title: '留言不能为空！'
+    //     })
+    //     setTimeout(function () {
+    //       wx.hideLoading()
+    //     }, 2000)
+    //     return
+    //   }
+    //   var comment = {}
+    //   comment.Content = e.mp.detail.value.pl
+    //   comment.AvatarUrl = wx.getStorageSync('userInfo').avatarUrl
+    //   comment.Nickname = wx.getStorageSync('userInfo').nickName
+    //   comment.reply = ''
+    //   // that.commemt = [comment].concat(that.comment)
+    //   var comments = new Array(comment)
+    //   comments = comments.concat(vm.comment)
+    //   vm.comment = comments
+    //   console.log('评论为：', vm.comment)
+    //   console.log('new comment_tmp=================', comment)
+    //   var postParams = {
+    //     UUID: vm.item.UUID,
+    //     // AvatarUrl: wx.getStorageSync('userInfo').avatarUrl,
+    //     AvatarUrl: comment.AvatarUrl,
+    //     // Nickname: wx.getStorageSync('userInfo').nickName,
+    //     Nickname: comment.Nickname,
+    //     Content: comment.Content
+    //   }
+    //   vm.$post(`/lastest/wechatapi/small/comment`, postParams).then(function (res) {
+    //     vm.comment_value = ''
+    //     console.log('提交回调函数', res)
+    //     wx.showToast({
+    //       title: '评论成功',
+    //       icon: 'success',
+    //       duration: 2000
+    //     })
+    //   })
+    // },
     sub (e) {
       var that = this
       if (e.mp.detail.value.pl === '') {
@@ -260,48 +320,63 @@ export default{
       // 检验评论的合法性
 
       var comment = {}
-      comment.content = e.mp.detail.value.pl
-      comment.avatarUrl = wx.getStorageSync('userInfo').avatarUrl
-      comment.talker_name = wx.getStorageSync('userInfo').nickName
+      comment.Content = e.mp.detail.value.pl
+      comment.AvatarUrl = wx.getStorageSync('userInfo').avatarUrl || '/static/images/user.png'
+      comment.Nickname = wx.getStorageSync('userInfo').nickName || '游客'
       comment.reply = ''
-      console.log('评论为：', comment)
-      that.comment.push(comment)
+      // that.commemt = [comment].concat(that.comment)
+      var comments = new Array(comment)
+      comments = comments.concat(that.comment)
+      that.comment = comments
+      console.log('评论为：', that.comment)
+      console.log('new comment_tmp=================', comment)
       // 更新数据
-      var data = {
-        UUID: that.item.UUID,
-        AvatarUrl: wx.getStorageSync('userInfo').avatarUrl,
-        Nickname: wx.getStorageSync('userInfo').nickName,
-        Content: comment.content
-      }
-      this.$post('/lastest/wechatapi/small/comment', data).then((res) => {
-        that.comment_value = ''
-        console.log('提交回调函数', res)
-        wx.showToast({
-          title: '评论成功',
-          icon: 'success',
-          duration: 2000
-        })
-      }).catch(err => {
-        console.log('onsubmit error==========================', err)
+
+      wx.request({
+        url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/comment',
+        method: 'POST',
+        data: {
+          UUID: that.item.UUID,
+          // AvatarUrl: wx.getStorageSync('userInfo').avatarUrl,
+          AvatarUrl: comment.AvatarUrl,
+          // Nickname: wx.getStorageSync('userInfo').nickName,
+          Nickname: comment.Nickname,
+          Content: comment.Content
+        },
+        header: {
+          'content-type': 'application/json'
+        },
+        success: function (res) {
+          that.comment_value = ''
+          console.log('提交回调函数')
+          wx.showToast({
+            title: '评论成功',
+            icon: 'success',
+            duration: 2000
+          })
+        },
+        fail: function () {
+          console.log('上传失败')
+        }
       })
       // 将评论上传至数据库
     },
-    // getList (options) {
-    //   var item = {}
-    //   var items = wx.getStorageSync('database')
-    //   for (var i = 0; i < items.length; i++) {
-    //     if (options.id === items[i].UUID) {
-    //       item = items[i]
-    //     }
-    //   }
-    //   var data = {
-    //     babyid: item.Babyid,
-    //     uuid: item.UUID
-    //   }
-    //   this.$get('/lastest/wechatapi/small/image/getList', data).then((res) => {
-    //     console.log('关联图片', res.data)
-    //   })
-    // },
+    getList (options) {
+      var item = {}
+      var items = wx.getStorageSync('database')
+      for (var i = 0; i < items.length; i++) {
+        if (options.id === items[i].UUID) {
+          item = items[i]
+        }
+      }
+      var data = {
+        babyid: item.Babyid,
+        uuid: item.UUID
+      }
+      this.$get('/lastest/wechatapi/small/image/getList', data).then((res) => {
+        console.log('关联图片', res.data)
+      })
+    },
     //  获取关联图片
     download () {
       var that = this
@@ -453,6 +528,7 @@ export default{
 .together{
   padding: 26rpx;
   padding-bottom: 35rpx;
+  /* border:1px solid; */
 }
 .talk_content{
   display: flex;
