@@ -5,8 +5,7 @@ import qs from 'qs'
 // const NewTimeStamp = new Date().getTime()
 
 axios.defaults.timeout = 30000
-// axios.defaults.headers.post[ 'Content-Type' ] = 'application/x-www-form-urlencoded;charset=UTF-8'
-axios.defaults.headers.post[ 'Content-Type' ] = 'application/json;charset=UTF-8'
+axios.defaults.headers.post[ 'Content-Type' ] = 'application/x-www-form-urlencoded;charset=UTF-8'
 axios.defaults.adapter = function (config) {
   return new Promise((resolve, reject) => {
     // console.log(config,'adapter')

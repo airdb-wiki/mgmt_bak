@@ -93,7 +93,7 @@
     <!-- 评论区 -->
 
     <div class="footer">
-      <form @submit="sub">
+      <form @submit="sub" report-submit='true'>
         <div class="container">
           <input type="text" confirm-type="send" name="pl" v-model="comment_value" placeholder="说点什么吧" placeholder-style="color: #e2e2e2;"/>
           <button :plain='true' form-type="submit">
@@ -318,7 +318,8 @@ export default{
         return
       }
       // 检验评论的合法性
-
+      var formId = e.mp.detail.formId
+      console.log('formid=============', formId)
       var comment = {}
       comment.Content = e.mp.detail.value.pl
       comment.AvatarUrl = wx.getStorageSync('userInfo').avatarUrl || '/static/images/user.png'
@@ -336,6 +337,7 @@ export default{
         url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/comment',
         method: 'POST',
         data: {
+          FormId: formId,
           UUID: that.item.UUID,
           // AvatarUrl: wx.getStorageSync('userInfo').avatarUrl,
           AvatarUrl: comment.AvatarUrl,
