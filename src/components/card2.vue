@@ -1,10 +1,12 @@
 <template>
   <div class="page">
     <div v-for="(item, index) in items" :key="index" :summary=summary class="container">
-        <div :style="show[index] ? '' : 'max-height:237rpx;overflow: hidden;'"
-        @click="navToDetail" :id="item.UUID">
+      <form  @submit="formSubmit_item" report-submit="true">
+        <textarea name="uuid" :value="item.UUID" hidden></textarea>
+        <div :style="show[index] ? '' : 'max-height:237rpx;overflow: hidden;'">
           <!-- 卡片显示信息 -->
           <div class="head">
+            <button formType="submit" class="btn-submit"></button>
             <img class="status" :hidden="!item.Status" src="/static/images/home/find.png">
             <div class="content">
               <div class="avatar"><img :src="item.AvatarUrl" @click.stop="previewImg(index)"></div>
@@ -63,8 +65,9 @@
             <span class="num">{{item.Forward}}</span>
           </div>
         </div>
+      </form> 
+    </div>
   </div>
-</div>
 </template>
 
 <script>
@@ -106,8 +109,33 @@ export default {
     },
     // 跳转到详情页面
     navToDetail (e) {
+      console.log('navToDetail e+=======================', e)
       wx.navigateTo({
         url: '../../pages/detail/main?id=' + e.currentTarget.id
+      })
+    },
+    // 收集formId
+    formSubmit_item (e) {
+      console.log('item submit事件', e.mp.detail.formId)
+      var ss = wx.getStorageSync('minaAuth')
+      wx.request({
+        url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/user/formid',
+        method: 'POST',
+        data: {
+          openid: ss.openid,
+          formid: e.mp.detail.formId,
+          status: 1
+        },
+        header: {
+          'content-type': 'application/json'
+        },
+        success: function (res) {
+          console.log('collect formid success, info: ', res.data)
+        }
+      })
+      console.log('navToDetail e+=======================', e)
+      wx.navigateTo({
+        url: '../../pages/detail/main?id=' + e.mp.detail.value.uuid
       })
     }
   }
@@ -166,7 +194,9 @@ export default {
   margin-top: 8rpx;
 }
 .more{
-  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content:center;
   transition: ro
 }
 .more img{
@@ -222,6 +252,16 @@ export default {
 }
 .down-container{
   margin-top: 8rpx;
+}
+.btn-submit{
+  z-index: 666;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  opacity: 0;
+  background: #ffffff;
 }
 </style>
 

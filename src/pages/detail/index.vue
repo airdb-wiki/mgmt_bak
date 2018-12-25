@@ -264,47 +264,7 @@ export default{
           console.log('获取评论为：', vm.comment)
         })
     },
-    // sub_new (e) {
-    //   let vm = this
-    //   if (e.mp.detail.value.pl === '') {
-    //     wx.showToast({
-    //       icon: 'none',
-    //       title: '留言不能为空！'
-    //     })
-    //     setTimeout(function () {
-    //       wx.hideLoading()
-    //     }, 2000)
-    //     return
-    //   }
-    //   var comment = {}
-    //   comment.Content = e.mp.detail.value.pl
-    //   comment.AvatarUrl = wx.getStorageSync('userInfo').avatarUrl
-    //   comment.Nickname = wx.getStorageSync('userInfo').nickName
-    //   comment.reply = ''
-    //   // that.commemt = [comment].concat(that.comment)
-    //   var comments = new Array(comment)
-    //   comments = comments.concat(vm.comment)
-    //   vm.comment = comments
-    //   console.log('评论为：', vm.comment)
-    //   console.log('new comment_tmp=================', comment)
-    //   var postParams = {
-    //     UUID: vm.item.UUID,
-    //     // AvatarUrl: wx.getStorageSync('userInfo').avatarUrl,
-    //     AvatarUrl: comment.AvatarUrl,
-    //     // Nickname: wx.getStorageSync('userInfo').nickName,
-    //     Nickname: comment.Nickname,
-    //     Content: comment.Content
-    //   }
-    //   vm.$post(`/lastest/wechatapi/small/comment`, postParams).then(function (res) {
-    //     vm.comment_value = ''
-    //     console.log('提交回调函数', res)
-    //     wx.showToast({
-    //       title: '评论成功',
-    //       icon: 'success',
-    //       duration: 2000
-    //     })
-    //   })
-    // },
+    // 请求评论数据
     sub (e) {
       var that = this
       if (e.mp.detail.value.pl === '') {
@@ -318,8 +278,8 @@ export default{
         return
       }
       // 检验评论的合法性
-      var formId = e.mp.detail.formId
-      console.log('formid=============', formId)
+      // var formId = e.mp.detail.formId
+      // console.log('formid=============', formId)
       var comment = {}
       comment.Content = e.mp.detail.value.pl
       comment.AvatarUrl = wx.getStorageSync('userInfo').avatarUrl || '/static/images/user.png'
@@ -337,11 +297,9 @@ export default{
         url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/comment',
         method: 'POST',
         data: {
-          FormId: formId,
+          // FormId: formId,
           UUID: that.item.UUID,
-          // AvatarUrl: wx.getStorageSync('userInfo').avatarUrl,
           AvatarUrl: comment.AvatarUrl,
-          // Nickname: wx.getStorageSync('userInfo').nickName,
           Nickname: comment.Nickname,
           Content: comment.Content
         },
