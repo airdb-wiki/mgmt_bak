@@ -117,12 +117,15 @@ export default {
     // 收集formId
     formSubmit_item (e) {
       console.log('item submit事件', e.mp.detail.formId)
-      var ss = wx.getStorageSync('minaAuth')
+      // var ss = wx.getStorageSync('minaAuth')
+      // console.log('minaAuth=======', ss)
+      var profile = wx.getStorageSync('profile')
+      console.log('profile=======', profile)
       wx.request({
         url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/user/formid',
         method: 'POST',
         data: {
-          openid: ss.openid,
+          openid: profile.Openid,
           formid: e.mp.detail.formId,
           status: 1
         },

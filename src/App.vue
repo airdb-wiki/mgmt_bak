@@ -27,6 +27,7 @@ export default {
           vm.$get('/lastest/wechatapi/user/login', vm.prams).then((userProfile) => {
             wx.setStorageSync('profile', userProfile.data)
           })
+          // console.log('profile=======', wx.getStorageSync('profile'))
         } else {
           console.log('登录失败！' + res.errMsg)
         }
