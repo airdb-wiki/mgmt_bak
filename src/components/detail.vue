@@ -19,7 +19,7 @@
           <div class="weui-article__h3">户籍地点：<span class="words">{{item.BirthedProvince}} {{item.BirthedCity}} </span></div>
           <div class="weui-article__h3">失踪时间：<span class="words">{{item.MissedAt}}</span></div>
           <div class="weui-article__h3">失踪地点：<span class="words">{{item.MissedProvince}} {{item.MissedAddress}}</span></div>
-          <!-- <div class="weui-article__h3">失踪时身高：<span class="words">{{item.Height}}</span></div> -->
+          <div class="weui-article__h3">失踪时身高：<span class="words">{{item.Height}}</span></div>
           <div class="weui-article__h3">失踪人特征: <span class="words"> {{item.Characters}}</span></div>
           <div class="weui-article__h3">其他资料：<span class="words">{{item.Details}}</span></div>
           <!-- <div class="weui-article__h3">失踪时间： {{item.MissedAt}} </div> -->
@@ -73,7 +73,7 @@ export default{
     if (this.item.MissedCity === '不详') {
       this.item.MissedCity = '失踪地点不详'
     }
-    var title = this.item.MissedCity + '——' + this.item.Nickname
+    var title = this.item.Nickname
     this.content.title = title
   },
   onLoad () {

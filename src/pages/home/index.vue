@@ -105,6 +105,7 @@ export default {
   // 获取缓存
   onShow () {
     this.minaAuth = wx.getStorageSync('minaAuth')
+    console.log('minaAuth=========', this.minaAuth)
     var db = wx.getStorageSync('database')
     if (db.length === 0) {
       this.database = []
@@ -166,17 +167,20 @@ export default {
           if (res.data[i].MissedCity === '') {
             res.data[i].MissedCity = '不详'
           }
+          // if (res.data[i].Nickname === '') {
+          //   res.data[i].Nickname = '姓名 空'
+          // }
           if (res.data[i].Characters === '') {
             res.data[i].Characters = '不详'
           }
           if (res.data[i].Title === '') {
             res.data[i].Title = res.data[i].MissedProvince + '-' + res.data[i].MissedCity + ', 寻找' + res.data[i].Nickname
           }
-          if (res.data[i].MissedCity === '') {
-            res.data[i].MissedAddress = res.data[i].MissedCity
-          } else {
-            res.data[i].MissedAddress = res.data[i].MissedCity + res.data[i].MissedAddress
-          }
+          // if (res.data[i].MissedCity === '') {
+          //   res.data[i].MissedAddress = res.data[i].MissedCity
+          // } else {
+          //   res.data[i].MissedAddress = res.data[i].MissedCity + res.data[i].MissedAddress
+          // }
           // res.data[i].MissedAddress = res.data[i].MissedCity + res.data[i].MissedAddress
           res.data[i].MissedAt = formatTimeMin(new Date(res.data[i].MissedAt))
           res.data[i].BirthedAt = formatTimeMin(new Date(res.data[i].BirthedAt))

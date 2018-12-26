@@ -27,7 +27,7 @@ export default {
           vm.$get('/lastest/wechatapi/user/login', vm.prams).then((userProfile) => {
             wx.setStorageSync('profile', userProfile.data)
           })
-          // console.log('profile=======', wx.getStorageSync('profile'))
+          console.log('profile=======', wx.getStorageSync('profile'))
         } else {
           console.log('登录失败！' + res.errMsg)
         }
@@ -136,43 +136,85 @@ export default {
             console.log('-----profile', vm.profile.Openid)
             console.log('-----userinfo', userInfo)
             wx.setStorageSync('userInfo', res.userInfo)
-            var data = {
-              openid: vm.profile.Openid,
-              platform: loginInfo['platform'],
-              system: loginInfo['system'],
-              brand: loginInfo['brand'],
-              pmodel: loginInfo['pmodel'],
-              networkType: loginInfo['networkType'],
-              longitude: loginInfo['longitude'],
-              latitude: loginInfo['latitude'],
-              nickName: userInfo.nickName,
-              avatarUrl: userInfo.avatarUrl,
-              // 性别 0：未知、1：男、2：女
-              gender: userInfo.gender,
-              country: userInfo.country,
-              province: userInfo.province,
-              city: userInfo.city,
-              language: userInfo.language
-            }
-            // console.log('666666666666666666666')
-            vm.$get('/lastest/wechatapi/small/user/updateUserInfo', data).then((res) => {
-              // var obj = JSON.parse(res.data)
-              var obj = res.data || '{}'
-              obj = JSON.parse(obj)
-              console.log('wechat login: ', typeof (res.data), res)
-              wx.setStorageSync('minaAuth', obj)
-              var ss = wx.getStorageSync('minaAuth')
-              wx.setStorageSync('wecosUrl', ss.weCosUrl)
-              console.log('access_token is:', ss)
-              wx.showToast({
-                title: '公益时长 +3',
-                icon: 'success',
-                duration: 2000
-                // success: () => { console.log('showToast was called') }
-              })
-            }).catch((err) => {
-              console.log('updateUserInfo Error!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', err)
+            wx.login({
+              success: function (res) {
+                if (res.code) {
+                  wx.request({
+                    url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/user/login',
+                    method: 'POST',
+                    header: {
+                      'content-type': 'application/json'
+                    },
+                    data: {
+                      code: res.code,
+                      platform: loginInfo['platform'],
+                      system: loginInfo['system'],
+                      brand: loginInfo['brand'],
+                      pmodel: loginInfo['pmodel'],
+                      networkType: loginInfo['networkType'],
+                      longitude: loginInfo['longitude'],
+                      latitude: loginInfo['latitude'],
+                      nickName: userInfo.nickName,
+                      avatarUrl: userInfo.avatarUrl,
+                      // 性别 0：未知、1：男、2：女
+                      gender: userInfo.gender,
+                      country: userInfo.country,
+                      province: userInfo.province,
+                      city: userInfo.city,
+                      language: userInfo.language
+                    },
+                    success: function (res) {
+                      var obj = JSON.parse(res.data)
+                      console.log('wechat login: ', res.data)
+                      wx.setStorageSync('minaAuth', obj)
+                      var ss = wx.getStorageSync('minaAuth')
+                      console.log('access_token is:', ss)
+                      wx.showToast({
+                        title: '公益时长 +3',
+                        icon: 'success',
+                        duration: 2000
+                      })
+                    }
+                  })
+                }
+              }
             })
+            // var data = {
+            //   openid: vm.profile.Openid,
+            //   platform: loginInfo['platform'],
+            //   system: loginInfo['system'],
+            //   brand: loginInfo['brand'],
+            //   pmodel: loginInfo['pmodel'],
+            //   networkType: loginInfo['networkType'],
+            //   longitude: loginInfo['longitude'],
+            //   latitude: loginInfo['latitude'],
+            //   nickName: userInfo.nickName,
+            //   avatarUrl: userInfo.avatarUrl,
+            //   // 性别 0：未知、1：男、2：女
+            //   gender: userInfo.gender,
+            //   country: userInfo.country,
+            //   province: userInfo.province,
+            //   city: userInfo.city,
+            //   language: userInfo.language
+            // }
+            // vm.$get('/lastest/wechatapi/small/user/updateUserInfo', data).then((res) => {
+            //   // var obj = JSON.parse(res.data)
+            //   var obj = res.data || '{}'
+            //   obj = JSON.parse(obj)
+            //   console.log('wechat login: ', typeof (res.data), res)
+            //   wx.setStorageSync('minaAuth', obj)
+            //   var ss = wx.getStorageSync('minaAuth')
+            //   wx.setStorageSync('wecosUrl', ss.weCosUrl)
+            //   console.log('access_token is:', ss)
+            //   wx.showToast({
+            //     title: '公益时长 +3',
+            //     icon: 'success',
+            //     duration: 2000
+            //     // success: () => { console.log('showToast was called') }
+            //   })
+            // }).catch((err) => {
+            //   console.log('updateUserInfo Error!!!!!!!!!!!', err)
+            // })
           } catch (e) {
             console.log('setUserInfo failed App.vue')
           }
