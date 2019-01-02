@@ -104,7 +104,7 @@ export default {
   },
   // 获取缓存
   onShow () {
-    this.minaAuth = wx.getStorageSync('minaAuth')
+    // this.minaAuth = wx.getStorageSync('minaAuth')
     console.log('minaAuth=========', this.minaAuth)
     var db = wx.getStorageSync('database')
     if (db.length === 0) {
@@ -164,9 +164,9 @@ export default {
         console.log('res.data=======', res.data)
         // console.log('typeof(res.data)', typeof (res.data))
         for (var i = 0; i < res.data.length; i++) {
-          if (res.data[i].MissedCity === '') {
-            res.data[i].MissedCity = '不详'
-          }
+          // if (res.data[i].MissedCity === '') {
+          //   res.data[i].MissedCity = '不详'
+          // }
           // if (res.data[i].Nickname === '') {
           //   res.data[i].Nickname = '姓名 空'
           // }
@@ -175,6 +175,9 @@ export default {
           }
           if (res.data[i].Title === '') {
             res.data[i].Title = res.data[i].MissedProvince + '-' + res.data[i].MissedCity + ', 寻找' + res.data[i].Nickname
+          }
+          if (res.data[i].AvatarUrl === '') {
+            res.data[i].AvatarUrl = '/static/images/forward/home1.jpg'
           }
           // if (res.data[i].MissedCity === '') {
           //   res.data[i].MissedAddress = res.data[i].MissedCity

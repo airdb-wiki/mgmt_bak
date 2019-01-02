@@ -70,10 +70,16 @@ export default{
     }
   },
   beforeUpdate () {
-    if (this.item.MissedCity === '不详') {
-      this.item.MissedCity = '失踪地点不详'
+    var title
+    if (this.item.MissedCity === '') {
+      title = this.item.Nickname
+    } else {
+      title = this.item.MissedCity + '--' + this.item.Nickname
     }
-    var title = this.item.Nickname
+    // if (this.item.MissedCity === '不详') {
+    //   this.item.MissedCity = '失踪地点不详'
+    // }
+    // var title = this.item.Nickname
     this.content.title = title
   },
   onLoad () {
