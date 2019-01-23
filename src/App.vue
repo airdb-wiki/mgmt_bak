@@ -6,7 +6,7 @@ export default {
   data () {
     return {
       env: 'test',
-      domain: 'https://wechat.baobeihuijia.com',
+      domain: 'https://mina.baobeihuijia.com',
       userInfo: {},
       loginInfo: {}, // 用户登录信息
       profile: {},
