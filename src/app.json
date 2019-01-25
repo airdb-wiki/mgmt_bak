@@ -21,7 +21,8 @@
     "pages/profile/main",
     "pages/article/main",
     "pages/test_mc/trends/main",
-    "pages/search/main"
+    "pages/search/main",
+    "pages/list/main"
   ],
   "plugins": {
     "tencentvideo": {

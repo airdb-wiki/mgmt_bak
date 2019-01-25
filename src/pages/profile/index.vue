@@ -37,7 +37,7 @@
           </div>
           <!-- <div class="weui-cell__ft weui-cell__ft_in-access"></div> -->
         </div>
-        <div class="weui-cell">
+        <div class="weui-cell" @click="naviTo">
           <div class="weui-cell__bd">
             <img src="/static/images/bell.png" alt="">
             <div class="weui-label">我的消息</div>
@@ -139,6 +139,11 @@ export default {
     tel: function () {
       wx.makePhoneCall({
         phoneNumber: '0435-3338090'
+      })
+    },
+    naviTo: function () {
+      wx.navigateTo({
+        url: '/pages/list/main'
       })
     }
   },
