@@ -17,7 +17,7 @@
     </div>
     <!-- 列表信息 -->
     <div class="line"></div>
-    <div class="list_box" v-for="(item, index) in database" :key="index" :summary=summary>
+    <div class="list_box" v-for="(item, index) in database" :key="index" :summary=summary @click="navToDetail" :id="item.UUID">
         <div class='list_item'>
           <div class='list_left'>
             <img :src="item.AvatarUrl" alt="" class='list_img'>
@@ -44,6 +44,12 @@ export default {
     console.log('database information:', db)
   },
   methods: {
+    navToDetail (e) {
+      console.log('navToDetail e+=======================', e)
+      wx.navigateTo({
+        url: '../../pages/detail/main?id=' + e.mp.currentTarget.id
+      })
+    }
   }
 }
 </script>
@@ -148,7 +154,7 @@ export default {
 }
 .list_item {
   width: 750rpx;
-  height: 40px;
+  height: 50px;
   display: flex;
   flex-direction: row;
   /* border-top: 1px solid; */
@@ -165,10 +171,10 @@ export default {
 }
 
 .list_right {
-  height: 40px;
-  line-height: 40px;
-  font-size: 14px;
-  font-weight: 300;
+  height: 50px;
+  line-height: 50px;
+  font-size: 15px;
+  font-weight: 400;
   color: rgba(29, 27, 27, 0.986);
   overflow:hidden;
 }

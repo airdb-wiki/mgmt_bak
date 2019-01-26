@@ -109,7 +109,7 @@ export default {
     },
     // 跳转到详情页面
     navToDetail (e) {
-      console.log('navToDetail e+=======================', e)
+      console.log('navToDetail e++++=======================', e.currentTarget.id)
       wx.navigateTo({
         url: '../../pages/detail/main?id=' + e.currentTarget.id
       })
