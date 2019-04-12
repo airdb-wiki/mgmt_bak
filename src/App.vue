@@ -3,6 +3,15 @@
 import { weixinUpdate } from '@/utils/update'
 
 export default {
+  // 调用API从本地缓存中获取数据
+  /*
+   * 平台 api 差异的处理方式:  api 方法统一挂载到 mpvue 名称空间, 平台判断通过 mpvuePlatform 特征字符串
+   * 微信：mpvue === wx, mpvuePlatform === 'wx'
+   * 头条：mpvue === tt, mpvuePlatform === 'tt'
+   * 百度：mpvue === swan, mpvuePlatform === 'swan'
+   * 支付宝(蚂蚁)：mpvue === my, mpvuePlatform === 'my'
+   */
+
   data () {
     return {
       env: 'test',
@@ -224,148 +233,7 @@ export default {
   }
 }
 </script>
-<style>
 
-html, body {
-  background: #efeff4;
-}
-page {
-  background: #efeff4;
-  font-size: 30rpx;
-  color: #353535; 
-}
-
-.page__hd {
-  height: 80rpx;
-}
-.page__title {
-  padding: 0 30rpx;
-  line-height: 80rpx;
-}
-.weui-cells {
-  margin-bottom: 12rpx;
-}
-.bh-article-row {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-.bh-article-row .bh-article-group:not(:fist-child) {
-  margin-left: 50rpx;
-}
-.bh-article-group {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
-  margin-top: 10rpx;
-}
-.bh-article-group__label {
-  flex: 0 0 auto;
-  width: 130rpx;
-  text-align: right;
-  color: #777;
-}
-.bh-article-group__cont {
-  flex: 1 1 auto;
-  padding-left: 15rpx;
-}
-
-.post-panel {
-  margin-top: 20rpx;
-  background: #fff;
-}
-.post-panel__hd {
-  position: relative;
-  height: 80rpx;
-  padding: 0 20rpx;
-  border-bottom: 1px solid #f5f5f5;
-}
-.post-panel__title {
-  font-size: 34rpx;
-  line-height: 80rpx;
-  color: #000;
-}
-.post-panel__bd {
-  box-sizing: border-box;
-  padding: 0 20rpx 20rpx;
-}
-.post-panel__ft {
-  height: 80rpx;
-  border-top: 1px solid #f5f5f5;
-  text-align: center;
-
-}
-.post-panel__hd .btn-more {
-  position: absolute;
-  top: 0;
-  right: 20rpx;
-  line-height: 80rpx;
-  color: #aaa;
-
-}
-
-.post-list {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: top;
-}
-
-.post-item {
-  box-sizing: border-box;
-  flex: 0 0 auto;
-  width: 49%;
-  padding: 24rpx 0 12rpx;
-}
-
-.post-item:nth-child(2n) {
-  margin-left: 2%;
-}
-
-.post-item__pic {
-  overflow: hidden;
-  background: #ccc;
-  height: 200rpx;
-}
-.post-item__pic img,
-.post-item__pic image {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-.post-item__title {
-  font-size: 28rpx;
-  line-height: 2.4;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.post-item__desc {
-  font-size: 24rpx;
-}
-
-.fn-align-center {
-  text-align: center;
-}
-
-
-.container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 200rpx 0;
-  box-sizing: border-box;
-}
-/* this rule will be remove */
-* {
-  transition: width 2s;
-  -moz-transition: width 2s;
-  -webkit-transition: width 2s;
-  -o-transition: width 2s;
-}
+<style scoped lang='less'>
+  @import 'App';
 </style>
