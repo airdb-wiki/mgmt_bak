@@ -3,28 +3,33 @@
 
     <div class="kind-list">
       <div class="kind-list__item">
-        <img class="kind-list__img" :src="'/static/images/setting.png'">
+        <img class="kind-list__img" :src="'/static/images/history.png'">
         <div class="kind-list__item-hd" @click="openUrl('index')">我的发布</div>
       </div>
 
-      <div class="weui-flex,kind-list__item-hd" @click="openUrl('index')">我的关注</div>
+      <div>
+        <img class="kind-list__img" :src="'/static/images/history.png'">
+        <div class="weui-flex,kind-list__item-hd" @click="openUrl('index')">我的关注</div>
+      </div>
 
-      <div class="weui-flex,kind-list__item-hd" @click="openUrl('index')">救助站</div>
-
+      <div>
+        <img class="kind-list__img" :src="'/static/images/history.png'">
+        <div class="weui-flex,kind-list__item-hd" @click="openUrl('index')">救助站</div>
+      </div>
 
       <div class="kind-list__item">
         <img class="kind-list__img" :src="'/static/images/customer_service.png'">
-        <div class="weui-flex,kind-list__item-hd" @click="openUrl('index')">客服</div>
+        <div class="wkind-list__item-hd" @click="openUrl('index')">客服</div>
       </div>
 
       <div class="kind-list__item">
         <img class="kind-list__img" :src="'/static/images/feedback.png'">
-        <div class="weui-flex,kind-list__item-hd" @click="openUrl('index')">反馈</div>
+        <div class="kind-list__item-hd" @click="openUrl('index')">反馈</div>
       </div>
 
       <div class="kind-list__item">
         <img class="kind-list__img" :src="'/static/images/setting.png'">
-        <div class="weui-flex,kind-list__item-hd" @click="openUrl('setting')">设置</div>
+        <div class="kind-list__item-hd" @click="openUrl('setting')">设置</div>
       </div>
 
     </div>

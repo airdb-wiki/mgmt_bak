@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "mpvueTemplateProjectVersion": "0.1.0",
   "description": "A Mpvue project",
-  "author": "(dean <dean@airdb.com>)",
+  "author": "dean <dean@airdb.com>",
   "private": true,
   "scripts": {
     "dev:wx": "node build/dev-server.js wx",
@@ -24,12 +24,9 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
-    "axios": "^0.18.0",
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
     "mpvue": "^2.0.0",
-    "mpvue-weui": "^1.0.6",
-    "vue-light-timeline": "^1.0.1",
     "vuex": "^3.0.1"
   },
   "devDependencies": {

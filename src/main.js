@@ -1,14 +1,6 @@
 import Vue from 'vue'
 import App from './App'
-
-import {get, post} from './utils/http'
-
-import LightTimeline from 'vue-light-timeline'
-
-Vue.use(LightTimeline)
-
-Vue.prototype.$post = post
-Vue.prototype.$get = get
+import '../static/weui/weui.css'
 
 Vue.config.productionTip = false
 App.mpType = 'app'

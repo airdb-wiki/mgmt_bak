@@ -63,7 +63,6 @@ let baseWebpackConfig = {
           formatter: require('eslint-friendly-formatter')
         }
       },
-      { test: /.less$/, loader: "style-loader!css-loader!less-loader", },
       {
         test: /\.vue$/,
         loader: 'mpvue-loader',

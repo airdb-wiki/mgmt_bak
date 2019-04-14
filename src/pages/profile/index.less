@@ -1,5 +1,4 @@
 .after-userifo{
-  background: #fff;
 }
 .weui-cells{
   margin-top: 0;
@@ -61,14 +60,16 @@
   height: 300rpx;
   /* margin-bottom: 20rpx; */
   /* border-bottom: 1px solid #d9d9d9; */
-  background: #fff;
+  background: #00af34;
   /* border-bottom: solid #d9d9d9 1px;  */
 }
 .userinfo-avatar {
   margin-top:30rpx;
 }
-.img
- {
+.userlogin{
+  margin-top: 80%;
+}
+.img {
   width: 150rpx;
   height: 150rpx;
   border-radius: 50%;
@@ -79,18 +80,6 @@
   font-size:34rpx;
   font-family: Helvetica
 }
-.bh-profile-page {
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  min-height: 100%;
-  background: #efeff4;
-  margin: 0 0;
-}
-.profile-page-main {
-  flex: 1 1 auto;
-  margin-top: 70px;
-}
 .btn-post {
     float: right;
     position: fixed;
@@ -98,4 +87,74 @@
     right: 20rpx;
     height: 120rpx;
     width: 120rpx;
+}
+
+
+
+.weui-flex {
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+.weui-cells {
+  margin-top: 0;
+  opacity: 0;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+.weui-cells:after,
+.weui-cells:before {
+  display: none;
+}
+.weui-cells_show {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+}
+.weui-cell:before {
+  right: 15px;
+}
+
+
+.kind-list__item {
+  background-color: #fff;
+  border-radius: 2px;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: row;
+}
+.kind-list__item:first-child {
+  margin-top: 0;
+}
+.kind-list__img {
+  width: 10%;
+  height: 30px;
+  padding: 30px;
+  padding-right: 0px;
+
+  display: flex;
+  flex-direction: row;
+}
+.kind-list__item-hd {
+  font-size: 20px;
+  padding-top: 20px;
+  padding-left: 20px;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+  border-width: 10px 0 0 0;
+  border-style: solid;
+  border-color: #F0F0F0;
+}
+
+
+page {
+  background-color: #00af34;
+  font-size: 16px;
+  font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }

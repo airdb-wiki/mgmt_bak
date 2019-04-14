@@ -1,72 +1,55 @@
 <template>
-  <div class="bh-profile-page">
-    <!-- 自定义navigation -->
-    <div class="profile-page-main">
-      <div class="userinfo">
-        <div v-if="authSetting.userInfo" class="userinfo-avatar" @click="openSetting">
-          <image class="img" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover"/>
-        </div>
-        <div v-else class="userinfo-avatar" @click="openSetting">
-          <image class="img" src="/static/tabs/user_active.png" background-size="cover" />
-        </div>
-        <div v-if="authSetting.userInfo">
-          <div class="userinfo-cont">
-            <div class="text-name">{{ userInfo.nickName }}</div>
-          </div>
-        </div>
-        <div v-else>
-          <button class="weui-btn" type="primary" open-type="getUserInfo" lang="zh_CN" @getuserinfo="getUserInfo">微信快速登录</button>
+  <div class="page">
+    <div class="userinfo">
+      <div v-if="authSetting.userInfo" class="userinfo-avatar" @click="openUrl('index')">
+        <image class="img" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover"/>
+      </div>
+      <div v-if="authSetting.userInfo">
+        <div class="userinfo-cont">
+          <div class="text-name">{{ userInfo.nickName }}</div>
         </div>
       </div>
-
-      <div class="weui-cells">
-        <div class="weui-cell">
-          <div class="weui-cell__bd">
-            <img src="/static/images/heart.png" alt="">
-            <div class="weui-label">爱心接力</div>
-            <p>15次</p>
-          </div>
-          <!-- <div class="weui-cell__ft weui-cell__ft_in-access"></div> -->
-        </div>
-        <div class="weui-cell">
-          <div class="weui-cell__bd">
-            <img src="/static/images/clock.png" alt="">
-            <div class="weui-label">公益时长</div>
-            <p>102小时</p>
-          </div>
-          <!-- <div class="weui-cell__ft weui-cell__ft_in-access"></div> -->
-        </div>
-        <div class="weui-cell" @click="naviTo">
-          <div class="weui-cell__bd">
-            <img src="/static/images/bell.png" alt="">
-            <div class="weui-label">我的消息</div>
-          </div>
-          <div class="weui-cell__ft weui-cell__ft_in-access"></div>
-        </div>
+      <div v-else>
+        <button class="userlogin" type="primary" open-type="getUserInfo" lang="zh_CN" @getuserinfo="getUserInfo">登录</button>
       </div>
-
-      <div class="after-userifo">
-        <div class="weui-cell title">
-          <div class="weui-label-contract">联系我们</div>
-        </div>
-        <div class="weui-info">
-          <div class="weui-item" style="-webkit-user-select:text">官方网站: <p class="weui-p" style='display: inline'>www.baobeihuijia.com</p></div>
-          <div class="weui-item" style="-webkit-user-select:text">咨询信箱: <p class="weui-p" style='display: inline'>baobeihuijia@yeah.net</p></div>
-          <div class="weui-item">站务电话: <p class="weui-phone" style='display: inline' @click="tel">0435-3338090</p></div>
-          <div class="weui-item" style="-webkit-user-select:text">QQ接待群: <p class="weui-p" style='display: inline'>1840533</p></div>
-        </div>
-      </div>
-      <!-- weui-cells end -->
-
     </div>
-    <!-- profile-page-main end -->
-    <!-- 右下角加号新建 -->
-    <!-- <button open-type="contact" session-from="weixin-baobeihuijia">
-      <img src="/static/images/CustomerService.png" class="btn-post">
-    </button> -->
-    <vfooter></vfooter>
 
 
+
+      <div class="kind-list">
+        <div class="kind-list__item">
+          <img class="kind-list__img" :src="'/static/images/history.png'">
+          <div class="kind-list__item-hd" @click="openUrl('index')">我的发布</div>
+        </div>
+
+
+
+        <div>
+        <img class="kind-list__img" :src="'/static/images/history.png'">
+        <div class="weui-flex,kind-list__item-hd" @click="openUrl('index')">我的关注</div>
+        </div>
+
+        <div>
+        <img class="kind-list__img" :src="'/static/images/history.png'">
+        <div class="weui-flex,kind-list__item-hd" @click="openUrl('index')">救助站</div>
+        </div>
+
+        <div class="kind-list__item">
+          <img class="kind-list__img" :src="'/static/images/customer_service.png'">
+          <div class="wkind-list__item-hd" @click="openUrl('index')">客服</div>
+        </div>
+
+        <div class="kind-list__item">
+          <img class="kind-list__img" :src="'/static/images/feedback.png'">
+          <div class="kind-list__item-hd" @click="openUrl('index')">反馈</div>
+        </div>
+
+        <div class="kind-list__item">
+          <img class="kind-list__img" :src="'/static/images/setting.png'">
+          <div class="kind-list__item-hd" @click="openUrl('setting')">设置</div>
+        </div>
+
+      </div>
   </div>
 </template>
 
@@ -87,10 +70,29 @@ export default {
       userInfo: wx.getStorageSync('userInfo'),
       authSetting: {
         userInfo: wx.getStorageSync('authSetting.userInfo')
-      }
+      },
+      list: [
+        {
+          id: 'feedback',
+          name: '操作反馈',
+          open: false,
+          pages: ['actionsheet', 'dialog', 'msg', 'picker', 'toast']
+        },
+        {
+          id: 'nav',
+          name: '设置',
+          open: false,
+          pages: ['navbar', 'tabbar']
+        }
+      ]
     }
   },
-  onLoad: function () {
+  onLoad: function (options) {
+    mpvue.setNavigationBarTitle({
+      title: '我的帐户',
+      success: function (res) {
+      }
+    })
     console.log('===test_mc onLoad======:')
     console.log('test_mc====onLoad() authSetting.userInfo =', this.authSetting.userInfo)
     console.log('test_mc====onLoad() userInfo =', this.userInfo)
@@ -109,6 +111,16 @@ export default {
     onPostClick () {
       wx.navigateTo({
         url: '/pages/publish/main'
+      })
+    },
+    openUrl (page) {
+      console.log('-----', page)
+      if (page === 'setting') {
+        wx.openSetting({})
+        return
+      }
+      wx.navigateTo({
+        url: '/pages/' + page + '/main?id=1'
       })
     },
     openSetting () {
@@ -144,6 +156,18 @@ export default {
       wx.navigateTo({
         url: '/pages/list/main'
       })
+    },
+    kindToggle (e) {
+      var id = e.currentTarget.id
+      var list = this.list
+      for (var i = 0, len = list.length; i < len; ++i) {
+        if (list[i].id === id) {
+          list[i].open = !list[i].open
+        } else {
+          list[i].open = false
+        }
+      }
+      this.list = list
     }
   },
   created () {
