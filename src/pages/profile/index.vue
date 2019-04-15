@@ -92,19 +92,6 @@ export default {
     }
   },
   onLoad: function (options) {
-    mpvue.setBackgroundColor({
-      backgroundColor: '#00af34',
-      backgroundColorBottom: '#00af34'
-    })
-    mpvue.setNavigationBarColor({
-      frontColor: '#ffffff',
-      backgroundColor: '#00af34'
-    })
-    mpvue.setNavigationBarTitle({
-      title: '我的帐户',
-      success: function (res) {
-      }
-    })
     console.log('===test_mc onLoad======:')
     console.log('test_mc====onLoad() authSetting.userInfo =', this.authSetting.userInfo)
     console.log('test_mc====onLoad() userInfo =', this.userInfo)
