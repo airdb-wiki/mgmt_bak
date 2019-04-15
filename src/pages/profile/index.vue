@@ -2,7 +2,7 @@
   <div class="page">
 
     <div class="userinfo">
-      <div v-if="authSetting.userInfo" class="userinfo-avatar" @click="openUrl('privilege')">
+      <div v-if="authSetting.userInfo" class="userinfo-avatar" @click="openUrl('/pages/privilege/main')">
         <image class="img" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover"/>
       </div>
       <div v-if="authSetting.userInfo">
@@ -52,32 +52,32 @@ export default {
         {
           name: '已发布',
           icon: '/static/images/product.png',
-          page: 'list'
+          page: '/pages/list/main'
         },
         {
           name: '已关注',
           icon: '/static/images/star.png',
-          page: 'volunteer'
+          page: '/pages/volunteer/main'
         },
         {
           name: '收信箱',
           icon: '/static/images/message.png',
-          page: 'hr'
+          page: '/pages/hr/main'
         },
         {
           name: '客服',
           icon: '/static/images/customer_service.png',
-          page: 'hr'
+          page: '/pages/hr/main'
         },
         {
           name: '反馈',
           icon: '/static/images/feedback.png',
-          page: 'hr'
+          page: '/pages/hr/main'
         },
         {
           name: '设置',
           icon: '/static/images/settings.png',
-          page: 'hr'
+          page: 'setting'
         }
       ]
     }
@@ -110,7 +110,7 @@ export default {
         return
       }
       wx.navigateTo({
-        url: '/pages/' + page + '/main?wxid='
+        url: page + '?wxid='
       })
     },
     openSetting () {
