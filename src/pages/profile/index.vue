@@ -1,7 +1,8 @@
 <template>
   <div class="page">
+
     <div class="userinfo">
-      <div v-if="authSetting.userInfo" class="userinfo-avatar" @click="openUrl('index')">
+      <div v-if="authSetting.userInfo" class="userinfo-avatar" @click="openUrl('privilege')">
         <image class="img" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover"/>
       </div>
       <div v-if="authSetting.userInfo">
@@ -15,45 +16,17 @@
     </div>
 
 
-      <div class="kind-list">
-        <div class="weui-flex kind-list__item">
-          <img class="kind-list__img" :src="'/static/images/product.png'">
-          <div class="kind-list__item-hd" >已发布</div>
+
+    <div class="kind-list">
+      <div v-for="(item, index) in kindlist" :key="index">
+        <div class="weui-flex kind-list__item" @click="openUrl(item.page)">
+          <img class="kind-list__img" :src="item.icon">
+          <div class="kind-list__item-hd" >{{item.name}}</div>
           <img class="kind-list__img_right" :src="'/static/images/big.png'">
         </div>
-
-
-        <div class="weui-flex kind-list__item">
-          <img class="kind-list__img" :src="'/static/images/star.png'">
-          <div class="kind-list__item-hd">已关注</div>
-          <img class="kind-list__img_right" :src="'/static/images/big.png'">
-        </div>
-
-        <div class="weui-flex kind-list__item">
-          <img class="kind-list__img" :src="'/static/images/message.png'">
-          <div class="kind-list__item-hd">收信箱</div>
-          <img class="kind-list__img_right" :src="'/static/images/big.png'">
-        </div>
-
-        <div class="weui-flex kind-list__item">
-          <img class="kind-list__img" :src="'/static/images/customer_service.png'">
-          <div class="kind-list__item-hd" >客服</div>
-          <img class="kind-list__img_right" :src="'/static/images/big.png'">
-        </div>
-
-        <div class="weui-flex kind-list__item">
-          <img class="kind-list__img" :src="'/static/images/feedback.png'">
-          <div class="kind-list__item-hd">反馈</div>
-          <img class="kind-list__img_right" :src="'/static/images/big.png'">
-        </div>
-
-        <div class="weui-flex kind-list__item">
-          <img class="kind-list__img" :src="'/static/images/settings.png'">
-          <div class="kind-list__item-hd">设置</div>
-          <img class="kind-list__img_right" :src="'/static/images/big.png'">
-        </div>
-
       </div>
+    </div>
+
   </div>
 </template>
 
@@ -75,18 +48,36 @@ export default {
       authSetting: {
         userInfo: wx.getStorageSync('authSetting.userInfo')
       },
-      list: [
+      kindlist: [
         {
-          id: 'feedback',
-          name: '我的发布',
-          icon: '/static/images/history.png',
-          page: 'index'
+          name: '已发布',
+          icon: '/static/images/product.png',
+          page: 'list'
         },
         {
-          id: 'nav',
+          name: '已关注',
+          icon: '/static/images/star.png',
+          page: 'volunteer'
+        },
+        {
+          name: '收信箱',
+          icon: '/static/images/message.png',
+          page: 'hr'
+        },
+        {
+          name: '客服',
+          icon: '/static/images/customer_service.png',
+          page: 'hr'
+        },
+        {
+          name: '反馈',
+          icon: '/static/images/feedback.png',
+          page: 'hr'
+        },
+        {
           name: '设置',
-          open: false,
-          pages: ['navbar', 'tabbar']
+          icon: '/static/images/settings.png',
+          page: 'hr'
         }
       ]
     }
@@ -99,7 +90,7 @@ export default {
   onShareAppMessage: function () {
     return {
       title: '公益项目',
-      path: '/pages/profile/main?from=forward',
+      path: '/pages/user/profile/main?from=forward',
       imageUrl: '/static/images/home/vr.png'
     }
   },
@@ -115,11 +106,11 @@ export default {
     openUrl (page) {
       console.log('-----', page)
       if (page === 'setting') {
-        wx.openSetting({})
+        mpvue.openSetting({})
         return
       }
       wx.navigateTo({
-        url: '/pages/' + page + '/main?id=1'
+        url: '/pages/' + page + '/main?wxid='
       })
     },
     openSetting () {
@@ -153,7 +144,7 @@ export default {
     },
     naviTo: function () {
       wx.navigateTo({
-        url: '/pages/list/main'
+        url: '/pages/user/list/main'
       })
     },
     kindToggle (e) {
