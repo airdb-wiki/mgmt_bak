@@ -5,6 +5,8 @@
       <button @click="increment">+</button>
       <button @click="decrement">-</button>
     </p>
+
+    <a href="pages/home/main" class="home">去往首页</a>
   </div>
 </template>
 
@@ -41,4 +43,5 @@ export default {
   color: blue;
   border: 1px solid blue;
 }
+
 </style>
