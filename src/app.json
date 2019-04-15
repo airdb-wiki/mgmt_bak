@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/lab/main",
     "pages/profile/main",
     "pages/logs/main",
     "pages/counter/main",
@@ -9,7 +8,7 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#00af34",
+    "navigationBarBackgroundColor": "#fffff",
     "navigationBarTitleText": "宝贝回家",
     "navigationBarTextStyle": "black"
   },

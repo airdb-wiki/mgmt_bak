@@ -15,38 +15,42 @@
     </div>
 
 
-
       <div class="kind-list">
-        <div class="kind-list__item">
-          <img class="kind-list__img" :src="'/static/images/history.png'">
-          <div class="kind-list__item-hd" @click="openUrl('index')">我的发布</div>
+        <div class="weui-flex kind-list__item">
+          <img class="kind-list__img" :src="'/static/images/product.png'">
+          <div class="kind-list__item-hd" >已发布</div>
+          <img class="kind-list__img_right" :src="'/static/images/big.png'">
         </div>
 
 
-
-        <div>
-        <img class="kind-list__img" :src="'/static/images/history.png'">
-        <div class="weui-flex,kind-list__item-hd" @click="openUrl('index')">我的关注</div>
+        <div class="weui-flex kind-list__item">
+          <img class="kind-list__img" :src="'/static/images/star.png'">
+          <div class="kind-list__item-hd">已关注</div>
+          <img class="kind-list__img_right" :src="'/static/images/big.png'">
         </div>
 
-        <div>
-        <img class="kind-list__img" :src="'/static/images/history.png'">
-        <div class="weui-flex,kind-list__item-hd" @click="openUrl('index')">救助站</div>
+        <div class="weui-flex kind-list__item">
+          <img class="kind-list__img" :src="'/static/images/message.png'">
+          <div class="kind-list__item-hd">收信箱</div>
+          <img class="kind-list__img_right" :src="'/static/images/big.png'">
         </div>
 
-        <div class="kind-list__item">
+        <div class="weui-flex kind-list__item">
           <img class="kind-list__img" :src="'/static/images/customer_service.png'">
-          <div class="wkind-list__item-hd" @click="openUrl('index')">客服</div>
+          <div class="kind-list__item-hd" >客服</div>
+          <img class="kind-list__img_right" :src="'/static/images/big.png'">
         </div>
 
-        <div class="kind-list__item">
+        <div class="weui-flex kind-list__item">
           <img class="kind-list__img" :src="'/static/images/feedback.png'">
-          <div class="kind-list__item-hd" @click="openUrl('index')">反馈</div>
+          <div class="kind-list__item-hd">反馈</div>
+          <img class="kind-list__img_right" :src="'/static/images/big.png'">
         </div>
 
-        <div class="kind-list__item">
-          <img class="kind-list__img" :src="'/static/images/setting.png'">
-          <div class="kind-list__item-hd" @click="openUrl('setting')">设置</div>
+        <div class="weui-flex kind-list__item">
+          <img class="kind-list__img" :src="'/static/images/settings.png'">
+          <div class="kind-list__item-hd">设置</div>
+          <img class="kind-list__img_right" :src="'/static/images/big.png'">
         </div>
 
       </div>
@@ -74,9 +78,9 @@ export default {
       list: [
         {
           id: 'feedback',
-          name: '操作反馈',
-          open: false,
-          pages: ['actionsheet', 'dialog', 'msg', 'picker', 'toast']
+          name: '我的发布',
+          icon: '/static/images/history.png',
+          page: 'index'
         },
         {
           id: 'nav',
@@ -88,6 +92,14 @@ export default {
     }
   },
   onLoad: function (options) {
+    mpvue.setBackgroundColor({
+      backgroundColor: '#00af34',
+      backgroundColorBottom: '#00af34'
+    })
+    mpvue.setNavigationBarColor({
+      frontColor: '#ffffff',
+      backgroundColor: '#00af34'
+    })
     mpvue.setNavigationBarTitle({
       title: '我的帐户',
       success: function (res) {
