@@ -1,17 +1,14 @@
 <template>
-  <div class="test-page">
+  <div class="page">
 
-    <div class="test-page-main">
       <div class="user">
         <div v-if="authSetting.userInfo" class="user-avatar">
           <image class="img" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover"/>
         </div>
-        <div v-else class="user-avatar">
-          <image class="img" src="/static/images/user_active.png" background-size="cover" />
-        </div>
+
         <!-- user-avatar end -->
         <div class="user-cont">
-          <div class="text-name">我的专属特权</div>
+          <div class="text-name">专属特权</div>
           <div class="text-time">{{privilege}}/13</div>
         </div>
         <!-- user-cont end -->
@@ -30,8 +27,9 @@
         <!-- grids end -->
       </div>
       <!-- after-user end -->
-    </div>
-    <!-- test-page-main end -->
+
+
+    <vfooter></vfooter>
   </div>
 </template>
 
@@ -60,12 +58,6 @@ export default{
       }, {
         name: '衣服一件',
         src: '/static/images/profile/clothes.png'
-      }, {
-        name: '未解锁',
-        src: '/static/images/profile/locked.png'
-      }, {
-        name: '未解锁',
-        src: '/static/images/profile/locked.png'
       }, {
         name: '未解锁',
         src: '/static/images/profile/locked.png'

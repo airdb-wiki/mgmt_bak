@@ -1,23 +1,26 @@
 <template>
-  <div class="bh-profile-page">
-    <!-- 自定义navigation -->
-    <div class="profile-page-main">
+  <div class="page">
       <div class="after-userifo">
         <div class="weui-info">
           <div class="weui-item" style="-webkit-user-select:text">官方网站: <p class="weui-p" style='display: inline'>www.baobeihuijia.com</p></div>
           <div class="weui-item" style="-webkit-user-select:text">咨询信箱: <p class="weui-p" style='display: inline'>baobeihuijia@yeah.net</p></div>
           <div class="weui-item">站务电话: <p class="weui-phone" style='display: inline' @click="tel">0435-3338090</p></div>
           <div class="weui-item" style="-webkit-user-select:text">QQ接待群: <p class="weui-p" style='display: inline'>1840533</p></div>
+
         </div>
       </div>
       <!-- weui-cells end -->
 
-    </div>
+      <button open-type="contact" bindcontact="handleContact">在线客服</button>
+
     <!-- profile-page-main end -->
     <!-- 右下角加号新建 -->
     <!-- <button open-type="contact" session-from="weixin-baobeihuijia">
       <img src="/static/images/CustomerService.png" class="btn-post">
     </button> -->
+
+
+
     <vfooter></vfooter>
 
 

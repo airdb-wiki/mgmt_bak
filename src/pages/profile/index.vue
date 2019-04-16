@@ -67,12 +67,12 @@ export default {
         {
           name: '客服',
           icon: '/static/images/customer_service.png',
-          page: '/pages/hr/main'
+          page: '/pages/customerservice/main'
         },
         {
           name: '反馈',
           icon: '/static/images/feedback.png',
-          page: '/pages/hr/main'
+          page: '/pages/feedback/main'
         },
         {
           name: '设置',
