@@ -1,31 +1,7 @@
 <template>
   <div class="page">
 
-    <div class="userinfo">
-      <div v-if="authSetting.userInfo" class="userinfo-avatar" @click="openUrl('/pages/privilege/main')">
-        <image class="img" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover"/>
-      </div>
-      <div v-if="authSetting.userInfo">
-        <div class="userinfo-cont">
-          <div class="text-name">{{ userInfo.nickName }}</div>
-        </div>
-      </div>
-      <div v-else>
-        <button class="userlogin" type="primary" open-type="getUserInfo" lang="zh_CN" @getuserinfo="getUserInfo">登录</button>
-      </div>
-    </div>
-
-
-
-    <div class="kind-list">
-      <div v-for="(item, index) in kindlist" :key="index">
-        <div class="weui-flex kind-list__item" @click="openUrl(item.page)">
-          <img class="kind-list__img" :src="item.icon">
-          <div class="kind-list__item-hd" >{{item.name}}</div>
-          <img class="kind-list__img_right" :src="'/static/images/big.png'">
-        </div>
-      </div>
-    </div>
+    用户反反馈
 
   </div>
 </template>
@@ -67,12 +43,12 @@ export default {
         {
           name: '客服',
           icon: '/static/images/customer_service.png',
-          page: '/pages/customerservice/main'
+          page: '/pages/hr/main'
         },
         {
           name: '反馈',
           icon: '/static/images/feedback.png',
-          page: '/pages/feedback/main'
+          page: '/pages/hr/main'
         },
         {
           name: '设置',

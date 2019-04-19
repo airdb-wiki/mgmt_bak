@@ -1,45 +1,23 @@
 <template>
   <div class="page">
-    <!-- 自定义导航栏 -->
-    <div class="navigation">
-      <div class="btn">
-        <navigator open-type="navigateBack">
-          <img src="/static/images/home/back.png" class="back">
-        </navigator>
-
-        <div style="border-left: 1px solid #e2e2e2;margin: 2px 10px 0 4px;height: 18px;"></div>
-
-        <navigator open-type="reLaunch" url="/pages/home/main">
-          <img src="/static/images/home/home.png" class="home">
-        </navigator>
-      </div>
-      <div class="title">加入我们</div>
-    </div>
-
     <tx-video vid="m0028s08v11"></tx-video>
     <img src="https://wechat-1251018873.file.myqcloud.com/mina/base/icon/love-bg.png" class="bg">
     <div class="page__bd" style="margin-top: 60px;">
         <div class="weui-article">
 
             <div class="weui-article__section">
-              
+
               <div class="weui-article__section">
                 <div class="weui-article__h1 myh">
                   <div>背景介绍</div>
                   <img src="https://wechat-1251018873.file.myqcloud.com/mina/base/icon/love-bg.png">
                 </div>
                 <div class="weui-article__p">
-                    宝贝回家小程序宗旨是为帮助寻找失踪儿童及一些流浪乞讨的孩子找家，为孩子家长及志愿者提供一个信息沟通的平台。  
+                    宝贝回家小程序宗旨是为帮助寻找失踪儿童及一些流浪乞讨的孩子找家，为孩子家长及志愿者提供一个信息沟通的平台。
                 </div>
                 <div class="weui-article__p">
-                    项目介绍： 
-                    <a href="https://bbhj.airdb.io" style="color: deepskyblue;">https://bbhj.airdb.io</a>
-                </div>
-                <div class="weui-article__p">
-                  <p>目前采用 MPVue + Golang 实现， Github地址： 
-                    <a style="color: deepskyblue;">https://github.com/bbhj/mina</a>
-                  </p>
-                  喜欢的同学，可以 Star 一下！
+                    更多信息请访问：
+                    <a href="https://www.airdb.com/zh/bbhj/" style="color: deepskyblue;">https://www.airdb.com/zh/bbhj/</a>
                 </div>
               </div>
 
@@ -78,7 +56,7 @@
                   5.撰写详细的产品需求文档及原型设计文档,跟踪产品研发进度;<br>
                   6.负责把控产品推进进度、协调突发问题与质量管理工作.
                 </div>
-                
+
                 <div class='hire-title space-top hirer' >产品运营</div>
                 <div>
                   工作地点: 在线兼职, 招聘人数: 1~2名<br>
