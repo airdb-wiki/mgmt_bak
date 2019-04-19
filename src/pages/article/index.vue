@@ -1,6 +1,5 @@
 <template>
   <div class="page  bh-article-page">
- 
 
 
     <div class="page__bd">
@@ -24,10 +23,10 @@
                   </div>
                   <div class="bh-article-group">
                     <span class="bh-article-group__label">性别</span>
-                    <p class="bh-article-group__cont">{{gender || '--'}}</p> 
-                  </div>  
+                    <p class="bh-article-group__cont">{{gender || '--'}}</p>
+                  </div>
                 </div>
-                
+
                 <div class="bh-article-group">
                   <span class="bh-article-group__label">失踪时间</span>
                   <p class="bh-article-group__cont">{{article.MissedAt || '--'}}</p>
@@ -65,11 +64,11 @@
             </div>
             <p class="bhui-comments__name">{{comment.Nickname || '匿名宝宝'}}</p>
             <p class="bhui-comments__cont">{{comment.Content}}</p>
-            <p class="bhui-comments__time">{{comment.CreatedAt}}</p> 
+            <p class="bhui-comments__time">{{comment.CreatedAt}}</p>
             <div class="bhui-comments__opt">
               <p><span class="label">支持</span>({{comment.Like}})</p>
               <p><span class="label">举报</span>({{comment.Blow}})</p>
-            </div> 
+            </div>
           </li>
         </ul>
     </div>

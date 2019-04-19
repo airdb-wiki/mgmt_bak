@@ -1,12 +1,12 @@
 <template>
   <div style="margin: 61px 0 0px 0;">
   	<div class="weui-article">
-      <div class="weui-article__h1" style="font-weight: bold;font-size: 22px;">{{content.title}}</div>
-      <div class="notice">
-        <div class="weui-article__h1" id="noticeT">重要通知</div>
-        <div class="weui-article__h1" id="noticeC">{{content.notice}}</div>
+
+      <div class="weui-article__p">
+        <image class="weui-article__img" :src="item.AvatarUrl" mode="aspectFit" style="height: 180px" @click="preview"/>
       </div>
-      <div class="weui-article__h1 title" >01  登记信息</div>
+
+
       <div class="weui-article__section" id="content">
         <div class="weui-article__title">信息来源： <span class="words">{{item.DataFrom}}</span></div>
         <div class="weui-article__section">
@@ -24,11 +24,8 @@
           <div class="weui-article__h3">其他资料：<span class="words">{{item.Details}}</span></div>
           <!-- <div class="weui-article__h3">失踪时间： {{item.MissedAt}} </div> -->
           <div class="weui-article__h3">跟进志愿者：<span class="words"> {{item.Handler}}</span></div>
-          <div class="weui-article__p">
-            <image class="weui-article__img" :src="item.AvatarUrl" mode="aspectFit" style="height: 180px" @click="preview"/>
-          </div>
 
-           <!-- <swiper 
+           <!-- <swiper
             :autoplay="false"
             previous-margin="-10px"
             class="weui-article__img">
@@ -249,7 +246,7 @@ export default{
 }
 #noticeC{
   color: #ff0000;
-  font-weight: bold;  
+  font-weight: bold;
 }
 .title{
   background-color: #86d36d;

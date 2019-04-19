@@ -8,22 +8,6 @@
         <img src="/static/images/home/home.png" class="home">
       </button>
     </div> -->
-      <div class="navigation">
-        <div class="btn">
-          <navigator open-type="navigateBack">
-            <img src="/static/images/home/back.png" class="back">
-          </navigator>
-
-          <div style="border-left: 1px solid #e2e2e2;margin: 2px 10px 0 4px;height: 18px;"></div>
-
-          <navigator open-type="reLaunch" url="/pages/home/main">
-            <img src="/static/images/home/home.png" class="home">
-          </navigator>
-        </div>
-
-        <div v-if="!showTitle" class="title">详情</div>
-        <div v-else class="title">{{item.MissedCity}}-{{item.Nickname}}</div>
-      </div>
     <!-- navigation -->
 
     <scroll-view>
@@ -38,7 +22,7 @@
       <div class="weui-cells__title" style="font-size: 18px;">评论：</div>
       <scroll-view :scroll-y="true" class="talk_container">
         <div class="together" v-for="(item, index) in comment" :key="index">
-          
+
           <div class="img">
             <img :src="item.AvatarUrl" style="width: 35px;height: 35px;border-radius: 3px;">
           </div>
@@ -398,145 +382,6 @@ export default{
 }
 </script>
 
-<style scoped>
-.navigation{
-  width: 100%;
-  padding-top: 21pt;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: rgb(255, 255, 255);
-  z-index: 9999;
-  display: flex;
-  flex-direction: row;
-}
-.title{
-  width: 50%;
-  margin-left: 3pt;
-  text-align: center;
-  display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  line-height: 30pt;
-  font-size: 18px;
-}
-.btn{
-  display: flex;
-  flex-direction: row;
-  border-radius: 20px;
-  border: 1px solid #e2e2e2;
-  padding: 3pt 0pt 5pt 4pt;
-  margin-left: 6pt;
-  width: 56pt;
-  height: 15pt;
-}
-.back{
-  width: 20pt;
-  height: 20pt;
-}
-.home{
-  width: 17pt;
-  height: 17pt;
-}
-.footer{
-  width: 100%;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  background-color: #fff;
-}
-.container{
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  margin: 3px 6px;
-}
-.container input{
-  border: 1px solid #e2e2e2;
-  padding: 0 8px;
-  border-radius: 20px;
-  flex: 6;
-  height: 35px;
-}
-.container button{
-  border: none;
-  flex: 1;
-}
-.form_btn{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.form_btn img{
-  width: 23px;
-  height: 23px;
-}
-.form_btn div{
-  font-size: 12px;
-}
-.img{
-  float: left;
-  width: 45px;
-  height: 45px;
-  margin-top: 5px;
-}
-.talk_container{
-  padding: 5px 10px 100px;
-  background-color: #f2f2f2;
-}
-.together{
-  padding: 26rpx;
-  padding-bottom: 35rpx;
-  /* border:1px solid; */
-}
-.talk_content{
-  display: flex;
-  flex-direction: column;
-  padding-left: 8px;
-}
-.talker_info{
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  line-height: 24px;
-}
-.talker_name{
-  font-size: 16px;
-  color: #929292;
-}
-.talker_info image{
-  position: absolute;
-  top: 4px;
-  right: 25px;
-}
-.talk{
-  width: 280px;
-  word-wrap:break-word
-}
-.divLine{
-  margin-top: 30px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-.left{
-  width: 80px;
-  height: 2px;
-  background-color: aqua;
-  padding: 0 8px;
-}
-.center{
-  margin: 0 10px;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: aqua;
-}
-.right{
-  width: 80px;
-  height: 2px;
-  background-color: aqua;
-  padding: 0 8px;
-}
-</style>
+<style scoped lang='less'>
+  @import 'index';
+</style></style>
