@@ -132,8 +132,8 @@ export default{
           console.log(res)
           // let imgData = 'data:image/png;base64,' + res.data
           let imgData = res.data
-          imgData = imgData.replace(/\ +/g, ""); //去掉空格方法
-          imgData = imgData.replace(/[\r\n]/g, "");
+          imgData = imgData.replace(/ +/g, '') // 去掉空格方法
+          imgData = imgData.replace(/[\r\n]/g, '')
           // console.log(imgData)
           let buffer = wx.base64ToArrayBuffer(imgData)
           const fsm = wx.getFileSystemManager()
@@ -150,7 +150,7 @@ export default{
           //     console.log('ee',ee)
           //   }
           // })
-          console.log('filePath',filePath)
+          console.log('filePath', filePath)
           const ctx = wx.createCanvasContext('myCanvas')
           // 填充背景色
           ctx.fillStyle = '#fff'
@@ -216,8 +216,8 @@ export default{
                   urls: [res.tempFilePath]
                 })
               },
-              fail: function(ee) {
-                console.log('ee',ee)
+              fail: function (ee) {
+                console.log('ee', ee)
               }
             })
           })

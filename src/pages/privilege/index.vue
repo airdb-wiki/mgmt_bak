@@ -8,13 +8,31 @@
 
         <!-- user-avatar end -->
         <div class="user-cont">
-          <div class="text-name">专属特权</div>
-          <div class="text-time">{{privilege}}/13</div>
+          <div class="text-name">公益时长</div>
+          <div class="text-time">13.5 小时</div>
         </div>
         <!-- user-cont end -->
       </div>
       <!-- user end -->
 
+    <div class="text-name">九宫格</div>
+
+    <div class="after-user">
+      <div class="weui-grids">
+        <div class="weui-grid" v-for="(item, index) in function_cells" :key="index">
+          <navigator :url="item.page">
+            <image :src="item.src" class="weui-grid__icon"/>
+            <text class="weui-grid__label">{{item.name}}</text>
+          </navigator>
+        </div>
+      </div>
+      <!-- grids end -->
+    </div>
+    <!-- after-user end -->
+
+
+    <div class="text-name">专属福利</div>
+    <div class="text-time">{{privilege}}/13</div>
       <div class="after-user">
         <div class="weui-grids">
           <div class="weui-grid" v-for="(item, index) in items" :key="index">
@@ -49,6 +67,35 @@ export default{
         userInfo: wx.getStorageSync('authSetting.userInfo')
       },
       privilege: 3,
+      function_cells: [{
+        name: '救助站',
+        src: '/static/images/profile/gift.png'
+      }, {
+        name: '志愿者',
+        src: '/static/images/profile/doll.png',
+        page: '/pages/volunteer/main'
+      }, {
+        name: '未开放',
+        src: '/static/images/profile/locked.png'
+      }, {
+        name: '未开放',
+        src: '/static/images/profile/locked.png'
+      }, {
+        name: '未开放',
+        src: '/static/images/profile/locked.png'
+      }, {
+        name: '未开放',
+        src: '/static/images/profile/locked.png'
+      }, {
+        name: '未开放',
+        src: '/static/images/profile/locked.png'
+      }, {
+        name: '未开放',
+        src: '/static/images/profile/locked.png'
+      }, {
+        name: '未开放',
+        src: '/static/images/profile/locked.png'
+      }],
       items: [{
         name: '精美礼品',
         src: '/static/images/profile/gift.png'
@@ -82,6 +129,16 @@ export default{
   // data end
 
   methods: {
+    openUrl (page) {
+      console.log('-----', page)
+      if (page === 'setting') {
+        mpvue.openSetting({})
+        return
+      }
+      wx.navigateTo({
+        url: page + '?wxid='
+      })
+    }
   },
   // methods end
 
