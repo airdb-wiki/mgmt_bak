@@ -1,21 +1,5 @@
 <template>
   <div class="page">
-    <div class="navigation">
-      <div class="btn">
-        <navigator open-type="navigateBack">
-          <img src="/static/images/home/back.png" class="back">
-        </navigator>
-
-        <div style="border-left: 1px solid #e2e2e2;margin: 2px 10px 0 4px;height: 18px;"></div>
-
-        <navigator open-type="reLaunch" url="/pages/home/main">
-          <img src="/static/images/home/home.png" class="home">
-        </navigator>
-      </div>
-
-      <div v-if="!showTitle" class="title">宝贝回家</div>
-      <div v-else class="title">{{title}}</div>
-    </div>
 
     <div class="page__bd" style="margin-top: 51pt;">
       <div class="weui-search-bar">
@@ -37,13 +21,13 @@
           <icon type="clear" size="18" style="flex: 1;margin-top: 9px;" @click="clearSto"></icon>
         </div>
         <div class="history">
-          <div @click="stoNav" v-for="(item, index) in searchData" :key="index" 
+          <div @click="stoNav" v-for="(item, index) in searchData" :key="index"
             :id="item" v-if="index < searchData.length-1 && index < 6">
             <div class="result">{{item}}</div>
           </div>
         </div>
       </div>
-      
+
       <div :hidden="showSearchBar"
         style="font-size: 16px;color: #414141;">搜索结果</div>
       <div class="weui-cells searchbar-result" :hidden="showSearchBar"
@@ -248,112 +232,7 @@ export default {
 }
 </script>
 
-<style scoped>
-.page{
-  width: 100%;
-  height: 200px;
-}
-.searchbar-result {
-  font-size: 14px;
-}
-.searchbar-result:before {
-  display: none;
-}
-.weui-cell {
-  padding: 12px 15px 12px 35px;
-}
-.weui-cell__bd{
-  padding: 0px 10px;
-  margin: 5px;
-  margin-top: 2px;
-  display: flex;
-  flex-direction: row;
-  border-bottom: 1px solid #e2e2e2;
-}
-.avatar{
-  margin: auto;
-  width: 50px;
-  height: 50px;
-}
-.avatar img{
-  width: 50px;
-  height: 50px;
-  border-radius: 4px;
-}
-.info{
-  padding: 0px 10px 5px;
-}
-.info_title{
-  width: 270px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  margin-bottom: 5px;
-}
-.info_1 text{
-  padding: 0px 10px;
-  border-radius: 5px;
-  background: #e2e2e2;
-  margin-right: 4px;
-  font-size: 14px;
-  color: red;
-}
-.history{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-.history div{
-  padding: 1px 10px;
-  margin: 5px;
-  background-color: #ffffff;
-  border-radius: 3px;
-}
-.navigation{
-  width: 100%;
-  padding-top: 21pt;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: #fff;
-  z-index: 9999;
-  display: flex;
-  flex-direction: row;
-}
-.title{
-  width: 50%;
-  margin-left: 3pt;
-  text-align: center;
-  display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  line-height: 30pt;
-  font-size: 18px;
-}
-.btn{
-  display: flex;
-  flex-direction: row;
-  border-radius: 20px;
-  border: 1px solid #e2e2e2;
-  padding: 3pt 0pt 5pt 4pt;
-  margin-left: 6pt;
-  width: 56pt;
-  height: 15pt;
-}
-.back{
-  width: 20pt;
-  height: 20pt;
-}
-.home{
-  width: 17pt;
-  height: 17pt;
-}
-.result{
-  width: 64px;
-  text-align: center;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-</style>
+<style scoped lang='less'>
+  @import 'index';
+</style></style>
+
