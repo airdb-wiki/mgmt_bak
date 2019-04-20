@@ -188,11 +188,6 @@ export default {
 }
 </script>
 
-<style scoped>
-.text-tipmsg {
-  margin: 30rpx 30rpx 10rpx;
-  line-height: 1.4;
-  font-size: 28rpx;
-  color: #999;
-}
+<style scoped lang='less'>
+  @import 'index';
 </style>

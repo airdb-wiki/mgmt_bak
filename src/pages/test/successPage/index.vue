@@ -62,15 +62,7 @@ export default {
 }
 </script>
 
-<style scoped>
-.h1{
-  font-size: 20px;
-  font-weight: bold;
-  color: #ff0000;
-  text-align: center;
-}
-.title{
-    text-align: center;
-    font-size: 10px;
-}
+
+<style scoped lang='less'>
+  @import 'index';
 </style>

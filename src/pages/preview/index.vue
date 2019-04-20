@@ -135,15 +135,6 @@ export default {
 }
 </script>
 
-<style scoped>
-
-.page__bd {
-  background: #fff;
-} 
-.weui-agree {
-  font-size: 30rpx;
-}
-.weui-btn-area {
-  margin-bottom: 30rpx;
-}
+<style scoped lang="less">
+  @import 'index';
 </style>

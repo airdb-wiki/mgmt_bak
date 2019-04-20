@@ -36,6 +36,7 @@ export default {
 }
 </script>
 
-<style>
 
+<style scoped lang='less'>
+  @import 'index';
 </style>

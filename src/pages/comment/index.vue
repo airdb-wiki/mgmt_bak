@@ -88,8 +88,7 @@ export default {
 </script>
 
 
-<style scoped>
-.weui-textarea {
-  padding: 30rpx 0;
-}
+
+<style scoped lang='less'>
+  @import 'index';
 </style>
