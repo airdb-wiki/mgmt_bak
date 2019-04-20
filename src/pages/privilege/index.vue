@@ -69,7 +69,8 @@ export default{
       privilege: 3,
       function_cells: [{
         name: '救助站',
-        src: '/static/images/profile/gift.png'
+        src: '/static/images/profile/gift.png',
+        page: '/pages/reliefstation/main'
       }, {
         name: '志愿者',
         src: '/static/images/profile/doll.png',
