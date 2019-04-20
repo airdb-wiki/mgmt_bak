@@ -54,4 +54,4 @@ export default {
 
 <style scoped lang='less'>
   @import 'index';
-</style></style>
+</style>

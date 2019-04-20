@@ -82,23 +82,7 @@ export default {
 </script>
 
 
-<style>
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
-}
-
-.userinfo-nickname {
-  margin-top: 20rpx;
-  font-size: 38rpx;
-  color: #aaa;
-}
+<style scoped lang='less'>
+  @import 'index';
 </style>

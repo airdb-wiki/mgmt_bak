@@ -70,13 +70,7 @@ export default {
 }
 </script>
 
-<style scoped>
-.myTalk{
-  padding: 7px 10px;
-  font-weight: bold;
-  background-color: aquamarine;
-  border-radius: 7px;
-  margin: 5px 10px;
-  width: 100px;
-}
+
+<style scoped lang='less'>
+  @import 'index';
 </style>

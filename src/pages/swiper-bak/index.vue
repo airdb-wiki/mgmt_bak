@@ -44,9 +44,7 @@ export default {
 }
 </script>
 
-<style>
-.slide-image {
-  width: 100%;
-  height: 100%;
-}
+
+<style scoped lang='less'>
+  @import 'index';
 </style>
