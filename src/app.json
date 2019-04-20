@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/profile/main",
     "pages/volunteer-create/main",
     "pages/volunteer-tips/main",
-    "pages/profile/main",
     "pages/home/main",
     "pages/test/hzw_map/main",
     "pages/hr/main",
