@@ -129,6 +129,15 @@ export default{
           console.log(res)
           // let imgData = 'data:image/png;base64,' + res.data
           let imgData = res.data
+          if (imgData == null) {
+            wx.showToast({
+              title: '二维码获取失败',
+              icon: 'none',
+              duration: 3000,
+              mask: true
+            })
+            return
+          }
           imgData = imgData.replace(/ +/g, '') // 去掉空格方法
           imgData = imgData.replace(/[\r\n]/g, '')
           // console.log(imgData)
