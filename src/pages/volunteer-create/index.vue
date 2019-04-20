@@ -32,10 +32,10 @@
     },
     data () {
       return {
-        mobile: '15665715116',
-        email: '947678182@qq.com',
+        mobile: 'xxx',
+        email: 'xxxxx@qq.com',
         address: '北京市海淀区创业路',
-        referer: '张磊',
+        referer: '张三',
         city: '北京'
       }
     },
