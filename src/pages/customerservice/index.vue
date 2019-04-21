@@ -5,8 +5,11 @@
           <div class="weui-item" style="-webkit-user-select:text">官方网站: <p class="weui-p" style='display: inline'>www.baobeihuijia.com</p></div>
           <div class="weui-item" style="-webkit-user-select:text">咨询信箱: <p class="weui-p" style='display: inline'>baobeihuijia@yeah.net</p></div>
           <div class="weui-item" style="-webkit-user-select:text">QQ接待群: <p class="weui-p" style='display: inline'>1840533</p></div>
-          <div class="weui-item" style="-webkit-user-select:text"><img class= "cust_service" src="/static/images/customer_service.png">在线客服 <p class="weui-p" style='display: inline'></p></div>
+          <!-- <div class="weui-item" style="-webkit-user-select:text" bindcontact="handleContact"><img class= "cust_service" src="/static/images/customer_service.png">在线客服 <p class="weui-p" style='display: inline'></p></div> -->
           <!-- <button open-type="contact" bindcontact="handleContact" class="weui-item">在线客服</button> -->
+          <button class="weui-item" style="-webkit-user-select:text" open-type="contact" 
+          bindcontact="handleContact"><img class= "cust_service" src="/static/images/customer_service.png">
+          在线客服 <p class="weui-p" style='display: inline'></p></button>
           <div class="weui-item">
             站务电话 <br>
             <div class="weui-phone" @click="tel">
