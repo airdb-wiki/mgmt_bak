@@ -4,14 +4,20 @@
         <div class="weui-info">
           <div class="weui-item" style="-webkit-user-select:text">官方网站: <p class="weui-p" style='display: inline'>www.baobeihuijia.com</p></div>
           <div class="weui-item" style="-webkit-user-select:text">咨询信箱: <p class="weui-p" style='display: inline'>baobeihuijia@yeah.net</p></div>
-          <div class="weui-item">站务电话: <p class="weui-phone" style='display: inline' @click="tel">0435-3338090</p></div>
           <div class="weui-item" style="-webkit-user-select:text">QQ接待群: <p class="weui-p" style='display: inline'>1840533</p></div>
-
+          <div class="weui-item" style="-webkit-user-select:text"><img class= "cust_service" src="/static/images/customer_service.png">在线客服 <p class="weui-p" style='display: inline'></p></div>
+          <!-- <button open-type="contact" bindcontact="handleContact" class="weui-item">在线客服</button> -->
+          <div class="weui-item">
+            站务电话 <br>
+            <div class="weui-phone" @click="tel">
+              <img src="/static/images/phone.png" class="phone_img" alt="">
+              0435-3338090</div>
+          </div>
         </div>
       </div>
       <!-- weui-cells end -->
 
-      <button open-type="contact" bindcontact="handleContact">在线客服</button>
+      <!-- <button open-type="contact" bindcontact="handleContact" class="btn">在线客服</button> -->
 
     <!-- profile-page-main end -->
     <!-- 右下角加号新建 -->
