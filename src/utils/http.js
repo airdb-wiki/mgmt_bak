@@ -59,3 +59,19 @@ export function post (url, params) {
     data: params
   })
 }
+
+export function httpget (url, params) {
+  return axios({
+    method: 'get',
+    url: url,
+    params: params
+  })
+}
+
+export function httppost (url, params) {
+  return axios({
+    method: 'post',
+    url: url,
+    data: params
+  })
+}

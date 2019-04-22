@@ -1,6 +1,6 @@
 <script>
 import { weixinUpdate } from '@/utils/update'
-import { getList } from '@/api/data'
+import { getList, weixinlogin } from '@/api/data'
 
 export default {
   // 调用API从本地缓存中获取数据
@@ -34,7 +34,10 @@ export default {
           vm.$get('/lastest/wechatapi/user/login', vm.prams).then((userProfile) => {
             wx.setStorageSync('profile', userProfile.data)
           })
-          console.log('profile=======', wx.getStorageSync('profile'))
+          var cc = weixinlogin(vm.prams)
+          console.log('cccc====', cc.data)
+
+          // console.log('profile=======', wx.getStorageSync('profile'))
         } else {
           console.log('登录失败！' + res.errMsg)
         }
@@ -54,6 +57,8 @@ export default {
     // console.log('=====',wxConfig.envVersion)
     // console.log(wxConfig.envVersion)
     console.log('app created, env:', wx.getStorageSync('env'))
+
+    console.log('NODE_ENV: ', process.env.NODE_ENV)
 
     // 填写自己的鉴权服务器地址
     var wecosSignatureUrl = wx.getStorageSync('domain') + '/lastest/wechatapi/qcloud/wecos/auth'
