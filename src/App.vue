@@ -1,6 +1,5 @@
 <script>
 import { weixinUpdate } from '@/utils/update'
-import { getList, weixinlogin } from '@/api/data'
 
 export default {
   // 调用API从本地缓存中获取数据
@@ -34,8 +33,6 @@ export default {
           vm.$get('/lastest/wechatapi/user/login', vm.prams).then((userProfile) => {
             wx.setStorageSync('profile', userProfile.data)
           })
-          var cc = weixinlogin(vm.prams)
-          console.log('cccc====', cc.data)
 
           // console.log('profile=======', wx.getStorageSync('profile'))
         } else {
@@ -59,6 +56,7 @@ export default {
     console.log('app created, env:', wx.getStorageSync('env'))
 
     console.log('NODE_ENV: ', process.env.NODE_ENV)
+    console.log('NODE_ENV: ', process.env.BaseUrl)
 
     // 填写自己的鉴权服务器地址
     var wecosSignatureUrl = wx.getStorageSync('domain') + '/lastest/wechatapi/qcloud/wecos/auth'
@@ -69,9 +67,6 @@ export default {
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
     weixinUpdate()
-
-    var aa = getList()
-    console.log('aaaa====', aa)
 
     // 用户网络类型
     wx.getNetworkType({
