@@ -1,9 +1,9 @@
 <template>
   <div class="page">
       <div class="after-userifo">
-        <div class="weui-head">
-          <p class="title">联系我们</p>
-          <img src="/static/images/forward/home1.jpg" alt="" class="bbhj_img"> 
+
+        <div style="text-align: center">
+          如需帮助，可通过以下方式联系我们。
         </div>
         <div class="weui-info">
           <div class="weui-item" style="-webkit-user-select:text">官方网站: <p class="weui-p" style='display: inline'>www.baobeihuijia.com</p></div>
@@ -11,7 +11,7 @@
           <div class="weui-item" style="-webkit-user-select:text">QQ接待群: <p class="weui-p" style='display: inline'>1840533</p></div>
           <!-- <div class="weui-item" style="-webkit-user-select:text" bindcontact="handleContact"><img class= "cust_service" src="/static/images/customer_service.png">在线客服 <p class="weui-p" style='display: inline'></p></div> -->
           <!-- <button open-type="contact" bindcontact="handleContact" class="weui-item">在线客服</button> -->
-          <button class="weui-item" style="-webkit-user-select:text" open-type="contact" 
+          <button class="weui-item" style="-webkit-user-select:text" open-type="contact"
           bindcontact="handleContact"><img class= "cust_service" src="/static/images/customer_service.png">
           在线客服 <p class="weui-p" style='display: inline'></p></button>
           <div class="weui-item">
