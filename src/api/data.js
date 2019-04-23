@@ -26,10 +26,31 @@ export const apiGetReliefStations = (parms) => {
 }
 
 // 微信登录
+export const apiWeixinCodeLogin = (parms) => {
+  return axios({
+    method: 'post',
+    url: '/lastest/wechatapi/small/user/code',
+    data: {
+      code: parms
+    }
+  })
+}
+
+// 微信登录-加参数的
 export const apiWeixinLogin = (parms) => {
   return axios({
     method: 'post',
     url: '/lastest/wechatapi/small/user/login',
+    data: parms
+  })
+}
+
+// 微信登录-加参数的
+export const apiWeixinLoginScene = (parms) => {
+  console.log(parms)
+  return axios({
+    method: 'post',
+    url: '/lastest/wechatapi/small/user/scene',
     data: parms
   })
 }

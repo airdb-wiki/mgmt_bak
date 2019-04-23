@@ -1,6 +1,11 @@
 <script>
 import { weixinUpdate } from '@/utils/update'
-import {weixinlogin} from './api/store'
+import {
+  weixinlogin,
+  weixincodelogin,
+  weixinLoginScene
+
+} from './api/store'
 
 export default {
   // 调用API从本地缓存中获取数据
@@ -21,24 +26,42 @@ export default {
   },
   onLaunch (launch) {
     console.log('app launch scene info: ', launch.scene, launch.path, launch.shareTicket)
-    var vm = this
-    wx.login({
-      success: function (res) {
-        if (res.code) {
-          vm.prams.code = res.code
-          vm.prams.scene = launch.scene
-          vm.prams.shareTicket = launch.shareTicket
-          vm.prams.path = launch.path
-          vm.$get('/lastest/wechatapi/user/login', vm.prams).then((userProfile) => {
-            wx.setStorageSync('profile', userProfile.data)
-          })
+    // var vm = this
 
-          // console.log('profile=======', wx.getStorageSync('profile'))
-        } else {
-          console.log('登录失败！' + res.errMsg)
-        }
+    wx.checkSession({
+      success: function () {
+        console.log('session_key 未过期，并且在本生命周期一直有效')
+      },
+      fail: function () {
+        console.log('登录中...')
+        wx.login({
+          success: function (res) {
+            if (res.code) {
+              weixincodelogin(res.code)
+            } else {
+              console.log('登录失败！' + res.errMsg)
+            }
+          }
+        })
       }
     })
+
+    let parms = {
+      scene: launch.scene,
+      path: launch.path,
+      shareTicket: launch.shareTicket
+    }
+
+    weixinLoginScene(parms)
+    // vm.prams.code = res.code
+    // vm.prams.scene = launch.scene
+    // vm.prams.shareTicket = launch.shareTicket
+    // vm.prams.path = launch.path
+    // vm.$get('/lastest/wechatapi/user/login', vm.prams).then((userProfile) => {
+    //   wx.setStorageSync('profile', userProfile.data)
+    // })
+    //
+    // // console.log('profile=======', wx.getStorageSync('profile'))
   },
   onPageNotFound () {
     wx.redirectTo({
@@ -126,14 +149,14 @@ export default {
             console.log('-----profile', vm.profile.Openid)
             console.log('-----userinfo', userInfo)
             wx.setStorageSync('userInfo', res.userInfo)
-            wx.checkSession({
-              success: function () {
-                console.log('session_key 未过期，并且在本生命周期一直有效')
-              },
-              fail: function () {
-                console.log('login')
-              }
-            })
+            // wx.checkSession({
+            //   success: function () {
+            //     console.log('session_key 未过期，并且在本生命周期一直有效')
+            //   },
+            //   fail: function () {
+            //     console.log('login')
+            //   }
+            // })
 
             wx.login({
               success: function (res) {
