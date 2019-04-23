@@ -1,5 +1,6 @@
 <script>
 import { weixinUpdate } from '@/utils/update'
+import { weixinSetting } from '@/api/weixin'
 import {
   weixinlogin,
   weixincodelogin,
@@ -101,6 +102,13 @@ export default {
         }
       }
     })
+
+    weixinSetting()
+    console.log('weixin setting: ', mpvue.getStorageSync('setting'))
+    let setting = mpvue.getStorageSync('setting')
+
+    console.log('weixin setting: ', setting.userLocation)
+
     // 获取微信授权信息
     wx.getSetting({
       success: res => {
@@ -116,7 +124,7 @@ export default {
       }
     })
     // 获取用户经纬度
-    if (wx.getStorageSync('authSetting.userLocation')) {
+    if (setting.userLocation) {
       wx.getLocation({
         type: 'wgs84',
         success: function (res) {
@@ -133,7 +141,7 @@ export default {
     let vm = this
     vm.profile = wx.getStorageSync('profile')
     // 获取用户信息
-    if (wx.getStorageSync('authSetting.userInfo')) {
+    if (setting.userInfo) {
       wx.getUserInfo({
         success: (res) => {
           try {
