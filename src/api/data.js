@@ -26,7 +26,7 @@ export const apiGetReliefStations = (parms) => {
 }
 
 // 微信登录
-export const apiWeixinlogin = (parms) => {
+export const apiWeixinLogin = (parms) => {
   return axios({
     method: 'post',
     url: '/lastest/wechatapi/small/user/login',

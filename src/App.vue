@@ -12,8 +12,6 @@ export default {
    */
   data () {
     return {
-      env: 'test',
-      domain: 'https://mina.baobeihuijia.com',
       userInfo: {},
       loginInfo: {}, // 用户登录信息
       profile: {},
@@ -47,16 +45,10 @@ export default {
     })
   },
   created () {
-    wx.setStorageSync('env', this.env)
-    wx.setStorageSync('domain', process.env.BaseUrl)
     var userInfo = {} // 微信用户信息
     var loginInfo = {} // 用户登录信息
-    // console.log('=====',wxConfig.envVersion)
-    // console.log(wxConfig.envVersion)
-    console.log('app created, env:', wx.getStorageSync('env'))
 
-    console.log('NODE_ENV: ', process.env.NODE_ENV)
-    console.log('NODE_ENV: ', process.env.BaseUrl)
+    console.log('app created, NODE_ENV:', process.env.NODE_ENV, process.env)
 
     // 填写自己的鉴权服务器地址
     var wecosSignatureUrl = process.env.BaseUrl + '/lastest/wechatapi/qcloud/wecos/auth'
