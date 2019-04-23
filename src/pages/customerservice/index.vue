@@ -2,6 +2,9 @@
   <div class="page">
       <div class="after-userifo">
 
+        <!-- 广告 -->
+        <ad unit-id="adunit-6a89174cc83e227f"></ad>
+
         <div style="text-align: center">
           如需帮助，可通过以下方式联系我们。
         </div>
