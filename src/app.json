@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/customerservice/main",
     "pages/profile/main",
     "pages/volunteer-create/main",
     "pages/volunteer-tips/main",
@@ -18,7 +19,7 @@
     "pages/privilege/main",
     "pages/volunteer/main",
     "pages/article/main",
-    "pages/customerservice/main",
+   
     "pages/search/main"
   ],
   "window": {

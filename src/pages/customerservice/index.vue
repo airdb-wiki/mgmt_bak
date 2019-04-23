@@ -1,6 +1,10 @@
 <template>
   <div class="page">
       <div class="after-userifo">
+        <div class="weui-head">
+          <p class="title">联系我们</p>
+          <img src="/static/images/forward/home1.jpg" alt="" class="bbhj_img"> 
+        </div>
         <div class="weui-info">
           <div class="weui-item" style="-webkit-user-select:text">官方网站: <p class="weui-p" style='display: inline'>www.baobeihuijia.com</p></div>
           <div class="weui-item" style="-webkit-user-select:text">咨询信箱: <p class="weui-p" style='display: inline'>baobeihuijia@yeah.net</p></div>
@@ -11,7 +15,7 @@
           bindcontact="handleContact"><img class= "cust_service" src="/static/images/customer_service.png">
           在线客服 <p class="weui-p" style='display: inline'></p></button>
           <div class="weui-item">
-            站务电话 <br>
+            <p style="margin-left:80rpx">站务电话</p> <br>
             <div class="weui-phone" @click="tel">
               <img src="/static/images/phone.png" class="phone_img" alt="">
               0435-3338090</div>
