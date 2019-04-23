@@ -1,10 +1,10 @@
 {
   "pages": [
-    "pages/customerservice/main",
+    "pages/home/main",
     "pages/profile/main",
+    "pages/customerservice/main",
     "pages/volunteer-create/main",
     "pages/volunteer-tips/main",
-    "pages/home/main",
     "pages/reliefstation/main",
     "pages/hr/main",
     "pages/feedback/main",
@@ -19,7 +19,7 @@
     "pages/privilege/main",
     "pages/volunteer/main",
     "pages/article/main",
-   
+
     "pages/search/main"
   ],
   "window": {

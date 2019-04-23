@@ -28,21 +28,13 @@ export default {
     console.log('app launch scene info: ', launch.scene, launch.path, launch.shareTicket)
     // var vm = this
 
-    wx.checkSession({
-      success: function () {
-        console.log('session_key 未过期，并且在本生命周期一直有效')
-      },
-      fail: function () {
-        console.log('登录中...')
-        wx.login({
-          success: function (res) {
-            if (res.code) {
-              weixincodelogin(res.code)
-            } else {
-              console.log('登录失败！' + res.errMsg)
-            }
-          }
-        })
+    mpvue.login({
+      success: function (res) {
+        if (res.code) {
+          weixincodelogin(res.code)
+        } else {
+          console.log('登录失败！' + res.errMsg)
+        }
       }
     })
 
@@ -154,10 +146,10 @@ export default {
             //     console.log('session_key 未过期，并且在本生命周期一直有效')
             //   },
             //   fail: function () {
-            //     console.log('login')
+            //     console.log('登录中...')
+            //
             //   }
             // })
-
             wx.login({
               success: function (res) {
                 if (res.code) {
