@@ -215,27 +215,6 @@ export default{
     wx.stopPullDownRefresh()
   },
   methods: {
-    // requestComment_old () {
-    //   var that = this
-    //   wx.request({
-    //     url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/comment/' + that.item.UUID,
-    //     method: 'GET',
-    //     data: {
-    //     },
-    //     header: {
-    //       'content-type': 'application/json'
-    //       // Authorization: wx.getStorageSync('Authorization')
-    //     },
-    //     success: function (res) {
-    //       that.comment = res.data
-    //       for (var i = 0; i < that.comment.length; i++) {
-    //         that.comment[i].CreatedAt = formatTime(new Date(that.comment[i].CreatedAt))
-    //         that.comment[i].reply = ''
-    //       }
-    //       console.log('获取评论为：', that.comment)
-    //     }
-    //   })
-    // },
     requestComment () {
       var vm = this
       vm.$get(`/lastest/wechatapi/small/comment/${vm.item.UUID}`)
@@ -278,7 +257,7 @@ export default{
       // 更新数据
 
       wx.request({
-        url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/comment',
+        url: process.env.BaseUrl + '/lastest/wechatapi/small/comment',
         method: 'POST',
         data: {
           // FormId: formId,

@@ -48,7 +48,7 @@ export default {
   },
   created () {
     wx.setStorageSync('env', this.env)
-    wx.setStorageSync('domain', this.domain + '/' + this.env)
+    wx.setStorageSync('domain', process.env.BaseUrl)
     var userInfo = {} // 微信用户信息
     var loginInfo = {} // 用户登录信息
     // console.log('=====',wxConfig.envVersion)
@@ -59,9 +59,10 @@ export default {
     console.log('NODE_ENV: ', process.env.BaseUrl)
 
     // 填写自己的鉴权服务器地址
-    var wecosSignatureUrl = wx.getStorageSync('domain') + '/lastest/wechatapi/qcloud/wecos/auth'
+    var wecosSignatureUrl = process.env.BaseUrl + '/lastest/wechatapi/qcloud/wecos/auth'
     wx.setStorageSync('wecosSignatureUrl', wecosSignatureUrl)
     wx.setStorageSync('cdn', 'https://wechat-1251018873.file.myqcloud.com')
+
     // 调用API从本地缓存中获取数据
     const logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
@@ -136,7 +137,7 @@ export default {
               success: function (res) {
                 if (res.code) {
                   wx.request({
-                    url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/user/login',
+                    url: process.env.BaseUrl + '/lastest/wechatapi/small/user/login',
                     method: 'POST',
                     header: {
                       'content-type': 'application/json'
@@ -175,42 +176,6 @@ export default {
                 }
               }
             })
-            // var data = {
-            //   openid: vm.profile.Openid,
-            //   platform: loginInfo['platform'],
-            //   system: loginInfo['system'],
-            //   brand: loginInfo['brand'],
-            //   pmodel: loginInfo['pmodel'],
-            //   networkType: loginInfo['networkType'],
-            //   longitude: loginInfo['longitude'],
-            //   latitude: loginInfo['latitude'],
-            //   nickName: userInfo.nickName,
-            //   avatarUrl: userInfo.avatarUrl,
-            //   // 性别 0：未知、1：男、2：女
-            //   gender: userInfo.gender,
-            //   country: userInfo.country,
-            //   province: userInfo.province,
-            //   city: userInfo.city,
-            //   language: userInfo.language
-            // }
-            // vm.$get('/lastest/wechatapi/small/user/updateUserInfo', data).then((res) => {
-            //   // var obj = JSON.parse(res.data)
-            //   var obj = res.data || '{}'
-            //   obj = JSON.parse(obj)
-            //   console.log('wechat login: ', typeof (res.data), res)
-            //   wx.setStorageSync('minaAuth', obj)
-            //   var ss = wx.getStorageSync('minaAuth')
-            //   wx.setStorageSync('wecosUrl', ss.weCosUrl)
-            //   console.log('access_token is:', ss)
-            //   wx.showToast({
-            //     title: '公益时长 +3',
-            //     icon: 'success',
-            //     duration: 2000
-            //     // success: () => { console.log('showToast was called') }
-            //   })
-            // }).catch((err) => {
-            //   console.log('updateUserInfo Error!!!!!!!!!!!', err)
-            // })
           } catch (e) {
             console.log('setUserInfo failed App.vue')
           }

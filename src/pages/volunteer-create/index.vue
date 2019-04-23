@@ -78,7 +78,7 @@
           return
         }
         wx.request({
-          url: wx.getStorageSync('domain') + '/lastest/wechatapi/small/volunteer/add',
+          url: process.env.BaseUrl + '/lastest/wechatapi/small/volunteer/add',
           method: 'POST',
           data: {
             openid: wx.getStorageSync('minaAuth').openid,
