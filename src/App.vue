@@ -126,6 +126,15 @@ export default {
             console.log('-----profile', vm.profile.Openid)
             console.log('-----userinfo', userInfo)
             wx.setStorageSync('userInfo', res.userInfo)
+            wx.checkSession({
+              success: function () {
+                console.log('session_key 未过期，并且在本生命周期一直有效')
+              },
+              fail: function () {
+                console.log('login')
+              }
+            })
+
             wx.login({
               success: function (res) {
                 if (res.code) {
@@ -147,30 +156,15 @@ export default {
                     city: userInfo.city,
                     language: userInfo.language
                   }
-                  // JSON.stringify(data)
+
                   weixinlogin(data)
                   console.log('====over!!!')
 
-                  // wx.request({
-                  //   url: process.env.BaseUrl + '/lastest/wechatapi/small/user/login',
-                  //   method: 'POST',
-                  //   header: {
-                  //     'content-type': 'application/json'
-                  //   },
-                  //
-                  //   success: function (res) {
-                  //     var obj = JSON.parse(res.data)
-                  //     console.log('wechat login: ', res.data)
-                  //     wx.setStorageSync('minaAuth', obj)
-                  //     var ss = wx.getStorageSync('minaAuth')
-                  //     console.log('access_token is:', ss)
-                  //     wx.showToast({
-                  //       title: '公益时长 +3',
-                  //       icon: 'success',
-                  //       duration: 2000
-                  //     })
-                  //   }
-                  // })
+                  wx.showToast({
+                    title: '公益时长 +3',
+                    icon: 'success',
+                    duration: 2000
+                  })
                 }
               }
             })
