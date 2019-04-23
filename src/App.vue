@@ -1,5 +1,6 @@
 <script>
 import { weixinUpdate } from '@/utils/update'
+import {weixinlogin} from './api/store'
 
 export default {
   // 调用API从本地缓存中获取数据
@@ -128,43 +129,48 @@ export default {
             wx.login({
               success: function (res) {
                 if (res.code) {
-                  wx.request({
-                    url: process.env.BaseUrl + '/lastest/wechatapi/small/user/login',
-                    method: 'POST',
-                    header: {
-                      'content-type': 'application/json'
-                    },
-                    data: {
-                      code: res.code,
-                      platform: loginInfo['platform'],
-                      system: loginInfo['system'],
-                      brand: loginInfo['brand'],
-                      pmodel: loginInfo['pmodel'],
-                      networkType: loginInfo['networkType'],
-                      longitude: loginInfo['longitude'],
-                      latitude: loginInfo['latitude'],
-                      nickName: userInfo.nickName,
-                      avatarUrl: userInfo.avatarUrl,
-                      // 性别 0：未知、1：男、2：女
-                      gender: userInfo.gender,
-                      country: userInfo.country,
-                      province: userInfo.province,
-                      city: userInfo.city,
-                      language: userInfo.language
-                    },
-                    success: function (res) {
-                      var obj = JSON.parse(res.data)
-                      console.log('wechat login: ', res.data)
-                      wx.setStorageSync('minaAuth', obj)
-                      var ss = wx.getStorageSync('minaAuth')
-                      console.log('access_token is:', ss)
-                      wx.showToast({
-                        title: '公益时长 +3',
-                        icon: 'success',
-                        duration: 2000
-                      })
-                    }
-                  })
+                  let data = {
+                    code: res.code,
+                    platform: loginInfo['platform'],
+                    system: loginInfo['system'],
+                    brand: loginInfo['brand'],
+                    pmodel: loginInfo['pmodel'],
+                    networkType: loginInfo['networkType'],
+                    longitude: loginInfo['longitude'],
+                    latitude: loginInfo['latitude'],
+                    nickName: userInfo.nickName,
+                    avatarUrl: userInfo.avatarUrl,
+                    // 性别 0：未知、1：男、2：女
+                    gender: userInfo.gender,
+                    country: userInfo.country,
+                    province: userInfo.province,
+                    city: userInfo.city,
+                    language: userInfo.language
+                  }
+                  // JSON.stringify(data)
+                  weixinlogin(data)
+                  console.log('====over!!!')
+
+                  // wx.request({
+                  //   url: process.env.BaseUrl + '/lastest/wechatapi/small/user/login',
+                  //   method: 'POST',
+                  //   header: {
+                  //     'content-type': 'application/json'
+                  //   },
+                  //
+                  //   success: function (res) {
+                  //     var obj = JSON.parse(res.data)
+                  //     console.log('wechat login: ', res.data)
+                  //     wx.setStorageSync('minaAuth', obj)
+                  //     var ss = wx.getStorageSync('minaAuth')
+                  //     console.log('access_token is:', ss)
+                  //     wx.showToast({
+                  //       title: '公益时长 +3',
+                  //       icon: 'success',
+                  //       duration: 2000
+                  //     })
+                  //   }
+                  // })
                 }
               }
             })

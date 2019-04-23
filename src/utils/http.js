@@ -1,5 +1,5 @@
 import axios from 'axios'
-import qs from 'qs'
+// import qs from 'qs'
 
 // 时间戳
 // const NewTimeStamp = new Date().getTime()
@@ -9,8 +9,10 @@ axios.defaults.headers.post[ 'Content-Type' ] = 'application/x-www-form-urlencod
 
 axios.defaults.adapter = function (config) {
   return new Promise((resolve, reject) => {
-    // console.log(config,'adapter')
-    let data = config.method === 'get' ? config.params : qs.stringify(config.data)
+    // console.log(config, 'adapter')
+    // let data = config.method === 'get' ? config.data : config.data
+    let data = config.method === 'get' ? config.data : config.data
+
     // wx小程序 发起请求相应 log 就可以看到熟悉的返回啦
     wx.request({
       url: process.env.BaseUrl + config.url,
