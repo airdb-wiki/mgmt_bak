@@ -6,16 +6,14 @@ import qs from 'qs'
 
 axios.defaults.timeout = 30000
 axios.defaults.headers.post[ 'Content-Type' ] = 'application/x-www-form-urlencoded;charset=UTF-8'
-axios.defaults.adapter = function (config) {
-  // const baseUrl = process.env.NODE_ENV === 'development' ? process.env.baseUrl : config.baseUrl.pro
-  console.log('=====', process.env.BaseUrl)
 
+axios.defaults.adapter = function (config) {
   return new Promise((resolve, reject) => {
     // console.log(config,'adapter')
     let data = config.method === 'get' ? config.params : qs.stringify(config.data)
     // wx小程序 发起请求相应 log 就可以看到熟悉的返回啦
     wx.request({
-      url: wx.getStorageSync('domain') + config.url,
+      url: process.env.BaseUrl + config.url,
       method: config.method,
       data: data,
       success: (res) => { return resolve(res) },
@@ -23,6 +21,7 @@ axios.defaults.adapter = function (config) {
     })
   })
 }
+
 // axios 拦截器
 axios.interceptors.request.use(function (request) {
   request.headers.token = 'token=11124654654687'
@@ -43,37 +42,3 @@ axios.interceptors.response.use(function (response) {
 })
 
 export default axios
-
-/*
-export function get (url, params) {
-  return axios({
-    method: 'get',
-    url: url,
-    params: params
-  })
-}
-
-export function post (url, params) {
-  return axios({
-    method: 'post',
-    url: url,
-    data: params
-  })
-}
-
-export function httpget (url, params) {
-  return axios({
-    method: 'get',
-    url: url,
-    params: params
-  })
-}
-
-export function httppost (url, params) {
-  return axios({
-    method: 'post',
-    url: url,
-    data: params
-  })
-}
-*/
