@@ -4,13 +4,13 @@
     <navigation></navigation>
     <div class="profile-page-main">
       <div class="userinfo">
-        <div v-if="authSetting.userInfo" class="userinfo-avatar" @click="openSetting">
+        <div v-if="setting.userInfo" class="userinfo-avatar" @click="openSetting">
           <image class="img" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover"/>
         </div>
         <div v-else class="userinfo-avatar" @click="openSetting">
           <image class="img" src="/static/images/user_active.png" background-size="cover" />
         </div>
-        <div v-if="authSetting.userInfo">
+        <div v-if="setting.userInfo">
           <div class="userinfo-cont">
             <div class="text-name">{{ userInfo.nickName }}</div>
             <div class="text-time" @click="ClickServiceTime">公益时长: {{servicetime}}小时 ></div>
@@ -23,7 +23,7 @@
         <div class="userinfo-privilege" @click="ClickMyPrivilege" v-else>我的特权></div>
       </div>
       <!-- userinfo end -->
-      
+
       <div class="after-userifo">
         <div class="weui-cell title">
           <div class="weui-label">登记信息</div>
@@ -73,7 +73,7 @@
     <div class="profile-page-footer">
       <vfooter></vfooter>
     </div>
-    
+
   </div>
 </template>
 
@@ -90,9 +90,7 @@ export default {
       servicetime: 10,
       isVolunteer: false,
       userInfo: wx.getStorageSync('userInfo'),
-      authSetting: {
-        userInfo: wx.getStorageSync('authSetting.userInfo')
-      },
+      setting: wx.getStorageSync('setting'),
       items: [{
         name: '家寻宝贝',
         src: '/static/images/mini-logo/1.png',
@@ -122,7 +120,6 @@ export default {
   },
   onLoad: function () {
     console.log('===test_mc onLoad======:')
-    console.log('test_mc====onLoad() authSetting.userInfo =', this.authSetting.userInfo)
     console.log('test_mc====onLoad() userInfo =', this.userInfo)
   },
   onShareAppMessage: function () {
@@ -139,28 +136,15 @@ export default {
       })
     },
     openSetting () {
-      var that = this
+      var vm = this
       wx.openSetting({
         success: (res) => {
-          wx.setStorageSync('authSetting.userInfo', res.authSetting['scope.userInfo'])
-          that.authSetting.userInfo = wx.getStorageSync('authSetting.userInfo')
-          console.log('test_mc===openSetting() authSetting.userInfo =', that.authSetting.userInfo)
+          vm.setting.userInfo = res.authSetting['scope.userInfo']
         }
       })
     },
     getUserInfo: function (e) {
-      wx.setStorageSync('authSetting.userInfo', true)
-      this.authSetting.userInfo = wx.getStorageSync('authSetting.userInfo')
-      wx.setStorageSync('userInfo', e.mp.detail.userInfo)
-      this.userInfo = wx.getStorageSync('userInfo')
-      if (!e.mp.detail.userInfo) {
-        wx.setStorageSync('authSetting.userInfo', false)
-        this.authSetting.userInfo = wx.getStorageSync('authSetting.userInfo')
-        wx.setStorageSync('userInfo', e.mp.detail.userInfo)
-        this.userInfo = e.mp.detail.userInfo
-      }
       console.log('test_mc===getUserInfo() userinfo =', e.mp.detail.userInfo)
-      console.log('test_mc===getUserInfo() authSetting.userInfo =', this.authSetting.userInfo)
     },
     // 点击志愿时长
     ClickServiceTime: function () {

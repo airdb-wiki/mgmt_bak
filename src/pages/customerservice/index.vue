@@ -58,15 +58,10 @@
         minaAuth: wx.getStorageSync('minaAuth'),
         isVolunteer: false,
         userInfo: wx.getStorageSync('userInfo'),
-        authSetting: {
-          userInfo: wx.getStorageSync('authSetting.userInfo')
-        }
+        setting: wx.getStorageSync('setting')
       }
     },
     onLoad: function () {
-      console.log('===test_mc onLoad======:')
-      console.log('test_mc====onLoad() authSetting.userInfo =', this.authSetting.userInfo)
-      console.log('test_mc====onLoad() userInfo =', this.userInfo)
     },
     onShareAppMessage: function () {
       return {
@@ -83,30 +78,6 @@
         wx.navigateTo({
           url: '/pages/publish/main'
         })
-      },
-      openSetting () {
-        var that = this
-        wx.openSetting({
-          success: (res) => {
-            wx.setStorageSync('authSetting.userInfo', res.authSetting['scope.userInfo'])
-            that.authSetting.userInfo = wx.getStorageSync('authSetting.userInfo')
-            console.log('test_mc===openSetting() authSetting.userInfo =', that.authSetting.userInfo)
-          }
-        })
-      },
-      getUserInfo: function (e) {
-        wx.setStorageSync('authSetting.userInfo', true)
-        this.authSetting.userInfo = wx.getStorageSync('authSetting.userInfo')
-        wx.setStorageSync('userInfo', e.mp.detail.userInfo)
-        this.userInfo = wx.getStorageSync('userInfo')
-        if (!e.mp.detail.userInfo) {
-          wx.setStorageSync('authSetting.userInfo', false)
-          this.authSetting.userInfo = wx.getStorageSync('authSetting.userInfo')
-          wx.setStorageSync('userInfo', e.mp.detail.userInfo)
-          this.userInfo = e.mp.detail.userInfo
-        }
-        console.log('test_mc===getUserInfo() userinfo =', e.mp.detail.userInfo)
-        console.log('test_mc===getUserInfo() authSetting.userInfo =', this.authSetting.userInfo)
       },
       tel: function () {
         wx.makePhoneCall({

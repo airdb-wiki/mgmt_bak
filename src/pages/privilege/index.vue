@@ -2,7 +2,7 @@
   <div class="page">
 
       <div class="user">
-        <div v-if="authSetting.userInfo" class="user-avatar">
+        <div v-if="setting.userInfo" class="user-avatar">
           <image class="img" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover"/>
         </div>
 
@@ -63,9 +63,7 @@ export default{
       title: '成长指标',
       showTitle: false,
       userInfo: wx.getStorageSync('userInfo'),
-      authSetting: {
-        userInfo: wx.getStorageSync('authSetting.userInfo')
-      },
+      setting: wx.getStorageSync('setting'),
       privilege: 3,
       function_cells: [{
         name: '救助站',
