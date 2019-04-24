@@ -2,14 +2,14 @@
   <div class="page">
 
       <div class="user">
-        <div v-if="setting.userInfo" class="user-avatar">
-          <image class="img" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover"/>
+        <div class="user-avatar">
+          <open-data type="userAvatarUrl" class="userinfo-avatar" mode="cover"></open-data>
         </div>
 
         <!-- user-avatar end -->
         <div class="user-cont">
-          <div class="text-name">公益时长</div>
-          <div class="text-time">13.5 小时</div>
+          <open-data type="userNickName"></open-data>
+          <div class="text-time">公益时长: 13.5 小时</div>
         </div>
         <!-- user-cont end -->
       </div>

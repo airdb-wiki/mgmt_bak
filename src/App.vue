@@ -2,7 +2,6 @@
 import { weixinUpdate } from '@/utils/update'
 import { weixinSetting } from '@/api/weixin'
 import {
-  weixinlogin,
   weixinLoginScene,
   getReliefStations
 } from './api/store'
@@ -18,7 +17,6 @@ export default {
    */
   data () {
     return {
-      userInfo: {},
       loginInfo: {}, // 用户登录信息
       profile: {},
       prams: {}
@@ -79,7 +77,6 @@ export default {
     })
   },
   created () {
-    var userInfo = {} // 微信用户信息
     var loginInfo = {} // 用户登录信息
 
     console.log('app created, NODE_ENV:', process.env.NODE_ENV, process.env)
@@ -142,61 +139,61 @@ export default {
     let vm = this
     vm.profile = wx.getStorageSync('profile')
     // 获取用户信息
-    if (setting.userInfo) {
-      wx.getUserInfo({
-        success: (res) => {
-          try {
-            userInfo = res.userInfo
-            console.log('-----userinfo', userInfo)
-            wx.setStorageSync('userInfo', res.userInfo)
-            // wx.checkSession({
-            //   success: function () {
-            //     console.log('session_key 未过期，并且在本生命周期一直有效')
-            //   },
-            //   fail: function () {
-            //     console.log('登录中...')
-            //
-            //   }
-            // })
-            wx.login({
-              success: function (res) {
-                if (res.code) {
-                  let data = {
-                    code: res.code,
-                    platform: loginInfo['platform'],
-                    system: loginInfo['system'],
-                    brand: loginInfo['brand'],
-                    pmodel: loginInfo['pmodel'],
-                    networkType: loginInfo['networkType'],
-                    longitude: loginInfo['longitude'],
-                    latitude: loginInfo['latitude'],
-                    nickName: userInfo.nickName,
-                    avatarUrl: userInfo.avatarUrl,
-                    // 性别 0：未知、1：男、2：女
-                    gender: userInfo.gender,
-                    country: userInfo.country,
-                    province: userInfo.province,
-                    city: userInfo.city,
-                    language: userInfo.language
-                  }
-
-                  weixinlogin(data)
-                  console.log('====over!!!')
-
-                  wx.showToast({
-                    title: '公益时长 +3',
-                    icon: 'success',
-                    duration: 2000
-                  })
-                }
-              }
-            })
-          } catch (e) {
-            console.log('setUserInfo failed App.vue')
-          }
-        }
-      })
-    }
+    // if (setting.userInfo) {
+    //   wx.getUserInfo({
+    //     success: (res) => {
+    //       try {
+    //         userInfo = res.userInfo
+    //         console.log('-----userinfo', userInfo)
+    //         wx.setStorageSync('userInfo', res.userInfo)
+    //         // wx.checkSession({
+    //         //   success: function () {
+    //         //     console.log(                                                                                                                                                                                                                                                                                                           'session_key 未过期，并且在本生命周期一直有效')
+    //         //   },
+    //         //   fail: function () {
+    //         //     console.log('登录中...')
+    //         //
+    //         //   }
+    //         // })
+    //         wx.login({
+    //           success: function (res) {
+    //             if (res.code) {
+    //               let data = {
+    //                 code: res.code,
+    //                 platform: loginInfo['platform'],
+    //                 system: loginInfo['system'],
+    //                 brand: loginInfo['brand'],
+    //                 pmodel: loginInfo['pmodel'],
+    //                 networkType: loginInfo['networkType'],
+    //                 longitude: loginInfo['longitude'],
+    //                 latitude: loginInfo['latitude'],
+    //                 nickName: userInfo.nickName,
+    //                 avatarUrl: userInfo.avatarUrl,
+    //                 // 性别 0：未知、1：男、2：女
+    //                 gender: userInfo.gender,
+    //                 country: userInfo.country,
+    //                 province: userInfo.province,
+    //                 city: userInfo.city,
+    //                 language: userInfo.language
+    //               }
+    //
+    //               weixinlogin(data)
+    //               console.log('====over!!!')
+    //
+    //               wx.showToast({
+    //                 title: '公益时长 +3',
+    //                 icon: 'success',
+    //                 duration: 2000
+    //               })
+    //             }
+    //           }
+    //         })
+    //       } catch (e) {
+    //         console.log('setUserInfo failed App.vue')
+    //       }
+    //     }
+    //   })
+    // }
   }
 }
 </script>

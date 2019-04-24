@@ -2,20 +2,11 @@
   <div class="page">
 
     <div class="userinfo">
-      <div v-if="setting.userInfo" class="userinfo-avatar" @click="openUrl('/pages/privilege/main')">
-        <image class="img" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover"/>
-      </div>
-      <div v-if="setting.userInfo">
-        <div class="userinfo-cont">
-          <div class="text-name">{{ userInfo.nickName }}</div>
-        </div>
-      </div>
-      <div v-else>
-        <button class="userlogin" type="primary" open-type="getUserInfo" lang="zh_CN" @getuserinfo="getUserInfo">登录</button>
-      </div>
+      <button open-type="getUserInfo" class="userinfo" @click="openUrl('/pages/privilege/main')">
+        <open-data type="userAvatarUrl" class="userinfo-avatar" mode="cover"></open-data>
+        <open-data type="userNickName"></open-data>
+      </button>
     </div>
-
-
 
     <div class="kind-list">
       <div v-for="(item, index) in kindlist" :key="index">

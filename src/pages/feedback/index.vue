@@ -4,6 +4,12 @@
     <div>
       运行环境: {{env}}
     </div>
+
+    <open-data type="userAvatarUrl"></open-data>
+    <open-data type="userNickName"></open-data>
+    <open-data type="userGender" lang="zh_CN"></open-data>
+
+
   </div>
 </template>
 
