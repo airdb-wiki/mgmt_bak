@@ -3,7 +3,6 @@ import { weixinUpdate } from '@/utils/update'
 import { weixinSetting } from '@/api/weixin'
 import {
   weixinlogin,
-  weixincodelogin,
   weixinLoginScene,
   getReliefStations
 } from './api/store'
@@ -26,28 +25,25 @@ export default {
     }
   },
   onLaunch (launch) {
-    console.log('app launch scene info: ', launch.scene, launch.path, launch.shareTicket)
+    console.log('app launch scene info: ', launch.scene, launch.path)
     // var vm = this
 
     mpvue.login({
       success: function (res) {
         if (res.code) {
-          weixincodelogin(res.code)
+          let parms = {
+            code: res.code,
+            scene: launch.scene,
+            path: launch.path
+          }
+
+          weixinLoginScene(parms)
         } else {
           console.log('登录失败！' + res.errMsg)
         }
       }
     })
 
-    let user = mpvue.getStorageSync('user')
-    let parms = {
-      openid: user.openid,
-      scene: launch.scene,
-      path: launch.path,
-      shareTicket: launch.shareTicket
-    }
-
-    weixinLoginScene(parms)
     // <!--广告开始-->
     // 在页面中定义插屏广告
     let interstitialAd = null

@@ -30,9 +30,7 @@ export const apiWeixinCodeLogin = (parms) => {
   return axios({
     method: 'post',
     url: '/lastest/wechatapi/small/user/code',
-    data: {
-      code: parms
-    }
+    data: parms
   })
 }
 
