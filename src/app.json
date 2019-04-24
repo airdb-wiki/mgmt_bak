@@ -1,13 +1,13 @@
 {
   "pages": [
     "pages/profile/main",
+    "pages/feedback/main",
     "pages/home/main",
     "pages/customerservice/main",
     "pages/volunteer-create/main",
     "pages/volunteer-tips/main",
     "pages/reliefstation/main",
     "pages/hr/main",
-    "pages/feedback/main",
     "pages/topic/main",
     "pages/detail/main",
     "pages/test/hzw_text/main",

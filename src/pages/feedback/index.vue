@@ -5,10 +5,7 @@
       运行环境: {{env}}
     </div>
 
-    <open-data type="userAvatarUrl"></open-data>
-    <open-data type="userNickName"></open-data>
-    <open-data type="userGender" lang="zh_CN"></open-data>
-
+    <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">phone</button>
 
   </div>
 </template>
@@ -91,6 +88,11 @@ export default {
       wx.navigateTo({
         url: '/pages/user/list/main'
       })
+    },
+    getPhoneNumber (e) {
+      console.log(e.detail.errMsg)
+      console.log(e.detail.iv)
+      console.log(e.detail.encryptedData)
     },
     kindToggle (e) {
       var id = e.currentTarget.id

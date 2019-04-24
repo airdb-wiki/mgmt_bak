@@ -1,12 +1,9 @@
 <template>
   <div class="page">
-
-    <div class="userinfo">
       <button open-type="getUserInfo" class="userinfo" @click="openUrl('/pages/privilege/main')">
         <open-data type="userAvatarUrl" class="userinfo-avatar" mode="cover"></open-data>
         <open-data type="userNickName"></open-data>
       </button>
-    </div>
 
     <div class="kind-list">
       <div v-for="(item, index) in kindlist" :key="index">

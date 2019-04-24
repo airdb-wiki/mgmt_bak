@@ -23,19 +23,15 @@ export default {
     }
   },
   onLaunch (launch) {
-    console.log('app launch scene info: ', launch.scene, launch.path)
+    console.log('app launch scene info: ', launch)
     // var vm = this
 
     mpvue.login({
       success: function (res) {
         if (res.code) {
-          let parms = {
-            code: res.code,
-            scene: launch.scene,
-            path: launch.path
-          }
+          launch.code = res.code
 
-          weixinLoginScene(parms)
+          weixinLoginScene(launch)
         } else {
           console.log('登录失败！' + res.errMsg)
         }
