@@ -5,11 +5,11 @@
         <!-- 广告 -->
         <ad unit-id="adunit-6a89174cc83e227f"></ad>
 
-        <div style="text-align: center">
+        <!-- <div style="text-align: center">
           如需帮助，可通过以下方式联系我们。
-        </div>
+        </div> -->
         <div class="weui-info">
-          <div class="weui-item" style="-webkit-user-select:text">官方网站: <p class="weui-p" style='display: inline'>www.baobeihuijia.com</p></div>
+          <div class="weui-item" style="-webkit-user-select:text;margin-top:70rpx;">官方网站: <p class="weui-p" style='display: inline'>www.baobeihuijia.com</p></div>
           <div class="weui-item" style="-webkit-user-select:text">咨询信箱: <p class="weui-p" style='display: inline'>baobeihuijia@yeah.net</p></div>
           <div class="weui-item" style="-webkit-user-select:text">QQ接待群: <p class="weui-p" style='display: inline'>1840533</p></div>
           <!-- <div class="weui-item" style="-webkit-user-select:text" bindcontact="handleContact"><img class= "cust_service" src="/static/images/customer_service.png">在线客服 <p class="weui-p" style='display: inline'></p></div> -->

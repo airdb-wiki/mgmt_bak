@@ -19,6 +19,10 @@
   font-weight: 400;
   /* font-weight:bold; */
 }
+page {
+  width: 100%;
+  overflow-x:hidden;
+}
 .weui-item{
   height: 120rpx;
   width: 100%;
@@ -30,17 +34,20 @@
 }
 .weui-item:nth-child(4) {
   background-color: transparent;
-  border: none;
   outline: none;
-  line-height: 120rpx;
-  margin-left: -2rpx;
+  height: 100rpx;
+  width: 95%;
+  line-height: 100rpx;
+  margin-left: 25rpx;
+  border-radius: 50rpx;
+  border: 1px #57C05B solid;
+  color:#57C05B;;
 }
 .weui-item:nth-child(5) {
   border:none;
-  margin-top: 50rpx;
+  margin-top: 90rpx;
   margin-left: 5rpx;
   margin-bottom: 75rpx;
-
 }
 .btn {
   margin-top: 100rpx;
@@ -120,7 +127,7 @@
 }
 .profile-page-main {
   flex: 1 1 auto;
-  margin-top: 70px;
+  margin-top: 140rpx;
 }
 .btn-post {
   float: right;
