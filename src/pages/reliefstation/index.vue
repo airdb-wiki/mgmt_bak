@@ -18,13 +18,16 @@
 </template>
 
 <script>
+import getReliefStations from '@/api/store'
+
 export default {
   components: {
   },
   data () {
     return {
       database: [],
-      stations: [{
+      stations: mpvue.getStorageSync('reliefStations'),
+      station: [{
         name: '东城区救助管理站',
         province: '北京市',
         city: '北京市',
@@ -33,10 +36,25 @@ export default {
       }]
     }
   },
+  onload () {
+    getReliefStations()
+  },
   onShow () {
     var db = wx.getStorageSync('database')
     this.database = db
     console.log('database information:', db)
+  },
+  onPullDownRefresh: function () {
+    wx.showLoading({
+      title: '正在更新...'
+    })
+    setTimeout(function () {
+      wx.hideLoading()
+    }, 500)
+    getReliefStations()
+  },
+  create () {
+    getReliefStations()
   },
   methods: {
     navToDetail (e) {

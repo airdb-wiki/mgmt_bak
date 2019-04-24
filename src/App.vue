@@ -39,7 +39,9 @@ export default {
       }
     })
 
+    let user = mpvue.getStorageSync('user')
     let parms = {
+      openid: user.openid,
       scene: launch.scene,
       path: launch.path,
       shareTicket: launch.shareTicket
@@ -85,6 +87,8 @@ export default {
     var loginInfo = {} // 用户登录信息
 
     console.log('app created, NODE_ENV:', process.env.NODE_ENV, process.env)
+
+    console.log('------', wx.getAccountInfoSync())
 
     // 填写自己的鉴权服务器地址
     var wecosSignatureUrl = process.env.BaseUrl + '/lastest/wechatapi/qcloud/wecos/auth'

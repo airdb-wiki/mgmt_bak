@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/home/main",
     "pages/profile/main",
+    "pages/home/main",
     "pages/customerservice/main",
     "pages/volunteer-create/main",
     "pages/volunteer-tips/main",

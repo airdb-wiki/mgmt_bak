@@ -45,6 +45,7 @@ export default {
       minaAuth: wx.getStorageSync('minaAuth'),
       isVolunteer: false,
       userInfo: wx.getStorageSync('userInfo'),
+      user: wx.getStorageSync('user'),
       setting: wx.getStorageSync('setting'),
       kindlist: [
         {
@@ -68,7 +69,7 @@ export default {
           page: '/pages/customerservice/main'
         },
         {
-          name: '反馈',
+          name: '版本',
           icon: '/static/images/feedback.png',
           page: '/pages/feedback/main'
         },
@@ -86,9 +87,9 @@ export default {
   },
   onShareAppMessage: function () {
     return {
-      title: '公益项目',
-      path: '/pages/user/profile/main?from=forward',
-      imageUrl: '/static/images/home/vr.png'
+      title: '',
+      path: '/pages/profile/main',
+      imageUrl: '/static/images/forward/home2.jpg'
     }
   },
   async onPullDownRefresh () {

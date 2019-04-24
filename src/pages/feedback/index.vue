@@ -1,8 +1,9 @@
 <template>
   <div class="page">
 
-    用户反反馈
-
+    <div>
+      运行环境: {{env}}
+    </div>
   </div>
 </template>
 
@@ -16,6 +17,7 @@ export default {
   },
   data () {
     return {
+      env: process.env.NODE_ENV,
       isActive: 0,
       servicetime: 10,
       isVolunteer: false,

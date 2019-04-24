@@ -40,7 +40,7 @@ export const weixincodelogin = (parms) => {
   return new Promise((resolve, reject) => {
     apiWeixinCodeLogin(parms).then(res => {
       // commit('reliefStations', res.data)
-      mpvue.setStorageSync('wechatid', res.data)
+      mpvue.setStorageSync('user', res.data)
       console.log('api promise ==store==code=', res.data)
       resolve()
     }).catch(err => {
