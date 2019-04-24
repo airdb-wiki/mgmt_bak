@@ -2,7 +2,7 @@
   <div id="app">
     <!-- 自定义navigation -->
     <navigation :search='true' :propArray="cityList" :yourcity="minaAuth.yourcity ? minaAuth.yourcity : '定位中...'"></navigation>
-    
+
     <!-- swiper轮播图 -->
     <swiper :indicator-dots="true"
       :autoplay="true"
@@ -26,7 +26,7 @@
         <div v-for="(tab, index) in tabs" :key="tab.id" :class="[index == activeIndex ? 'item_on' : 'tab']" :id="index" @click="changeTab">{{tab}}</div>
       </scroll-view>
     </div> -->
-    
+
     <!-- 卡片效果 -->
     <div style="z-index: 0;">
       <card2 :items="database"></card2>
@@ -72,9 +72,7 @@ export default {
       tabs: [
         '儿童走失', '老人走失', '离家出走', '人贩拐卖', '其他寻人'
       ],
-      authSetting: {
-        userInfo: wx.getStorageSync('authSetting.userInfo')
-      },
+      setting: wx.getStorageSync('setting'),
       showLogin: false,
       database: [],
       minaAuth: wx.getStorageSync('minaAuth'),
@@ -128,25 +126,6 @@ export default {
       this.parms.category = this.tabs[e.currentTarget.id]
       // console.log('-----------changeTab', e.currentTarget.id, this.parms.category)
       // this.request()
-    },
-    // 获取用户信息
-    login () {
-      var that = this
-      console.log('login function', wx.getStorageSync('authSetting.userInfo'))
-      setTimeout(function () {
-        wx.getSetting({
-          success: res => {
-            // console.log('setting', res)
-            // console.log('setting', res.authSetting['scope.userInfo'])
-            if (res.authSetting['scope.userInfo'] === true) {
-              // this.getUserInfo = res.authSetting['scope.userInfo']
-              // console.log('====', res.authSetting['scope.userInfo'])
-              that.authSetting.userInfo = res.authSetting['scope.userInfo']
-              wx.setStorageSync('authSetting.userInfo', res.authSetting['scope.userInfo'])
-            }
-          }
-        })
-      }, 2000)
     },
     cancel () {
       console.log('hover')
@@ -285,9 +264,6 @@ export default {
     }, 500)
   },
   created () {
-    // console.log('==authSetting==', wx.getStorageSync('authSetting.userInfo'), this.authSetting.userInfo)
-    this.authSetting.userInfo = wx.getStorageSync('authSetting.userInfo')
-    // console.log('create====', this.authSetting.userInfo)
     const logs = (wx.getStorageSync('logs') || [])
     this.logs = logs.map(log => formatTime(new Date(log)))
     // 获取用户授权

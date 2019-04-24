@@ -108,21 +108,6 @@ export default {
     let setting = mpvue.getStorageSync('setting')
 
     console.log('weixin setting: ', setting.userLocation)
-
-    // 获取微信授权信息
-    // wx.getSetting({
-    //   success: res => {
-    //     // console.log(res)
-    //     wx.setStorageSync('authSetting.userInfo', res.authSetting['scope.userInfo'])
-    //     wx.setStorageSync('authSetting.userLocation', res.authSetting['scope.userLocation'])
-    //     wx.setStorageSync('authSetting.address', res.authSetting['scope.address'])
-    //     wx.setStorageSync('authSetting.invoiceTitle', res.authSetting['scope.invoiceTitle'])
-    //     wx.setStorageSync('authSetting.werun', res.authSetting['scope.werun'])
-    //     wx.setStorageSync('authSetting.record', res.authSetting['scope.record'])
-    //     wx.setStorageSync('authSetting.writePhotosAlbum', res.authSetting['scope.writePhotosAlbum'])
-    //     wx.setStorageSync('authSetting.camera', res.authSetting['scope.camera'])
-    //   }
-    // })
     // 获取用户经纬度
     if (setting.userLocation) {
       wx.getLocation({
