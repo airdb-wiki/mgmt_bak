@@ -46,6 +46,25 @@ export default {
     }
 
     weixinLoginScene(parms)
+    // <!--广告开始-->
+    // 在页面中定义插屏广告
+    let interstitialAd = null
+
+    // 在页面onLoad回调事件中创建插屏广告实例
+    if (wx.createInterstitialAd) {
+      interstitialAd = wx.createInterstitialAd({
+        adUnitId: 'adunit-1a35266b79a02a85'
+      })
+    }
+
+    // 在适合的场景显示插屏广告
+    if (interstitialAd) {
+      interstitialAd.show().catch((err) => {
+        console.error(err)
+      })
+    }
+    // <!--广告结束-->
+
     // vm.prams.code = res.code
     // vm.prams.scene = launch.scene
     // vm.prams.shareTicket = launch.shareTicket
@@ -83,6 +102,7 @@ export default {
       success: function (res) {
         try {
           loginInfo['networkType'] = res.networkType
+          console.log('----network----', res)
         } catch (e) {
           console.log('getNetworkType failed App.vue')
         }
@@ -107,7 +127,6 @@ export default {
     console.log('weixin setting: ', mpvue.getStorageSync('setting'))
     let setting = mpvue.getStorageSync('setting')
 
-    console.log('weixin setting: ', setting.userLocation)
     // 获取用户经纬度
     if (setting.userLocation) {
       wx.getLocation({
@@ -131,7 +150,6 @@ export default {
         success: (res) => {
           try {
             userInfo = res.userInfo
-            console.log('-----profile', vm.profile.Openid)
             console.log('-----userinfo', userInfo)
             wx.setStorageSync('userInfo', res.userInfo)
             // wx.checkSession({

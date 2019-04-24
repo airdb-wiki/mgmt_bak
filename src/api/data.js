@@ -47,10 +47,18 @@ export const apiWeixinLogin = (parms) => {
 
 // 微信登录-加参数的
 export const apiWeixinLoginScene = (parms) => {
-  console.log(parms)
   return axios({
     method: 'post',
     url: '/lastest/wechatapi/small/user/scene',
+    data: parms
+  })
+}
+
+// qcloud wecos 对象存储桶鉴权
+export const apiWecosAuth = (parms) => {
+  return axios({
+    method: 'post',
+    url: '/lastest/wechatapi/qcloud/wecos/auth',
     data: parms
   })
 }
