@@ -4,8 +4,8 @@ import { weixinSetting } from '@/api/weixin'
 import {
   weixinlogin,
   weixincodelogin,
-  weixinLoginScene
-
+  weixinLoginScene,
+  getReliefStations
 } from './api/store'
 
 export default {
@@ -90,10 +90,7 @@ export default {
 
     console.log('------', wx.getAccountInfoSync())
 
-    // 填写自己的鉴权服务器地址
-    var wecosSignatureUrl = process.env.BaseUrl + '/lastest/wechatapi/qcloud/wecos/auth'
-    wx.setStorageSync('wecosSignatureUrl', wecosSignatureUrl)
-    wx.setStorageSync('cdn', 'https://wechat-1251018873.file.myqcloud.com')
+    getReliefStations()
 
     // 调用API从本地缓存中获取数据
     const logs = wx.getStorageSync('logs') || []

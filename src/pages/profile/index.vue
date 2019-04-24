@@ -87,7 +87,7 @@ export default {
   },
   onShareAppMessage: function () {
     return {
-      title: '',
+      title: '汇聚爱心，成就团圆',
       path: '/pages/profile/main',
       imageUrl: '/static/images/forward/home2.jpg'
     }

@@ -51,7 +51,6 @@ export default {
     setTimeout(function () {
       wx.hideLoading()
     }, 500)
-    getReliefStations()
   },
   create () {
     getReliefStations()
