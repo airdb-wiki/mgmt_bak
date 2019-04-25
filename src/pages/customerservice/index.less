@@ -1,107 +1,170 @@
-.page{
+.after-userifo{
+  background: #fff;
+}
+.weui-cells{
+  margin-top: 0;
+}
+
+.weui-info{
   width: 100%;
-  height: 200px;
+  // height: 300rpx;
+  // border: 0.2px solid #d9d9d9;
+  font-size: 16px;
 }
-.searchbar-result {
-  font-size: 14px;
+.weui-p{
+  user-select:text;
+  // color:#576b95;
+  color: #57C05B;
+  font-size: 17px;
+  font-weight: 400;
+  /* font-weight:bold; */
 }
-.searchbar-result:before {
-  display: none;
+page {
+  width: 100%;
+  overflow-x:hidden;
 }
-.weui-cell {
-  padding: 12px 15px 12px 35px;
+.weui-item{
+  height: 120rpx;
+  width: 100%;
+  margin-top: 40rpx;
+  margin-left:80rpx;
+  margin-bottom: 40rpx;
+  font-weight: 700;
+  border-bottom:0.5px #d9d9d9 solid;
+}
+.weui-item:nth-child(4) {
+  background-color: transparent;
+  outline: none;
+  height: 100rpx;
+  width: 95%;
+  line-height: 100rpx;
+  margin-left: 25rpx;
+  border-radius: 50rpx;
+  border: 1px #57C05B solid;
+  color:#57C05B;;
+}
+.weui-item:nth-child(5) {
+  border:none;
+  margin-top: 90rpx;
+  margin-left: 5rpx;
+  margin-bottom: 75rpx;
+}
+.btn {
+  margin-top: 100rpx;
+}
+.weui-phone{
+  height: 100rpx;
+  width: 95%;
+  margin-top: 30rpx;
+  margin-left: 17rpx;
+  text-align: center;
+  line-height: 100rpx;
+  border-radius: 50rpx;
+  border: 1px #57C05B solid;
+  color:#57C05B;;
+  font-size: 17px;
+  font-weight: 900;
 }
 .weui-cell__bd{
-  padding: 0px 10px;
-  margin: 5px;
-  margin-top: 2px;
   display: flex;
   flex-direction: row;
-  border-bottom: 1px solid #e2e2e2;
+  align-items: center;
 }
-.avatar{
-  margin: auto;
-  width: 50px;
-  height: 50px;
+.weui-cell__bd img{
+  width: 45rpx;
+  height: 45rpx;
 }
-.avatar img{
-  width: 50px;
-  height: 50px;
-  border-radius: 4px;
+.weui-cell__bd p{
+  color: #c2c4cc;
+  margin-left: 290rpx;
+  font-size: 15px;
 }
-.info{
-  padding: 0px 10px 5px;
+.weui-label {
+  color: #000;
+  font-size: 16px;
+  margin-left: 30rpx;
+  font-family: Helvetica;
 }
-.info_title{
-  width: 270px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  margin-bottom: 5px;
+.weui-label-contract{
+  color: #000;
+  font-size: 16px;
+  /* margin-left: 30rpx; */
+  font-family: Helvetica;
 }
-.info_1 text{
-  padding: 0px 10px;
-  border-radius: 5px;
-  background: #e2e2e2;
-  margin-right: 4px;
-  font-size: 14px;
-  color: red;
-}
-.history{
+.userinfo {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-.history div{
-  padding: 1px 10px;
-  margin: 5px;
-  background-color: #ffffff;
-  border-radius: 3px;
-}
-.navigation{
+  flex-direction: column;
+  align-items: center;
   width: 100%;
-  padding-top: 21pt;
+  height: 300rpx;
+  /* margin-bottom: 20rpx; */
+  /* border-bottom: 1px solid #d9d9d9; */
+  background: #fff;
+  /* border-bottom: solid #d9d9d9 1px;  */
+}
+.userinfo-avatar {
+  margin-top:30rpx;
+}
+.img
+{
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+}
+.userinfo-cont {
+  color: #000;
+  margin-bottom:10rpx;
+  font-size:34rpx;
+  font-family: Helvetica
+}
+.bh-profile-page {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  min-height: 100%;
+  background: #efeff4;
+  margin: 0 0;
+}
+.profile-page-main {
+  flex: 1 1 auto;
+  margin-top: 140rpx;
+}
+.btn-post {
+  float: right;
   position: fixed;
-  top: 0;
-  left: 0;
-  background-color: #fff;
-  z-index: 9999;
+  bottom: 40rpx;
+  right: 20rpx;
+  height: 120rpx;
+  width: 120rpx;
+}
+.cust_service{
+  width: 50rpx;
+  height: 50rpx;
+  margin-right: 10rpx;
+}
+.phone_img{
+  width: 50rpx;
+  height: 50rpx;
+  margin-top: 10rpx;
+  margin-right: 10rpx;
+}
+
+.weui-head {
   display: flex;
   flex-direction: row;
+
 }
-.title{
-  width: 50%;
-  margin-left: 3pt;
-  text-align: center;
-  display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  line-height: 30pt;
-  font-size: 18px;
+
+.title {
+  font-weight: 900;
+  font-size: 35px;
+  margin-top: 45rpx;
+  margin-left: 30rpx;
+  margin-right: 70rpx;
+  margin-bottom: 25rpx;
 }
-.btn{
-  display: flex;
-  flex-direction: row;
-  border-radius: 20px;
-  border: 1px solid #e2e2e2;
-  padding: 3pt 0pt 5pt 4pt;
-  margin-left: 6pt;
-  width: 56pt;
-  height: 15pt;
-}
-.back{
-  width: 20pt;
-  height: 20pt;
-}
-.home{
-  width: 17pt;
-  height: 17pt;
-}
-.result{
-  width: 64px;
-  text-align: center;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+.bbhj_img{
+  height: 150rpx;
+  width:150rpx;
+  border-radius: 5px;
 }

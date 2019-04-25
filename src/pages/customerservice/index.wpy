@@ -4,35 +4,53 @@
 
 <template>
   <div class="page">
+    <div class="after-userifo">
 
-    <vuser></vuser>
+      <!-- 广告 -->
+      <ad unit-id="adunit-6a89174cc83e227f"></ad>
 
-    <vradar></vradar>
+      <!-- <div style="text-align: center">
+        如需帮助，可通过以下方式联系我们。
+      </div> -->
+      <div class="weui-info">
+        <view class="weui-item" style="-webkit-user-select:text;margin-top:70rpx;">官方网站: <p class="weui-p" style='display: inline'>www.baobeihuijia.com</p></view>
+        <view class="weui-item" style="-webkit-user-select:text">咨询信箱: <p class="weui-p" style='display: inline'>baobeihuijia@yeah.net</p></view>
+        <view class="weui-item" style="-webkit-user-select:text">QQ接待群: <p class="weui-p" style='display: inline'>1840533</p></view>
+        <!-- <div class="weui-item" style="-webkit-user-select:text" bindcontact="handleContact"><img class= "cust_service" src="/static/images/customer_service.png">在线客服 <p class="weui-p" style='display: inline'></p></div> -->
+        <!-- <button open-type="contact" bindcontact="handleContact" class="weui-item">在线客服</button> -->
+        <button class="weui-item" style="-webkit-user-select:text" open-type="contact"
+                bindcontact="handleContact">
+          <image class= "cust_service" src="/static/images/customer_service.png"/>
+          在线客服(推荐) <p class="weui-p" style='display: inline'></p></button>
+        <div class="weui-item">
+          <view style="margin-left:80rpx">站务电话</view>
+          <view class="weui-phone" @click="tel">
+            <image src="/static/images/phone.png" class="phone_img" alt=""/>
+            0435-3338090
+          </view>
+        </div>
+      </div>
+    </div>
+    <!-- weui-cells end -->
 
-    <button type="primary" open-type="share" style="margin:20rpx">微信邀请</button>
-    <button type="primary" open-type="share" style="margin:20rpx">二维码邀请</button>
+    <!-- <button open-type="contact" bindcontact="handleContact" class="btn">在线客服</button> -->
 
-<!--    &lt;!&ndash; 分享按钮 &ndash;&gt;-->
-<!--    <div class="share" v-on:click="download">-->
-<!--      <img src="/static/images/home/sharetof.png">-->
-<!--    </div>-->
-
-    <!-- 分享图片生成的画布 -->
-    <canvas canvas-id="radar2">
-      <cover-view></cover-view>
-    </canvas>
+    <!-- profile-page-main end -->
+    <!-- 右下角加号新建 -->
+    <!-- <button open-type="contact" session-from="weixin-baobeihuijia">
+      <img src="/static/images/CustomerService.png" class="btn-post">
+    </button> -->
 
     <vfooter></vfooter>
+
+
   </div>
 </template>
-
 
 <script>
   import wepy from 'wepy'
   import { connect } from 'wepy-redux'
-  import User from '@/components/user'
   import Footer from '@/components/footer'
-  import Radar from '@/components/radar'
 
   @connect({
     num (state) {
@@ -48,74 +66,13 @@
 
   export default class Index extends wepy.page {
     config = {
-      navigationBarTitleText: '志愿者',
-      navigationBarBackgroundColor: '#f35336'
+      navigationBarTitleText: '联系我们'
     }
     components = {
-      vuser: User,
-      vfooter: Footer,
-      vradar: Radar
+      vfooter: Footer
     }
     data = {
-      privilege: 3,
-      function_cells: [{
-        name: '救助站',
-        src: '/static/images/profile/gift.png',
-        page: '/pages/reliefstation/main'
-      }, {
-        name: '志愿者',
-        src: '/static/images/profile/doll.png',
-        page: '/pages/volunteer/main'
-      }, {
-        name: '未开放',
-        src: '/static/images/profile/locked.png'
-      }, {
-        name: '未开放',
-        src: '/static/images/profile/locked.png'
-      }, {
-        name: '未开放',
-        src: '/static/images/profile/locked.png'
-      }, {
-        name: '未开放',
-        src: '/static/images/profile/locked.png'
-      }, {
-        name: '未开放',
-        src: '/static/images/profile/locked.png'
-      }, {
-        name: '未开放',
-        src: '/static/images/profile/locked.png'
-      }, {
-        name: '未开放',
-        src: '/static/images/profile/locked.png'
-      }],
-      gifts: [{
-        name: '精美礼品',
-        src: '/static/images/profile/gift.png'
-      }, {
-        name: '公仔一个',
-        src: '/static/images/profile/doll.png'
-      }, {
-        name: '衣服一件',
-        src: '/static/images/profile/clothes.png'
-      }, {
-        name: '未解锁',
-        src: '/static/images/profile/locked.png'
-      }, {
-        name: '未解锁',
-        src: '/static/images/profile/locked.png'
-      }, {
-        name: '未解锁',
-        src: '/static/images/profile/locked.png'
-      }, {
-        name: '未解锁',
-        src: '/static/images/profile/locked.png'
-      }, {
-        name: '未解锁',
-        src: '/static/images/profile/locked.png'
-      }, {
-        name: '未解锁',
-        src: '/static/images/profile/locked.png'
-      }]
+      privilege: 3
     }
 
     computed = {
@@ -123,6 +80,7 @@
         return +new Date()
       }
     }
+
     onShow () {
       const context = wepy.createCanvasContext('radar')
 
@@ -145,14 +103,19 @@
     }
 
     methods = {
-      openUrl (page) {
-        console.log('-----', page)
-        if (page === 'setting') {
-          wepy.openSetting({})
-          return
-        }
+      onPostClick () {
         wx.navigateTo({
-          url: page + '?wxid='
+          url: '/pages/publish/main'
+        })
+      },
+      tel: function () {
+        wx.makePhoneCall({
+          phoneNumber: '0435-3338090'
+        })
+      },
+      naviTo: function () {
+        wx.navigateTo({
+          url: '/pages/list/main'
         })
       }
     }
