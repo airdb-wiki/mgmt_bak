@@ -1,0 +1,101 @@
+<style scoped lang='less'>
+  @import 'index';
+</style>
+
+<template>
+  <div class="page">
+    <button open-type="getUserInfo" class="userinfo" @getuserinfo="bindGetUserInfo" @click="openUrl('/pages/privilege/main')">
+      <open-data type="userAvatarUrl" class="userinfo-avatar" mode="cover"></open-data>
+      <open-data type="userNickName"></open-data>
+    </button>
+
+    <div  class="kind-list">
+      <repeat for="{{kindlist}}" key="index" index="index" item="item">
+        <div @click="openUrl()" class="weui-flex kind-list__item">
+<!--          <img class="kind-list__img" src="item.icon">-->
+          <div class="kind-list__item-hd" >{{item.name}}</div>
+<!--          <img class="kind-list__img_right" src="/static/images/big.png" alt="">-->
+        </div>
+      </repeat>
+    </div>
+
+<!--    <div v-if="env=='development'" style="text-align: center" >-->
+<!--      编译信息：开发环境-->
+<!--    </div>-->
+  </div>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import { connect } from 'wepy-redux'
+  import Panel from '@/components/panel' // alias example
+
+  @connect({
+    num (state) {
+      return state.counter.num
+    },
+    asyncNum (state) {
+      return state.counter.asyncNum
+    },
+    sumNum (state) {
+      return state.counter.num + state.counter.asyncNum
+    }
+  })
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '宝贝回家'
+    }
+    components = {
+      panel: Panel
+    }
+    data = {
+      kindlist: [
+        {
+          name: '已发布',
+          icon: '/static/images/product.png',
+          page: '/pages/list/main'
+        },
+        {
+          name: '已关注',
+          icon: '/static/images/star.png',
+          page: '/pages/list/main'
+        },
+        {
+          name: '收信箱',
+          icon: '/static/images/message.png',
+          page: '/pages/hr/main'
+        },
+        {
+          name: '客服',
+          icon: '/static/images/customer_service.png',
+          page: '/pages/customerservice/main'
+        },
+        {
+          name: '实验室',
+          icon: '/static/images/feedback.png',
+          page: '/pages/volunteer/main'
+        },
+        {
+          name: '设置',
+          icon: '/static/images/settings.png',
+          page: 'setting'
+        }
+      ]
+    }
+
+    computed = {
+      now () {
+        return +new Date()
+      }
+    }
+
+    methods = {
+      plus() {
+        this.mynum++
+      }
+    }
+    onLoad() {
+    }
+  }
+</script>

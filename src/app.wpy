@@ -1,0 +1,95 @@
+<style lang="less">
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+</style>
+
+<script>
+import wepy from 'wepy'
+import 'wepy-async-function'
+
+import { setStore } from 'wepy-redux'
+import configStore from './store'
+
+const store = configStore()
+setStore(store)
+
+export default class extends wepy.app {
+  config = {
+    pages: [
+      'pages/profile/index',
+      'pages/home/index',
+      'pages/index/index'
+    ],
+    window: {
+      backgroundTextStyle: 'light',
+      navigationBarBackgroundColor: '#fff',
+      navigationBarTitleText: '宝贝回家',
+      navigationBarTextStyle: 'black'
+    },
+    tabBar: {
+      color: '#999',
+      backgroundColor: '#fafafa',
+      selectedColor: '#333',
+      borderStyle: 'white',
+      list: [{
+        text: '首页',
+        pagePath: 'pages/home/index',
+        iconPath: '/static/tabs/home.png',
+        selectedIconPath: '/static/tabs/home_active.png'
+      }, {
+        text: '我的',
+        pagePath: 'pages/profile/index',
+        iconPath: '/static/tabs/user.png',
+        selectedIconPath: '/static/tabs/user_active.png'
+      }]
+    }
+  }
+
+  globalData = {
+    userInfo: null
+  }
+
+  constructor () {
+    super()
+    this.use('requestfix')
+  }
+
+  onLaunch(launch) {
+    // console.log('app created, NODE_ENV:', process.env.NODE_ENV, process.env)
+    console.log(launch)
+    // this.testAsync()
+  }
+
+  // sleep (s) {
+  //   return new Promise((resolve, reject) => {
+  //     setTimeout(() => {
+  //       resolve('promise resolved')
+  //     }, s * 1000)
+  //   })
+  // }
+
+  // async testAsync () {
+  //   const data = await this.sleep(3)
+  //   console.log(data)
+  // }
+
+  // getUserInfo(cb) {
+  //   const that = this
+  //   if (this.globalData.userInfo) {
+  //     return this.globalData.userInfo
+  //   }
+  //   wepy.getUserInfo({
+  //     success (res) {
+  //       that.globalData.userInfo = res.userInfo
+  //       cb && cb(res.userInfo)
+  //     }
+  //   })
+  // }
+}
+</script>
