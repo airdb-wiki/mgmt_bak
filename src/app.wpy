@@ -25,10 +25,10 @@ setStore(store)
 export default class extends wepy.app {
   config = {
     pages: [
+      'pages/home/index',
       'pages/volunteer/index',
       'pages/privilege/index',
       'pages/profile/index',
-      'pages/home/index',
       'pages/index/index'
     ],
     window: {

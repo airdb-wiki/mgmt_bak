@@ -4,23 +4,54 @@
 
 <template>
   <div class="page">
-    <button open-type="getUserInfo" class="userinfo" @getuserinfo="bindGetUserInfo" @click="openUrl('/pages/privilege/main')">
-      <open-data type="userAvatarUrl" class="userinfo-avatar" mode="cover"></open-data>
-      <open-data type="userNickName"></open-data>
-    </button>
+    <!-- 自定义navigation -->
+    <vnavigation search='true' propArray="{{cityList}}" yourcity="{{minaAuth.yourcity}} ? {{minaAuth.yourcity}} : '定位中...'"></vnavigation>
 
-    <div  class="kind-list">
-      <repeat for="{{kindlist}}" key="index" index="index" item="item">
-        <div @click="openUrl()" class="weui-flex kind-list__item">
-<!--          <img class="kind-list__img" src="item.icon">-->
-          <div class="kind-list__item-hd" >{{item.name}}</div>
-<!--          <img class="kind-list__img_right" src="/static/images/big.png" alt="">-->
-        </div>
-      </repeat>
-    </div>
+    <!-- swiper轮播图 -->
+<!--    <swiper :indicator-dots="true"-->
+<!--            :autoplay="true"-->
+<!--            :circular="circular"-->
+<!--            :interval="interval"-->
+<!--            :duration="duration"-->
+<!--            previous-margin="-10px"-->
+<!--            class="mySwiper">-->
+<!--      <div v-for="item in imgUrls" :key="item.id">-->
+<!--        <swiper-item>-->
+<!--          <navigator url="" open-type="navigate" hover-class="none">-->
+<!--            <image :src="item" class="swiper_img"/>-->
+<!--          </navigator>-->
+<!--        </swiper-item>-->
+<!--      </div>-->
+<!--    </swiper>-->
 
-<!--    <div v-if="env=='development'" style="text-align: center" >-->
-<!--      编译信息：开发环境-->
+    <!-- 自定义navBar -->
+    <!-- <div class="bar">
+      <scroll-view :scroll-x="true" class="navbar">
+        <div v-for="(tab, index) in tabs" :key="tab.id" :class="[index == activeIndex ? 'item_on' : 'tab']" :id="index" @click="changeTab">{{tab}}</div>
+      </scroll-view>
+    </div> -->
+
+    <!-- 卡片效果 -->
+<!--    <div style="z-index: 0;">-->
+<!--      <card2 :items="database"></card2>-->
+<!--    </div>-->
+
+    <!-- 遮罩效果 -->
+<!--    <div class="shade" v-if="isFirstShow" catchtouchmove='preventTouchMove'>-->
+<!--      <div class="container_one">-->
+<!--        <div class="trans_text">1.点击</div>-->
+<!--        <img src="/static/images/trans1.jpg" alt="" class="trans1">-->
+<!--      </div>-->
+<!--      <div class="container_two">-->
+<!--        <div class="trans_text">2.点击 [添加到我的小程序]</div>-->
+<!--        <img src="/static/images/trans2.jpg" alt="" class="trans2">-->
+<!--      </div>-->
+<!--      <div class="container_three">-->
+<!--        <div class="trans_text">3.在微信首页下拉,快速进入"宝贝回家"</div>-->
+<!--        <img src="/static/images/trans3.jpg" alt="" class="trans3">-->
+<!--      </div>-->
+<!--      <div class="container_four" @click="conceal">我知道了</div>-->
+
 <!--    </div>-->
   </div>
 </template>
@@ -28,7 +59,7 @@
 <script>
   import wepy from 'wepy'
   import { connect } from 'wepy-redux'
-  import Panel from '@/components/panel' // alias example
+  import Navigation from '@/components/navigation'
 
   @connect({
     num (state) {
@@ -47,41 +78,33 @@
       navigationBarTitleText: '宝贝回家'
     }
     components = {
-      panel: Panel
+      vnavigation: Navigation
     }
     data = {
-      kindlist: [
-        {
-          name: '已发布',
-          icon: '/static/images/product.png',
-          page: '/pages/list/main'
-        },
-        {
-          name: '已关注',
-          icon: '/static/images/star.png',
-          page: '/pages/list/main'
-        },
-        {
-          name: '收信箱',
-          icon: '/static/images/message.png',
-          page: '/pages/hr/main'
-        },
-        {
-          name: '客服',
-          icon: '/static/images/customer_service.png',
-          page: '/pages/customerservice/main'
-        },
-        {
-          name: '实验室',
-          icon: '/static/images/feedback.png',
-          page: '/pages/volunteer/main'
-        },
-        {
-          name: '设置',
-          icon: '/static/images/settings.png',
-          page: 'setting'
-        }
-      ]
+      isFirstShow: true,
+      tabs: [
+        '儿童走失', '老人走失', '离家出走', '人贩拐卖', '其他寻人'
+      ],
+      setting: wx.getStorageSync('setting'),
+      showLogin: false,
+      database: [],
+      minaAuth: wx.getStorageSync('minaAuth'),
+      interval: 5000,
+      duration: 1000,
+      circular: true,
+      imgUrls: [
+        '/static/images/adsBanner/home1.jpg',
+        '/static/images/adsBanner/home2.jpg'
+      ],
+      cityList: [],
+      parms: {
+        type: 'nearby',
+        tag: '',
+        category: '',
+        page: 0,
+        pullData: 'old'
+      },
+      activeIndex: 0
     }
 
     computed = {
