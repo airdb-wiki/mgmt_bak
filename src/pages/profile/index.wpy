@@ -57,27 +57,27 @@
         {
           name: '已发布',
           icon: '/static/images/product.png',
-          page: '/pages/list/main'
+          page: '/pages/list/index'
         },
         {
           name: '已关注',
           icon: '/static/images/star.png',
-          page: '/pages/list/main'
+          page: '/pages/list/index'
         },
         {
           name: '收信箱',
           icon: '/static/images/message.png',
-          page: '/pages/hr/main'
+          page: '/pages/hr/index'
         },
         {
           name: '客服',
           icon: '/static/images/customer_service.png',
-          page: '/pages/customerservice/main'
+          page: '/pages/customerservice/index'
         },
         {
           name: '实验室',
           icon: '/static/images/feedback.png',
-          page: '/pages/volunteer/main'
+          page: '/pages/volunteer/index'
         },
         {
           name: '设置',

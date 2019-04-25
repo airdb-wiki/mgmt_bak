@@ -26,7 +26,11 @@ export default class extends wepy.app {
   config = {
     pages: [
       'pages/home/index',
+      'pages/search/index',
+      'pages/list/index',
+      'pages/customerservice/index',
       'pages/volunteer/index',
+      'pages/hr/index',
       'pages/privilege/index',
       'pages/profile/index',
       'pages/index/index'
@@ -69,6 +73,25 @@ export default class extends wepy.app {
     // console.log('app created, NODE_ENV:', process.env.NODE_ENV, process.env)
     console.log(launch)
     // this.testAsync()
+
+    // store.dispatch(hello)
+
+    // <!--广告开始-->
+    // 在页面中定义插屏广告
+    let interstitialAd = null
+    // 在页面onLoad回调事件中创建插屏广告实例
+    if (wx.createInterstitialAd) {
+      interstitialAd = wx.createInterstitialAd({
+        adUnitId: 'adunit-1a35266b79a02a85'
+      })
+    }
+    // 在适合的场景显示插屏广告
+    if (interstitialAd) {
+      interstitialAd.show().catch((err) => {
+        console.error(err)
+      })
+    }
+    // <!--广告结束-->
   }
 
   // sleep (s) {

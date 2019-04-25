@@ -18,6 +18,7 @@
     </block>
   </view>
 </template>
+
 <script>
   import wepy from 'wepy'
 

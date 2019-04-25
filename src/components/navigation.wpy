@@ -1,6 +1,6 @@
 <template>
   <div class="navigation">
-<!--    <div v-if="search === false" style="padding-right: 45px;margin: auto;line-height: 37px;">{{deContent}}</div>-->
+<!--  <div v-if="search === false" style="padding-right: 45px;margin: auto;line-height: 37px;">{{deContent}}</div>-->
     <div>
 <!--      <div style="display: flex;flex-direction: row;" @tap="selectToggle">-->
 <!--        <div style="line-height: 38px;margin-left: -20px;">{{yourcity}}</div>-->
@@ -11,6 +11,7 @@
         <div class="weui-search-bar__text">搜索</div>
       </label>
     </div>
+
   </div>
 </template>
 
@@ -30,7 +31,7 @@
     }
     methods = {
       focus () {
-        wx.navigateTo({ url: '/pages/search/main' })
+        wx.navigateTo({ url: '/pages/search/index' })
       },
       selectToggle () {
         this.selectShow = !this.selectShow

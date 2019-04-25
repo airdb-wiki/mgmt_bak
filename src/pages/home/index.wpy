@@ -4,26 +4,23 @@
 
 <template>
   <div class="page">
-    <!-- 自定义navigation -->
-    <vnavigation search='true' propArray="{{cityList}}" yourcity="{{minaAuth.yourcity}} ? {{minaAuth.yourcity}} : '定位中...'"></vnavigation>
+    <div class="page__bd page__bd_spacing">
+      <!-- 自定义navigation -->
+      <vnavigation search='true' propArray="{{cityList}}" yourcity="{{minaAuth.yourcity}} ? {{minaAuth.yourcity}} : '定位中...'"></vnavigation>
+    </div>
 
     <!-- swiper轮播图 -->
-<!--    <swiper :indicator-dots="true"-->
-<!--            :autoplay="true"-->
-<!--            :circular="circular"-->
-<!--            :interval="interval"-->
-<!--            :duration="duration"-->
-<!--            previous-margin="-10px"-->
-<!--            class="mySwiper">-->
-<!--      <div v-for="item in imgUrls" :key="item.id">-->
-<!--        <swiper-item>-->
-<!--          <navigator url="" open-type="navigate" hover-class="none">-->
-<!--            <image :src="item" class="swiper_img"/>-->
-<!--          </navigator>-->
-<!--        </swiper-item>-->
-<!--      </div>-->
-<!--    </swiper>-->
+    <div>
+    <swiper indicator-dots autoplay duration="900" interval="5000" >
+      <repeat for="{{imgUrls}}" key="index" index="index" item="item">
+        <swiper-item class="" @tap="">
+          <image class="slide-image" src="{{item}}"></image>
+        </swiper-item>
+      </repeat>
+    </swiper>
+    </div>
 
+    <vcard></vcard>
     <!-- 自定义navBar -->
     <!-- <div class="bar">
       <scroll-view :scroll-x="true" class="navbar">
@@ -58,27 +55,16 @@
 
 <script>
   import wepy from 'wepy'
-  import { connect } from 'wepy-redux'
   import Navigation from '@/components/navigation'
-
-  @connect({
-    num (state) {
-      return state.counter.num
-    },
-    asyncNum (state) {
-      return state.counter.asyncNum
-    },
-    sumNum (state) {
-      return state.counter.num + state.counter.asyncNum
-    }
-  })
+  import Card from '@/components/card'
 
   export default class Index extends wepy.page {
     config = {
       navigationBarTitleText: '宝贝回家'
     }
     components = {
-      vnavigation: Navigation
+      vnavigation: Navigation,
+      vcard: Card
     }
     data = {
       isFirstShow: true,
