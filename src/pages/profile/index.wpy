@@ -4,17 +4,17 @@
 
 <template>
   <div class="page">
-    <button open-type="getUserInfo" class="userinfo" @getuserinfo="bindGetUserInfo" @click="openUrl('/pages/privilege/main')">
+    <button open-type="getUserInfo" class="userinfo" @getuserinfo="bindGetUserInfo" @tap="openUrl('/pages/privilege/main')">
       <open-data type="userAvatarUrl" class="userinfo-avatar" mode="cover"></open-data>
       <open-data type="userNickName"></open-data>
     </button>
 
     <div  class="kind-list">
-      <repeat for="{{kindlist}}" key="index" index="index" item="item">
-        <div @click="" class="weui-flex kind-list__item">
-<!--          <img class="kind-list__img" src="item.icon">-->
-          <div class="kind-list__item-hd" >{{item.name}}</div>
-<!--          <img class="kind-list__img_right" src="/static/images/big.png" alt="">-->
+      <repeat for="{{kindlist}}" key="index" index="index" item="item" >
+        <div @tap="openUrl({{item.page}})" class="weui-flex kind-list__item">
+          <image class="kind-list__img" src="{{item.icon}}"></image>
+          <view class="kind-list__item-hd">{{item.name}}</view>
+          <image class="kind-list__img_right" src="/static/images/big.png"></image>
         </div>
       </repeat>
     </div>
@@ -44,7 +44,10 @@
 
   export default class Index extends wepy.page {
     config = {
-      navigationBarTitleText: '我的帐号'
+      navigationBarTitleText: '我的帐号',
+      navigationBarBackgroundColor: '#00af34',
+      navigationBarTextStyle: 'black',
+      backgroundColor: '#00af34'
     }
     components = {
       panel: Panel
@@ -93,9 +96,26 @@
     methods = {
       plus() {
         this.mynum++
+      },
+      test() {
+        console.log('test-----')
+      },
+      bindGetUserInfo(e) {
+        console.log('userinfo----', e.detail)
+      },
+      openUrl (page) {
+        console.log('-----', page)
+        if (page === 'setting') {
+          wepy.openSetting({})
+          return
+        }
+        wx.navigateTo({
+          url: page + '?wxid='
+        })
       }
     }
     onLoad() {
+      console.log('---onload')
     }
   }
 </script>

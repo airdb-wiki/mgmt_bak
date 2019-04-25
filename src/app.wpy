@@ -1,4 +1,6 @@
 <style lang="less">
+@import './style/weui.less';
+
 .container {
   height: 100%;
   display: flex;
@@ -22,6 +24,7 @@ setStore(store)
 export default class extends wepy.app {
   config = {
     pages: [
+      'pages/privilege/index',
       'pages/profile/index',
       'pages/home/index',
       'pages/index/index'

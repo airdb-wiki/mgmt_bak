@@ -1,0 +1,25 @@
+<template>
+  <view class="container">
+    <div class="weui-footer">
+      <div class="weui-footer__links">
+        <navigator url="/pages/test_mc/hzw_map/main" class="weui-footer__link">项目进度</navigator>
+        <navigator url="/pages/hr/main" class="weui-footer__link" @click="show">加入我们</navigator>
+      </div>
+      <view class="weui-footer__text">Copyright © 2008-present airdb</view>
+    </div>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  export default class Footer extends wepy.component {
+  }
+</script>
+
+<style scoped>
+  /* 作为展示用的样式 */
+  .weui-footer {
+    padding: 20rpx 0 30rpx;
+    margin-bottom: 100rpx;
+  }
+</style>

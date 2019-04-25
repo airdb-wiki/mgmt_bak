@@ -14,9 +14,8 @@
 </template>
 
 <script>
-  export default {
-    name: 'user',
-    props: ['items']
+  import wepy from 'wepy'
+  export default class User extends wepy.component {
   }
 </script>
 
