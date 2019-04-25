@@ -4,7 +4,7 @@
 
 <template>
   <div class="page">
-    <button open-type="getUserInfo" class="userinfo" @getuserinfo="bindGetUserInfo" @tap="openUrl('/pages/privilege/main')">
+    <button open-type="getUserInfo" class="userinfo" @getuserinfo="bindGetUserInfo" @tap="openUrl('/pages/privilege/index')">
       <open-data type="userAvatarUrl" class="userinfo-avatar" mode="cover"></open-data>
       <open-data type="userNickName"></open-data>
     </button>

@@ -1,5 +1,6 @@
 <style lang="less">
 @import './style/weui.less';
+/*https://laravelcode.cn/posts/63/wechat-applet-wepy-introduces-weui*/
 
 .container {
   height: 100%;
@@ -24,6 +25,7 @@ setStore(store)
 export default class extends wepy.app {
   config = {
     pages: [
+      'pages/volunteer/index',
       'pages/privilege/index',
       'pages/profile/index',
       'pages/home/index',
