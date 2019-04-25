@@ -1,4 +1,3 @@
-[dean@dean.airdb.me mpvue]$ cat README.md
 # mina
 
 > A MiniProgram project in Wechat base on [Tencent Wepy](https://github.com/Tencent/wepy)
