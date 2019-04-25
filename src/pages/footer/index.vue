@@ -14,7 +14,10 @@ export default {
 }
 </script>
 
-
-<style scoped lang='less'>
-  @import 'index';
+<style scoped>
+  /* 作为展示用的样式 */
+  .weui-footer {
+    padding: 20rpx 0 30rpx;
+    margin-bottom: 100rpx;
+  }
 </style>

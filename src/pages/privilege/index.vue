@@ -1,19 +1,8 @@
 <template>
   <div class="page">
 
-      <div class="user">
-        <div class="user-avatar">
-          <open-data type="userAvatarUrl" class="userinfo-avatar" mode="cover"></open-data>
-        </div>
-
-        <!-- user-avatar end -->
-        <div class="user-cont">
-          <open-data type="userNickName"></open-data>
-          <div class="text-time">公益时长: 13.5 小时</div>
-        </div>
-        <!-- user-cont end -->
-      </div>
-      <!-- user end -->
+    <vuser></vuser>
+    <!-- user end -->
 
     <div class="text-name">九宫格</div>
 
@@ -30,7 +19,6 @@
     </div>
     <!-- after-user end -->
 
-
     <div class="text-name">专属福利</div>
     <div class="text-time">{{privilege}}/13</div>
       <div class="after-user">
@@ -46,15 +34,17 @@
       </div>
       <!-- after-user end -->
 
-
     <vfooter></vfooter>
   </div>
 </template>
 
 <script>
+import vuser from '@/components/user'
 import vfooter from '@/pages/footer'
+
 export default{
   components: {
+    vuser,
     vfooter
   },
 
