@@ -16,7 +16,7 @@
           <!-- <button open-type="contact" bindcontact="handleContact" class="weui-item">在线客服</button> -->
           <button class="weui-item" style="-webkit-user-select:text" open-type="contact"
           bindcontact="handleContact"><img class= "cust_service" src="/static/images/customer_service.png">
-          在线客服 <p class="weui-p" style='display: inline'></p></button>
+          在线客服(推荐) <p class="weui-p" style='display: inline'></p></button>
           <div class="weui-item">
             <p style="margin-left:80rpx">站务电话</p> <br>
             <div class="weui-phone" @click="tel">
