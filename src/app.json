@@ -18,7 +18,6 @@
     "pages/privilege/main",
     "pages/volunteer/main",
     "pages/article/main",
-
     "pages/search/main"
   ],
   "window": {

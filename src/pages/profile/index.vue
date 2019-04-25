@@ -48,7 +48,7 @@ export default {
         {
           name: '已关注',
           icon: '/static/images/star.png',
-          page: '/pages/volunteer/main'
+          page: '/pages/list/main'
         },
         {
           name: '收信箱',

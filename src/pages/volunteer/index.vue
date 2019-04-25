@@ -8,6 +8,16 @@
     <button type="primary" open-type="share" style="margin:20rpx">微信邀请</button>
     <button type="primary" open-type="share" style="margin:20rpx">二维码邀请</button>
 
+    <!-- 分享按钮 -->
+    <div class="share" v-on:click="download">
+      <img src="/static/images/home/sharetof.png">
+    </div>
+
+    <!-- 分享图片生成的画布 -->
+    <canvas canvas-id="radar2">
+      <cover-view></cover-view>
+    </canvas>
+
     <vfooter></vfooter>
   </div>
 </template>
@@ -31,12 +41,27 @@ export default {
   onShareAppMessage: function () {
     return {
       title: '志愿者',
-      path: '/pages/volunteer/main?from=forward\'',
+      path: '/pages/volunteer/main?from=forward',
       imageUrl: '/static/images/forward/home2.jpg'
     }
   },
   method: {
+    rpx (param) {
+      console.log('2222')
+      // let windowW = wx.getSystemInfoSync().windowWidth
+      // return Number((windowW / 750 * param).toFixed(2))
+    },
     qrcode () {
+    },
+
+    preview () {
+      var that = this
+      wx.previewImage({
+        urls: [that.item.AvatarUrl]
+      })
+    },
+    download () {
+      console.log('xxxxxxx')
       wx.request({
         url: process.env.BaseUrl + '/lastest/wechatapi/wechat/createqrcode',
         method: 'POST',
@@ -77,7 +102,7 @@ export default {
           //   }
           // })
           console.log('filePath', filePath)
-          const ctx = wx.createCanvasContext('myCanvas')
+          const ctx = wx.createCanvasContext('radar2')
           // 填充背景色
           ctx.fillStyle = '#fff'
           ctx.fillRect(0, 0, 420, 615)
@@ -106,16 +131,6 @@ export default {
           ctx.fillText('寻亲编号：3255441', 50, 130)
           ctx.fillText('姓 名：某某', 50, 155)
           ctx.fillText('性 别：女', 50, 180)
-          ctx.fillText('出生日期：1986年05月43日', 50, 205)
-          ctx.fillText('失踪时身高：120厘米左右', 50, 230)
-          ctx.fillText('失踪时间：1994年03月21日', 50, 255)
-          ctx.fillText('失踪人所在地：广东省,云浮市', 50, 280)
-          ctx.fillText('失踪地点：广西壮族自治区,桂林市', 50, 305)
-          ctx.fillText('其他资料：我走丢时身上两件衣服，外', 50, 330)
-          ctx.fillText('面是一件毛衣，里面是一件粉红色的，', 50, 355)
-          ctx.fillText('一条格子裤', 50, 380)
-          ctx.fillText('注册时间：2018/6/23 12:02:34', 50, 430)
-          ctx.fillText('跟进志愿者：淡雅宁静', 50, 455)
           // 二维码关注区域绘制
           ctx.setFontSize(20)
           ctx.setFillStyle('#393939')
@@ -155,13 +170,27 @@ export default {
     }
   },
   onLoad: function () {
+
   },
   onShow: function () {
-    var windowWidth = wx.getSystemInfoSync().windowWidth
-    // 拿到canvas context
-    let ctx = wx.createCanvasContext('share_canvas')
-    ctx.drawImage('/static/images/test_mc/3.jpg', 0, 0, windowWidth, 500)
-    ctx.draw()
+    const context = wx.createCanvasContext('radar')
+
+    context.setStrokeStyle('#00ff00')
+    context.setLineWidth(5)
+    context.rect(0, 0, 200, 200)
+    context.stroke()
+    context.setStrokeStyle('#ff0000')
+    context.setLineWidth(2)
+    context.moveTo(160, 100)
+    context.arc(100, 100, 60, 0, 2 * Math.PI, true)
+    context.moveTo(140, 100)
+    context.arc(100, 100, 40, 0, Math.PI, false)
+    context.moveTo(85, 80)
+    context.arc(80, 80, 5, 0, 2 * Math.PI, true)
+    context.moveTo(125, 80)
+    context.arc(120, 80, 5, 0, 2 * Math.PI, true)
+    context.stroke()
+    context.draw()
   }
 }
 </script>

@@ -119,14 +119,14 @@ export default{
     },
     download () {
       wx.request({
-        url: wx.getStorageSync('domain') + '/lastest/wechatapi/wechat/createqrcode',
+        url: process.env.BaseUrl + '/lastest/wechatapi/wechat/createqrcode',
         method: 'POST',
         data: {},
         header: {
           'content-type': 'application/json'
         },
         success: function (res) {
-          console.log(wx.getStorageSync('domain') + '/lastest/wechatapi/wechat/createqrcode')
+          console.log(process.env.BaseUrl + '/lastest/wechatapi/wechat/createqrcode')
           console.log(res)
           // let imgData = 'data:image/png;base64,' + res.data
           let imgData = res.data
