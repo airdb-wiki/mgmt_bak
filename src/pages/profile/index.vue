@@ -15,6 +15,9 @@
       </div>
     </div>
 
+    <div v-if="env=='development'" style="text-align: center" >
+      编译信息：开发环境
+    </div>
   </div>
 </template>
 
@@ -28,6 +31,7 @@ export default {
   },
   data () {
     return {
+      env: process.env.NODE_ENV,
       isActive: 0,
       servicetime: 10,
       minaAuth: wx.getStorageSync('minaAuth'),
@@ -57,9 +61,9 @@ export default {
           page: '/pages/customerservice/main'
         },
         {
-          name: '版本',
+          name: '实验室',
           icon: '/static/images/feedback.png',
-          page: '/pages/feedback/main'
+          page: '/pages/volunteer/main'
         },
         {
           name: '设置',

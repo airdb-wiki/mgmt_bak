@@ -1,16 +1,12 @@
 <template>
   <div class="page">
 
-      <vuser></vuser>
+    <vuser></vuser>
+
+    <vradar></vradar>
 
     <button type="primary" open-type="share" style="margin:20rpx">微信邀请</button>
     <button type="primary" open-type="share" style="margin:20rpx">二维码邀请</button>
-
-    <!-- 分享按钮 -->
-    <div class="share" @click="qrcode">
-      <img src="/static/images/home/sharetof.png">
-    </div>
-
 
     <vfooter></vfooter>
   </div>
@@ -18,10 +14,12 @@
 
 <script>
 import vuser from '@/components/user'
+import vradar from '@/components/radar'
 import vfooter from '@/pages/footer'
 export default {
   components: {
     vuser,
+    vradar,
     vfooter
   },
   data () {
