@@ -1,0 +1,108 @@
+<style scoped lang='less'>
+  @import 'me';
+</style>
+
+<template>
+  <div class="page">
+    <button open-type="getUserInfo" class="userinfo" @getuserinfo="bindGetUserInfo" @tap="openUrl('/pages/privilege/index')">
+      <open-data type="userAvatarUrl" class="userinfo-avatar" mode="cover"></open-data>
+      <open-data type="userNickName"></open-data>
+    </button>
+
+    <div  class="kind-list">
+      <repeat for="{{kindlist}}" key="index" index="index" item="item" >
+        <div @tap="openUrl({{item.page}})" class="weui-flex kind-list__item">
+          <image class="kind-list__img" src="{{item.icon}}"></image>
+          <view class="kind-list__item-hd">{{item.name}}</view>
+          <image class="kind-list__img_right" src="/static/images/big.png"></image>
+        </div>
+      </repeat>
+    </div>
+
+    <!--    <div v-if="env=='development'" style="text-align: center" >-->
+    <!--      编译信息：开发环境-->
+    <!--    </div>-->
+  </div>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Panel from '@/components/panel' // alias example
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '我的帐号',
+      navigationBarBackgroundColor: '#00af34',
+      navigationBarTextStyle: 'black',
+      backgroundColor: '#00af34'
+    }
+    components = {
+      panel: Panel
+    }
+    data = {
+      kindlist: [
+        {
+          name: '已发布',
+          icon: '/static/images/product.png',
+          page: '/pages/list/index'
+        },
+        {
+          name: '已关注',
+          icon: '/static/images/star.png',
+          page: '/pages/list/index'
+        },
+        {
+          name: '收信箱',
+          icon: '/static/images/message.png',
+          page: '/pages/hr/index'
+        },
+        {
+          name: '客服',
+          icon: '/static/images/customer_service.png',
+          page: '/pages/customerservice/index'
+        },
+        {
+          name: '实验室',
+          icon: '/static/images/feedback.png',
+          page: '/pages/volunteer/index'
+        },
+        {
+          name: '设置',
+          icon: '/static/images/settings.png',
+          page: 'setting'
+        }
+      ]
+    }
+
+    computed = {
+      now () {
+        return +new Date()
+      }
+    }
+
+    methods = {
+      plus() {
+        this.mynum++
+      },
+      test() {
+        console.log('test-----')
+      },
+      bindGetUserInfo(e) {
+        console.log('userinfo----', e.detail)
+      },
+      openUrl (page) {
+        console.log('-----', page)
+        if (page === 'setting') {
+          wepy.openSetting({})
+          return
+        }
+        wepy.navigateTo({
+          url: page + '?wxid='
+        })
+      }
+    }
+    onLoad() {
+      console.log('---onload')
+    }
+  }
+</script>

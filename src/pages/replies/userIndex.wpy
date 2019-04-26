@@ -1,0 +1,56 @@
+<style lang="less">
+.replyer-avatar {
+  padding: 4px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 50px;
+  height: 50px;
+}
+</style>
+<template>
+  <view class="page">
+    <view class="page__bd">
+      <view class="weui-panel weui-panel_access">
+        <view class="weui-panel__bd">
+          <repeat for="{{ replies }}" wx:key="id" index="index" item="reply">
+            <view class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+              <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                <image class="replyer-avatar weui-media-box__thumb" src="{{ reply.user.avatar }}" />
+              </view>
+              <navigator class="weui-media-box__bd weui-media-box__bd_in-appmsg" url="/pages/topics/show?id={{ reply.topic_id }}">
+                <view class="weui-media-box__title">{{ reply.topic.title }}</view>
+                <view class="weui-media-box__desc"><rich-text nodes="{{ reply.content }}" bindtap="tap"></rich-text></view>
+                <view class="weui-media-box__info">
+                  <view class="weui-media-box__info__meta">{{ reply.created_at_diff }}</view>
+                </view>
+              </navigator>
+            </view>
+          </repeat>
+          <view class="weui-loadmore weui-loadmore_line" wx:if="{{ noMoreData }}">
+            <view class="weui-loadmore__tips weui-loadmore__tips_in-line">没有更多数据</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+<script>
+  import wepy from 'wepy'
+  import replyMixin from '@/mixins/replyMixin'
+
+  export default class ReplyUserIndex extends wepy.page {
+    config = {
+      enablePullDownRefresh: true,
+      navigationBarTitleText: '用户回复列表'
+    }
+    mixins = [replyMixin]
+    data = {
+      requestData: {}
+    }
+    async onLoad(options) {
+      this.requestData.url = 'users/' + options.user_id + '/replies'
+      this.requestData.include = 'user,topic'
+      this.getReplies()
+    }
+  }
+</script>
