@@ -74,7 +74,7 @@
     async submit (e) {
       console.log('2222222, ', e)
       let formData = e.detail.value
-      formData.UserID = 1
+      formData.user_id = 1
       formData.category_id = 1
 
       let response = await api.request({
@@ -82,7 +82,11 @@
         method: 'POST',
         data: formData
       })
-      console.log('topic submit====', response)
+      console.log('---', response)
+
+      wepy.navigateTo({
+        url: '/pages/users/1'
+      })
     }
     methods = {
       bindBodyInput (e) {

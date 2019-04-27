@@ -8,8 +8,8 @@
   </view>
 
   <!-- 发布按钮 -->
-  <div class="share" v-on:click="">
-    <image src="/static/images/home/sharetof.png"/>
+  <div class="share" @tap="publish">
+    <image src="/static/bbs/fabu.png"/>
   </div>
 
 
@@ -58,6 +58,14 @@
     onReachBottom () {
       // 调用组件 loadMore 方法
       this.$invoke('topiclist', 'loadMore')
+    }
+    methods = {
+      publish () {
+        console.log('plu-------')
+        wepy.navigateTo({
+          url: '/pages/users/post'
+        })
+      }
     }
   }
 </script>

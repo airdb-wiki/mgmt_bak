@@ -50,7 +50,7 @@
         {
           name: '已关注',
           icon: '/static/images/star.png',
-          page: '/pages/list/index'
+          page: '/pages/users/history'
         },
         {
           name: '收信箱',

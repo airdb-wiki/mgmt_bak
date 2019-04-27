@@ -50,6 +50,9 @@
       this.errors = null
 
       let formData = e.detail.value
+      formData.topic_id = parseInt(this.topicId)
+      formData.user_id = 1
+      console.log('aaaaaaaa', formData)
       // 如果未填写内容，提示用户
       if (!formData.content) {
         wepy.showToast({
