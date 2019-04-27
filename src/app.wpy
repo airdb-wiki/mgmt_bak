@@ -40,13 +40,15 @@ export default class extends wepy.app {
   config = {
     pages: [
       'pages/topics/index',
-      'pages/topics/show',
-      'pages/topics/userIndex',
+      'pages/users/post',
       'pages/users/me',
       'pages/auth/register',
+      'pages/auth/login',
+      'pages/topics/show',
+      'pages/topics/userIndex',
       'pages/users/edit',
       'pages/users/show',
-      'pages/auth/login',
+      'pages/users/history',
       'pages/replies/index',
       'pages/replies/userIndex',
       'pages/privilege/index',
@@ -145,6 +147,7 @@ export default class extends wepy.app {
     this.getPerms()
 
     // console.log('app created, NODE_ENV:', process.env.NODE_ENV, process.env)
+    launch.shareTicket = 'https://weapp.liyu.wiki/api/topics?page=1&include=user%2Ccategory'
     console.log(launch)
     // this.testAsync()
 

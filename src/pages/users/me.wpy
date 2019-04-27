@@ -27,14 +27,15 @@
 
 <script>
   import wepy from 'wepy'
+  import api from '@/utils/api'
   import Panel from '@/components/panel' // alias example
 
   export default class Index extends wepy.page {
     config = {
-      navigationBarTitleText: '我的帐号',
-      navigationBarBackgroundColor: '#00af34',
-      navigationBarTextStyle: 'black',
-      backgroundColor: '#00af34'
+      navigationBarTitleText: '我的',
+      // navigationBarBackgroundColor: '#00af34',
+      // backgroundColor: '#00af34',
+      navigationBarTextStyle: 'black'
     }
     components = {
       panel: Panel
@@ -44,7 +45,7 @@
         {
           name: '已发布',
           icon: '/static/images/product.png',
-          page: '/pages/list/index'
+          page: '/pages/users/history'
         },
         {
           name: '已关注',
@@ -81,23 +82,51 @@
     }
 
     methods = {
-      plus() {
-        this.mynum++
-      },
-      test() {
-        console.log('test-----')
-      },
-      bindGetUserInfo(e) {
-        console.log('userinfo----', e.detail)
+      // 表单提交
+      async bindGetUserInfo (e) {
+        console.log('bindGetUserInfo', e)
+        try {
+          console.log('value=====', e.detail)
+          let formData = e.detail.userInfo
+          formData.nickName = e.detail.userInfo.nickName
+          formData.name = e.detail.userInfo.nickName
+          formData.avatar = e.detail.userInfo.avatarUrl
+
+          let loginData = await wepy.login()
+          // 参数中增加code，用于获取 openid 绑定当前用户
+          formData.code = loginData.code
+
+          let registerResponse = await api.request({
+            url: 'weapp/users',
+            method: 'POST',
+            data: formData
+          })
+          if (registerResponse.statusCode !== 200) {
+            this.errors.verification_code = ['注册失败']
+            this.$apply()
+          }
+
+          // 跳转到我的页面
+          setTimeout(function() {
+            wepy.switchTab({
+              url: '/pages/users/me'
+            })
+          }, 2000)
+        } catch (err) {
+          console.log(err)
+          wepy.showModal({
+            title: '提示',
+            content: '错误: 1005，请联系管理员'
+          })
+        }
       },
       openUrl (page) {
-        console.log('-----', page)
         if (page === 'setting') {
           wepy.openSetting({})
           return
         }
         wepy.navigateTo({
-          url: page + '?wxid='
+          url: page + '?id=1'
         })
       }
     }

@@ -8,7 +8,7 @@
     <view class="page__bd login-wrap">
       <view class="weui-toptips weui-toptips_warn" wx:if="{{ errorMessage }}">{{ errorMessage }}</view>
 
-      <view class="weui-cells__title">用户登录</view>
+      <view class="weui-cells__title">Larabbs 用户登录</view>
       <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell weui-cell_input {{ error ? 'weui-cell_warn' : ''}}">
           <view class="weui-cell__hd">
@@ -35,7 +35,7 @@
       </view>
 
       <view class="weui-agree__text">
-        如果你还没有 宝贝回家 帐户，可以 <navigator url="/pages/auth/register" class="weui-agree__link">注册新用户</navigator>
+        如果你还没有 Larabbs 用户可以 <navigator url="/pages/auth/register" class="weui-agree__link">注册新用户</navigator>
       </view>
 
       <view class="weui-btn-area">
@@ -108,7 +108,7 @@
         } catch (err) {
           wepy.showModal({
             title: '提示',
-            content: '错误: 1002，请联系管理员'
+            content: '服务器错误，请联系管理员'
           })
         }
       }
