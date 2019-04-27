@@ -73,9 +73,9 @@
           this.user = userResponse.data
 
           // 格式化注册时间
-          this.user.created_at_diff = util.diffForHumans(this.user.created_at)
+          this.user.created_at_diff = util.diffForHumans(this.user.CreatedAt)
           // 格式化最后活跃时间
-          this.user.last_actived_at_diff = util.diffForHumans(this.user.last_actived_at)
+          this.user.last_actived_at_diff = util.diffForHumans(this.user.LastActivedAt)
 
           this.$apply()
 

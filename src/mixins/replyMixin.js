@@ -34,7 +34,7 @@ export default class ReplyMixin extends wepy.mixin {
         replies.forEach((reply) => {
           // 控制是否可以删除
           reply.can_delete = this.canDelete(user, reply)
-          reply.created_at_diff = util.diffForHumans(reply.created_at)
+          reply.created_at_diff = util.diffForHumans(reply.CreatedAt)
         })
         // 如果reset不为true则合并 this.replies；否则直接覆盖
         this.replies = reset ? replies : this.replies.concat(replies)

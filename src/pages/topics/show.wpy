@@ -152,7 +152,6 @@ page{
       }
     }
     async onLoad(options) {
-      console.log('11111111 --- show onload', options.id)
       await this.getTopic(options.id)
       // 获取当前登录用户
       this.user = await this.$parent.getCurrentUser()
