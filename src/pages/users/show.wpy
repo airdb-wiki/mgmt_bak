@@ -38,13 +38,13 @@
           </view>
         </view>
 
-        <navigator class="weui-cell weui-cell_access user-links" url="/pages/topics/userIndex?user_id={{ user.id }}">
+        <navigator class="weui-cell weui-cell_access user-links" url="/pages/topics/userIndex?user_id={{ user.ID }}">
           <view class="weui-cell__bd">
             <view class="weui-cell__bd">Ta 的话题</view>
           </view>
           <view class="weui-cell__ft weui-cell__ft_in-access"></view>
         </navigator>
-        <navigator class="weui-cell weui-cell_access" url="/pages/replies/userIndex?user_id={{ user.id }}">
+        <navigator class="weui-cell weui-cell_access" url="/pages/replies/userIndex?user_id={{ user.ID }}">
           <view class="weui-cell__bd" url="">
             <view class="weui-cell__bd">Ta 的回复</view>
           </view>

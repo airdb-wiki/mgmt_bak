@@ -93,7 +93,7 @@
 
           // 格式化updated_at
           topics.forEach(function (topic) {
-            topic.updated_at_diff = util.diffForHumans(topic.updated_at)
+            topic.updated_at_diff = util.diffForHumans(topic.UpdatedAt)
           })
           // 如果传入参数 reset 为true，则覆盖 topics
           this.topics = reset ? topics : this.topics.concat(topics)
