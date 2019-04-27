@@ -66,13 +66,13 @@ export default class extends wepy.app {
       list: [{
         pagePath: 'pages/topics/index',
         text: '首页',
-        iconPath: 'images/index.png',
-        selectedIconPath: 'images/index_selected.png'
+        iconPath: '/static/tabs/home.png',
+        selectedIconPath: '/static/tabs/home_active.png'
       }, {
         pagePath: 'pages/users/me',
         text: '我的',
-        iconPath: 'images/user.png',
-        selectedIconPath: 'images/user_selected.png'
+        iconPath: '/static/tabs/user_active.png',
+        selectedIconPath: '/static/tabs/user_active.png'
       }],
       color: '#707070',
       selectedColor: '#00b5ad'

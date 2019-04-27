@@ -37,7 +37,7 @@
                 </view>
               </view>
 
-              <image wx:if="{{ reply.can_delete }}" class="reply-delete" src="/images/trash.png" @tap="deleteReply({{ reply.topic_id }}, {{ reply.id }})"/>
+              <image wx:if="{{ reply.can_delete }}" class="reply-delete" src="/images/trash.png" @tap="deleteReply({{ reply.topic_id }}, {{ reply.ID }})"/>
             </view>
           </repeat>
           <view class="weui-loadmore weui-loadmore_line" wx:if="{{ noMoreData }}">

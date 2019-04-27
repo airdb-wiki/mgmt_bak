@@ -101,7 +101,7 @@
         console.log(err)
         wepy.showModal({
           title: '提示',
-          content: '服务器错误，请联系管理员'
+          content: '错误: 1004，请联系管理员'
         })
       }
     }

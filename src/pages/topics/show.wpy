@@ -27,7 +27,7 @@ page{
   <view class="page">
     <view class="page__bd">
       <view class="weui-cells weui-cells_after-title">
-        <navigator class="weui-cell" url="/pages/users/show?id={{ topic.user.id }}" open-type="redirect">
+        <navigator class="weui-cell" url="/pages/users/show?id={{ topic.user.ID }}" open-type="redirect">
           <view class="weui-cell__hd avatar-wrap">
             <image class="avatar" src="{{ topic.user.avatar }}"/>
           </view>
@@ -73,7 +73,7 @@ page{
           </repeat>
         </view>
         <view class="weui-panel__ft">
-          <navigator class="weui-cell weui-cell_access weui-cell_link" url="/pages/replies/index?topic_id={{ topic.id }}">
+          <navigator class="weui-cell weui-cell_access weui-cell_link" url="/pages/replies/index?topic_id={{ topic.ID }}">
             <view class="weui-cell__bd">查看全部回复</view>
             <view class="weui-cell__ft weui-cell__ft_in-access"></view>
           </navigator>
@@ -81,7 +81,7 @@ page{
       </view>
 
       <!-- 回复按钮 -->
-      <navigator url="/pages/replies/create?topic_id={{ topic.id }}">
+      <navigator url="/pages/replies/create?topic_id={{ topic.ID }}">
         <image src="/images/reply.png" class="create-reply" />
       </navigator>
     </view>
@@ -147,7 +147,7 @@ page{
         console.log(err)
         wepy.showModal({
           title: '提示',
-          content: '服务器错误，请联系管理员'
+          content: '错误码: 1002，请联系管理员'
         })
       }
     }

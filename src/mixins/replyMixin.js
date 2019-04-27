@@ -53,7 +53,7 @@ export default class ReplyMixin extends wepy.mixin {
       console.log(err)
       wepy.showModal({
         title: '提示',
-        content: '服务器错误，请联系管理员'
+        content: '错误: 1301，请联系管理员'
       })
     }
   }
@@ -122,7 +122,7 @@ export default class ReplyMixin extends wepy.mixin {
         console.log(err)
         wepy.showModal({
           title: '提示',
-          content: '服务器错误，请联系管理员'
+          content: '错误: 1305，请联系管理员'
         })
       }
     }
