@@ -88,18 +88,17 @@
             this.$parent.globalData.refreshPages = this.$parent.globalData.refreshPages.concat(refreshPages)
             this.$apply()
           }
-
-          // 提示发布成功
-          wepy.showToast({
-            title: '发布成功',
-            icon: 'success'
-          })
-
-          // 2 秒后返回上一页
-          setTimeout(function() {
-            wepy.navigateBack()
-          }, 2000)
         }
+        // 提示发布成功
+        wepy.showToast({
+          title: '发布成功',
+          icon: 'success'
+        })
+
+        // 2 秒后返回上一页
+        setTimeout(function() {
+          wepy.navigateBack()
+        }, 1000)
       } catch (err) {
         console.log(err)
         wepy.showModal({

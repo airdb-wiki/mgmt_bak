@@ -178,6 +178,8 @@ export default class extends wepy.app {
       data: launch
     })
     console.log('get openid=====', response.data)
+
+    wepy.setStorageSync('user', response.data)
     wepy.setStorageSync('profile', response.data)
   }
   // 获取权限

@@ -75,6 +75,7 @@
       console.log('2222222, ', e)
       let formData = e.detail.value
       let profile = wepy.getStorageSync('profile')
+      console.log(profile.UserID)
       formData.user_id = profile.UserID
 
       formData.category_id = 1

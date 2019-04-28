@@ -94,7 +94,8 @@ page{
 
   export default class TopicShow extends wepy.page {
     config = {
-      navigationBarTitleText: '话题详情'
+      navigationBarTitleText: '话题详情',
+      enablePullDownRefresh: true
     }
     data = {
       // 话题数据
@@ -159,8 +160,13 @@ page{
     }
     async onShow() {
       this.$parent.checkRefreshPages(this.getCurrentPages().pop().route, () => {
-        this.getTopic(this.topic.id)
+        this.getTopic(this.topic.ID)
       })
+    }
+    async onPullDownRefresh() {
+      // 调用组件的 reload 方法
+      this.getTopic(this.topic.ID)
+      wepy.stopPullDownRefresh()
     }
     methods = {
       async deleteTopic() {
