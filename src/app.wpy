@@ -143,15 +143,10 @@ export default class extends wepy.app {
       this.updateUnreadCount()
     }, 60000)
 
-    // 获取用户权限
-    this.getPerms()
-
     // console.log('app created, NODE_ENV:', process.env.NODE_ENV, process.env)
     launch.shareTicket = 'https://weapp.liyu.wiki/api/topics?page=1&include=user%2Ccategory'
-    console.log(launch)
-    // this.testAsync()
 
-    // store.dispatch(hello)
+    this.getScene(launch)
 
     // <!--广告开始-->
     // 在页面中定义插屏广告
@@ -170,8 +165,21 @@ export default class extends wepy.app {
         console.error(err)
       })
     }
-  }
 
+    // 获取用户权限
+    this.getPerms()
+  }
+  async getScene(launch) {
+    let loginData = await wepy.login()
+    launch.code = loginData.code
+    let response = await api.request({
+      url: 'weapp/authorizations',
+      method: 'POST',
+      data: launch
+    })
+    console.log('get openid=====', response.data)
+    wepy.setStorageSync('profile', response.data)
+  }
   // 获取权限
   async getPerms() {
     let perms = []

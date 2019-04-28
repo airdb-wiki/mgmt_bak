@@ -65,7 +65,7 @@
         {
           name: '实验室',
           icon: '/static/images/feedback.png',
-          page: '/pages/volunteer/index'
+          page: '/pages/auth/login'
         },
         {
           name: '设置',
@@ -98,7 +98,7 @@
 
           let registerResponse = await api.request({
             url: 'weapp/users',
-            method: 'POST',
+            method: 'PUT',
             data: formData
           })
           if (registerResponse.statusCode !== 200) {

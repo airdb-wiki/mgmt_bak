@@ -147,6 +147,21 @@
       // 调用组件的 loadMore 方法
       this.$invoke('topiclist', 'loadMore')
     }
+    onShareAppMessage (res) {
+      return {
+        title: '❤️❤️❤️, 送给你',
+        path: '/pages/topics/index?id=1' + '&openid=' + 'xxxx',
+        imageUrl: '/static/images/forward/home2.jpg',
+        success: function(res) {
+          // 转发成功
+          console.log(res)
+        },
+        fail: function(res) {
+          // 转发失败
+          console.log(res)
+        }
+      }
+    }
     methods = {
       // 切换分类列表展示
       toggle () {

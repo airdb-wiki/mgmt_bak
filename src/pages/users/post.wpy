@@ -74,7 +74,9 @@
     async submit (e) {
       console.log('2222222, ', e)
       let formData = e.detail.value
-      formData.user_id = 1
+      let profile = wepy.getStorageSync('profile')
+      formData.user_id = profile.ID
+
       formData.category_id = 1
 
       let response = await api.request({
@@ -84,8 +86,15 @@
       })
       console.log('---', response)
 
-      wepy.navigateTo({
-        url: '/pages/users/1'
+      // 提示发布成功
+      wepy.showToast({
+        title: '发布成功, 正在跳转首页',
+        icon: 'success',
+        duration: 2000
+      })
+
+      wepy.switchTab({
+        url: '/pages/topics/index'
       })
     }
     methods = {

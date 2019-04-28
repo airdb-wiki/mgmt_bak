@@ -45,20 +45,10 @@
 <script>
   import wepy from 'wepy'
   import { connect } from 'wepy-redux'
-  import Panel from '@/components/panel' // alias example
   import User from '@/components/user'
   import Footer from '@/components/footer'
 
   @connect({
-    num (state) {
-      return state.counter.num
-    },
-    asyncNum (state) {
-      return state.counter.asyncNum
-    },
-    sumNum (state) {
-      return state.counter.num + state.counter.asyncNum
-    }
   })
 
   export default class Index extends wepy.page {
@@ -67,7 +57,6 @@
       navigationBarBackgroundColor: '#f35336'
     }
     components = {
-      panel: Panel,
       vuser: User,
       vfooter: Footer
     }
