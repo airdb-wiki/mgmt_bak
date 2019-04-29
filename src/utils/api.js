@@ -35,6 +35,7 @@ const request = async (options, showLoading = true) => {
 
 // 登录
 const login = async (params = {}) => {
+  console.log('xxxxxxx')
   // code 只能使用一次，所以每次单独调用
   let loginData = await wepy.login()
 
@@ -50,6 +51,7 @@ const login = async (params = {}) => {
 
   // 登录成功，记录 token 信息
   if (authResponse.statusCode === 201) {
+    console.log('==========token===', authResponse.data)
     wepy.setStorageSync('access_token', authResponse.data.access_token)
     wepy.setStorageSync('access_token_expired_at', new Date().getTime() + authResponse.data.expires_in * 1000)
   }

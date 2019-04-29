@@ -1,0 +1,36 @@
+<style scoped lang='less'>
+  /*@import 'index';*/
+</style>
+
+<template>
+  <vinfo></vinfo>
+</template>
+
+<script>
+
+  import wepy from 'wepy'
+  import InfoCard from '@/components/info'
+
+  export default class UserIndex extends wepy.page {
+    components = {
+      vinfo: InfoCard
+    }
+    config = {
+      navigationBarTitleText: 'test',
+      enablePullDownRefresh: true
+    }
+    data = {
+      // 话题数据
+      topic: null,
+      // 当前登录用户
+      user: null
+    }
+    onShareAppMessage() {
+      return {
+        title: '加入我们',
+        path: '/pages/hr/main?from=forward',
+        imageUrl: '/static/images/forward/home1.jpg'
+      }
+    }
+  }
+</script>

@@ -74,9 +74,9 @@
     async submit (e) {
       console.log('2222222, ', e)
       let formData = e.detail.value
-      let profile = wepy.getStorageSync('profile')
-      console.log(profile.UserID)
-      formData.user_id = profile.UserID
+      let user = wepy.getStorageSync('user')
+      console.log(user.UserID)
+      formData.user_id = user.UserID
 
       formData.category_id = 1
 
