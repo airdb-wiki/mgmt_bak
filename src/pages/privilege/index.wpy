@@ -3,53 +3,69 @@
 </style>
 
 <template>
-  <div class="page">
 
+  <view class="page">
     <vuser></vuser>
-    <!-- user end -->
 
-    <div class="text-name">九宫格</div>
+    <view class="page">
+      <view class="page__bd">
+        <view class="weui-grids">
+          <repeat for="{{function_cells}}"  key="index" index="index" item="item">
+            <navigator url="{{item.page}}" class="weui-grid" hover-class="weui-grid_active">
+              <image class="weui-grid__icon" src="/static/images/profile/locked.png" />
+              <view class="weui-grid__label">{{item.name}}</view>
+            </navigator>
+          </repeat>
+        </view>
+      </view>
+    </view>
 
-    <div class="after-user">
-      <div class="weui-grids">
-        <repeat class="weui-grid" for="{{function_cells}}" key="index" index="index" item="item">
-          <navigator url="{{item.page}}">
-            <image src="{{item.src}}" class="weui-grid__icon"/>
-            <view class="weui-grid__label">{{item.name}}</view>
-          </navigator>
-        </repeat>
-      </div>
-      <!-- grids end -->
-    </div>
-    <!-- after-user end -->
-
-    <div class="text-name">专属福利</div>
-    <div class="text-time">{{privilege}}/13</div>
-    <div class="after-user">
-<!--      <div class="weui-grids">-->
-<!--        <div class="weui-grid" for="{{gifts}}" key="index" index="index" item="item">-->
-<!--          <navigator :url="item.url">-->
-<!--            <image :src="item.src" class="weui-grid__icon"/>-->
-<!--            <view class="weui-grid__label">{{item.name}}</view>-->
-<!--          </navigator>-->
-<!--        </div>-->
-<!--      </div>-->
-      <!-- grids end -->
-    </div>
-    <!-- after-user end -->
 
     <vfooter></vfooter>
-  </div>
+  </view>
+
+
+<!--  -->
+<!--  <div class="page">-->
+
+<!--   -->
+<!--    &lt;!&ndash; user end &ndash;&gt;-->
+
+<!--    <div class="text-name">九宫格</div>-->
+
+<!--    <div class="after-user">-->
+<!--      <div class="weui-grids">-->
+<!--        <repeat class="weui-grid" for="{{function_cells}}" key="index" index="index" item="item">-->
+<!--          <navigator url="{{item.page}}">-->
+<!--            <image src="{{item.src}}" class="weui-grid__icon"/>-->
+<!--            <view class="weui-grid__label">{{item.name}}</view>-->
+<!--          </navigator>-->
+<!--        </repeat>-->
+<!--      </div>-->
+<!--      &lt;!&ndash; grids end &ndash;&gt;-->
+<!--    </div>-->
+<!--    &lt;!&ndash; after-user end &ndash;&gt;-->
+
+<!--    <div class="text-name">专属福利</div>-->
+<!--    <div class="text-time">{{privilege}}/13</div>-->
+<!--    <div class="after-user">-->
+<!--&lt;!&ndash;      <div class="weui-grids">&ndash;&gt;-->
+<!--&lt;!&ndash;        <div class="weui-grid" for="{{gifts}}" key="index" index="index" item="item">&ndash;&gt;-->
+<!--&lt;!&ndash;          <navigator :url="item.url">&ndash;&gt;-->
+<!--&lt;!&ndash;            <image :src="item.src" class="weui-grid__icon"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            <view class="weui-grid__label">{{item.name}}</view>&ndash;&gt;-->
+<!--&lt;!&ndash;          </navigator>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;      </div>&ndash;&gt;-->
+<!--      &lt;!&ndash; grids end &ndash;&gt;-->
+<!--    </div>-->
+<!--    &lt;!&ndash; after-user end &ndash;&gt;-->
 </template>
 
 <script>
   import wepy from 'wepy'
-  import { connect } from 'wepy-redux'
   import User from '@/components/user'
   import Footer from '@/components/footer'
-
-  @connect({
-  })
 
   export default class Index extends wepy.page {
     config = {
@@ -61,6 +77,7 @@
       vfooter: Footer
     }
     data = {
+      grids: [0, 1, 2, 3, 4, 5, 6, 7, 8],
       privilege: 3,
       function_cells: [{
         name: '救助站',

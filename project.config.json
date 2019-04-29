@@ -7,7 +7,7 @@
 		"minified": false,
 		"newFeature": true
 	},
-	"compileType": "plugin",
+	"compileType": "miniprogram",
 	"appid": "wxc4e11081e3d5bdf7",
 	"projectname": "mina",
 	"miniprogramRoot": "dist/",
