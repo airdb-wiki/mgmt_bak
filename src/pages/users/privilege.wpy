@@ -1,5 +1,4 @@
 <style scoped lang='less'>
-  @import 'index';
 </style>
 
 <template>
