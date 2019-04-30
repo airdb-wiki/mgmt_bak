@@ -82,11 +82,11 @@
       function_cells: [{
         name: '救助站',
         src: '/static/images/profile/gift.png',
-        page: '/pages/reliefstation/main'
+        page: '/pages/grid/reliefstation'
       }, {
         name: '志愿者',
         src: '/static/images/profile/doll.png',
-        page: '/pages/volunteer/main'
+        page: '/pages/grid/volunteer'
       }, {
         name: '未开放',
         src: '/static/images/profile/locked.png'
