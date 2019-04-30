@@ -3,7 +3,11 @@
 </style>
 
 <template>
+  <view>{{title}}</view>
+
   <vinfo></vinfo>
+  <image src="https://bbs.baobeihuijia.com/forum/201602/21/171302l8osfb89zjj2c9eh.png"/>
+  <image src="https://bbs.baobeihuijia.com/data/attachment/forum/201811/09/103222ws2vsvs9vp2fsjvj.png"/>
 </template>
 
 <script>
@@ -23,7 +27,8 @@
       // 话题数据
       topic: null,
       // 当前登录用户
-      user: null
+      user: null,
+      title: '约1976年出生1983年左右疑似从四川省被拐卖到福建省泉州市的细毛仔寻亲169737'
     }
     onShareAppMessage() {
       return {

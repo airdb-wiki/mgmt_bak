@@ -65,7 +65,7 @@
         {
           name: '实验室',
           icon: '/static/images/feedback.png',
-          page: '/pages/auth/login'
+          page: '/pages/test/index'
         },
         {
           name: '设置',

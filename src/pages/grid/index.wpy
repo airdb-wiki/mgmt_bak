@@ -80,6 +80,10 @@
       grids: [0, 1, 2, 3, 4, 5, 6, 7, 8],
       privilege: 3,
       function_cells: [{
+        name: '我要发布',
+        src: '/static/images/profile/locked.png',
+        page: '/pages/users/post'
+      }, {
         name: '救助站',
         src: '/static/images/profile/gift.png',
         page: '/pages/grid/reliefstation'
@@ -87,9 +91,6 @@
         name: '志愿者',
         src: '/static/images/profile/doll.png',
         page: '/pages/grid/volunteer'
-      }, {
-        name: '未开放',
-        src: '/static/images/profile/locked.png'
       }, {
         name: '未开放',
         src: '/static/images/profile/locked.png'

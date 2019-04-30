@@ -71,9 +71,6 @@
       }, {
         name: '未开放',
         src: '/static/images/profile/locked.png'
-      }, {
-        name: '未开放',
-        src: '/static/images/profile/locked.png'
       }],
       gifts: [{
         name: '精美礼品',
