@@ -16,9 +16,9 @@
               <div>背景介绍</div>
               <image src="https://wechat-1251018873.file.myqcloud.com/mina/base/icon/love-bg.png"/>
             </div>
-            <div class="weui-article__p">
+            <view class="weui-article__p">
               宝贝回家小程序宗旨是为帮助寻找失踪儿童及一些流浪乞讨的孩子找家，为孩子家长及志愿者提供一个信息沟通的平台。
-            </div>
+            </view>
             <div class="weui-article__p">
               更多信息请访问：
               <a href="https://www.airdb.com/zh/bbhj/" style="color: deepskyblue;">https://www.airdb.com/zh/bbhj/</a>
@@ -101,8 +101,12 @@
 <script>
 
   import wepy from 'wepy'
-
   export default class UserIndex extends wepy.page {
+    config = {
+      navigationBarTitleText: '宝贝回家技术团队'
+    }
+    onload() {
+    }
     onShareAppMessage() {
       return {
         title: '加入我们',

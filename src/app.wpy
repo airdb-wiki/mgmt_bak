@@ -39,6 +39,7 @@ import api from '@/utils/api'
 export default class extends wepy.app {
   config = {
     pages: [
+      'pages/hr/index',
       'pages/topics/index',
       'pages/users/post',
       'pages/test/index',
@@ -57,7 +58,6 @@ export default class extends wepy.app {
       'pages/customerservice/index',
       'pages/grid/volunteer',
       'pages/grid/reliefstation',
-      'pages/hr/index',
       'pages/replies/create',
       'pages/notifications/index'
     ],
