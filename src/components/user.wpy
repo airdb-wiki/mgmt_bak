@@ -43,7 +43,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    /*background: #f35336;*/
+    background: #f35336;
     min-height: 230rpx;
   }
   .user-avatar {
