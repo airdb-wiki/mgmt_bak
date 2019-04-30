@@ -52,9 +52,11 @@ export default class extends wepy.app {
       'pages/users/history',
       'pages/replies/index',
       'pages/replies/userIndex',
+      'pages/grid/index',
       'pages/users/privilege',
       'pages/customerservice/index',
-      'pages/volunteer/index',
+      'pages/grid/volunteer',
+      'pages/grid/reliefstation',
       'pages/hr/index',
       'pages/replies/create',
       'pages/notifications/index'

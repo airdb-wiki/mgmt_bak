@@ -9,7 +9,7 @@
       <open-data type="userNickName"></open-data>
     </button>
 
-    <div  class="kind-list">
+    <div class="kind-list">
       <repeat for="{{kindlist}}" key="index" index="index" item="item" >
         <div @tap="openUrl({{item.page}})" class="weui-flex kind-list__item">
           <image class="kind-list__img" src="{{item.icon}}"></image>
