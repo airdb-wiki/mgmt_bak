@@ -1,0 +1,129 @@
+<template>
+    <div>
+        <search />
+        <swiper class="swiper"
+            indicator-dots="true"
+            autoplay="true"
+            interval="2380"
+            circular="true"
+        >
+            <swiper-item>
+                <image src="../imgs/banner.png" class="banner-item"/>
+            </swiper-item>
+            <swiper-item>
+                <image src="../imgs/banner.png" class="banner-item"/>
+            </swiper-item>
+            <swiper-item>
+                <image src="../imgs/banner.png" class="banner-item"/>
+            </swiper-item>
+        </swiper>
+        <tabs></tabs>
+        <repeat for="{{list}}" key="index" index="index" item="item">
+            <!-- <list-item key="{{index}}"/> -->
+            <list-item :item.sync="item" key="{{index}}" :headUrl="item.AvatarUrl" :lostProvince="item.MissedProvince" :lostCity="item.MissedCity" :name="item.Nickname" :age="0" :itemId="item.Babyid" :lostTime="item.MissedAt" :lostAddress="item.MissedAddress" />
+        </repeat>
+        <connect />
+        <!-- <list-item /> -->
+    </div>
+</template>
+<script>
+import wepy from 'wepy'
+import Search from '../components/search-bar'
+import Tabs from '../components/tabs'
+import ListItem from '../components/list-item'
+import Connect from '../components/connect'
+import http from '../api/http.js'
+export default class Home extends wepy.page {
+    data = {
+        list: [],
+        screenW: wepy.$instance.globalData.screenW,
+        screenH: wepy.$instance.globalData.screenH,
+        scrollTop: false,
+        currentPage: 1
+    }
+
+    events = {
+
+    }
+
+    components = {
+        'search': Search,
+        'tabs': Tabs,
+        'list-item': ListItem,
+        'connect': Connect
+    }
+
+    methods = {
+
+    }
+
+    onPageScroll(ev) {
+        var _this = this;
+        //当滚动的top值最大或最小时，为什么要做这一步是因为在手机实测小程序的时候会发生滚动条回弹，所以为了处理回弹，设置默认最大最小值
+        // console.log('ev.scrollTop:'+ev.scrollTop);
+        if (ev.scrollTop <= 0) {
+            ev.scrollTop = 0;
+        } else if (ev.scrollTop > wx.getSystemInfoSync().windowHeight) {
+            ev.scrollTop = wx.getSystemInfoSync().windowHeight;
+        }
+        //判断浏览器滚动条上下滚动
+        if (ev.scrollTop > this.data.scrollTop || ev.scrollTop == wx.getSystemInfoSync().windowHeight) {
+            //向下滚动
+        } else {
+            //向上滚动
+        }
+        setTimeout(function () {
+            _this.setData({
+                scrollTop: ev.scrollTop
+            })
+        }, 0)
+    }
+
+    onReachBottom(res) {
+        if(!this.isNoMore){
+            let currentPage = this.currentPage
+            let nowPage = currentPage + 1
+            this.currentPage = nowPage
+            this.$apply()
+            console.log('pageIndex--->', nowPage)
+            this.getList(nowPage)
+        }
+        // console.log(res);
+    }
+
+    getList(pageIndex) {
+        let that = this
+        http.httpRequest({
+            url: 'api/lost/list?category=1&page='+pageIndex+'&pageSize=10',
+            method: 'GET',
+            data: {},
+            success: function(res) {
+                let list = res.data
+                that.list = that.list.concat(list)
+                that.$apply()
+            },
+            fail: function(error) {
+
+            }
+        })
+    }
+
+    onLoad() {
+        this.getList(this.currentPage)
+    }
+}
+</script>
+<style lang="less" scoped>
+    .swiper {
+        margin-top: 15px;
+        width: 100%;
+        height: 185px;
+    }
+    .banner-item {
+        display: block;
+        margin: auto;
+        height: 160px;
+        border-radius: 20px;
+    }
+</style>
+

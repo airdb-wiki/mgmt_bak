@@ -1,0 +1,158 @@
+<template>
+    <view class="list-item" @tap="toDetail">
+        <image class="head-img" src="{{headUrl}}"/>
+        <view class="name">{{name}}</view>
+        <view class="baseinfo1">
+            <text class="age">{{age}}岁</text>
+            <text class="sex">  {{Gender}}</text>
+        </view>
+        <view class="baseinfo2">
+            <view class="id">档案ID：{{itemId}}</view>
+            <view class="lost-time">失踪于 {{lostTime}}</view>
+        </view>
+        <view class="baseinfo3">
+            <text class="lost-address">{{lostProvince + ' ' + lostCity + ' ' + lostAddress}}</text>
+            <image class="right-icon" />
+        </view>
+    </view>
+</template>
+<script>
+import wepy from 'wepy'
+export default class ListItem extends wepy.component {
+    data = {
+        
+    }
+
+    computed = {
+        Gender() {
+            if(this.Gender == 0) {
+                return '男'
+            }else {
+                return '女'
+            }
+        },
+        headUrl() {
+            if(this.headUrl == '') {
+                return '../imgs/tabs/home-icon.png'
+            }else {
+                return this.headUrl
+            }
+        }
+    }
+
+    props = {
+        item: Object,
+        name: String,
+        Gender: Number,
+        age: Number,
+        itemId: Number,
+        lostTime: String,
+        lostProvince: String,
+        lostCity: String,
+        lostAddress: String, 
+        headUrl: String
+    }
+
+    methods = {
+        toDetail() {
+            // console.log('item--->',this.item)
+            wepy.navigateTo({
+                url:'/pages/detail?id='+this.item.ID
+            })
+        }
+    }
+
+    onLoad() {
+        console.log('item--->',this.item)
+    }
+}
+</script>
+<style lang="scss" scoped>
+    .list-item {
+        position: relative;
+        width: 94%;
+        height: 135px;
+        margin: 10px auto;
+        background: #FFFFFF;
+        box-shadow: 0 1px 10px 1px rgba(0,0,0,0.10);
+        border-radius: 10px;
+        .head-img {
+            width: 60px;
+            height: 60px;
+            position: absolute;
+            left: 14px;
+            top: 14px;
+            border-radius: 10px;
+        }
+        .name {
+            position: absolute;
+            top: 15px;
+            left: 87px;
+            font-family: PingFangSC-Semibold;
+            font-size: 16px;
+            color: #4A4A4A;
+            letter-spacing: 0;
+        }
+        .baseinfo1 {
+            position: absolute;
+            top: 35px;
+            left: 87px;
+            .age {
+                font-family: PingFangSC-Regular;
+                font-size: 14px;
+                color: #4A4A4A;
+                letter-spacing: 0;
+            }
+            .sex {
+                font-family: PingFangSC-Regular;
+                font-size: 14px;
+                color: #44A751;
+                letter-spacing: 0;
+            }
+        }
+        .baseinfo2 {
+            position: absolute;
+            top: 15px;
+            right: 14px;
+            text-align: right;
+            .id {
+                font-family: PingFangSC-Light;
+                font-size: 14px;
+                color: #969696;
+                letter-spacing: 0;
+                line-height: 20px;
+                margin-bottom: 5px;
+            }
+            .lost-time {
+                font-family: PingFangSC-Regular;
+                font-size: 14px;
+                color: #4A4A4A;
+                letter-spacing: 0;
+                line-height: 20px;
+            }
+        }
+        .baseinfo3 {
+            position: absolute;
+            bottom: 0;
+            left: 90px;
+            right: 14px;
+            height: 40px;
+            border-top: 1px solid #DCDEDF;
+            text-align: left;
+            .lost-address {
+                font-family: PingFangSC-Regular;
+                font-size: 14px;
+                color: #4A4A4A;
+                letter-spacing: 0;
+                line-height: 40px;
+            }
+            .right-icon {
+                width: 9px;
+                height: 14px;
+                position: absolute;
+                right: 14px;
+                top: 15px;
+            }
+        }
+    }
+</style>
