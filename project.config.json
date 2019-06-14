@@ -1,34 +1,17 @@
 {
-	"description": "项目配置文件。",
+	"description": "mina bbs weapp project",
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": false,
-		"postcss": true,
-		"minified": true,
+		"postcss": false,
+		"minified": false,
 		"newFeature": true
 	},
-	"miniprogramRoot": "dist/wx/",
 	"compileType": "miniprogram",
 	"appid": "wxc4e11081e3d5bdf7",
 	"projectname": "mina",
+	"miniprogramRoot": "dist/",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
-	"condition": {
-		"search": {
-			"current": -1,
-			"list": []
-		},
-		"conversation": {
-			"current": -1,
-			"list": []
-		},
-		"game": {
-			"currentL": -1,
-			"list": []
-		},
-		"miniprogram": {
-			"current": -1,
-			"list": []
-		}
-	}
+	"condition": {}
 }

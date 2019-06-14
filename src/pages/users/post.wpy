@@ -1,0 +1,107 @@
+<template>
+  <form bindsubmit="submit">
+    <view class="weui-cells__title">标题</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+          <input class="weui-input" placeholder="请输入标题" name="title" />
+        </view>
+      </view>
+    </view>
+
+    <view class="weui-cells__title">内容</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+          <textarea class="weui-textarea" name="body" placeholder="请输入文本" @input="bindBodyInput" style="height: 3.3em" />
+          <view class="weui-textarea-counter">0/200</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="weui-btn-area">
+      <button class="weui-btn" type="primary" formType="submit">发布</button>
+    </view>
+  </form>
+
+
+</template>
+<script>
+  import wepy from 'wepy'
+  import api from '@/utils/api'
+  import topicList from '@/components/topicList'
+  import User from '@/components/user'
+  import Footer from '@/components/footer'
+
+  export default class UserIndex extends wepy.page {
+    config = {
+      navigationBarTitleText: '正在发布'
+    }
+    data = {
+      requestData: {},
+      requestUrl: null
+    }
+    components = {
+      vuser: User,
+      vfooter: Footer,
+      topiclist: topicList
+    }
+    onLoad(options) {
+      options.id = 1
+      console.log('111111', options)
+      this.requestUrl = 'users/' + options.id + '/topics'
+      this.$apply()
+      // 调用组件 reload 方法
+      this.$invoke('topiclist', 'reload')
+    }
+    onShow() {
+      this.$parent.checkRefreshPages(this.getCurrentPages().pop().route, () => {
+        this.$invoke('topiclist', 'reload')
+      })
+    }
+    // 下拉刷新
+    async onPullDownRefresh() {
+      // 调用组件 reload 方法
+      await this.$invoke('topiclist', 'reload')
+      wepy.stopPullDownRefresh()
+    }
+    // 上拉加载更多
+    onReachBottom () {
+      // 调用组件 loadMore 方法
+      this.$invoke('topiclist', 'loadMore')
+    }
+
+    async submit (e) {
+      console.log('2222222, ', e)
+      let formData = e.detail.value
+      let user = wepy.getStorageSync('user')
+      console.log(user.UserID)
+      formData.user_id = user.UserID
+
+      formData.category_id = 1
+
+      let response = await api.request({
+        url: 'topics',
+        method: 'POST',
+        data: formData
+      })
+      console.log('---', response)
+
+      // 提示发布成功
+      wepy.showToast({
+        title: '发布成功, 正在跳转首页',
+        icon: 'success',
+        duration: 2000
+      })
+
+      wepy.switchTab({
+        url: '/pages/topics/index'
+      })
+    }
+    methods = {
+      bindBodyInput (e) {
+        this.body = e.detail.value
+      }
+    }
+  }
+</script>

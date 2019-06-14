@@ -1,0 +1,137 @@
+<style scoped lang='less'>
+  @import 'me';
+</style>
+
+<template>
+  <div class="page">
+    <button open-type="getUserInfo" class="userinfo" @getuserinfo="bindGetUserInfo" @tap="openUrl('/pages/grid/index')">
+      <open-data type="userAvatarUrl" class="userinfo-avatar" mode="cover"></open-data>
+      <open-data type="userNickName"></open-data>
+    </button>
+
+    <div class="kind-list">
+      <repeat for="{{kindlist}}" key="index" index="index" item="item" >
+        <div @tap="openUrl({{item.page}})" class="weui-flex kind-list__item">
+          <image class="kind-list__img" src="{{item.icon}}"></image>
+          <view class="kind-list__item-hd">{{item.name}}</view>
+          <image class="kind-list__img_right" src="/static/images/big.png"></image>
+        </div>
+      </repeat>
+    </div>
+
+    <!--    <div v-if="env=='development'" style="text-align: center" >-->
+    <!--      编译信息：开发环境-->
+    <!--    </div>-->
+  </div>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import api from '@/utils/api'
+  import Panel from '@/components/panel' // alias example
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '我的',
+      // navigationBarBackgroundColor: '#00af34',
+      // backgroundColor: '#00af34',
+      navigationBarTextStyle: 'black'
+    }
+    components = {
+      panel: Panel
+    }
+    data = {
+      kindlist: [
+        {
+          name: '已发布',
+          icon: '/static/images/product.png',
+          page: '/pages/users/history'
+        },
+        {
+          name: '已关注',
+          icon: '/static/images/star.png',
+          page: '/pages/users/history'
+        },
+        {
+          name: '收信箱',
+          icon: '/static/images/message.png',
+          page: '/pages/hr/index'
+        },
+        {
+          name: '客服',
+          icon: '/static/images/customer_service.png',
+          page: '/pages/customerservice/index'
+        },
+        {
+          name: '实验室',
+          icon: '/static/images/feedback.png',
+          page: '/pages/test/index'
+        },
+        {
+          name: '设置',
+          icon: '/static/images/settings.png',
+          page: 'setting'
+        }
+      ]
+    }
+
+    computed = {
+      now () {
+        return +new Date()
+      }
+    }
+
+    methods = {
+      // 表单提交
+      async bindGetUserInfo (e) {
+        console.log('bindGetUserInfo', e)
+        try {
+          console.log('value=====', e.detail)
+          let formData = e.detail.userInfo
+          formData.nickName = e.detail.userInfo.nickName
+          formData.name = e.detail.userInfo.nickName
+          formData.avatar = e.detail.userInfo.avatarUrl
+
+          let loginData = await wepy.login()
+          // 参数中增加code，用于获取 openid 绑定当前用户
+          formData.code = loginData.code
+
+          let registerResponse = await api.request({
+            url: 'weapp/users',
+            method: 'PUT',
+            data: formData
+          })
+          if (registerResponse.statusCode !== 200) {
+            this.errors.verification_code = ['注册失败']
+            this.$apply()
+          }
+
+          // 跳转到我的页面
+          // setTimeout(function() {
+          //   wepy.switchTab({
+          //     url: '/pages/users/me'
+          //   })
+          // }, 2000)
+        } catch (err) {
+          console.log(err)
+          wepy.showModal({
+            title: '提示',
+            content: '错误: 1005，请联系管理员'
+          })
+        }
+      },
+      openUrl (page) {
+        if (page === 'setting') {
+          wepy.openSetting({})
+          return
+        }
+        wepy.navigateTo({
+          url: page + '?id=1'
+        })
+      }
+    }
+    onLoad() {
+      console.log('---onload')
+    }
+  }
+</script>

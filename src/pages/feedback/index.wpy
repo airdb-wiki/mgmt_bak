@@ -1,0 +1,178 @@
+<style scoped lang='less'>
+  @import 'index';
+</style>
+
+<template>
+  <div class="page">
+
+    <vuser></vuser>
+
+    <vradar></vradar>
+
+    <button type="primary" open-type="share" style="margin:20rpx">微信邀请</button>
+    <button type="primary" open-type="share" style="margin:20rpx">二维码邀请</button>
+
+<!--    &lt;!&ndash; 分享按钮 &ndash;&gt;-->
+<!--    <div class="share" v-on:click="download">-->
+<!--      <img src="/static/images/home/sharetof.png">-->
+<!--    </div>-->
+
+    <!-- 分享图片生成的画布 -->
+    <canvas canvas-id="radar2">
+      <cover-view></cover-view>
+    </canvas>
+
+    <vfooter></vfooter>
+  </div>
+</template>
+
+
+<script>
+  import wepy from 'wepy'
+  import { connect } from 'wepy-redux'
+  import User from '@/components/user'
+  import Footer from '@/components/footer'
+  import Radar from '@/components/radar'
+
+  @connect({
+    num (state) {
+      return state.counter.num
+    },
+    asyncNum (state) {
+      return state.counter.asyncNum
+    },
+    sumNum (state) {
+      return state.counter.num + state.counter.asyncNum
+    }
+  })
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: 'feedback',
+      navigationBarBackgroundColor: '#f35336'
+    }
+    components = {
+      vuser: User,
+      vfooter: Footer,
+      vradar: Radar
+    }
+    data = {
+      privilege: 3,
+      function_cells: [{
+        name: '救助站',
+        src: '/static/images/profile/gift.png',
+        page: '/pages/reliefstation/main'
+      }, {
+        name: '志愿者',
+        src: '/static/images/profile/doll.png',
+        page: '/pages/volunteer/main'
+      }, {
+        name: '未开放',
+        src: '/static/images/profile/locked.png'
+      }, {
+        name: '未开放',
+        src: '/static/images/profile/locked.png'
+      }, {
+        name: '未开放',
+        src: '/static/images/profile/locked.png'
+      }, {
+        name: '未开放',
+        src: '/static/images/profile/locked.png'
+      }, {
+        name: '未开放',
+        src: '/static/images/profile/locked.png'
+      }, {
+        name: '未开放',
+        src: '/static/images/profile/locked.png'
+      }, {
+        name: '未开放',
+        src: '/static/images/profile/locked.png'
+      }],
+      gifts: [{
+        name: '精美礼品',
+        src: '/static/images/profile/gift.png'
+      }, {
+        name: '公仔一个',
+        src: '/static/images/profile/doll.png'
+      }, {
+        name: '衣服一件',
+        src: '/static/images/profile/clothes.png'
+      }, {
+        name: '未解锁',
+        src: '/static/images/profile/locked.png'
+      }, {
+        name: '未解锁',
+        src: '/static/images/profile/locked.png'
+      }, {
+        name: '未解锁',
+        src: '/static/images/profile/locked.png'
+      }, {
+        name: '未解锁',
+        src: '/static/images/profile/locked.png'
+      }, {
+        name: '未解锁',
+        src: '/static/images/profile/locked.png'
+      }, {
+        name: '未解锁',
+        src: '/static/images/profile/locked.png'
+      }]
+    }
+
+    computed = {
+      now () {
+        return +new Date()
+      }
+    }
+    onShow () {
+      const context = wepy.createCanvasContext('radar')
+
+      context.setStrokeStyle('#00ff00')
+      context.setLineWidth(5)
+      context.rect(0, 0, 200, 200)
+      context.stroke()
+      context.setStrokeStyle('#ff0000')
+      context.setLineWidth(2)
+      context.moveTo(160, 100)
+      context.arc(100, 100, 60, 0, 2 * Math.PI, true)
+      context.moveTo(140, 100)
+      context.arc(100, 100, 40, 0, Math.PI, false)
+      context.moveTo(85, 80)
+      context.arc(80, 80, 5, 0, 2 * Math.PI, true)
+      context.moveTo(125, 80)
+      context.arc(120, 80, 5, 0, 2 * Math.PI, true)
+      context.stroke()
+      context.draw()
+    }
+
+    methods = {
+      openUrl (page) {
+        console.log('-----', page)
+        if (page === 'setting') {
+          wepy.openSetting({})
+          return
+        }
+        wepy.navigateTo({
+          url: page + '?wxid='
+        })
+      }
+    }
+
+    onPageScroll (res) {
+      if (res.scrollTop > 40) {
+        this.showTitle = true
+      } else {
+        if (res.scrollTop < 40) {
+          this.showTitle = false
+        }
+      }
+    }
+
+    onShareAppMessage () {
+      return {
+        title: '您的公益时长为10小时',
+        desc: '公益项目',
+        path: '/pages/test_mc/myPrivilege/main?from=forward'
+      }
+    }
+  }
+</script>

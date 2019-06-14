@@ -1,0 +1,128 @@
+<style scoped lang='less'>
+  @import 'index';
+</style>
+
+<template>
+  <div class="page">
+    <div class="after-userifo">
+
+      <!-- 广告 -->
+      <ad unit-id="adunit-6a89174cc83e227f"></ad>
+
+      <!-- <div style="text-align: center">
+        如需帮助，可通过以下方式联系我们。
+      </div> -->
+      <div class="weui-info">
+        <view class="weui-item" style="-webkit-user-select:text;margin-top:70rpx;">官方网站: <p class="weui-p" style='display: inline'>www.baobeihuijia.com</p></view>
+        <view class="weui-item" style="-webkit-user-select:text">咨询信箱: <p class="weui-p" style='display: inline'>baobeihuijia@yeah.net</p></view>
+        <view class="weui-item" style="-webkit-user-select:text">QQ接待群: <p class="weui-p" style='display: inline'>1840533</p></view>
+        <!-- <div class="weui-item" style="-webkit-user-select:text" bindcontact="handleContact"><img class= "cust_service" src="/static/images/customer_service.png">在线客服 <p class="weui-p" style='display: inline'></p></div> -->
+        <!-- <button open-type="contact" bindcontact="handleContact" class="weui-item">在线客服</button> -->
+        <button class="weui-item" style="-webkit-user-select:text" open-type="contact"
+                bindcontact="handleContact">
+          <image class= "cust_service" src="/static/images/customer_service.png"/>
+          在线客服(推荐) <p class="weui-p" style='display: inline'></p></button>
+        <div class="weui-item">
+          <view style="margin-left:80rpx">站务电话</view>
+          <view class="weui-phone" @click="tel">
+            <image src="/static/images/phone.png" class="phone_img" alt=""/>
+            0435-3338090
+          </view>
+        </div>
+      </div>
+    </div>
+    <!-- weui-cells end -->
+
+    <!-- <button open-type="contact" bindcontact="handleContact" class="btn">在线客服</button> -->
+
+    <!-- profile-page-main end -->
+    <!-- 右下角加号新建 -->
+    <!-- <button open-type="contact" session-from="weixin-baobeihuijia">
+      <img src="/static/images/CustomerService.png" class="btn-post">
+    </button> -->
+
+    <vfooter></vfooter>
+
+
+  </div>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Footer from '@/components/footer'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '联系我们'
+    }
+    components = {
+      vfooter: Footer
+    }
+    data = {
+      privilege: 3
+    }
+
+    computed = {
+      now () {
+        return +new Date()
+      }
+    }
+
+    onShow () {
+      const context = wepy.createCanvasContext('radar')
+
+      context.setStrokeStyle('#00ff00')
+      context.setLineWidth(5)
+      context.rect(0, 0, 200, 200)
+      context.stroke()
+      context.setStrokeStyle('#ff0000')
+      context.setLineWidth(2)
+      context.moveTo(160, 100)
+      context.arc(100, 100, 60, 0, 2 * Math.PI, true)
+      context.moveTo(140, 100)
+      context.arc(100, 100, 40, 0, Math.PI, false)
+      context.moveTo(85, 80)
+      context.arc(80, 80, 5, 0, 2 * Math.PI, true)
+      context.moveTo(125, 80)
+      context.arc(120, 80, 5, 0, 2 * Math.PI, true)
+      context.stroke()
+      context.draw()
+    }
+
+    methods = {
+      onPostClick () {
+        wepy.navigateTo({
+          url: '/pages/publish/main'
+        })
+      },
+      tel: function () {
+        wepy.makePhoneCall({
+          phoneNumber: '0435-3338090'
+        })
+      },
+      naviTo: function () {
+        wepy.navigateTo({
+          url: '/pages/list/main'
+        })
+      }
+    }
+
+    onPageScroll (res) {
+      if (res.scrollTop > 40) {
+        this.showTitle = true
+      } else {
+        if (res.scrollTop < 40) {
+          this.showTitle = false
+        }
+      }
+    }
+
+    onShareAppMessage () {
+      return {
+        title: '您的公益时长为10小时',
+        desc: '公益项目',
+        path: '/pages/test_mc/myPrivilege/main?from=forward'
+      }
+    }
+  }
+</script>
