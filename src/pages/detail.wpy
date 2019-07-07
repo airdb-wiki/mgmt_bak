@@ -270,7 +270,7 @@ export default class Detail extends wepy.page {
         color: #737B7F;
         letter-spacing: 0;
         line-height: 50px;
-        text-align: right;
+        text-align: left;
         width: 226px;
         word-wrap: break-word;
     }
