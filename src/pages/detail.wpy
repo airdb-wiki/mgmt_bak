@@ -1,22 +1,22 @@
 <template>
     <view>
         <image class="bg" src=""/>
-        <image class="head" src="{{detail.AvatarUrl}}"/>
-        <view class="name">{{detail.Nickname}}</view>
-        <view class="id">档案ID：{{detail.Babyid}}</view>
+        <image class="head" src="{{detail.avatar_url}}"/>
+        <view class="name">{{detail.nickname}}</view>
+        <view class="id">档案ID：{{detail.babyid}}</view>
 
         <view class="info">
             <view class="info-item">
                 <view class="info-title">性别</view>
-                <view class="info-content">{{Gender}}</view>
+                <view class="info-content">{{detail.sex}}</view>
             </view>
             <view class="info-item">
                 <view class="info-title">出生日期</view>
-                <view class="info-content">{{detail.BirthedAt}}</view>
+                <view class="info-content">{{detail.birthed_at}}</view>
             </view>
             <view class="info-item">
                 <view class="info-title">户籍地点</view>
-                <view class="info-content">{{BirthedAddress}}</view>
+                <view class="info-content">{{detail.birthed_province + detail.birthed_city + detail.birthed_country}}</view>
             </view>
         </view>
 
@@ -24,11 +24,11 @@
         <view class="info">
             <view class="info-item">
                 <view class="info-title">失踪时间</view>
-                <view class="info-content">{{detail.MissedAt}}</view>
+                <view class="info-content">{{detail.missed_at}}</view>
             </view>
             <view class="info-item">
                 <view class="info-title">失踪地点</view>
-                <view class="info-content">{{MissedAddressDetail}}</view>
+                <view class="info-content">{{detail.missed_address}}</view>
             </view>
             <view class="info-item">
                 <view class="info-title">失踪时身高</view>
@@ -36,7 +36,7 @@
             </view>
             <view class="info-item feature">
                 <view class="info-title">失踪人特征</view>
-                <view class="info-content">{{detail.Subject}}</view>
+                <view class="info-content">{{detail.subject}}</view>
             </view>
         </view>
 
@@ -44,19 +44,19 @@
         <view class="info">
             <view class="info-item">
                 <view class="info-title">寻亲编号</view>
-                <view class="info-content">{{detail.Babyid}}</view>
+                <view class="info-content">{{detail.babyid}}</view>
             </view>
             <view class="info-item">
                 <view class="info-title">寻亲类别</view>
-                <view class="info-content">{{detail.Category}}</view>
+                <view class="info-content">{{detail.category}}</view>
             </view>
             <view class="info-item feature">
                 <view class="info-title">信息来源</view>
-                <view class="info-content" @tap="handleLongPress">{{detail.DataFrom}}</view>
+                <view class="info-content" @tap="handleLongPress">{{detail.data_from}}</view>
             </view>
             <view class="info-item">
                 <view class="info-title">跟进志愿者</view>
-                <view class="info-content">{{detail.Volunteer}}</view>
+                <view class="info-content">{{detail.volunteer}}</view>
             </view>
         </view>
 
@@ -64,7 +64,7 @@
         <view class="info">
             <view class="info-item feature">
                 <view class="info-title">其他资料</view>
-                <view class="info-content">{{detail.Details}}</view>
+                <view class="info-content">{{detail.details}}</view>
             </view>
         </view>
     </view>    
@@ -152,12 +152,13 @@ export default class Detail extends wepy.page {
         let that = this
         http.httpRequest({
             // url: 'api/lost/detail/' + id,
-            url: 'lost/detail/' + id,
+            url: 'lost/query/' + id,
             method: 'GET',
             data: {},
             success: function(res) {
                 console.log('detail--->', res)
-                if(res.State.code == 200) {
+                if(res.code == 20000) {
+                    res.data.sex = res.data.gender == 1 ? '男' : '女'
                     that.detail = res.data
                 }
                 that.$apply()
