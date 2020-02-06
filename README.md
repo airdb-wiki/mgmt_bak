@@ -1,5 +1,7 @@
 # Mina
 
+![Build Status](https://github.com/bbhj/mina/workflows/Node/badge.svg)
+
 > Searching for missing children, and help them come back home.
 
 We are a technical team with love and emotions.
