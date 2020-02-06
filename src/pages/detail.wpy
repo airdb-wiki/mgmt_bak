@@ -1,22 +1,22 @@
 <template>
     <view>
         <image class="bg" src=""/>
-        <image class="head" src="{{detail.AvatarUrl}}"/>
-        <view class="name">{{detail.Nickname}}</view>
-        <view class="id">档案ID：{{detail.Babyid}}</view>
+        <image class="head" src="{{detail.avatar_url}}"/>
+        <view class="name">{{detail.nickname}}</view>
+        <view class="id">档案ID：{{detail.babyid}}</view>
 
         <view class="info">
             <view class="info-item">
                 <view class="info-title">性别</view>
-                <view class="info-content">{{Gender}}</view>
+                <view class="info-content">{{detail.sex}}</view>
             </view>
             <view class="info-item">
                 <view class="info-title">出生日期</view>
-                <view class="info-content">{{detail.BirthedAt}}</view>
+                <view class="info-content">{{detail.birthed_at}}</view>
             </view>
             <view class="info-item">
                 <view class="info-title">户籍地点</view>
-                <view class="info-content">{{BirthedAddress}}</view>
+                <view class="info-content">{{detail.birthed_province + detail.birthed_city + detail.birthed_country}}</view>
             </view>
         </view>
 
@@ -24,11 +24,11 @@
         <view class="info">
             <view class="info-item">
                 <view class="info-title">失踪时间</view>
-                <view class="info-content">{{MissedAt}}</view>
+                <view class="info-content">{{detail.missed_at}}</view>
             </view>
             <view class="info-item">
                 <view class="info-title">失踪地点</view>
-                <view class="info-content">{{MissedAddressDetail}}</view>
+                <view class="info-content">{{detail.missed_address}}</view>
             </view>
             <view class="info-item">
                 <view class="info-title">失踪时身高</view>
@@ -36,7 +36,7 @@
             </view>
             <view class="info-item feature">
                 <view class="info-title">失踪人特征</view>
-                <view class="info-content">{{detail.Subject}}</view>
+                <view class="info-content">{{detail.subject}}</view>
             </view>
         </view>
 
@@ -44,19 +44,19 @@
         <view class="info">
             <view class="info-item">
                 <view class="info-title">寻亲编号</view>
-                <view class="info-content">{{detail.Babyid}}</view>
+                <view class="info-content">{{detail.babyid}}</view>
             </view>
             <view class="info-item">
                 <view class="info-title">寻亲类别</view>
-                <view class="info-content">{{detail.Category}}</view>
+                <view class="info-content">{{detail.category}}</view>
             </view>
             <view class="info-item feature">
                 <view class="info-title">信息来源</view>
-                <view class="info-content" @tap="handleLongPress">{{detail.DataFrom}}</view>
+                <view class="info-content" @tap="handleLongPress">{{detail.data_from}}</view>
             </view>
             <view class="info-item">
                 <view class="info-title">跟进志愿者</view>
-                <view class="info-content">{{detail.Volunteer}}</view>
+                <view class="info-content">{{detail.volunteer}}</view>
             </view>
         </view>
 
@@ -64,7 +64,7 @@
         <view class="info">
             <view class="info-item feature">
                 <view class="info-title">其他资料</view>
-                <view class="info-content">{{detail.Details}}</view>
+                <view class="info-content">{{detail.details}}</view>
             </view>
         </view>
     </view>    
@@ -72,30 +72,6 @@
 <script>
 import wepy from 'wepy'
 import http from '../api/http.js'
-// 对Date的扩展，将 Date 转化为指定格式的String   
-// 月(M)、日(d)、小时(h)、分(m)、秒(s)、季度(q) 可以用 1-2 个占位符，   
-// 年(y)可以用 1-4 个占位符，毫秒(S)只能用 1 个占位符(是 1-3 位的数字)   
-// 例子：   
-// (new Date()).Format("yyyy-MM-dd hh:mm:ss.S") ==> 2006-07-02 08:09:04.423   
-// (new Date()).Format("yyyy-M-d h:m:s.S")      ==> 2006-7-2 8:9:4.18   
-Date.prototype.Format = function(fmt)   
-{ //author: meizz   
-  var o = {   
-    "M+" : this.getMonth()+1,                 //月份   
-    "d+" : this.getDate(),                    //日   
-    "h+" : this.getHours(),                   //小时   
-    "m+" : this.getMinutes(),                 //分   
-    "s+" : this.getSeconds(),                 //秒   
-    "q+" : Math.floor((this.getMonth()+3)/3), //季度   
-    "S"  : this.getMilliseconds()             //毫秒   
-  };   
-  if(/(y+)/.test(fmt))   
-    fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));   
-  for(var k in o)   
-    if(new RegExp("("+ k +")").test(fmt))   
-  fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));   
-  return fmt;   
-}
 export default class Detail extends wepy.page {
     data = {
         detail: {
@@ -122,7 +98,6 @@ export default class Detail extends wepy.page {
         Gender: '',
         BirthedAddress: '',
         MissedAddressDetail: '',
-        MissedAt: ''
     }
 
     computed = {
@@ -132,10 +107,6 @@ export default class Detail extends wepy.page {
             }else {
                 return '女'
             }
-        },
-        MissedAt() {
-            console.log(new Date(this.detail.MissedAt).Format('yyyy-MM-dd hh:mm:ss'))
-            return new Date(this.detail.MissedAt).Format('yyyy-MM-dd hh:mm:ss')
         },
         BirthedAddress() {
             return this.detail.BirthedProvince + ' ' + this.detail.BirthedCity + ' ' + this.detail.BirthedCountry
@@ -175,17 +146,19 @@ export default class Detail extends wepy.page {
         }
     }
 
-    onLoad(options) {
-        // console.log('options--->', options)
+    onLoad = function(options) {
+        console.log('options--->', options)
         let id = options.id
         let that = this
         http.httpRequest({
-            url: 'api/lost/detail/' + id,
+            // url: 'api/lost/detail/' + id,
+            url: 'lost/query/' + id,
             method: 'GET',
             data: {},
             success: function(res) {
                 console.log('detail--->', res)
-                if(res.State.code == 200) {
+                if(res.code == 20000) {
+                    res.data.sex = res.data.gender == 1 ? '男' : '女'
                     that.detail = res.data
                 }
                 that.$apply()
@@ -270,7 +243,7 @@ export default class Detail extends wepy.page {
         color: #737B7F;
         letter-spacing: 0;
         line-height: 50px;
-        text-align: left;
+        text-align: right;
         width: 226px;
         word-wrap: break-word;
     }

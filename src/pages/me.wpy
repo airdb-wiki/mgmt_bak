@@ -20,7 +20,7 @@
                 <view class="info-title">浏览记录</view>
                 <image class="right-icon" src="../imgs/narrow.png"/>
             </view>
-            <view class="info-item" @tap="toContact">
+            <view class="info-item">
                 <image class="item-icon" src="../imgs/me/history.png"/>
                 <view class="info-title">联系我们</view>
                 <image class="right-icon" src="../imgs/narrow.png"/>
@@ -65,11 +65,7 @@ export default class Me extends wepy.page {
     }
 
     methods = {
-        toContact() {
-            wepy.navigateTo({
-                url:'/pages/contact'
-            })
-        }
+        
     }
 
     components = {

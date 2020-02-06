@@ -22,7 +22,6 @@
                 'pages/home',
                 'pages/me',
                 'pages/detail',
-                'pages/contact',
                 'pages/search'
 			],
             window: {

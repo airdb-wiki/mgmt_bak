@@ -4,7 +4,8 @@
 /* eslint-disable indent */
 import wepy from 'wepy'
 // import tip from './tip'
-const baseUrl = 'https://mina.baobeihuijia.com/v1/'
+// const baseUrl = 'https://mina.baobeihuijia.com/v1/'
+const baseUrl = 'https://mina.baobeihuijia.com/apis/mina/v1/'
 const wxRequest = async (params = {}, url, loadingNoShow) => {
 	// if (!loadingNoShow) {
 	// 	tip.loading()

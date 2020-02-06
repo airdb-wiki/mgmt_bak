@@ -32,7 +32,8 @@ export default class Tabs extends wepy.component{
     getCategory() {
         let that = this
         http.httpRequest({
-            url: 'api/category/list',
+            // url: 'api/category/list',
+            url: 'category/list',
             method: 'GET',
             data: {},
             success: function(res) {

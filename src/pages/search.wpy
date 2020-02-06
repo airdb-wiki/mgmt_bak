@@ -1,33 +1,23 @@
 <template>
     <view class="search">
         <view class="top">
-            <input type="text" class="input" bindinput="handleInput" focus="{{focus}}" value="{{keywords}}" bindconfirm="handleSearch" confirm-type="search"/>
+            <input type="text" class="input" />
             <view class="cancel-btn" @tap="handleCancel">取消</view>
         </view>
         <view class="hot-keywords"></view>
         <view class="content">
-            <view wx:if="{{list.length==0}}" class="empty">
+            <view class="empty">
                 <image class="empty-icon" src="../imgs/empty-icon.png"/>
                 <view class="empty-text">没有找到您要的结果</view>
             </view>
-            <div wx:elif="{{list.length>0}}">
-                <repeat for="{{list}}" key="index" index="index" item="item">
-                    <!-- <list-item key="{{index}}"/> -->
-                    <list-item :item.sync="item" key="{{index}}" :headUrl="item.AvatarUrl" :lostProvince="item.MissedProvince" :lostCity="item.MissedCity" :name="item.Nickname" :age="0" :itemId="item.Babyid" :lostTime="item.MissedAt" :lostAddress="item.MissedAddress" />
-                </repeat>
-            </div>
         </view>
     </view>
 </template>
 <script>
 import wepy from 'wepy'
-import ListItem from '../components/list-item'
-import http from '../api/http.js'
 export default class Search extends wepy.page{
     data = {
-        keywords: '',
-        focus: true,
-        list: []
+
     }
 
     props = {
@@ -43,47 +33,11 @@ export default class Search extends wepy.page{
             wepy.navigateBack({
                 delta: 1
             })
-        },
-        handleInput(e) {
-            // console.log('handleInput--->', e)
-            this.keywords = e.detail.value
-        },
-        handleSearch() {
-            // console.log('handleSearch--->', this.keywords)
-            this.getSearchData(this.keywords)
-
         }
-    }
-
-    getSearchData(keywords) {
-        let that = this
-        http.httpRequest({
-            url: 'api/lost/search',
-            method: 'POST',
-            data: {
-                keywords: keywords
-            },
-            success: function(res) {
-                let list = []
-                if(res.State.code == 200) {
-                    list = res.data
-                }
-                that.list = list
-                that.$apply()
-                console.log('res--->', that.list)
-            },
-            fail: function(error) {
-
-            }
-        })
     }
 
     onLoad() {
 
-    }
-
-    components = {
-        'list-item': ListItem
     }
 }
 </script>
