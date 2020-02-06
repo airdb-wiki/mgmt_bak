@@ -20,7 +20,7 @@
         <tabs></tabs>
         <repeat for="{{list}}" key="index" index="index" item="item">
             <!-- <list-item key="{{index}}"/> -->
-            <list-item :item.sync="item" key="{{index}}" :headUrl="item.AvatarUrl" :lostProvince="item.MissedProvince" :lostCity="item.MissedCity" :name="item.Nickname" :age="0" :itemId="item.Babyid" :lostTime="item.MissedAt" :lostAddress="item.MissedAddress" />
+            <list-item :item.sync="item" key="{{index}}" :headUrl="item.avatar_url" :lostProvince="item.missed_province" :Gender="item.Gender" :age="item.age" :lostCity="item.missed_city" :name="item.nickname" :itemId="item.babyid" :lostTime="item.missed_at" :lostAddress="item.missed_address" />
         </repeat>
         <connect />
         <!-- <list-item /> -->
@@ -94,11 +94,32 @@ export default class Home extends wepy.page {
     getList(pageIndex) {
         let that = this
         http.httpRequest({
-            url: 'api/lost/list?category=1&page='+pageIndex+'&pageSize=10',
+            // url: 'api/lost/list?category=1&page='+pageIndex+'&pageSize=10',
+            url: 'lost/list?category=1&page='+pageIndex+'&pageSize=10',
             method: 'GET',
             data: {},
             success: function(res) {
                 let list = res.data
+                list = list.map(item => {
+                    if(item.gender == 0) {
+                        item.Gender = '男'
+                    }else {
+                        item.Gender = '女'
+                    }
+                    if(item.birthed_at) {
+                        let age = new Date().getFullYear() - Number(item.birthed_at.substr(0, 4))
+                        if(age > 200) {
+                            age = '-'
+                        }
+                        item.age = age
+                    }else {
+                        item.age = '-'
+                    }
+                    if(item.avatar_url.length == 0) {
+                        item.avatar_url = '../imgs/tabs/home-icon.png'
+                    }
+                    return item
+                })
                 that.list = that.list.concat(list)
                 that.$apply()
             },
