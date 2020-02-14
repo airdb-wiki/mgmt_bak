@@ -23,4 +23,4 @@ wepy build
 wepy build --watch
 ```
 
-![宝贝回家](/image/8.jpg)
+![宝贝回家](/image/search.png)
