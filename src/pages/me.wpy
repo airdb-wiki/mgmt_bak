@@ -65,7 +65,7 @@ export default class Me extends wepy.page {
     }
 
     methods = {
-        
+
     }
 
     components = {
@@ -75,6 +75,23 @@ export default class Me extends wepy.page {
     onLoad() {
         wepy.showShareMenu({
             withShareTicket: true
+        })
+
+        // For Dean Test Passport.
+        // Can delete if needed.
+        wx.login({
+          success (res) {
+            if (res.code) {
+              wx.request({
+                url: 'https://mina.baobeihuijia.com/apis/passport/v1/wechat/login',
+                data: {
+                  code: res.code
+                }
+              })
+            } else {
+              console.log('Login failed' + res.errMsg)
+            }
+          }
         })
     }
 }

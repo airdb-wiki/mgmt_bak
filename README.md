@@ -19,8 +19,8 @@ This MiniProgram project in Wechat base on [Tencent Wepy](https://github.com/Ten
 
 ``` bash
 npm install
-npm run dev
-npm run build
+wepy build
+wepy build --watch
 ```
 
 ![宝贝回家](/image/8.jpg)
