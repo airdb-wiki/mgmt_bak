@@ -1,88 +1,145 @@
+/* eslint-disable vue/no-shared-component-data */
 <template>
-  <div class="cnt">
-    <Header></Header>
-    <div>
-      <a href="/test/list/321">当前页跳转aaaaaaaaaaaaaa</a>
-      <a href="/test/detail/123" target="_blank">新开页面跳转aaaaaaaaa</a>
-      <button @click="onClickJump">当前页跳转aaaaaaaaaa</button>
-      <button @click="onClickOpen">新开页面跳转aaaaaaaaaaaa</button>
-    </div>
-    <!-- vue-improve-loader -->
-    <div check-reduce>
-      <p>这段话不会在小程序里显示</p>
-      <p>在构建的时候就会被 vue-improve-loader 给干掉了</p>
-    </div>
-    <!-- reduce-loader -->
-    <Web>
-      <p>这段话也不会在小程序里显示</p>
-      <p>在构建的时候就会被 reduce-loader 给干掉了</p>
-    </Web>
-    <!-- 样式隐藏 -->
-    <div class="for-web">
-      <p>这段话也不会在小程序里显示</p>
-      <p>在渲染时会被样式隐藏</p>
-    </div>
-    <Footer></Footer>
-  </div>
+    <view>
+        <image class="bg" src="../imgs/bg.png"/>
+        <view class="baseinfo1">
+            <!-- <image class="head" src="{{headUrl}}"/> -->
+            <open-data class="head" type="userAvatarUrl"></open-data>
+            <view class="name">
+                <open-data type="userNickName"></open-data>
+            </view>
+        </view>
+
+        <view class="info">
+            <view class="info-item">
+                <image class="item-icon" src="../imgs/me/follow.png"/>
+                <view class="info-title">我跟踪的</view>
+                <image class="right-icon" src="../imgs/narrow.png"/>
+            </view>
+            <view class="info-item">
+                <image class="item-icon" src="../imgs/me/history.png"/>
+                <view class="info-title">浏览记录</view>
+                <image class="right-icon" src="../imgs/narrow.png"/>
+            </view>
+            <view class="info-item">
+                <image class="item-icon" src="../imgs/me/history.png"/>
+                <view class="info-title">联系我们</view>
+                <image class="right-icon" src="../imgs/narrow.png"/>
+            </view>
+            <view class="info-item">
+                <image class="item-icon" src="../imgs/me/history.png"/>
+                <view class="info-title">设置</view>
+                <image class="right-icon" src="../imgs/narrow.png"/>
+            </view>
+        </view>
+        <!-- <confirm-auth isShow='false'/> -->
+    </view>
 </template>
-
 <script>
+// eslint-disable-next-line no-unused-vars
 import Vue from 'vue'
-import Header from '../common/Header.vue'
-import Footer from '../common/Footer.vue'
-import Web from 'reduce-loader!../common/Web.vue'
-import 'reduce-loader!./web'
-
+// import ConfirmAuth from '../components/confir-auth'
 export default Vue.extend({
-  name: 'Home',
-  components: {
-    Header,
-    Footer,
-    Web,
-  },
-  created() {
-    window.addEventListener('wxload', query => console.log('page1 wxload', query))
-    window.addEventListener('wxshow', () => console.log('page1 wxshow'))
-    window.addEventListener('wxready', () => console.log('page1 wxready'))
-    window.addEventListener('wxhide', () => console.log('page1 wxhide'))
-    window.addEventListener('wxunload', () => console.log('page1 wxunload'))
 
-    if (process.env.isMiniprogram) {
-      console.log('I am in miniprogram')
-    } else {
-      console.log('I am in Web')
+  data() {
+    return {
+      headUrl: '',
+      nickName: '',
+      isAuthShow: 'show'
     }
   },
-  methods: {
-    onClickJump() {
-      window.location.href = '/test/list/123'
-    },
 
-    onClickOpen() {
-      window.open('/test/detail/123')
-    },
+  props: {
+
   },
+
+  events: {
+    getUserInfo(userInfo) {
+      const headUrl = userInfo.avatarUrl
+      const nickName = userInfo.nickName
+      this.headUrl = headUrl
+      this.nickName = nickName
+      this.isAuthShow = 'hidden'
+      // this.$apply()
+    }
+  },
+
+  methods: {
+
+  }
+
 })
 </script>
-
 <style lang="less">
-.cnt {
-  margin-top: 20px;
-}
-
-a, button {
-  display: block;
-  width: 100%;
-  height: 30px;
-  line-height: 30px;
-  text-align: center;
-  font-size: 20px;
-  border: 1px solid #ddd;
-}
-
-.miniprogram-root {
-  .for-web {
-    display: none;
-  }
-}
+    .bg {
+        width: 100%;
+        position: absolute;
+        z-index: 1;
+        height: 146px;
+        top: 0;
+    }
+    .baseinfo1 {
+        width: 94%;
+        height: 170px;
+        margin: 40px auto 23px;
+        background: #FFFFFF;
+        box-shadow: 0 2px 10px 4px rgba(239,68,49,0.12);
+        border-radius: 10px;
+        position: relative;
+        z-index: 2;
+    }
+    .head {
+        display: block;
+        margin: 21px auto 0;
+        padding-top: 21px;
+        width: 82px;
+        height: 82px;
+        border-radius: 82px;
+    }
+    .name {
+        display: block;
+        margin-top: 14px;
+        width: 100%;
+        text-align: center;
+        font-family: PingFangSC-Medium;
+        font-size: 16px;
+        color: #4A4A4A;
+        letter-spacing: 0;
+        line-height: 25px;
+    }
+    .info {
+        margin-bottom: 24px;
+        width: 100%;
+        border-top: .5px solid #DCDEDF;
+        background: white;
+    }
+    .info-item {
+        width: 100%;
+        min-height: 46px;
+        position: relative;
+        border-bottom: .5px solid #DCDEDF;
+    }
+    .item-icon {
+        position: absolute;
+        width: 18px;
+        top: 14px;
+        left: 17px;
+        height: 18px;
+    }
+    .info-title {
+        position: absolute;
+        left: 54px;
+        font-family: PingFangSC-Regular;
+        font-size: 16px;
+        color: #4A4A4A;
+        letter-spacing: 0;
+        line-height: 46px;
+    }
+    .right-icon {
+        position: absolute;
+        width: 12px;
+        height: 15px;
+        top: 17px;
+        right: 16px;
+    }
 </style>
