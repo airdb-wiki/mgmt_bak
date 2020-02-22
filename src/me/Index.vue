@@ -2,10 +2,10 @@
   <div class="cnt">
     <Header></Header>
     <div>
-      <a href="/test/list/321">当前页跳转</a>
-      <a href="/test/detail/123" target="_blank">新开页面跳转</a>
-      <button @click="onClickJump">当前页跳转</button>
-      <button @click="onClickOpen">新开页面跳转</button>
+      <a href="/test/list/321">当前页跳转aaaaaaaaaaaaaa</a>
+      <a href="/test/detail/123" target="_blank">新开页面跳转aaaaaaaaa</a>
+      <button @click="onClickJump">当前页跳转aaaaaaaaaa</button>
+      <button @click="onClickOpen">新开页面跳转aaaaaaaaaaaa</button>
     </div>
     <!-- vue-improve-loader -->
     <div check-reduce>

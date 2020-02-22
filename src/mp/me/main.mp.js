@@ -4,6 +4,7 @@ import { sync } from 'vuex-router-sync'
 import App from '../../App.vue'
 import store from '../../store'
 import Home from '../../home/Index.vue'
+import Me from '../../me/Index.vue'
 
 Vue.use(Router)
 
@@ -11,15 +12,11 @@ const router = new Router({
   mode: 'history',
   routes: [{
     path: '/(me|index)?',
-    name: 'Home',
-    component: Home,
+    name: 'Me',
+    component: Me,
   }, {
     path: '/index.html',
     name: 'HomeHtml',
-    component: Home,
-  }, {
-    path: '/test/(home|index)',
-    name: 'HomeTest',
     component: Home,
   }],
 })
