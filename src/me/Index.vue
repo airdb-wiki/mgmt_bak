@@ -1,35 +1,35 @@
 /* eslint-disable vue/no-shared-component-data */
 <template>
     <view>
-        <image class="bg" src="../imgs/bg.png"/>
+        <img class="bg" src="/imgs/bg.png"/>
         <view class="baseinfo1">
             <!-- <image class="head" src="{{headUrl}}"/> -->
-            <open-data class="head" type="userAvatarUrl"></open-data>
+            <wx-open-data class="head" type="userAvatarUrl"></wx-open-data>
             <view class="name">
-                <open-data type="userNickName"></open-data>
+                <wx-open-data type="userNickName"></wx-open-data>
             </view>
         </view>
 
         <view class="info">
             <view class="info-item">
-                <image class="item-icon" src="../imgs/me/follow.png"/>
+                <img class="item-icon" src="/imgs/me/follow.png"/>
                 <view class="info-title">我跟踪的</view>
-                <image class="right-icon" src="../imgs/narrow.png"/>
+                <img class="right-icon" src="/imgs/narrow.png"/>
             </view>
             <view class="info-item">
-                <image class="item-icon" src="../imgs/me/history.png"/>
+                <img class="item-icon" src="/imgs/me/history.png"/>
                 <view class="info-title">浏览记录</view>
-                <image class="right-icon" src="../imgs/narrow.png"/>
+                <img class="right-icon" src="/imgs/narrow.png"/>
             </view>
             <view class="info-item">
-                <image class="item-icon" src="../imgs/me/history.png"/>
+                <img class="item-icon" src="/imgs/me/history.png"/>
                 <view class="info-title">联系我们</view>
-                <image class="right-icon" src="../imgs/narrow.png"/>
+                <img class="right-icon" src="/imgs/narrow.png"/>
             </view>
             <view class="info-item">
-                <image class="item-icon" src="../imgs/me/history.png"/>
+                <img class="item-icon" src="/imgs/me/history.png"/>
                 <view class="info-title">设置</view>
-                <image class="right-icon" src="../imgs/narrow.png"/>
+                <img class="right-icon" src="/imgs/narrow.png"/>
             </view>
         </view>
         <!-- <confirm-auth isShow='false'/> -->

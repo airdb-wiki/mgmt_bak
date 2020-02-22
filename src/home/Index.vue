@@ -1,5 +1,21 @@
 <template>
   <div class="cnt">
+ <KSwiper
+   :indicator-dots="indicatorDots"
+   :circular="circularFlag"
+   :autoplay="autoplay"
+   :duration="duration"
+   :interval="interval"
+ >
+  <KSwiperItem
+     v-for="(item,index) in background"
+     :key="index" >
+     <KView :class="'swiper-item '+ item"/>
+   </KSwiperItem>
+ </KSwiper>
+
+    <wx-button open-type="share" @click="">分享</wx-button>
+
     <Header></Header>
     <div>
       <a href="/test/list/321">当前页跳转</a>
@@ -49,6 +65,22 @@ export default Vue.extend({
 
     if (process.env.isMiniprogram) {
       console.log('I am in miniprogram')
+      // For Dean Test Passport.
+      // Can delete if needed.
+      wx.login({
+        success(res) {
+          if (res.code) {
+            wx.request({
+              url: 'https://mina.baobeihuijia.com/apis/oauth/v1/wechat/login',
+              data: {
+                code: res.code
+              }
+            })
+          } else {
+            console.log('Login failed')
+          }
+        }
+      })
     } else {
       console.log('I am in Web')
     }

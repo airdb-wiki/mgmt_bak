@@ -3,7 +3,7 @@
  */
 
 module.exports = {
-    origin: 'https://test.miniprogram.com',
+    origin: 'https://mina.baobeihuijia.com',
     entry: '/',
     router: {
         home: [
