@@ -12,7 +12,7 @@
 
         <view class="info">
             <view class="info-item">
-                <wx-image class="item-icon" src="{{followImg}}"/>
+                <wx-image class="item-icon" :src="followImg"/>
                 <view class="info-title">我跟踪的</view>
                 <img class="right-icon" :src="narrowImg"/>
             </view>
@@ -43,10 +43,10 @@ export default Vue.extend({
 
   data() {
     return {
-      bgImg: 'https://static.baobeihuijia.com/mina/imgs/bg.png',
-      followImg: 'https://static.baobeihuijia.com/mina/imgs/me/follow.png',
-      narrowImg: 'https://static.baobeihuijia.com/mina/imgs/me/narrow.png',
-      historyImg: 'https://static.baobeihuijia.com/mina/imgs/me/history.png',
+      bgImg: 'https://wechat-1251018873.file.myqcloud.com/images/bg.png',
+      followImg: 'https://wechat-1251018873.file.myqcloud.com/images/me/follow.png',
+      narrowImg: 'https://wechat-1251018873.file.myqcloud.com/images/narrow.png',
+      historyImg: 'https://wechat-1251018873.file.myqcloud.com/images/me/history.png',
       headUrl: '',
       nickName: '',
       isAuthShow: 'show'
