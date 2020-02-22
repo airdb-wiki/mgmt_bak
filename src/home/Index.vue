@@ -16,7 +16,24 @@
       </KSwiperItem>
     </KSwiper>
 
+    <tabs></tabs>
     <wx-button open-type="share" @click="onClickShare">分享</wx-button>
+
+    <repeat for="{{list}}" key="index" index="index" item="item">
+      <!--
+      <list-item :item.sync="item" key="{{index}}"
+        :headUrl="item.avatar_url"
+        :lostProvince="item.missed_province"
+        :Gender="item.Gender"
+        :age="item.age"
+        :lostCity="item.missed_city"
+        :name="item.nickname"
+        :itemId="item.babyid"
+        :lostTime="item.missed_at"
+        :lostAddress="item.missed_address" />
+        -->
+    </repeat>
+
   </div>
 </template>
 

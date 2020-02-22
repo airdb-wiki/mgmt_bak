@@ -57,7 +57,12 @@ module.exports = {
         windowScroll: false,
         backgroundColor: '#F7F7F7',
     },
-    pages: {},
+    pages: {
+        home: {
+            enablePullDownRefresh: true,
+            pullDownRefresh: true,
+        },
+    },
     optimization: {
 		domSubTreeLevel: 10,
 
