@@ -1,44 +1,22 @@
 <template>
   <div class="cnt">
- <KSwiper
-   :indicator-dots="indicatorDots"
-   :circular="circularFlag"
-   :autoplay="autoplay"
-   :duration="duration"
-   :interval="interval"
- >
-  <KSwiperItem
-     v-for="(item,index) in background"
-     :key="index" >
-     <KView :class="'swiper-item '+ item"/>
-   </KSwiperItem>
- </KSwiper>
+    <KSwiper
+      :indicator-dots="indicatorDots"
+      :circular="circularFlag"
+      :autoplay="autoplay"
+      :duration="duration"
+      :interval="interval"
+    >
+    <KSwiperItem
+        v-for="(item,index) in background"
+        :key="index" >
+        <KView :class="'swiper-item '+ item">
+        <img :src="bannerImg" class="banner-item"/>
+        </KView>
+      </KSwiperItem>
+    </KSwiper>
 
-    <wx-button open-type="share" @click="">分享</wx-button>
-
-    <Header></Header>
-    <div>
-      <a href="/test/list/321">当前页跳转</a>
-      <a href="/test/detail/123" target="_blank">新开页面跳转</a>
-      <button @click="onClickJump">当前页跳转</button>
-      <button @click="onClickOpen">新开页面跳转</button>
-    </div>
-    <!-- vue-improve-loader -->
-    <div check-reduce>
-      <p>这段话不会在小程序里显示</p>
-      <p>在构建的时候就会被 vue-improve-loader 给干掉了</p>
-    </div>
-    <!-- reduce-loader -->
-    <Web>
-      <p>这段话也不会在小程序里显示</p>
-      <p>在构建的时候就会被 reduce-loader 给干掉了</p>
-    </Web>
-    <!-- 样式隐藏 -->
-    <div class="for-web">
-      <p>这段话也不会在小程序里显示</p>
-      <p>在渲染时会被样式隐藏</p>
-    </div>
-    <Footer></Footer>
+    <wx-button open-type="share" @click="onClickShare">分享</wx-button>
   </div>
 </template>
 
@@ -56,6 +34,22 @@ export default Vue.extend({
     Footer,
     Web,
   },
+
+  data() {
+    return {
+      interval: 2380,
+      autoplay: true,
+      indicatorDots: true,
+      circularFlag: true,
+      background: [
+        'https://wechat-1251018873.file.myqcloud.com/images/banner.png',
+        'https://wechat-1251018873.file.myqcloud.com/images/banner.png',
+        'https://wechat-1251018873.file.myqcloud.com/images/banner.png',
+      ],
+      bannerImg: 'https://wechat-1251018873.file.myqcloud.com/images/banner.png',
+    }
+  },
+
   created() {
     window.addEventListener('wxload', query => console.log('page1 wxload', query))
     window.addEventListener('wxshow', () => console.log('page1 wxshow'))
@@ -93,6 +87,10 @@ export default Vue.extend({
     onClickOpen() {
       window.open('/test/detail/123')
     },
+
+    onClickShare() {
+      console.log('I am in miniprogram')
+    },
   },
 })
 </script>
@@ -117,4 +115,17 @@ a, button {
     display: none;
   }
 }
+
+    .swiper {
+        margin-top: 15px;
+        width: 100%;
+        height: 185px;
+    }
+    .banner-item {
+        display: block;
+        margin: auto;
+        height: 160px;
+        border-radius: 20px;
+    }
+
 </style>

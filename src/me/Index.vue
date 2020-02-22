@@ -54,11 +54,11 @@ export default Vue.extend({
   },
 
   props: {
-        'cndurl': {
-            type: String,
-            required: true,
-            default: 'https://static.baobeihuijia.com',
-        }
+    cndurl: {
+      type: String,
+      required: true,
+      default: 'https://static.baobeihuijia.com',
+    }
   },
 
   events: {
