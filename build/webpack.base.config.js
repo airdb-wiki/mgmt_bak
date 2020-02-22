@@ -2,6 +2,7 @@ const path = require('path')
 const eslintFriendlyFormatter = require('eslint-friendly-formatter')
 
 module.exports = {
+  stats: 'errors-only',
   context: path.resolve(__dirname, '../'),
   entry: {
     app: path.resolve(__dirname, '../src/main.js'),
