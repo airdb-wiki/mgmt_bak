@@ -1,7 +1,7 @@
 /* eslint-disable vue/no-shared-component-data */
 <template>
     <view>
-        <img class="bg" src="/imgs/bg.png"/>
+        <img class="bg" :src="bgImg"/>
         <view class="baseinfo1">
             <!-- <image class="head" src="{{headUrl}}"/> -->
             <wx-open-data class="head" type="userAvatarUrl"></wx-open-data>
@@ -12,24 +12,24 @@
 
         <view class="info">
             <view class="info-item">
-                <img class="item-icon" src="/imgs/me/follow.png"/>
+                <wx-image class="item-icon" src="{{followImg}}"/>
                 <view class="info-title">我跟踪的</view>
-                <img class="right-icon" src="/imgs/narrow.png"/>
+                <img class="right-icon" :src="narrowImg"/>
             </view>
             <view class="info-item">
-                <img class="item-icon" src="/imgs/me/history.png"/>
+                <img class="item-icon" :src="historyImg"/>
                 <view class="info-title">浏览记录</view>
-                <img class="right-icon" src="/imgs/narrow.png"/>
+                <img class="right-icon" :src="narrowImg"/>
             </view>
             <view class="info-item">
-                <img class="item-icon" src="/imgs/me/history.png"/>
+                <img class="item-icon" :src="historyImg"/>
                 <view class="info-title">联系我们</view>
-                <img class="right-icon" src="/imgs/narrow.png"/>
+                <img class="right-icon" :src="narrowImg"/>
             </view>
             <view class="info-item">
-                <img class="item-icon" src="/imgs/me/history.png"/>
+                <img class="item-icon" :src="historyImg"/>
                 <view class="info-title">设置</view>
-                <img class="right-icon" src="/imgs/narrow.png"/>
+                <img class="right-icon" :src="narrowImg"/>
             </view>
         </view>
         <!-- <confirm-auth isShow='false'/> -->
@@ -43,6 +43,10 @@ export default Vue.extend({
 
   data() {
     return {
+      bgImg: 'https://static.baobeihuijia.com/mina/imgs/bg.png',
+      followImg: 'https://static.baobeihuijia.com/mina/imgs/me/follow.png',
+      narrowImg: 'https://static.baobeihuijia.com/mina/imgs/me/narrow.png',
+      historyImg: 'https://static.baobeihuijia.com/mina/imgs/me/history.png',
       headUrl: '',
       nickName: '',
       isAuthShow: 'show'
@@ -50,7 +54,11 @@ export default Vue.extend({
   },
 
   props: {
-
+        'cndurl': {
+            type: String,
+            required: true,
+            default: 'https://static.baobeihuijia.com',
+        }
   },
 
   events: {
