@@ -93,10 +93,9 @@ Welcome to join us.
 
 :)
 
-## Wepy Install & Usage
+## Kbone Install & Usage
 
-This MiniProgram project in Wechat base on [Tencent Wepy](https://github.com/Tencent/wepy)
-[wepy doc](https://tencent.github.io/wepy/document.html#/./doc.cli)
+This MiniProgram project in Wechat base on [Tencent Kbone](https://github.com/Tencent/kbone)
 
 ## Install & Run
 
