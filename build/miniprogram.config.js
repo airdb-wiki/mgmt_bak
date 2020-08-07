@@ -3,7 +3,7 @@
  */
 
 module.exports = {
-    origin: 'https://mina.baobeihuijia.com',
+    origin: 'https://scf.baobeihuijia.com/release',
     entry: '/',
     router: {
         home: [
@@ -49,9 +49,15 @@ module.exports = {
         navigationBarTitleText: '宝贝回家',
         navigationBarTextStyle: 'black'
     },
-	appExtraConfig: {
+    appExtraConfig: {
         sitemapLocation: 'sitemap.json',
-	},
+    },
+    sitemapConfig: {
+        rules: [{
+            action: 'allow',
+            page: '*',
+        }],
+    },
     global: {
         share: true,
         windowScroll: false,
