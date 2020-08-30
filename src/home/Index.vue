@@ -1,74 +1,66 @@
 <template>
-  <div class="cnt">
-    <KSwiper
-      :indicator-dots="indicatorDots"
-      :circular="circularFlag"
-      :autoplay="autoplay"
-      :duration="duration"
-      :interval="interval"
-    >
-    <KSwiperItem
-        v-for="(item,index) in background"
-        :key="index" >
-        <KView :class="'swiper-item '+ item">
-        <img :src="bannerImg" class="banner-item"/>
-        </KView>
-      </KSwiperItem>
-    </KSwiper>
+  <div class="home">
+    <div class="swiper">
+      <KSwiper
+        :indicator-dots="indicatorDots"
+        :circular="circularFlag"
+        :autoplay="autoplay"
+        :duration="duration"
+        :interval="interval"
+      >
+        <KSwiperItem v-for="(item,index) in background" :key="index">
+          <KView :class="'swiper-item '+ item">
+            <img :src="item" class="banner-item" mode='widthFix'/>
+          </KView>
+        </KSwiperItem>
+      </KSwiper>
+    </div>
+    <Tabs />
 
-    <tabs></tabs>
-    <wx-button open-type="share" @click="onClickShare">分享</wx-button>
-
-    <repeat for="{{list}}" key="index" index="index" item="item">
-      <!--
-      <list-item :item.sync="item" key="{{index}}"
-        :headUrl="item.avatar_url"
-        :lostProvince="item.missed_province"
-        :Gender="item.Gender"
-        :age="item.age"
-        :lostCity="item.missed_city"
-        :name="item.nickname"
-        :itemId="item.babyid"
-        :lostTime="item.missed_at"
-        :lostAddress="item.missed_address" />
-        -->
-    </repeat>
-
+    <!-- <tabs></tabs>
+    <wx-button open-type="share" @click="onClickShare">分享</wx-button>-->
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
-import Header from '../common/Header.vue'
-import Footer from '../common/Footer.vue'
+import Tabs from './Tabs/Index.vue'
 import Web from 'reduce-loader!../common/Web.vue'
+import { mpAutoUpdate } from '../common/utils'
 import 'reduce-loader!./web'
 
 export default Vue.extend({
   name: 'Home',
   components: {
-    Header,
-    Footer,
     Web,
+    Tabs
   },
 
   data() {
     return {
       interval: 2380,
       autoplay: true,
-      indicatorDots: true,
+      indicatorDots: false,
       circularFlag: true,
+      duration: 1200,
       background: [
         'https://wechat-1251018873.file.myqcloud.com/images/banner.png',
         'https://wechat-1251018873.file.myqcloud.com/images/banner.png',
         'https://wechat-1251018873.file.myqcloud.com/images/banner.png',
       ],
-      bannerImg: 'https://wechat-1251018873.file.myqcloud.com/images/banner.png',
+      current: 1,
+      navList: [
+        { label: '最新', key: 'newest' },
+        { label: '专栏', key: 'column' },
+        { label: '最新', key: 'pay' }
+      ],
+      bannerImg: 'https://static.studygolang.com/minprogram/banner/online.png',
     }
   },
-
   created() {
-    window.addEventListener('wxload', query => console.log('page1 wxload', query))
+    window.addEventListener('wxload', query =>
+      console.log('page1 wxload', query)
+    )
     window.addEventListener('wxshow', () => console.log('page1 wxshow'))
     window.addEventListener('wxready', () => console.log('page1 wxready'))
     window.addEventListener('wxhide', () => console.log('page1 wxhide'))
@@ -76,6 +68,8 @@ export default Vue.extend({
 
     if (process.env.isMiniprogram) {
       console.log('I am in miniprogram')
+      // For Kevin Add Mp Auto Update.
+      mpAutoUpdate()
       // For Dean Test Passport.
       // Can delete if needed.
       wx.login({
@@ -108,41 +102,33 @@ export default Vue.extend({
     onClickShare() {
       console.log('I am in miniprogram')
     },
-  },
+    navChange(val) {
+      try {
+        this.current = val.$_detail.current
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
 })
 </script>
 
 <style lang="less">
-.cnt {
-  margin-top: 20px;
-}
-
-a, button {
-  display: block;
-  width: 100%;
-  height: 30px;
-  line-height: 30px;
-  text-align: center;
-  font-size: 20px;
-  border: 1px solid #ddd;
-}
 
 .miniprogram-root {
   .for-web {
     display: none;
   }
 }
-
     .swiper {
-        margin-top: 15px;
+        margin-top: 20rpx;
         width: 100%;
-        height: 185px;
+        height: 300rpx;
     }
     .banner-item {
         display: block;
         margin: auto;
-        height: 160px;
-        border-radius: 20px;
+        width: 95%;
+        border-radius: 20rpx;
     }
-
 </style>

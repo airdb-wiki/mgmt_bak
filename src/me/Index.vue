@@ -1,6 +1,6 @@
 /* eslint-disable vue/no-shared-component-data */
 <template>
-    <view>
+    <view class="page_me">
         <img class="bg" :src="bgImg"/>
         <view class="baseinfo1">
             <!-- <image class="head" src="{{headUrl}}"/> -->
@@ -79,75 +79,78 @@ export default Vue.extend({
 })
 </script>
 <style lang="less">
-    .bg {
-        width: 100%;
-        position: absolute;
-        z-index: 1;
-        height: 146px;
-        top: 0;
+    .page_me {
+        .bg {
+            width: 100%;
+            position: absolute;
+            z-index: 1;
+            height: 352rpx;
+            top: 0;
+        }
+        .baseinfo1 {
+            width: 94%;
+            height: 240rpx;
+            margin: 40px auto 23px;
+            background: #FFFFFF;
+            box-shadow: 0 2px 10px 4px rgba(239,68,49,0.12);
+            border-radius: 10px;
+            position: relative;
+            z-index: 2;
+        }
+        .head {
+            display: block;
+            margin: 21px auto 0;
+            padding-top: 21px;
+            width: 164rpx;
+            height: 164rpx;
+            border-radius: 82px;
+        }
+        .name {
+            display: block;
+            margin-top: 14px;
+            width: 100%;
+            text-align: center;
+            font-family: PingFangSC-Medium;
+            font-size: 32rpx;
+            color: #4A4A4A;
+            letter-spacing: 0;
+            line-height: 32rpx;
+        }
+        .info {
+            margin-bottom: 24px;
+            width: 100%;
+            border-top: .5px solid #DCDEDF;
+            background: white;
+        }
+        .info-item {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            height: 82rpx;
+            position: relative;
+            border-bottom: .5px solid #DCDEDF;
+        }
+        .item-icon {
+            position: absolute;
+            width: 36rpx;
+            left: 34rpx;
+            height: 32rpx;
+        }
+        .info-title {
+            position: absolute;
+            left: 54px;
+            font-family: PingFangSC-Regular;
+            font-size: 32rpx;
+            color: #4A4A4A;
+            letter-spacing: 0;
+        }
+        .right-icon {
+            position: absolute;
+            width: 24rpx;
+            height: 30rpx;
+            top: 34rpx;
+            right: 32rpx;
+        }
     }
-    .baseinfo1 {
-        width: 94%;
-        height: 170px;
-        margin: 40px auto 23px;
-        background: #FFFFFF;
-        box-shadow: 0 2px 10px 4px rgba(239,68,49,0.12);
-        border-radius: 10px;
-        position: relative;
-        z-index: 2;
-    }
-    .head {
-        display: block;
-        margin: 21px auto 0;
-        padding-top: 21px;
-        width: 82px;
-        height: 82px;
-        border-radius: 82px;
-    }
-    .name {
-        display: block;
-        margin-top: 14px;
-        width: 100%;
-        text-align: center;
-        font-family: PingFangSC-Medium;
-        font-size: 16px;
-        color: #4A4A4A;
-        letter-spacing: 0;
-        line-height: 25px;
-    }
-    .info {
-        margin-bottom: 24px;
-        width: 100%;
-        border-top: .5px solid #DCDEDF;
-        background: white;
-    }
-    .info-item {
-        width: 100%;
-        min-height: 46px;
-        position: relative;
-        border-bottom: .5px solid #DCDEDF;
-    }
-    .item-icon {
-        position: absolute;
-        width: 18px;
-        top: 14px;
-        left: 17px;
-        height: 18px;
-    }
-    .info-title {
-        position: absolute;
-        left: 54px;
-        font-family: PingFangSC-Regular;
-        font-size: 16px;
-        color: #4A4A4A;
-        letter-spacing: 0;
-        line-height: 46px;
-    }
-    .right-icon {
-        position: absolute;
-        width: 12px;
-        height: 15px;
-        top: 17px;
-        right: 16px;
-    }
+
 </style>

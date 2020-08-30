@@ -3,7 +3,8 @@
  */
 
 module.exports = {
-    origin: 'https://scf.baobeihuijia.com/release',
+    // origin: 'https://scf.baobeihuijia.com/release',
+    origin: 'https://studygolang.com',
     entry: '/',
     router: {
         home: [
@@ -19,6 +20,15 @@ module.exports = {
             '/list/:id',
             '/detail/:id',
         ],
+        doc: [
+            '/doc/index',
+        ],
+        docDetail: [
+            '/doc/detail/:id',
+        ],
+        article: [
+            '/article/:id',
+        ],
     },
     redirect: {
         notFound: 'home',
@@ -27,14 +37,19 @@ module.exports = {
     generate: {
         autoBuildNpm: 'npm',
   		tabBar: {
-			color: '#333',
-            selectedColor: '#EF4431',
+			color: '#7F8389',
+            selectedColor: '#59BF74',
             backgroundColor: '#ffffff',
             list: [{
                 pageName: 'home',
                 text: '主页',
 	            iconPath: './imgs/tabs/home.png',
                 selectedIconPath: './imgs/tabs/home_selected.png'
+            }, {
+                pageName: 'doc',
+                text: '文档',
+                iconPath: './imgs/tabs/doc.png',
+                selectedIconPath: './imgs/tabs/doc_selected.png'
             }, {
                 pageName: 'me',
                 text: '我的',
@@ -51,12 +66,6 @@ module.exports = {
     },
     appExtraConfig: {
         sitemapLocation: 'sitemap.json',
-    },
-    sitemapConfig: {
-        rules: [{
-            action: 'allow',
-            page: '*',
-        }],
     },
     global: {
         share: true,
