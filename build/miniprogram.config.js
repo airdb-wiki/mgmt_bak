@@ -3,6 +3,8 @@
  */
 
 module.exports = {
+    // file: src/api/commont.js
+    // 接口请求地址示例：//mina.baobeihuijia.com/release/mina/v1/lost/list
     // origin: 'https://scf.baobeihuijia.com/release',
     origin: 'https://studygolang.com',
     entry: '/',
