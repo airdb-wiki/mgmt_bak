@@ -53,7 +53,8 @@ export function getArticles(p) {
     * @description 文章列表
     * @param {number} p token
     */
-  return get('/articles', { p })
+  // return get('/articles', { p })
+  return get('/lost/list', { p })
 }
 
 export function articleDetail(id) {

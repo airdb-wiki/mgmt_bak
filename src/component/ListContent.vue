@@ -6,14 +6,14 @@
       class="article_list"
     >
       <div class="article_list_item" >
+        <div class="nickname">1111{{item.title}}</div>
+	<!--
         <div class="article_detail" @click="jumpToDetail('/article/' + item.id)">
           <div class="artclie_text_msg">
             <div class="article_author">
-              <!-- <img class="img"  :src="item.author.avatar" mode='widthFix' alt="" /> -->
               <div class="nickname">{{item.author}}</div>
             </div>
             <div class="article_title">{{item.title}}</div>
-            <!-- <div class="article_description">{{item.description}}</div> -->
           </div>
           <img class="img_cover" v-if="item.cover" :src="item.cover" alt mode='widthFix' />
         </div>
@@ -32,6 +32,7 @@
             </wx-button>
           </div>
         </div>
+	-->
       </div>
     </div>
   </div>
@@ -46,6 +47,7 @@ export default Vue.extend({
     return {}
   },
   created() {
+    console.log('xxxxxxxxxxxxxx'),
     // window.addEventListener('wxshow', (options) => console.log('wxshow:', options))
     wx.showShareMenu({
       withShareTicket: true,
@@ -73,6 +75,7 @@ export default Vue.extend({
   props: ['list']
 })
 </script>
+
 <style lang="less">
 .ellipsis{
   display: -webkit-box;
@@ -146,7 +149,7 @@ word-break:break-all;
       font-size: 28rpx;
       height: 88rpx;
       align-items: center;
-      >div{
+      div{
         flex: 1;
         display: flex;
         justify-content: center;

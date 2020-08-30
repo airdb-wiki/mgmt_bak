@@ -1,5 +1,6 @@
+// const baseUrl = 'https://studygolang.com/app'
+const baseUrl = 'https://scf.baobeihuijia.com/release/mina'
 
-const baseUrl = 'https://studygolang.com/app'
 function request({ url, data, method }) {
   const header = {
     token: wx.getStorageSync('token') || '',
