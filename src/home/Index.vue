@@ -54,7 +54,6 @@ export default Vue.extend({
         { label: '专栏', key: 'column' },
         { label: '最新', key: 'pay' }
       ],
-      bannerImg: 'https://static.studygolang.com/minprogram/banner/online.png',
     }
   },
   created() {
