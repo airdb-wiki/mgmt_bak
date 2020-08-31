@@ -1,0 +1,109 @@
+<template>
+    <view>
+        <view class="title1">关于宝贝回家</view>
+        <view class="content">宝贝回家志愿者协会是已在民政部门正式注册的民间志愿者组织，是独具法人资格的地方性非营利社会公益团体，免费提供寻人服务。 当前宝贝回家已经成为国内最大的寻人平台，组织成立超过 10 年，累计注册用户数超过 30 万。</view>
+        <view class="line"></view>
+        <view class="title1">关于我们</view>
+        <view class="content">我们是一个技术公益团队，目前组织成员由前百度、腾讯等国内一线互联网公司同学组成，旨在为公益项目提供高质量的免费技术支撑，帮助公益组织更好的运营。 欢迎有兴趣的同学积极加入。</view>
+        <view class="line"></view>
+        <view class="title1">联系方式</view>
+        <view class="title2">寻人、捐赠相关事宜：</view>
+        <view class="content">
+            <view class="p">电子邮件：baobeihuijia@yeah.net</view>
+            <view class="p">固定电话：0435-3338090 （吉林通化）</view>
+            QQ接待群：1840533
+        </view>
+        <view class="title2">技术公益：</view>
+        <view class="content">
+            <view class="p">电子邮件：dean@airdb.com</view>
+            Github: https://github.com/bbhj
+        </view>
+        <view class="line"></view>
+        <view class="content bottom">
+            <view class="p">如你需要更多帮助，请前往<button class="contact-btn" open-type="contact" bindcontact="handleContact">小程序客服</button>反馈，</view>
+            <view class="p">或电子邮件：dean@airdb.com</view>
+            <view class="p"></view>
+            <view class="p"></view>
+        </view>
+    </view>
+</template>
+<script>
+import wepy from 'wepy'
+export default class Contact extends wepy.page {
+
+    config = {
+        title: '联系我们-宝贝回家'
+    }
+
+    data = {
+
+    }
+
+    props = {
+
+    }
+
+    events = {
+        
+    }
+
+    methods = {
+        
+    }
+
+    onLoad() {
+        wepy.showShareMenu({
+            withShareTicket: true
+        })
+    }
+}
+</script>
+<style lang="scss" scoped>
+    button::after {
+        border: none;
+    }
+    .title1 {
+        width: 90%;
+        margin: 10px auto 20px;
+        font-size: 21px;
+        font-weight: 700;
+        color: #333;
+    }
+    .title2 {
+        width: 90%;
+        margin: 30px auto 10px;
+        font-size: 17px;
+        font-weight: 700;
+        color: #333;
+    }
+    .content {
+        width: 90%;
+        margin: 0 auto;
+        padding: 10px 0 0;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 1.7;
+        color: #333;
+    }
+    .p {
+        display: block;
+    }
+    .line {
+        width: 90%;
+        margin: 20px auto;
+        height: 1px;
+        background: #999;
+    }
+    .bottom {
+        margin-bottom: 30px;
+    }
+    button {
+        display: inline;
+        border-radius: 0!important;
+        outline: none;
+        background: #F2F2F2!important;
+        color: blue;
+        font-size: 15px;
+        line-height: 1.7
+    }
+</style>

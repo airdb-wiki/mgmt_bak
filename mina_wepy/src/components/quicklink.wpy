@@ -1,0 +1,26 @@
+<template>
+    <view class="quicklink"></view>    
+</template>
+<script>
+import wepy from 'wepy'
+export default class QuickLink extends wepy.component{
+    data = {
+
+    }
+
+    props = {
+
+    }
+
+    methods = {
+
+    }
+
+    onLoad() {
+        
+    }
+}
+</script>
+<style lang="scss" scoped>
+
+</style>
