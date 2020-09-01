@@ -1,0 +1,91 @@
+<template>
+    <view class="tabs">
+        <repeat for="{{list}}" key="index" index="index" item="item">
+            <tab-item1 :title="item.name" index="{{index}}" class="{{activeIndex == index? 'total-4 active' : 'total-4'}}" />
+        </repeat>
+        <!-- <tab-item1 title="家寻宝贝" index='1' class="{{class1}}"/>
+        <tab-item2 title="流浪乞讨" index='2' class="{{class2}}"/>
+        <tab-item3 title="海外寻亲" index='3' class="{{class3}}"/>
+        <tab-item4 title="其他求助" index='4' class="{{class4}}"/> -->
+    </view>
+</template>
+<script>
+import wepy from 'wepy'
+import TabItem from './tab-item'
+import http from '../api/http.js'
+let totalNum = 4
+export default class Tabs extends wepy.component{
+    data = {
+        list: [],
+        activeIndex: 0,
+        class1: 'active total-' + totalNum,
+        class2: 'total-' + totalNum,
+        class3: 'total-' + totalNum,
+        class4: 'total-' + totalNum,
+        normalClass: 'total-' + totalNum
+    }
+
+    props = {
+
+    }
+
+    getCategory() {
+        let that = this
+        http.httpRequest({
+            // url: 'api/category/list',
+            url: 'category/list',
+            method: 'GET',
+            data: {},
+            success: function(res) {
+                that.list = res.data
+                totalNum = that.list.length
+                that.$apply()
+                console.log('categorylist--->', that.list)
+            },
+            fail: function(error) {
+
+            }
+        })
+    }
+
+    methods = {
+
+    }
+
+    events = {
+        changeTabItem(index) {
+            this.class1 = this.class2 = this.class3 = this.class4 = 'total-' + totalNum
+            if(index == 1) {
+                this.class1 = 'active total-' + totalNum
+            }else if(index == 2) {
+                this.class2 = 'active total-' + totalNum
+            }else if(index == 3) {
+                this.class3 = 'active total-' + totalNum
+            }else if(index == 4) {
+                this.class4 = 'active total-' + totalNum
+            }
+            this.$apply()
+        }
+    }
+
+    components = {
+        'tab-item1': TabItem,
+        'tab-item2': TabItem,
+        'tab-item3': TabItem,
+        'tab-item4': TabItem,
+    }
+
+    onLoad() {
+        this.getCategory()
+    }
+}
+</script>
+<style lang="scss" scoped>
+    .tabs {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        height: 46px;
+        margin-bottom: 5px;
+    }
+</style>
