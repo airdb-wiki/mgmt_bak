@@ -6,7 +6,7 @@
       class="article_list"
     >
       <div class="article_list_item" >
-        <div class="nickname">1111{{item.title}}</div>
+        <div class="nickname">{{item.title}}</div>
 	<!--
         <div class="article_detail" @click="jumpToDetail('/article/' + item.id)">
           <div class="artclie_text_msg">
