@@ -15,9 +15,9 @@
       </KView>
     </KView>
 
-    <KView class="connect">
+    <KView class="connect"  @click.stop="handleClick">
 	<img class="img" src="https://wechat-1251018873.file.myqcloud.com/images/phone.png" />
-        <KView class="text" @tap="getPhoneNum">0435-3338090</KView>
+        <KView class="text" @click.stop="getPhoneNum">0435-3338090</KView>
     </KView>
 
     <KView class="content">
@@ -51,6 +51,9 @@ export default Vue.extend({
     tabChang(activeKey) {
       this.activeKey = activeKey
       this.$emit('onChange', activeKey)
+    },
+    handleClick() {
+        console.log('handleClick')
     },
     getPhoneNum() {
         console.log('getPhoneNum')
