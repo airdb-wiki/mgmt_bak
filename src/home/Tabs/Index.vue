@@ -28,7 +28,7 @@
 
 <script>
 import Vue from 'vue'
-import ListContent from '../../component/ListContent.vue'
+import ListContent from '../../components/ListContent.vue'
 import { getArticles } from '../../api/commont'
 
 export default Vue.extend({

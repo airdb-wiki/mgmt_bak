@@ -12,15 +12,11 @@
       <ShowArticle :item="article" />
     </KView>
 
-<!--
+    <!--
     <Footer class="cnt">
     <wx-button @click="onClickBack">上一页</wx-button>
     <wx-button @click="onClickBack">下一页</wx-button>
     </Footer>
-    -->
-
-    <!--
-    <img class="head" src="{{detail.avatar_url}}"/>
     -->
 
     <!-- <article class="content" v-html="article.content">
@@ -30,7 +26,7 @@
 
 <script>
 import Vue from 'vue'
-import ShowArticle from '../component/article.vue'
+import ShowArticle from '../components/article.vue'
 
 export default Vue.extend({
   name: 'ArticleShow',
@@ -43,14 +39,14 @@ export default Vue.extend({
       articleId: null,
       detail: null,
       article: {
-        AvatarURL: 'https://attachment-10016990.file.myqcloud.com/forum/201307/25/15004814zola44o6llqyxh.jpg',
-        BabyID: '32519',
+        AvatarURL: 'https://wechat-1251018873.file.myqcloud.com/images/banner.png',
+        BabyID: 32519,
         Gender: 1,
-        BirthedAt: '1988-03-03T00:00:00Z',
+        BirthedAt: 1599305851,
         BirthedProvince: '北京',
         BirthedCity: '北京',
         BirthedCountry: '中国',
-        MissedAt: '南山区xxx',
+        MissedAt: 1599305851,
         MissedProvince: '广东',
         MissedCity: '深圳',
         MissedCountry: '中国',
