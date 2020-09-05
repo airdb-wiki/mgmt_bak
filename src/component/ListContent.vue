@@ -6,17 +6,18 @@
       class="article_list"
     >
       <div class="article_list_item" >
-        <div class="nickname">{{item.title}}</div>
-	<!--
+
         <div class="article_detail" @click="jumpToDetail('/article/' + item.id)">
+
           <div class="artclie_text_msg">
             <div class="article_author">
-              <div class="nickname">{{item.author}}</div>
+              <div class="nickname">{{item.nickname}}</div>
             </div>
             <div class="article_title">{{item.title}}</div>
           </div>
           <img class="img_cover" v-if="item.cover" :src="item.cover" alt mode='widthFix' />
         </div>
+  
         <div class="article_other">
           <div class="like">
             <img class="img" src="http://static.gocoder.top/like.png" alt="" mode="widthFix">
@@ -32,7 +33,7 @@
             </wx-button>
           </div>
         </div>
-	-->
+
       </div>
     </div>
   </div>
@@ -56,6 +57,7 @@ export default Vue.extend({
   },
   methods: {
     jumpToDetail(url) {
+      console.log('xxxx', url)
       window.location.href = url
     },
     share(article) {
