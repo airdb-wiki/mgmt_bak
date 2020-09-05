@@ -9,7 +9,7 @@ function request({ url, data, method }) {
     wx.request({
       url: baseUrl + url,
       method,
-      data: { ...data},
+      data: { data },
       header,
       success: (res) => {
         resove(res.data)

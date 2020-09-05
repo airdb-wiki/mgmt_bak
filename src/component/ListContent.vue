@@ -7,7 +7,7 @@
     >
       <div class="article_list_item" >
 
-        <div class="article_detail" @click="jumpToDetail('/article/' + item.id)">
+        <div class="article_detail" @click="jumpToDetail( '/atricle/' + item.id)">
 
           <div class="artclie_text_msg">
             <div class="article_author">
@@ -17,7 +17,6 @@
           </div>
           <img class="img_cover" v-if="item.cover" :src="item.cover" alt mode='widthFix' />
         </div>
-  
         <div class="article_other">
           <div class="like">
             <img class="img" src="http://static.gocoder.top/like.png" alt="" mode="widthFix">
@@ -48,7 +47,7 @@ export default Vue.extend({
     return {}
   },
   created() {
-    console.log('xxxxxxxxxxxxxx'),
+    console.log('xxxxxxxxxxxxxx')
     // window.addEventListener('wxshow', (options) => console.log('wxshow:', options))
     wx.showShareMenu({
       withShareTicket: true,
@@ -57,8 +56,16 @@ export default Vue.extend({
   },
   methods: {
     jumpToDetail(url) {
-      console.log('xxxx', url)
-      window.location.href = url
+      this.url = url
+      console.log('xxxxjump', this.url)
+      wx.navigateTo({
+        url: this.url,
+        events: {
+        },
+        success(res) {
+          res.eventChannel.emit('acceptDataFromOpenerPage', { data: 'test' })
+        }
+      })
     },
     share(article) {
       window.onShareAppMessage = (res) => {

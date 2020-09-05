@@ -16,8 +16,8 @@
     </KView>
 
     <KView class="connect"  @click.stop="handleClick">
-	<img class="img" src="https://wechat-1251018873.file.myqcloud.com/images/phone.png" />
-        <KView class="text" @click.stop="getPhoneNum">0435-3338090</KView>
+      <img class="img" src="https://wechat-1251018873.file.myqcloud.com/images/phone.png" />
+      <KView class="text" @click.stop="getPhoneNum">0435-3338090</KView>
     </KView>
 
     <KView class="content">
@@ -53,13 +53,13 @@ export default Vue.extend({
       this.$emit('onChange', activeKey)
     },
     handleClick() {
-        console.log('handleClick')
+      console.log('handleClick')
     },
     getPhoneNum() {
-        console.log('getPhoneNum')
-	wx.makePhoneCall({
-            phoneNumber: '0435-3338090'
-	})
+      console.log('getPhoneNum')
+      wx.makePhoneCall({
+        phoneNumber: '0435-3338090'
+      })
     }
   },
   created() {
@@ -112,10 +112,10 @@ export default Vue.extend({
 
     .connect {
         position: fixed;
-        z-index: 200;
-        width: 200px;
+        z-index: 160;
+        width: 160px;
         height: 28px;
-        right: 0px;
+        right: 10px;
         top: 48%;
         border-top-left-radius: 28px;
         border-bottom-left-radius: 28px;

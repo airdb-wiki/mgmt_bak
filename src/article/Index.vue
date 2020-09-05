@@ -7,7 +7,12 @@
         <p class="desc">
         </p>
     </header> -->
-    <wx-web-view :src="url"></wx-web-view>
+
+    aaa
+    <!--
+    <img class="head" src="{{detail.avatar_url}}"/>
+    -->
+
     <!-- <article class="content" v-html="article.content">
     </article> -->
   </div>
@@ -18,13 +23,15 @@ import Vue from 'vue'
 
 export default Vue.extend({
   name: 'Article',
+  props: ['article'],
   data() {
     return {
       articleId: null,
-      url: 'https://studygolang.com/articles/'
+      detail: null,
     }
   },
   created() {
+    // this.detail = article
     // 页面创建时取到文章的ID
     this.articleId = this.$route.params.id
     // 组装URL
