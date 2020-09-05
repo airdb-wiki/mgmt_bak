@@ -9,7 +9,7 @@ import Vue from 'vue'
 
 const docUrl = {
   docs: 'https://bbs.baobeihuijia.com',
-  docscn: 'http://www.airdb.com/howto',
+  docscn: 'https://www.airdb.com/howto',
 }
 
 export default Vue.extend({
