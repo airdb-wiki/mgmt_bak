@@ -3,6 +3,7 @@
     <Header></Header>
     <button @click="onClickBack">回到上一页</button>
     <Footer></Footer>
+    <button @click="onClickBack">回到上一页</button>
   </div>
 </template>
 

@@ -47,7 +47,7 @@ export default Vue.extend({
     return {}
   },
   created() {
-    console.log('xxxxxxxxxxxxxx')
+    console.log('xxxxxxxxxxxxxxconponent_list_content')
     // window.addEventListener('wxshow', (options) => console.log('wxshow:', options))
     wx.showShareMenu({
       withShareTicket: true,
@@ -55,17 +55,11 @@ export default Vue.extend({
     })
   },
   methods: {
-    jumpToDetail(url) {
-      this.url = url
-      console.log('xxxxjump', this.url)
-      wx.navigateTo({
-        url: this.url,
-        events: {
-        },
-        success(res) {
-          res.eventChannel.emit('acceptDataFromOpenerPage', { data: 'test' })
-        }
-      })
+    jumpToDetail(jurl) {
+      this.url = '/article/111?data='
+      console.log('xxxurl', jurl)
+      window.location.href = '/article/111'
+      // window.location.href = jurl
     },
     share(article) {
       window.onShareAppMessage = (res) => {
