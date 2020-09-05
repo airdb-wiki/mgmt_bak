@@ -48,13 +48,17 @@ export function login(params) {
   return get('/wechat/login', params)
 }
 
-export function getArticles(p) {
+export function getArticles(page_no) {
   /**
     * @description 文章列表
-    * @param {number} p token
+    * @param {number} page_no
+    * @param {number} page_size
+    * @param {string} ??type
+    * @param {string} ??keywords
     */
-  // return get('/articles', { p })
-  return get('/lost/list', { p })
+  // return get('/articles', { page_no })
+  var page_size = 10
+  return get('/lost/list', { page_no, page_size })
 }
 
 export function articleDetail(id) {
