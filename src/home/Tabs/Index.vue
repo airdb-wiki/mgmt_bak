@@ -14,15 +14,21 @@
       style="height:30rpx;width:30rpx"/>
       </KView>
     </KView>
-    <kView class="content">
+
+    <KView class="connect"  @click.stop="handleClick">
+      <img class="img" src="https://wechat-1251018873.file.myqcloud.com/images/phone.png" />
+      <KView class="text" @click.stop="getPhoneNum">0435-3338090</KView>
+    </KView>
+
+    <KView class="content">
       <ListContent :list="actclieList" />
-    </kView>
+    </KView>
   </KView>
 </template>
 
 <script>
 import Vue from 'vue'
-import ListContent from '../../component/ListContent.vue'
+import ListContent from '../../components/ListContent.vue'
 import { getArticles } from '../../api/commont'
 
 export default Vue.extend({
@@ -45,6 +51,15 @@ export default Vue.extend({
     tabChang(activeKey) {
       this.activeKey = activeKey
       this.$emit('onChange', activeKey)
+    },
+    handleClick() {
+      console.log('handleClick')
+    },
+    getPhoneNum() {
+      console.log('getPhoneNum')
+      wx.makePhoneCall({
+        phoneNumber: '0435-3338090'
+      })
     }
   },
   created() {
@@ -94,5 +109,34 @@ export default Vue.extend({
   .content {
     flex: 1;
   }
+
+    .connect {
+        position: fixed;
+        z-index: 160;
+        width: 160px;
+        height: 28px;
+        right: 10px;
+        top: 48%;
+        border-top-left-radius: 28px;
+        border-bottom-left-radius: 28px;
+        background: red;
+        .img {
+            position: absolute;
+            left: 8px;
+            top: 4px;
+            width: 20px;
+            height: 20px;
+        }
+        .text {
+            line-height: 28px;
+            position: absolute;
+            top: 0;
+            left: 40px;
+            font-family: PingFangSC-Regular;
+            font-size: 16px;
+            color: #FFFFFF;
+            letter-spacing: 0;
+        }
+    }
 }
 </style>

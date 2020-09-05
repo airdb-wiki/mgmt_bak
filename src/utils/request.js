@@ -1,4 +1,3 @@
-// const baseUrl = 'https://studygolang.com/app'
 const baseUrl = 'https://scf.baobeihuijia.com/release/mina'
 
 function request({ url, data, method }) {
@@ -9,7 +8,7 @@ function request({ url, data, method }) {
     wx.request({
       url: baseUrl + url,
       method,
-      data: { ...data, from: 4 },
+      data,
       header,
       success: (res) => {
         resove(res.data)

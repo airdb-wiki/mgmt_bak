@@ -26,13 +26,18 @@
                 <view class="info-title">联系我们</view>
                 <img class="right-icon" :src="narrowImg"/>
             </view>
-            <view class="info-item">
+            <view class="info-item" @click.stop="setting">
                 <img class="item-icon" :src="historyImg"/>
-                <view class="info-title">设置</view>
+                <view class="info-title" >设置</view>
                 <img class="right-icon" :src="narrowImg"/>
             </view>
         </view>
         <!-- <confirm-auth isShow='false'/> -->
+
+       <KButtonArea>
+         <!-- 暂时不开启 show-message-card 功能 -->
+         <KButton type="primary" open-type="contact" :show-message-card=false>联系我们</KButton>
+       </KButtonArea>
     </view>
 </template>
 <script>
@@ -73,7 +78,10 @@ export default Vue.extend({
   },
 
   methods: {
-
+    setting() {
+      console.log('xx')
+      wx.openSetting()
+    }
   }
 
 })

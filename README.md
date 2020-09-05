@@ -1,8 +1,11 @@
-宝贝回家
+小程序 - 宝贝回家
 
 ## 产品
 [设计图](https://org.modao.cc/app/9358480b82ba8ef102789b663a3e4715)
 
+
+## 项目
+[进度与任务](https://github.com/orgs/airdb/projects/6)
 
 ## 开发
 
@@ -98,6 +101,6 @@ npm run web
 npm run build
 ```
 
-![宝贝回家](/image/search.png)
+![宝贝回家](/images/search_mina.png)
 
 [![Stargazers over time](https://starchart.cc/airdb/mina.svg)](https://starchart.cc/airdb/mina)

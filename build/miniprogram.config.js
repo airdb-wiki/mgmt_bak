@@ -5,8 +5,8 @@
 module.exports = {
     // file: src/api/commont.js
     // 接口请求地址示例：//mina.baobeihuijia.com/release/mina/v1/lost/list
-    // origin: 'https://scf.baobeihuijia.com/release',
     origin: 'https://studygolang.com',
+    // origin: 'https://scf.baobeihuijia.com/release',
     entry: '/',
     router: {
         home: [
@@ -20,7 +20,6 @@ module.exports = {
         ],
         me: [
             '/list/:id',
-            '/detail/:id',
         ],
         doc: [
             '/doc/index',
@@ -30,6 +29,7 @@ module.exports = {
         ],
         article: [
             '/article/:id',
+            '/article/:id?',
         ],
     },
     redirect: {

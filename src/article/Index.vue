@@ -1,13 +1,24 @@
 <template>
   <div class="page_article">
-    <!-- <header class="header">
+    <header class="header">
         <h1 class="title">
             {{ article.title }}
         </h1>
         <p class="desc">
         </p>
-    </header> -->
-    <wx-web-view :src="url"></wx-web-view>
+    </header>
+
+    <KView class="">
+      <ShowArticle :item="article" />
+    </KView>
+
+    <!--
+    <Footer class="cnt">
+    <wx-button @click="onClickBack">上一页</wx-button>
+    <wx-button @click="onClickBack">下一页</wx-button>
+    </Footer>
+    -->
+
     <!-- <article class="content" v-html="article.content">
     </article> -->
   </div>
@@ -15,16 +26,47 @@
 
 <script>
 import Vue from 'vue'
+import ShowArticle from '../components/article.vue'
 
 export default Vue.extend({
-  name: 'Article',
+  name: 'ArticleShow',
+  // props: ['article'],
+  components: {
+    ShowArticle,
+  },
   data() {
     return {
       articleId: null,
-      url: 'https://studygolang.com/articles/'
+      detail: null,
+      article: {
+        AvatarURL: 'https://wechat-1251018873.file.myqcloud.com/images/banner.png',
+        BabyID: 32519,
+        Gender: 1,
+        BirthedAt: 1599305851,
+        BirthedProvince: '北京',
+        BirthedCity: '北京',
+        BirthedCountry: '中国',
+        MissedAt: 1599305851,
+        MissedProvince: '广东',
+        MissedCity: '深圳',
+        MissedCountry: '中国',
+        MissedAddress: '测试测试',
+        Nickname: '王姑娘',
+        Height: '172厘米左右',
+        Subject: '1988年3月3日(农历）出生于江苏省宿迁市人民医院，被送养的王姑娘寻亲 32519',
+        DataFrom: 'https://bbs.baobeihuijia.com/thread-151906-1-1.html',
+        Category: '宝贝寻家',
+        Volunteer: '鼠尔草 跟进',
+        Details: '测试测试'
+      },
     }
   },
   created() {
+    // this.article = article
+    console.log('xxx', this.article)
+    console.log('xxx article onload', this.$route.params.id)
+    console.log('xxx article onload', this.$route.params.data)
+    // this.detail = article
     // 页面创建时取到文章的ID
     this.articleId = this.$route.params.id
     // 组装URL
@@ -55,7 +97,12 @@ export default Vue.extend({
   }
 })
 </script>
+
 <style lang="less">
+.cnt {
+  margin-top: 20px;
+}
+
 .page_article {
     padding: 0 20px;
     .header {
