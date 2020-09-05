@@ -8,10 +8,8 @@
 import Vue from 'vue'
 
 const docUrl = {
-  docs: 'https://docs.studygolang.com',
-  docscn: 'http://docscn.studygolang.com',
-  pkgdoc: 'https://studygolang.com/pkgdoc',
-  tour: 'http://tour.studygolang.com',
+  docs: 'https://bbs.baobeihuijia.com',
+  docscn: 'http://www.airdb.com/howto',
 }
 
 export default Vue.extend({

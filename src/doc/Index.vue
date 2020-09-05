@@ -22,17 +22,11 @@ export default Vue.extend({
     return {
       narrowImg: 'https://wechat-1251018873.file.myqcloud.com/images/narrow.png',
       docTitleList: [{
-        name: '英文文档',
+        name: 'BBS 论坛',
         url: '/doc/detail/docs',
-      }, {
-        name: '中文文档',
+      },{
+        name: '工作月报',
         url: '/doc/detail/docscn',
-      }, {
-        name: '标准库中文文档',
-        url: '/doc/detail/pkgdoc',
-      }, {
-        name: 'Go指南',
-        url: '/doc/detail/tour',
       }],
     }
   },
