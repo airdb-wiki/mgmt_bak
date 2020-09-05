@@ -35,7 +35,8 @@
         <!-- <confirm-auth isShow='false'/> -->
 
        <KButtonArea>
-         <KButton type="primary" open-type="contact" :show-message-card=true>联系我们</KButton>
+         <!-- 暂时不开启 show-message-card 功能 -->
+         <KButton type="primary" open-type="contact" :show-message-card=false>联系我们</KButton>
        </KButtonArea>
     </view>
 </template>
