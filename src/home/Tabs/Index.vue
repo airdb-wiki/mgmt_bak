@@ -41,7 +41,8 @@ export default Vue.extend({
         { label: '其他', key: 'pay' }
       ],
       activeKey: 'newest',
-      actclieList: []
+      actclieList: [],
+      currentPage: 1 // default currentPage is 1
     }
   },
   components: {
@@ -63,9 +64,16 @@ export default Vue.extend({
     }
   },
   created() {
-    getArticles(1).then((res) => {
+    getArticles(this.currentPage).then((res) => {
       // console.log(res)
       this.actclieList = res.data.articles
+    })
+    window.addEventListener('reachbottom', evt => {
+      console.log('reach_bottom')
+      this.currentPage += 1
+
+      console.log('pageIndex--->', this.currentPage)
+      getArticles(this.currentPage)
     })
   }
 })

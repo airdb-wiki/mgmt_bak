@@ -73,6 +73,7 @@ module.exports = {
         share: true,
         windowScroll: false,
         backgroundColor: '#F7F7F7',
+        reachBottom: true,
     },
     pages: {
         home: {
