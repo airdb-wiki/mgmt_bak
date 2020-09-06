@@ -73,7 +73,10 @@ export default Vue.extend({
       this.currentPage += 1
 
       console.log('pageIndex--->', this.currentPage)
-      getArticles(this.currentPage)
+      getArticles(this.currentPage).then((res) => {
+        console.log('append_xx')
+        this.actclieList = this.actclieList.concat(res.data.articles)
+      })
     })
   }
 })
