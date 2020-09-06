@@ -68,6 +68,8 @@ export default Vue.extend({
       // console.log(res)
       this.actclieList = res.data.articles
     })
+
+    // reach bottom envet 上拉触底查看历史
     window.addEventListener('reachbottom', evt => {
       console.log('reach_bottom')
       this.currentPage += 1
@@ -77,6 +79,11 @@ export default Vue.extend({
         console.log('append_xx')
         this.actclieList = this.actclieList.concat(res.data.articles)
       })
+    })
+
+    // pull down refresh 上拉更新数据
+    window.addEventListener('pulldownrefresh', evt => {
+      console.log('pull_down')
     })
   }
 })
