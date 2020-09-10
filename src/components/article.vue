@@ -7,24 +7,24 @@
 
 
     <img class="bg" src=""/>
-    <img class="head" :src="item.AvatarURL" />
+    <img class="head" :src="item.avatar_url" />
 
-    <view class="name">{{item.Nickname}}</view>
-    <view class="id">档案ID：{{item.BabyID}}</view>
+    <view class="name">{{item.nickname}}</view>
+    <view class="id">档案ID：{{item.babyid}}</view>
 
         <view class="info">
             <view class="info-item">
                 <view class="info-title">性别</view>
-                <view class="info-content">{{item.Sex}}</view>
+                <view class="info-content">{{item.gender}}</view>
             </view>
             <view class="info-item">
                 <view class="info-title">出生日期</view>
-                <view class="info-content">{{item.BirthedAt}}</view>
+                <view class="info-content">{{item.birthed_at}}</view>
             </view>
             <view class="info-item">
                 <view class="info-title">户籍地点</view>
                 <view class="info-content">
-                  {{item.BirthedProvince + item.BirthedCity + item.BirthedCountry}}
+                  {{item.birthed_province + item.birthed_city + item.birthed_country}}
                 </view>
             </view>
         </view>
@@ -34,11 +34,11 @@
         <view class="info">
             <view class="info-item">
                 <view class="info-title">失踪时间</view>
-                <view class="info-content">{{item.MissedAt}}</view>
+                <view class="info-content">{{item.missed_at}}</view>
             </view>
             <view class="info-item">
                 <view class="info-title">失踪地点</view>
-                <view class="info-content">{{item.MissedAddress}}</view>
+                <view class="info-content">{{item.missed_address}}</view>
             </view>
             <view class="info-item">
                 <view class="info-title">失踪时身高</view>
@@ -46,7 +46,7 @@
             </view>
             <view class="info-item feature">
                 <view class="info-title">失踪人特征</view>
-                <view class="info-content">{{item.Detail}}</view>
+                <view class="info-content">{{item.subject}}</view>
             </view>
         </view>
 
@@ -54,19 +54,19 @@
         <view class="info">
             <view class="info-item">
                 <view class="info-title">寻亲编号</view>
-                <view class="info-content">{{item.BabyID}}</view>
+                <view class="info-content">{{item.babyid}}</view>
             </view>
             <view class="info-item">
                 <view class="info-title">寻亲类别</view>
-                <view class="info-content">{{item.Category}}</view>
+                <view class="info-content">{{item.category}}</view>
             </view>
             <view class="info-item feature">
                 <view class="info-title">信息来源</view>
-                <view class="info-content" @tap="handleLongPress">{{item.DataFrom}}</view>
+                <view class="info-content" @tap="handleLongPress">{{item.data_from}}</view>
             </view>
             <view class="info-item">
                 <view class="info-title">跟进志愿者</view>
-                <view class="info-content">{{item.Volunteer}}</view>
+                <view class="info-content">{{item.volunteer}}</view>
             </view>
         </view>
 
@@ -74,7 +74,7 @@
         <view class="info">
             <view class="info-item feature">
                 <view class="info-title">其他资料</view>
-                <view class="info-content">{{item.Details}}</view>
+                <view class="info-content">{{item.details}}</view>
             </view>
         </view>
   </div>
@@ -98,6 +98,12 @@ export default Vue.extend({
     })
   },
   methods: {
+    onClickBack() {
+      console.log('onClickBack')
+    },
+    handleLongPress() {
+      console.log('handleLongPress')
+    },
     jumpToDetail(jurl) {
       this.url = '/article/111?data={aaa=11,bb=22}'
       console.log('xxxurl', jurl)

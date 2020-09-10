@@ -66,7 +66,7 @@ export function articleDetail(id) {
     * @description 文章详情
     * @param {number} id
     */
-  return get('/article/detail', { id })
+  return get('/article/query', { id })
 }
 
 export function getSources(p) {
