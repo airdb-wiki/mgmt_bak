@@ -1,5 +1,9 @@
 <template>
-  <div class="page_article">
+  <KView class="">
+    <ShowArticle :item="article" />
+  </KView>
+  
+   <!--<div class="page_article">
     <header class="header">
         <h1 class="title">
             {{ article.title }}
@@ -7,21 +11,13 @@
         <p class="desc">
         </p>
     </header>
-
-    <KView class="">
-      <ShowArticle :item="article" />
-    </KView>
-
-    <!--
     <Footer class="cnt">
     <wx-button @click="onClickBack">上一页</wx-button>
     <wx-button @click="onClickBack">下一页</wx-button>
     </Footer>
-    -->
-
-    <!-- <article class="content" v-html="article.content">
-    </article> -->
-  </div>
+    <article class="content" v-html="article.content">
+    </article> 
+  </div> -->
 </template>
 
 <script>

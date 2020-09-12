@@ -1,88 +1,97 @@
 <template>
   <div>
-    <Header class="cnt">
-    <wx-button @click="onClickBack">上一页</wx-button>
-    <wx-button @click="onClickBack">下一页</wx-button>
-    </Header>
+    <div class="basefirst">
+        <img :src="item.AvatarURL" mode="scaleToFill" class="avatar" @click="previewImage([item.AvatarURL])" />
+        <div class="name_cntent">
+            <text class="name">{{item.Nickname}}&nbsp;&nbsp;{{item.BabyID}}</text>
+            <text class="desc">1983年被送样河南</text>
+        </div>
+        <img class="share" src="../../imgs/icon/icon-share.png" @click="share" />
+    </div>
+    <div class="row_container">
+        <div class="row_item small_row">
+            <div class="label"><text>累计转发助力：1500次</text></div>
+        </div>
+        <div class="row_item small_row">
+            <div class="label"><text>累计曝光助力：10,000次</text></div>
+        </div>
+    </div>
 
+    <div class="row_container">
+        <div class="row_item border">
+            <div class="label">基础信息</div>
+        </div>
+        <div class="row_item border">
+            <div class="label"><text>性别：女</text></div>
+        </div>
+        <div class="row_item border">
+            <div class="label"><text>出生日期：2012-09-10</text></div>
+        </div>
+        <div class="row_item border">
+            <div class="label"><text>户籍地点：中国广东深圳南山区粤海街道办1001号</text></div>
+        </div>
+    </div>
+    <div class="photos_container">
+        <div class="photos_list">
+            <div class="photo_item" :key="index" v-for="(photo,index) of [item.AvatarURL,item.AvatarURL,item.AvatarURL,item.AvatarURL,item.AvatarURL,item.AvatarURL]">
+                <img :src="photo" mode="scaleToFill" class="photo" @click="previewImage([item.AvatarURL,item.AvatarURL,item.AvatarURL,item.AvatarURL,item.AvatarURL,item.AvatarURL],index)" />
+            </div>
+        </div>
+        <div class="desc"><text>左右滑动查看图片</text></div>
+    </div>
+    <div class="row_container">
+        <div class="row_item border">
+            <div class="label">失踪信息</div>
+        </div>
+        <div class="row_item border">
+            <div class="label"><text>寻亲编号：15344</text></div>
+        </div>
+        <div class="row_item border">
+            <div class="label"><text>寻亲类别：家寻宝贝</text></div>
+        </div>
+        <div class="row_item border">
+            <div class="label"><text>信息来源：https://bbs.baobeihuijia.com/xxxx</text></div>
+        </div>
+        <div class="row_item border">
+            <div class="label"><text>跟进制原则：李四</text></div>
+        </div>
+    </div>
 
-    <img class="bg" src=""/>
-    <img class="head" :src="item.AvatarURL" />
-
-    <view class="name">{{item.Nickname}}</view>
-    <view class="id">档案ID：{{item.BabyID}}</view>
-
-        <view class="info">
-            <view class="info-item">
-                <view class="info-title">性别</view>
-                <view class="info-content">{{item.Sex}}</view>
-            </view>
-            <view class="info-item">
-                <view class="info-title">出生日期</view>
-                <view class="info-content">{{item.BirthedAt}}</view>
-            </view>
-            <view class="info-item">
-                <view class="info-title">户籍地点</view>
-                <view class="info-content">
-                  {{item.BirthedProvince + item.BirthedCity + item.BirthedCountry}}
-                </view>
-            </view>
-        </view>
-
-
-              <view class="tag">失踪时信息</view>
-        <view class="info">
-            <view class="info-item">
-                <view class="info-title">失踪时间</view>
-                <view class="info-content">{{item.MissedAt}}</view>
-            </view>
-            <view class="info-item">
-                <view class="info-title">失踪地点</view>
-                <view class="info-content">{{item.MissedAddress}}</view>
-            </view>
-            <view class="info-item">
-                <view class="info-title">失踪时身高</view>
-                <view class="info-content">{{item.Height}}</view>
-            </view>
-            <view class="info-item feature">
-                <view class="info-title">失踪人特征</view>
-                <view class="info-content">{{item.Detail}}</view>
-            </view>
-        </view>
-
-                <view class="tag">寻亲信息</view>
-        <view class="info">
-            <view class="info-item">
-                <view class="info-title">寻亲编号</view>
-                <view class="info-content">{{item.BabyID}}</view>
-            </view>
-            <view class="info-item">
-                <view class="info-title">寻亲类别</view>
-                <view class="info-content">{{item.Category}}</view>
-            </view>
-            <view class="info-item feature">
-                <view class="info-title">信息来源</view>
-                <view class="info-content" @tap="handleLongPress">{{item.DataFrom}}</view>
-            </view>
-            <view class="info-item">
-                <view class="info-title">跟进志愿者</view>
-                <view class="info-content">{{item.Volunteer}}</view>
-            </view>
-        </view>
-
-        <view class="tag">其他资料</view>
-        <view class="info">
-            <view class="info-item feature">
-                <view class="info-title">其他资料</view>
-                <view class="info-content">{{item.Details}}</view>
-            </view>
-        </view>
+    <div class="row_container">
+        <div class="row_item border">
+            <div class="label">其他资料</div>
+        </div>
+        <div class="row_item border">
+            <div class="label"><text>其他线索：xx</text></div>
+        </div>
+        <div class="row_item border">
+            <div class="label"><text>跟进进度：</text></div>
+        </div>
+    </div>
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
-
+//  AvatarURL: 'https://wechat-1251018873.file.myqcloud.com/images/banner.png',
+//         BabyID: 32519,
+//         Gender: 1,
+//         BirthedAt: 1599305851,
+//         BirthedProvince: '北京',
+//         BirthedCity: '北京',
+//         BirthedCountry: '中国',
+//         MissedAt: 1599305851,
+//         MissedProvince: '广东',
+//         MissedCity: '深圳',
+//         MissedCountry: '中国',
+//         MissedAddress: '测试测试',
+//         Nickname: '王姑娘',
+//         Height: '172厘米左右',
+//         Subject: '1988年3月3日(农历）出生于江苏省宿迁市人民医院，被送养的王姑娘寻亲 32519',
+//         DataFrom: 'https://bbs.baobeihuijia.com/thread-151906-1-1.html',
+//         Category: '宝贝寻家',
+//         Volunteer: '鼠尔草 跟进',
+//         Details: '测试测试'
 export default Vue.extend({
   name: 'ShowArticle',
   props: ['item'],
@@ -116,99 +125,116 @@ export default Vue.extend({
         }
         return null
       }
+    },
+    previewImage(list,current){
+        if (!current) current = 0
+        wx.previewImage({
+           current: current,
+           urls: list
+        })
     }
   },
 })
 </script>
 
-<style lang="less">
-    .bg {
-        width: 100%;
-        position: absolute;
-        z-index: 1;
-        height: 140px;
-        top: 0;
-    }
-    .head {
-        display: block;
-        z-index: 2;
-        margin: 13px auto 0;
-        width: 110px;
-        height: 110px;
-        border-radius: 110px;
-    }
-    .name {
-        display: block;
-        z-index: 2;
-        margin-top: 20px;
-        width: 100%;
-        text-align: center;
-        font-family: PingFangSC-Regular;
-        font-size: 16px;
-        color: #4A4A4A;
-        letter-spacing: 0;
-        line-height: 22px;
-    }
-    .id {
-        display: block;
-        z-index: 2;
-        margin-top: 20px;
-        margin-bottom: 13px;
-        width: 100%;
-        text-align: center;
-        font-family: PingFangSC-Light;
-        font-size: 12px;
-        color: #4A4A4A;
-        letter-spacing: 0;
-        line-height: 22px;
-    }
-    .info {
-        margin-bottom: 24px;
-        width: 100%;
-        border-top: .5px solid #DCDEDF;
-        background: white;
-    }
-    .info-item {
-        width: 100%;
-        min-height: 50px;
+<style lang="less"> 
+
+    .basefirst{
         position: relative;
-        border-bottom: .5px solid #DCDEDF;
-    }
-    .info-title {
-        position: absolute;
-        left: 17px;
-        font-family: PingFangSC-Regular;
-        font-size: 16px;
-        color: #4A4A4A;
-        letter-spacing: 0;
-        line-height: 50px;
-    }
-    .info-content {
-        margin-left: 135px;
-        font-family: PingFangSC-Regular;
-        font-size: 14px;
-        color: #737B7F;
-        letter-spacing: 0;
-        line-height: 50px;
-        text-align: right;
-        width: 226px;
-        word-wrap: break-word;
-    }
-    .feature {
-        min-height: 50px;
-        .info-content {
-            padding-top: 10px;
-            padding-bottom: 10px;
-            line-height: 20px;
+        background: #FFFFFF;
+        width: 100%;
+        height: 140rpx;
+        .avatar{
+            position: absolute;
+            left: 20rpx;
+            top: 20rpx;
+            width: 100rpx;
+            height: 100rpx;
+        }
+        .name_cntent{
+            position: absolute;
+            top: 20rpx;
+            left: 140rpx;
+            .name {
+                 font-family: PingFangSC;
+                font-size: 26rpx;
+                color: #000000;
+            }
+            .desc{
+                font-family: PingFangSC;
+                font-size: 24rpx;
+                text-align: justify;
+                color: #000000;
+                mix-blend-mode: normal;
+                opacity: 0.3;
+            }
+        }
+        .share{
+           top: 45rpx;
+           right: 30rpx;
+           width: 50rpx;
+           height: 50rpx;
+           position: absolute;
         }
     }
-    .tag {
-        margin-bottom: 8px;
-        line-height: 20px;
-        margin-left: 17px;
-        font-family: PingFangSC-Light;
-        font-size: 14px;
-        color: #454F55;
-        letter-spacing: 0;
+    .row_container{
+        background: #FFFFFF;
+        margin-bottom: 10rpx;
+        .row_item{
+            width: 100%;
+            line-height: 80rpx;
+            height: 80rpx;
+            .label{
+                font-family: PingFangSC;
+                font-size: 24rpx;
+                margin-left: 20rpx;
+                color: #000000;
+                mix-blend-mode: normal;
+                opacity: 0.5;
+            }
+        }
+        .small_row{
+            line-height: 50rpx;
+            height: 50rpx;
+        }
+        .border {
+            border-bottom: 1px solid #f5f6f6;
+        }
     }
+
+    .photos_container{
+        background: #FFFFFF;
+        margin-bottom: 10rpx;
+        padding: 10rpx 20rpx 10rpx 20rpx;
+        .photos_list{
+            white-space: nowrap;
+            overflow-x: scroll;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling:touch;
+            height:190rpx;
+            ::-webkit-scrollbar{
+                display: none;
+            }
+            .photo_item{
+                display: inline-block;
+                margin-right: 20rpx;
+                .photo{
+                    width: 250rpx;
+                    height: 180rpx;
+                    border-radius: 10rpx;
+                }
+            }
+
+           
+        }
+        .desc{
+            text-align: center;
+            font-family: PingFangSC;
+            font-size: 20rpx;
+            color: #000000;
+            mix-blend-mode: normal;
+            opacity: 0.5;
+        }
+    }
+    
 </style>
