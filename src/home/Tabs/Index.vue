@@ -41,7 +41,8 @@ export default Vue.extend({
         { label: '其他', key: 'pay' }
       ],
       activeKey: 'newest',
-      actclieList: []
+      actclieList: [],
+      currentPage: 1 // default currentPage is 1
     }
   },
   components: {
@@ -63,9 +64,26 @@ export default Vue.extend({
     }
   },
   created() {
-    getArticles(1).then((res) => {
+    getArticles(this.currentPage).then((res) => {
       // console.log(res)
       this.actclieList = res.data.articles
+    })
+
+    // reach bottom envet 上拉触底查看历史
+    window.addEventListener('reachbottom', (evt) => {
+      console.log('reach_bottom', evt)
+      this.currentPage += 1
+
+      console.log('pageIndex--->', this.currentPage)
+      getArticles(this.currentPage).then((res) => {
+        console.log('append_xx')
+        this.actclieList = this.actclieList.concat(res.data.articles)
+      })
+    })
+
+    // pull down refresh 上拉更新数据
+    window.addEventListener('pulldownrefresh', (evt1) => {
+      console.log('pull_down', evt1)
     })
   }
 })

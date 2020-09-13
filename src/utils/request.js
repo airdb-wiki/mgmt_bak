@@ -1,4 +1,5 @@
-const baseUrl = 'https://scf.baobeihuijia.com/release/mina'
+// const baseUrl = 'https://scf.baobeihuijia.com/release/mina'
+const baseUrl = 'https://scf.baobeihuijia.com/release/mina/v1'
 
 function request({ url, data, method }) {
   const header = {

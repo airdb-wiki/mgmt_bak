@@ -24,7 +24,7 @@ export default Vue.extend({
       docTitleList: [{
         name: 'BBS 论坛',
         url: '/doc/detail/docs',
-      },{
+      }, {
         name: '工作月报',
         url: '/doc/detail/docscn',
       }],

@@ -27,6 +27,7 @@
 <script>
 import Vue from 'vue'
 import ShowArticle from '../components/article.vue'
+import { articleDetail } from '../api/commont'
 
 export default Vue.extend({
   name: 'ArticleShow',
@@ -39,25 +40,25 @@ export default Vue.extend({
       articleId: null,
       detail: null,
       article: {
-        AvatarURL: 'https://wechat-1251018873.file.myqcloud.com/images/banner.png',
-        BabyID: 32519,
-        Gender: 1,
-        BirthedAt: 1599305851,
-        BirthedProvince: '北京',
-        BirthedCity: '北京',
-        BirthedCountry: '中国',
-        MissedAt: 1599305851,
-        MissedProvince: '广东',
-        MissedCity: '深圳',
-        MissedCountry: '中国',
-        MissedAddress: '测试测试',
-        Nickname: '王姑娘',
-        Height: '172厘米左右',
-        Subject: '1988年3月3日(农历）出生于江苏省宿迁市人民医院，被送养的王姑娘寻亲 32519',
-        DataFrom: 'https://bbs.baobeihuijia.com/thread-151906-1-1.html',
-        Category: '宝贝寻家',
-        Volunteer: '鼠尔草 跟进',
-        Details: '测试测试'
+        // AvatarURL: 'https://wechat-1251018873.file.myqcloud.com/images/banner.png',
+        // BabyID: 32519,
+        // Gender: 1,
+        // BirthedAt: 1599305851,
+        // BirthedProvince: '北京',
+        // BirthedCity: '北京',
+        // BirthedCountry: '中国',
+        // MissedAt: 1599305851,
+        // MissedProvince: '广东',
+        // MissedCity: '深圳',
+        // MissedCountry: '中国',
+        // MissedAddress: '测试测试',
+        // Nickname: '王姑娘',
+        // Height: '172厘米左右',
+        // Subject: '1988年3月3日(农历）出生于江苏省宿迁市人民医院，被送养的王姑娘寻亲 32519',
+        // DataFrom: 'https://bbs.baobeihuijia.com/thread-151906-1-1.html',
+        // Category: '宝贝寻家',
+        // Volunteer: '鼠尔草 跟进',
+        // Details: '测试测试'
       },
     }
   },
@@ -73,6 +74,13 @@ export default Vue.extend({
     this.url = this.url + this.articleId
     // 开启分享
     this.openShare(this.articleId)
+
+    articleDetail(this.$route.params.id).then((res) => {
+      console.log('article detail ---->', res.data.article)
+      this.article = res.data.article
+    }).catch((err) => {
+      console.log('article error--->', err)
+    })
   },
   methods: {
     openShare(articleId) {

@@ -21,11 +21,13 @@
                 <view class="info-title">浏览记录</view>
                 <img class="right-icon" :src="narrowImg"/>
             </view>
-            <view class="info-item">
+
+            <view class="info-item" @click.stop="hello">
                 <img class="item-icon" :src="historyImg"/>
                 <view class="info-title">联系我们</view>
                 <img class="right-icon" :src="narrowImg"/>
             </view>
+
             <view class="info-item" @click.stop="setting">
                 <img class="item-icon" :src="historyImg"/>
                 <view class="info-title" >设置</view>
@@ -81,6 +83,23 @@ export default Vue.extend({
     setting() {
       console.log('xx')
       wx.openSetting()
+    },
+    hello() {
+      console.log('xxxaa')
+      // 可以通过 wx.getSetting 先查询一下用户是否授权了 "scope.record" 这个 scope
+      wx.getSetting({
+        success(res) {
+          if (!res.authSetting['scope.userLocation']) {
+            wx.authorize({
+              scope: 'scope.userLocation',
+              success() {
+                // 用户已经同意小程序使用录音功能，后续调用 wx.startRecord 接口不会弹窗询问
+                wx.startRecord()
+              }
+            })
+          }
+        }
+      })
     }
   }
 
