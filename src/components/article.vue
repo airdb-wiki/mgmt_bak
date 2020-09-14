@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="basefirst">
-        <img :src="item.AvatarURL" mode="scaleToFill" class="avatar" @click="previewImage([item.AvatarURL])" />
+        <img :src="item.AvatarURL" mode="scaleToFill" class="avatar" @click="previewImage([item.avatar_url])" />
         <div class="name_cntent">
-            <text class="name">{{item.Nickname}}&nbsp;&nbsp;{{item.BabyID}}</text>
-            <text class="desc">1983年被送样河南</text>
+            <text class="name">{{item.nickname}}&nbsp;&nbsp;{{item.babyid}}</text>
+            <text class="desc">{{item.title}}</text>
         </div>
         <img class="share" src="../../imgs/icon/icon-share.png" @click="share" />
     </div>
@@ -22,10 +22,12 @@
             <div class="label">基础信息</div>
         </div>
         <div class="row_item border">
-            <div class="label"><text>性别：女</text></div>
+            <div class="label"><text>性别：</text></div>
+            <div class="value"><text>{{ item.gender==2?'女':'男' }}</text></div>
         </div>
         <div class="row_item border">
-            <div class="label"><text>出生日期：2012-09-10</text></div>
+            <div class="label"><text>出生日期：</text></div>
+            <div class="value"><text>{{ParseTime(item.missed_at,'{y}-{m}-{d}')}}</text></div>
         </div>
         <div class="row_item border">
             <div class="label"><text>户籍地点：中国广东深圳南山区粤海街道办1001号</text></div>
@@ -33,8 +35,8 @@
     </div>
     <div class="photos_container">
         <div class="photos_list">
-            <div class="photo_item" :key="index" v-for="(photo,index) of [item.AvatarURL,item.AvatarURL,item.AvatarURL,item.AvatarURL,item.AvatarURL,item.AvatarURL]">
-                <img :src="photo" mode="scaleToFill" class="photo" @click="previewImage([item.AvatarURL,item.AvatarURL,item.AvatarURL,item.AvatarURL,item.AvatarURL,item.AvatarURL],index)" />
+            <div class="photo_item" :key="index" v-for="(photo,index) of [item.avatar_url,item.avatar_url,item.avatar_url,item.avatar_url,item.avatar_url,item.avatar_url]">
+                <img :src="photo" mode="scaleToFill" class="photo" @click="previewImage([item.avatar_url,item.avatar_url,item.avatar_url,item.avatar_url,item.avatar_url,item.avatar_url],index)" />
             </div>
         </div>
         <div class="desc"><text>左右滑动查看图片</text></div>
@@ -44,16 +46,20 @@
             <div class="label">失踪信息</div>
         </div>
         <div class="row_item border">
-            <div class="label"><text>寻亲编号：15344</text></div>
+            <div class="label"><text>寻亲编号：</text></div>
+            <div class="value"><text>{{item.babyid}}</text></div>
         </div>
         <div class="row_item border">
-            <div class="label"><text>寻亲类别：家寻宝贝</text></div>
+            <div class="label"><text>寻亲类别：</text></div>
+            <div class="value"><text>{{item.category}}</text></div>
         </div>
         <div class="row_item border">
-            <div class="label"><text>信息来源：https://bbs.baobeihuijia.com/xxxx</text></div>
+            <div class="label"><text>信息来源：</text></div>
+            <div class="value"><text>{{item.data_from}}</text></div>
         </div>
         <div class="row_item border">
-            <div class="label"><text>跟进制原则：李四</text></div>
+            <div class="label"><text>跟进志愿者：</text></div>
+            <div class="value"><text>{{item.details}}</text></div>
         </div>
     </div>
 
@@ -62,10 +68,12 @@
             <div class="label">其他资料</div>
         </div>
         <div class="row_item border">
-            <div class="label"><text>其他线索：xx</text></div>
+            <div class="label"><text>其他线索：</text></div>
+            <div class="value"><text></text></div>
         </div>
         <div class="row_item border">
             <div class="label"><text>跟进进度：</text></div>
+            <div class="value"><text></text></div>
         </div>
     </div>
   </div>
@@ -73,25 +81,8 @@
 
 <script>
 import Vue from 'vue'
-//  AvatarURL: 'https://wechat-1251018873.file.myqcloud.com/images/banner.png',
-//         BabyID: 32519,
-//         Gender: 1,
-//         BirthedAt: 1599305851,
-//         BirthedProvince: '北京',
-//         BirthedCity: '北京',
-//         BirthedCountry: '中国',
-//         MissedAt: 1599305851,
-//         MissedProvince: '广东',
-//         MissedCity: '深圳',
-//         MissedCountry: '中国',
-//         MissedAddress: '测试测试',
-//         Nickname: '王姑娘',
-//         Height: '172厘米左右',
-//         Subject: '1988年3月3日(农历）出生于江苏省宿迁市人民医院，被送养的王姑娘寻亲 32519',
-//         DataFrom: 'https://bbs.baobeihuijia.com/thread-151906-1-1.html',
-//         Category: '宝贝寻家',
-//         Volunteer: '鼠尔草 跟进',
-//         Details: '测试测试'
+import { ParseTime } from '../common/utils'
+
 export default Vue.extend({
   name: 'ShowArticle',
   props: ['item'],
@@ -107,6 +98,7 @@ export default Vue.extend({
     })
   },
   methods: {
+    ParseTime,
     jumpToDetail(jurl) {
       this.url = '/article/111?data={aaa=11,bb=22}'
       console.log('xxxurl', jurl)
@@ -167,6 +159,7 @@ export default Vue.extend({
                 color: #000000;
                 mix-blend-mode: normal;
                 opacity: 0.3;
+                width: 500rpx;
             }
         }
         .share{
@@ -183,15 +176,33 @@ export default Vue.extend({
         .row_item{
             width: 100%;
             line-height: 80rpx;
-            height: 80rpx;
+            min-height: 80rpx;
+            font-family: PingFangSC;
+            font-size: 24rpx;
+            color: #000000;
+            mix-blend-mode: normal;
+            opacity: 0.5;
+            clear: both;
             .label{
-                font-family: PingFangSC;
-                font-size: 24rpx;
+                float: left;
+                margin-top: 20rpx;
                 margin-left: 20rpx;
-                color: #000000;
-                mix-blend-mode: normal;
-                opacity: 0.5;
+                line-height: 40rpx;
+                min-width: 150rpx;
             }
+            .value{
+                float: left;
+                margin-top: 20rpx;
+                margin-left: 5rpx;
+                width: 550rpx;
+                white-space: pre-wrap;
+                line-height: 40rpx;
+            }
+        }
+        .row_item::after{
+            content: "";
+            display: block;
+            clear: both;
         }
         .small_row{
             line-height: 50rpx;
