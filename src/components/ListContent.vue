@@ -7,7 +7,7 @@
     >
       <div class="article_list_item" >
 
-        <div class="article_detail" @click="jumpToDetail( '/atricle/' + item.id)">
+        <div class="article_detail" @click="jumpToDetail( '/article/' + item.id)">
 
           <div class="artclie_text_msg">
             <div class="article_author">
@@ -56,10 +56,10 @@ export default Vue.extend({
   },
   methods: {
     jumpToDetail(jurl) {
-      this.url = '/article/111?data='
+      // this.url = '/article/111?data='
       console.log('xxxurl', jurl)
-      window.location.href = '/article/111'
-      // window.location.href = jurl
+      // window.location.href = '/article/111'
+      window.location.href = jurl
     },
     share(article) {
       window.onShareAppMessage = (res) => {

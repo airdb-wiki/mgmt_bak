@@ -70,8 +70,8 @@ export default Vue.extend({
     })
 
     // reach bottom envet 上拉触底查看历史
-    window.addEventListener('reachbottom', evt => {
-      console.log('reach_bottom')
+    window.addEventListener('reachbottom', (evt) => {
+      console.log('reach_bottom', evt)
       this.currentPage += 1
 
       console.log('pageIndex--->', this.currentPage)
@@ -82,8 +82,8 @@ export default Vue.extend({
     })
 
     // pull down refresh 上拉更新数据
-    window.addEventListener('pulldownrefresh', evt => {
-      console.log('pull_down')
+    window.addEventListener('pulldownrefresh', (evt1) => {
+      console.log('pull_down', evt1)
     })
   }
 })
