@@ -1,87 +1,87 @@
 <template>
   <div>
-    <Header class="cnt">
-    <wx-button @click="onClickBack">上一页</wx-button>
-    <wx-button @click="onClickBack">下一页</wx-button>
-    </Header>
+    <div class="basefirst">
+        <img :src="item.AvatarURL" mode="scaleToFill" class="avatar" @click="previewImage([item.avatar_url])" />
+        <div class="name_cntent">
+            <text class="name">{{item.nickname}}&nbsp;&nbsp;{{item.babyid}}</text>
+            <text class="desc">{{item.title}}</text>
+        </div>
+        <img class="share" src="../../imgs/icon/icon-share.png" @click="share" />
+    </div>
+    <div class="row_container">
+        <div class="row_item small_row">
+            <div class="label"><text>累计转发助力：1500次</text></div>
+        </div>
+        <div class="row_item small_row">
+            <div class="label"><text>累计曝光助力：10,000次</text></div>
+        </div>
+    </div>
 
+    <div class="row_container">
+        <div class="row_item border">
+            <div class="label">基础信息</div>
+        </div>
+        <div class="row_item border">
+            <div class="label"><text>性别：</text></div>
+            <div class="value"><text>{{ item.gender==2?'女':'男' }}</text></div>
+        </div>
+        <div class="row_item border">
+            <div class="label"><text>出生日期：</text></div>
+            <div class="value"><text>{{ParseTime(item.missed_at,'{y}-{m}-{d}')}}</text></div>
+        </div>
+        <div class="row_item border">
+            <div class="label"><text>户籍地点：中国广东深圳南山区粤海街道办1001号</text></div>
+        </div>
+    </div>
+    <div class="photos_container">
+        <div class="photos_list">
+            <div class="photo_item" :key="index" v-for="(photo,index) of [item.avatar_url,item.avatar_url,item.avatar_url,item.avatar_url,item.avatar_url,item.avatar_url]">
+                <img :src="photo" mode="scaleToFill" class="photo" @click="previewImage([item.avatar_url,item.avatar_url,item.avatar_url,item.avatar_url,item.avatar_url,item.avatar_url],index)" />
+            </div>
+        </div>
+        <div class="desc"><text>左右滑动查看图片</text></div>
+    </div>
+    <div class="row_container">
+        <div class="row_item border">
+            <div class="label">失踪信息</div>
+        </div>
+        <div class="row_item border">
+            <div class="label"><text>寻亲编号：</text></div>
+            <div class="value"><text>{{item.babyid}}</text></div>
+        </div>
+        <div class="row_item border">
+            <div class="label"><text>寻亲类别：</text></div>
+            <div class="value"><text>{{item.category}}</text></div>
+        </div>
+        <div class="row_item border">
+            <div class="label"><text>信息来源：</text></div>
+            <div class="value"><text>{{item.data_from}}</text></div>
+        </div>
+        <div class="row_item border">
+            <div class="label"><text>跟进志愿者：</text></div>
+            <div class="value"><text>{{item.details}}</text></div>
+        </div>
+    </div>
 
-    <img class="bg" src=""/>
-    <img class="head" :src="item.avatar_url" />
-
-    <view class="name">{{item.nickname}}</view>
-    <view class="id">档案ID：{{item.babyid}}</view>
-
-        <view class="info">
-            <view class="info-item">
-                <view class="info-title">性别</view>
-                <view class="info-content">{{item.gender}}</view>
-            </view>
-            <view class="info-item">
-                <view class="info-title">出生日期</view>
-                <view class="info-content">{{item.birthed_at}}</view>
-            </view>
-            <view class="info-item">
-                <view class="info-title">户籍地点</view>
-                <view class="info-content">
-                  {{item.birthed_province + item.birthed_city + item.birthed_country}}
-                </view>
-            </view>
-        </view>
-
-
-              <view class="tag">失踪时信息</view>
-        <view class="info">
-            <view class="info-item">
-                <view class="info-title">失踪时间</view>
-                <view class="info-content">{{item.missed_at}}</view>
-            </view>
-            <view class="info-item">
-                <view class="info-title">失踪地点</view>
-                <view class="info-content">{{item.missed_address}}</view>
-            </view>
-            <view class="info-item">
-                <view class="info-title">失踪时身高</view>
-                <view class="info-content">{{item.Height}}</view>
-            </view>
-            <view class="info-item feature">
-                <view class="info-title">失踪人特征</view>
-                <view class="info-content">{{item.subject}}</view>
-            </view>
-        </view>
-
-                <view class="tag">寻亲信息</view>
-        <view class="info">
-            <view class="info-item">
-                <view class="info-title">寻亲编号</view>
-                <view class="info-content">{{item.babyid}}</view>
-            </view>
-            <view class="info-item">
-                <view class="info-title">寻亲类别</view>
-                <view class="info-content">{{item.category}}</view>
-            </view>
-            <view class="info-item feature">
-                <view class="info-title">信息来源</view>
-                <view class="info-content" @tap="handleLongPress">{{item.data_from}}</view>
-            </view>
-            <view class="info-item">
-                <view class="info-title">跟进志愿者</view>
-                <view class="info-content">{{item.volunteer}}</view>
-            </view>
-        </view>
-
-        <view class="tag">其他资料</view>
-        <view class="info">
-            <view class="info-item feature">
-                <view class="info-title">其他资料</view>
-                <view class="info-content">{{item.details}}</view>
-            </view>
-        </view>
+    <div class="row_container">
+        <div class="row_item border">
+            <div class="label">其他资料</div>
+        </div>
+        <div class="row_item border">
+            <div class="label"><text>其他线索：</text></div>
+            <div class="value"><text></text></div>
+        </div>
+        <div class="row_item border">
+            <div class="label"><text>跟进进度：</text></div>
+            <div class="value"><text></text></div>
+        </div>
+    </div>
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
+import { ParseTime } from '../common/utils'
 
 export default Vue.extend({
   name: 'ShowArticle',
@@ -98,12 +98,7 @@ export default Vue.extend({
     })
   },
   methods: {
-    onClickBack() {
-      console.log('onClickBack')
-    },
-    handleLongPress() {
-      console.log('handleLongPress')
-    },
+    ParseTime,
     jumpToDetail(jurl) {
       this.url = '/article/111?data={aaa=11,bb=22}'
       console.log('xxxurl', jurl)
@@ -122,99 +117,135 @@ export default Vue.extend({
         }
         return null
       }
+    },
+    previewImage(list,current){
+        if (!current) current = 0
+        wx.previewImage({
+           current: current,
+           urls: list
+        })
     }
   },
 })
 </script>
 
-<style lang="less">
-    .bg {
-        width: 100%;
-        position: absolute;
-        z-index: 1;
-        height: 140px;
-        top: 0;
-    }
-    .head {
-        display: block;
-        z-index: 2;
-        margin: 13px auto 0;
-        width: 110px;
-        height: 110px;
-        border-radius: 110px;
-    }
-    .name {
-        display: block;
-        z-index: 2;
-        margin-top: 20px;
-        width: 100%;
-        text-align: center;
-        font-family: PingFangSC-Regular;
-        font-size: 16px;
-        color: #4A4A4A;
-        letter-spacing: 0;
-        line-height: 22px;
-    }
-    .id {
-        display: block;
-        z-index: 2;
-        margin-top: 20px;
-        margin-bottom: 13px;
-        width: 100%;
-        text-align: center;
-        font-family: PingFangSC-Light;
-        font-size: 12px;
-        color: #4A4A4A;
-        letter-spacing: 0;
-        line-height: 22px;
-    }
-    .info {
-        margin-bottom: 24px;
-        width: 100%;
-        border-top: .5px solid #DCDEDF;
-        background: white;
-    }
-    .info-item {
-        width: 100%;
-        min-height: 50px;
+<style lang="less"> 
+
+    .basefirst{
         position: relative;
-        border-bottom: .5px solid #DCDEDF;
-    }
-    .info-title {
-        position: absolute;
-        left: 17px;
-        font-family: PingFangSC-Regular;
-        font-size: 16px;
-        color: #4A4A4A;
-        letter-spacing: 0;
-        line-height: 50px;
-    }
-    .info-content {
-        margin-left: 135px;
-        font-family: PingFangSC-Regular;
-        font-size: 14px;
-        color: #737B7F;
-        letter-spacing: 0;
-        line-height: 50px;
-        text-align: right;
-        width: 226px;
-        word-wrap: break-word;
-    }
-    .feature {
-        min-height: 50px;
-        .info-content {
-            padding-top: 10px;
-            padding-bottom: 10px;
-            line-height: 20px;
+        background: #FFFFFF;
+        width: 100%;
+        height: 140rpx;
+        .avatar{
+            position: absolute;
+            left: 20rpx;
+            top: 20rpx;
+            width: 100rpx;
+            height: 100rpx;
+        }
+        .name_cntent{
+            position: absolute;
+            top: 20rpx;
+            left: 140rpx;
+            .name {
+                 font-family: PingFangSC;
+                font-size: 26rpx;
+                color: #000000;
+            }
+            .desc{
+                font-family: PingFangSC;
+                font-size: 24rpx;
+                text-align: justify;
+                color: #000000;
+                mix-blend-mode: normal;
+                opacity: 0.3;
+                width: 500rpx;
+            }
+        }
+        .share{
+           top: 45rpx;
+           right: 30rpx;
+           width: 50rpx;
+           height: 50rpx;
+           position: absolute;
         }
     }
-    .tag {
-        margin-bottom: 8px;
-        line-height: 20px;
-        margin-left: 17px;
-        font-family: PingFangSC-Light;
-        font-size: 14px;
-        color: #454F55;
-        letter-spacing: 0;
+    .row_container{
+        background: #FFFFFF;
+        margin-bottom: 10rpx;
+        .row_item{
+            width: 100%;
+            line-height: 80rpx;
+            min-height: 80rpx;
+            font-family: PingFangSC;
+            font-size: 24rpx;
+            color: #000000;
+            mix-blend-mode: normal;
+            opacity: 0.5;
+            clear: both;
+            .label{
+                float: left;
+                margin-top: 20rpx;
+                margin-left: 20rpx;
+                line-height: 40rpx;
+                min-width: 150rpx;
+            }
+            .value{
+                float: left;
+                margin-top: 20rpx;
+                margin-left: 5rpx;
+                width: 550rpx;
+                white-space: pre-wrap;
+                line-height: 40rpx;
+            }
+        }
+        .row_item::after{
+            content: "";
+            display: block;
+            clear: both;
+        }
+        .small_row{
+            line-height: 50rpx;
+            height: 50rpx;
+        }
+        .border {
+            border-bottom: 1px solid #f5f6f6;
+        }
     }
+
+    .photos_container{
+        background: #FFFFFF;
+        margin-bottom: 10rpx;
+        padding: 10rpx 20rpx 10rpx 20rpx;
+        .photos_list{
+            white-space: nowrap;
+            overflow-x: scroll;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling:touch;
+            height:190rpx;
+            ::-webkit-scrollbar{
+                display: none;
+            }
+            .photo_item{
+                display: inline-block;
+                margin-right: 20rpx;
+                .photo{
+                    width: 250rpx;
+                    height: 180rpx;
+                    border-radius: 10rpx;
+                }
+            }
+
+           
+        }
+        .desc{
+            text-align: center;
+            font-family: PingFangSC;
+            font-size: 20rpx;
+            color: #000000;
+            mix-blend-mode: normal;
+            opacity: 0.5;
+        }
+    }
+    
 </style>

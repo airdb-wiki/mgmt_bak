@@ -64,3 +64,58 @@ export function downLoadAndUpdate(updateManager) {
     })
   })
 }
+
+
+export function ParseTime(time, cFormat) {
+  /**
+   * @description 格式化时间
+   * @param {Object} ParseTime
+   */
+  if (arguments.length === 0) {
+    return null
+  }
+  const format = cFormat || '{y}-{m}-{d} {h}:{i}:{s}'
+  let date
+  if (typeof time === 'object') {
+    date = time
+  } else {
+    if (typeof time === 'string') {
+      if (/^[0-9]+$/.test(time)) {
+        time = parseInt(time)
+      }
+      //处理特殊的多余字符串 - GOLANG 中默认JSON 序列化-> 2020-05-06T12:12:12.555Z
+      time = time.replace('T', ' ')
+      time = time.replace('Z', '')
+      //处理IOS中不兼容问题 对于字符串的格式有要求 必须 yyyy/mm/dd 或者 yyyy/mm/dd hh:MM:ss
+      time = time.replace(/-/g, '/')
+      if (time.indexOf('.') > -1) { // 2020/05/06 12:12:12.555 -> 2020/05/06 12:12:12
+        time = time.substring(0, time.indexOf('.'))
+      }
+    }
+    if (typeof time === 'number' && time.toString().length === 10) {
+      time = time * 1000
+    }
+    date = new Date(time)
+  }
+  const formatObj = {
+    y: date.getFullYear(),
+    m: date.getMonth() + 1,
+    d: date.getDate(),
+    h: date.getHours(),
+    i: date.getMinutes(),
+    s: date.getSeconds(),
+    a: date.getDay()
+  }
+  const time_str = format.replace(/{(y|m|d|h|i|s|a)+}/g, (result, key) => {
+    let value = formatObj[key]
+    // Note: getDay() returns 0 on Sunday
+    if (key === 'a') {
+      return ['日', '一', '二', '三', '四', '五', '六'][value]
+    }
+    if (result.length > 0 && value < 10) {
+      value = '0' + value
+    }
+    return value || 0
+  })
+  return time_str
+}
