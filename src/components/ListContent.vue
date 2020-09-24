@@ -59,7 +59,8 @@ export default Vue.extend({
       // this.url = '/article/111?data='
       console.log('xxxurl', jurl)
       // window.location.href = '/article/111'
-      window.location.href = jurl
+      //window.location.href = jurl
+      window.open(jurl)
     },
     share(article) {
       window.onShareAppMessage = (res) => {
