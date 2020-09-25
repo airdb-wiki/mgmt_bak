@@ -19,16 +19,17 @@
         </div>
         <div class="article_other">
           <div class="like">
-            <img class="img" src="http://static.gocoder.top/like.png" alt="" mode="widthFix">
-            {{item.likenum}}
+            <img class="img" src="https://wechat-1251018873.cos.ap-shanghai.myqcloud.com/images/view.png" alt="" mode="widthFix">
+            {{item.view_num}}
           </div>
           <div class="acticle_comments">
-            <img class="img" src="http://static.gocoder.top/comment.png" style="" alt="" mode="widthFix" >
-            {{item.cmtnum}}
+            <img class="img" src="https://wechat-1251018873.cos.ap-shanghai.myqcloud.com/images/comment.png" style="" alt="" mode="widthFix" >
+            {{item.comment_num}}
           </div>
           <div class="acticle_share">
             <wx-button open-type="share" @click="share(item)" style="background:#fff">
-              <img class="img" src="http://static.gocoder.top/share.png" style="" alt="" mode="widthFix">
+              <img class="img" src="https://wechat-1251018873.cos.ap-shanghai.myqcloud.com/images/share.png" style="" alt="" mode="widthFix">
+              {{item.share_num}}
             </wx-button>
           </div>
         </div>
@@ -59,7 +60,7 @@ export default Vue.extend({
       // this.url = '/article/111?data='
       console.log('xxxurl', jurl)
       // window.location.href = '/article/111'
-      //window.location.href = jurl
+      // window.location.href = jurl
       window.open(jurl)
     },
     share(article) {
