@@ -30,7 +30,15 @@
             <div class="value"><text>{{ParseTime(item.missed_at,'{y}-{m}-{d}')}}</text></div>
         </div>
         <div class="row_item border">
-            <div class="label"><text>户籍地点：中国广东深圳南山区粤海街道办1001号</text></div>
+            <div class="label"><text>寻亲编号：</text></div>
+            <div class="value"><text>{{item.babyid}}</text></div>
+        </div>
+        <div class="row_item border">
+            <div class="label"><text>寻亲类别：</text></div>
+            <div class="value"><text>{{item.category}}</text></div>
+        </div>
+        <div class="row_item border">
+            <div class="label"><text>户籍地点：{{item.missed_province}}-{{item.missed_city}}-{{item.missed_address}}</text></div>
         </div>
     </div>
     <div class="photos_container">
@@ -44,14 +52,6 @@
     <div class="row_container">
         <div class="row_item border">
             <div class="label">失踪信息</div>
-        </div>
-        <div class="row_item border">
-            <div class="label"><text>寻亲编号：</text></div>
-            <div class="value"><text>{{item.babyid}}</text></div>
-        </div>
-        <div class="row_item border">
-            <div class="label"><text>寻亲类别：</text></div>
-            <div class="value"><text>{{item.category}}</text></div>
         </div>
         <div class="row_item border">
             <div class="label"><text>信息来源：</text></div>
