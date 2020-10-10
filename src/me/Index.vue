@@ -40,6 +40,10 @@
          <!-- 暂时不开启 show-message-card 功能 -->
          <KButton type="primary" open-type="contact" :show-message-card=false>联系我们</KButton>
        </KButtonArea>
+
+        <view class="adContainer">
+          <ad unit-id="adunit-e82a81fc9dc7469c" ad-intervals="30"></ad>
+        </view>
     </view>
 </template>
 <script>
@@ -56,6 +60,8 @@ export default Vue.extend({
       historyImg: 'https://wechat-1251018873.file.myqcloud.com/images/me/history.png',
       headUrl: '',
       nickName: '',
+      id: 'hello',
+      url: 'https://mp.weixin.qq.com/s/11FU2onYf_8Mjj-uJkrJiQ',
       isAuthShow: 'show'
     }
   },
@@ -83,6 +89,11 @@ export default Vue.extend({
     setting() {
       console.log('xx')
       wx.openSetting()
+    },
+    jumpToDetail() {
+      // let url = 'https://mp.weixin.qq.com/s/11FU2onYf_8Mjj-uJkrJiQ'
+      console.log('xxxx')
+      // window.location.href = url
     },
     hello() {
       console.log('xxxaa')
@@ -178,6 +189,11 @@ export default Vue.extend({
             top: 34rpx;
             right: 32rpx;
         }
+    }
+
+    /* 外层组件的宽度可设置成100%或具体数值 */
+    .adContainer {
+      width: 100%;
     }
 
 </style>
