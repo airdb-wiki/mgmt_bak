@@ -43,8 +43,8 @@
     </div>
     <div class="photos_container">
         <div class="photos_list">
-            <div class="photo_item" :key="index" v-for="(photo,index) of [item.avatar_url,item.avatar_url,item.avatar_url,item.avatar_url,item.avatar_url,item.avatar_url]">
-                <img :src="photo" mode="scaleToFill" class="photo" @click="previewImage([item.avatar_url,item.avatar_url,item.avatar_url,item.avatar_url,item.avatar_url,item.avatar_url],index)" />
+            <div class="photo_item" :key="index" v-for="(photo,index) in item.images">
+                <img :src="photo" mode="scaleToFill" class="photo" @click="previewImage(item.images, index)" />
             </div>
         </div>
         <div class="desc"><text>左右滑动查看图片</text></div>
