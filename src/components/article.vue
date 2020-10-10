@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="basefirst">
-        <img :src="item.AvatarURL" mode="scaleToFill" class="avatar" @click="previewImage([item.avatar_url])" />
+        <img :src="item.avatar_url" mode="scaleToFill" class="avatar" @click="previewImage([item.avatar_url])" />
         <div class="name_cntent">
             <text class="name">{{item.nickname}}&nbsp;&nbsp;{{item.babyid}}</text>
             <text class="desc">{{item.title}}</text>
