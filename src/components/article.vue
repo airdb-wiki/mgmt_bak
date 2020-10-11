@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="basefirst">
-        <img :src="item.avatar_url" mode="scaleToFill" class="avatar" @click="previewImage([item.avatar_url])" />
+        <img :src="avatar" mode="scaleToFill" class="avatar" />
         <div class="name_cntent">
             <text class="name">{{item.nickname}}&nbsp;&nbsp;{{item.babyid}}</text>
             <text class="desc">{{item.title}}</text>
@@ -44,7 +44,8 @@
     <div class="photos_container">
         <div class="photos_list">
             <div class="photo_item" :key="index" v-for="(photo,index) in item.images">
-                <img :src="photo" mode="scaleToFill" class="photo" @click="previewImage(item.images, index)" />
+                <img :src="photo" mode="scaleToFill" class="photo" 
+                     @click="previewImage(item.images, index)" />
             </div>
         </div>
         <div class="desc"><text>左右滑动查看图片</text></div>
@@ -87,10 +88,15 @@ export default Vue.extend({
   name: 'ShowArticle',
   props: ['item'],
   data() {
-    return {}
+    return {
+      avatar: 'https://wechat-1251018873.cos.ap-shanghai.myqcloud.com/mina/base/forward/home1.jpg',
+    }
   },
   created() {
     console.log('xxxxxxxxxxxxxcomponent_article', this.item)
+    if (this.item.images !== undefined) {
+      this.avatar = this.item.images[0]
+    }
     // window.addEventListener('wxshow', (options) => console.log('wxshow:', options))
     wx.showShareMenu({
       withShareTicket: true,
@@ -118,19 +124,18 @@ export default Vue.extend({
         return null
       }
     },
-    previewImage(list,current){
-        if (!current) current = 0
-        wx.previewImage({
-           current: current,
-           urls: list
-        })
+    previewImage(list, current) {
+      if (!current) current = 0
+      wx.previewImage({
+        current: current,
+        urls: list
+      })
     }
   },
 })
 </script>
 
-<style lang="less"> 
-
+<style lang="less">
     .basefirst{
         position: relative;
         background: #FFFFFF;
@@ -235,8 +240,6 @@ export default Vue.extend({
                     border-radius: 10rpx;
                 }
             }
-
-           
         }
         .desc{
             text-align: center;
@@ -247,5 +250,4 @@ export default Vue.extend({
             opacity: 0.5;
         }
     }
-    
 </style>

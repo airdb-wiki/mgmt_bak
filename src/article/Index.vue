@@ -16,16 +16,17 @@
     <wx-button @click="onClickBack">下一页</wx-button>
     </Footer>
     <article class="content" v-html="article.content">
-    </article> 
+    </article>
   </div>-->
 </template>
 
 <script>
-import Vue from "vue";
-import ShowArticle from "../components/article.vue";
+import Vue from 'vue'
+import ShowArticle from '../components/article.vue'
 import { articleDetail } from '../api/commont'
+
 export default Vue.extend({
-  name: "ArticleShow",
+  name: 'ArticleShow',
   // props: ['article'],
   components: {
     ShowArticle,
@@ -61,20 +62,20 @@ export default Vue.extend({
         // Height: "未知",
         // sync_status: 0,
       },
-    };
+    }
   },
   created() {
     // this.article = article
-    console.log("xxx", this.article);
-    console.log("xxx article onload", this.$route.params.id);
-    console.log("xxx article onload", this.$route.params.data);
+    console.log('xxx', this.article)
+    console.log('xxx article onload', this.$route.params.id)
+    console.log('xxx article onload', this.$route.params.data)
     // this.detail = article
     // 页面创建时取到文章的ID
-    this.articleId = this.$route.params.id;
+    this.articleId = this.$route.params.id
     // 组装URL
-    this.url = this.url + this.articleId;
+    this.url = this.url + this.articleId
     // 开启分享
-    this.openShare(this.articleId);
+    this.openShare(this.articleId)
 
     articleDetail(this.$route.params.id).then((res) => {
       console.log('article detail ---->', res.data.article)
@@ -85,26 +86,26 @@ export default Vue.extend({
   },
   methods: {
     openShare(articleId) {
-      console.log(articleId);
+      console.log(articleId)
       wx.showShareMenu({
         withShareTicket: true,
-        menus: ["shareAppMessage", "shareTimeline"],
-      });
+        menus: ['shareAppMessage', 'shareTimeline'],
+      })
       window.onShareAppMessage = (res) => {
-        console.log(res);
+        console.log(res)
         return {
           path: `/article/${articleId}`,
-        };
-      };
+        }
+      }
       window.onShareTimeline = (res) => {
-        console.log(res);
+        console.log(res)
         return {
           path: `/article/${articleId}`,
-        };
-      };
+        }
+      }
     },
   },
-});
+})
 </script>
 
 <style lang="less">
