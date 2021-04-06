@@ -42,7 +42,7 @@
        </KButtonArea>
 
         <view class="adContainer">
-          <ad unit-id="adunit-e82a81fc9dc7469c" ad-intervals="30"></ad>
+          <wx-ad unit-id="adunit-6a89174cc83e227f" ad-intervals="30"></wx-ad>
         </view>
     </view>
 </template>

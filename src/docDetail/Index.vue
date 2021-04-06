@@ -8,7 +8,7 @@
 import Vue from 'vue'
 
 const docUrl = {
-  docs: 'https://bbs.baobeihuijia.com',
+  docs: 'https://www.airdb.com/howto',
   docscn: 'https://www.airdb.com/howto',
 }
 

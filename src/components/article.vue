@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="basefirst">
-        <img :src="item.avatar_url" mode="scaleToFill" class="avatar" @click="previewImage([item.avatar_url])" />
+        <img :src="avatar" mode="scaleToFill" class="avatar" />
         <div class="name_cntent">
             <text class="name">{{item.nickname}}&nbsp;&nbsp;{{item.babyid}}</text>
             <text class="desc">{{item.title}}</text>
@@ -30,13 +30,22 @@
             <div class="value"><text>{{ParseTime(item.missed_at,'{y}-{m}-{d}')}}</text></div>
         </div>
         <div class="row_item border">
-            <div class="label"><text>户籍地点：中国广东深圳南山区粤海街道办1001号</text></div>
+            <div class="label"><text>寻亲编号：</text></div>
+            <div class="value"><text>{{item.babyid}}</text></div>
+        </div>
+        <div class="row_item border">
+            <div class="label"><text>寻亲类别：</text></div>
+            <div class="value"><text>{{item.category}}</text></div>
+        </div>
+        <div class="row_item border">
+            <div class="label"><text>户籍地点：{{item.missed_province}}-{{item.missed_city}}-{{item.missed_address}}</text></div>
         </div>
     </div>
     <div class="photos_container">
         <div class="photos_list">
-            <div class="photo_item" :key="index" v-for="(photo,index) of [item.avatar_url,item.avatar_url,item.avatar_url,item.avatar_url,item.avatar_url,item.avatar_url]">
-                <img :src="photo" mode="scaleToFill" class="photo" @click="previewImage([item.avatar_url,item.avatar_url,item.avatar_url,item.avatar_url,item.avatar_url,item.avatar_url],index)" />
+            <div class="photo_item" :key="index" v-for="(photo,index) in item.images">
+                <img :src="photo" mode="scaleToFill" class="photo" 
+                     @click="previewImage(item.images, index)" />
             </div>
         </div>
         <div class="desc"><text>左右滑动查看图片</text></div>
@@ -44,14 +53,6 @@
     <div class="row_container">
         <div class="row_item border">
             <div class="label">失踪信息</div>
-        </div>
-        <div class="row_item border">
-            <div class="label"><text>寻亲编号：</text></div>
-            <div class="value"><text>{{item.babyid}}</text></div>
-        </div>
-        <div class="row_item border">
-            <div class="label"><text>寻亲类别：</text></div>
-            <div class="value"><text>{{item.category}}</text></div>
         </div>
         <div class="row_item border">
             <div class="label"><text>信息来源：</text></div>
@@ -87,10 +88,15 @@ export default Vue.extend({
   name: 'ShowArticle',
   props: ['item'],
   data() {
-    return {}
+    return {
+      avatar: 'https://wechat-1251018873.cos.ap-shanghai.myqcloud.com/mina/base/forward/home1.jpg',
+    }
   },
   created() {
     console.log('xxxxxxxxxxxxxcomponent_article', this.item)
+    if (this.item.images !== undefined) {
+      this.avatar = this.item.images[0]
+    }
     // window.addEventListener('wxshow', (options) => console.log('wxshow:', options))
     wx.showShareMenu({
       withShareTicket: true,
@@ -118,19 +124,18 @@ export default Vue.extend({
         return null
       }
     },
-    previewImage(list,current){
-        if (!current) current = 0
-        wx.previewImage({
-           current: current,
-           urls: list
-        })
+    previewImage(list, current) {
+      if (!current) current = 0
+      wx.previewImage({
+        current: current,
+        urls: list
+      })
     }
   },
 })
 </script>
 
-<style lang="less"> 
-
+<style lang="less">
     .basefirst{
         position: relative;
         background: #FFFFFF;
@@ -235,8 +240,6 @@ export default Vue.extend({
                     border-radius: 10rpx;
                 }
             }
-
-           
         }
         .desc{
             text-align: center;
@@ -247,5 +250,4 @@ export default Vue.extend({
             opacity: 0.5;
         }
     }
-    
 </style>

@@ -83,7 +83,7 @@ export function ParseTime(time, cFormat) {
       if (/^[0-9]+$/.test(time)) {
         time = parseInt(time)
       }
-      //处理特殊的多余字符串 - GOLANG 中默认JSON 序列化-> 2020-05-06T12:12:12.555Z
+      // 处理特殊的多余字符串 - GOLANG 中默认JSON 序列化-> 2020-05-06T12:12:12.555Z
       time = time.replace('T', ' ')
       time = time.replace('Z', '')
       //处理IOS中不兼容问题 对于字符串的格式有要求 必须 yyyy/mm/dd 或者 yyyy/mm/dd hh:MM:ss
@@ -93,7 +93,7 @@ export function ParseTime(time, cFormat) {
       }
     }
     if (typeof time === 'number' && time.toString().length === 10) {
-      time = time * 1000
+      time *= 1000
     }
     date = new Date(time)
   }
@@ -106,7 +106,7 @@ export function ParseTime(time, cFormat) {
     s: date.getSeconds(),
     a: date.getDay()
   }
-  const time_str = format.replace(/{(y|m|d|h|i|s|a)+}/g, (result, key) => {
+  const timeStr = format.replace(/{(y|m|d|h|i|s|a)+}/g, (result, key) => {
     let value = formatObj[key]
     // Note: getDay() returns 0 on Sunday
     if (key === 'a') {
@@ -117,5 +117,5 @@ export function ParseTime(time, cFormat) {
     }
     return value || 0
   })
-  return time_str
+  return timeStr
 }
