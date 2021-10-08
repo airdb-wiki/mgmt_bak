@@ -1,31 +1,31 @@
 {
   "compilerOptions": {
-    "module": "esnext",
-    "target": "es2015",
-    "lib": ["es2015", "es2017", "dom"],
-    "noImplicitAny": false,
+    "target": "es2017",
+    "module": "commonjs",
+    "removeComments": false,
+    "preserveConstEnums": true,
     "moduleResolution": "node",
-    "sourceMap": true,
-    "outDir": "app",
-    "baseUrl": ".",
-    "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata":true,
-    "esModuleInterop": true,
+    "noImplicitAny": false,
+    "allowSyntheticDefaultImports": true,
+    "outDir": "lib",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strictNullChecks": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "rootDir": ".",
+    "jsx": "react-jsx",
+    "allowJs": true,
     "resolveJsonModule": true,
-    "paths": {
-      "*": [
-        "node_modules/*",
-        "src/@types/*",
-        "protobuf/@types/*"
-      ],
-      "@src/client/*":["src/client/*"]
-    }
+    "typeRoots": [
+      "node_modules/@types",
+      "global.d.ts"
+    ]
   },
-  "include": [
-    "src/**/*"
-  ],
   "exclude": [
-    "./node_modules/*"
-  ]
+    "node_modules",
+    "dist"
+  ],
+  "compileOnSave": false
 }
