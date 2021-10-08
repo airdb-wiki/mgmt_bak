@@ -36,6 +36,13 @@ export default {
       ],
     };
   },
+  methods: {
+    onShareAppMessage() {
+      return {
+        title: "xx",
+      };
+    },
+  },
 };
 </script>
 

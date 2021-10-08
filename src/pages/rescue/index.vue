@@ -15,5 +15,12 @@ export default {
       msg,
     };
   },
+  methods: {
+    onShareAppMessage() {
+      return {
+        title: "xx",
+      };
+    },
+  },
 };
 </script>

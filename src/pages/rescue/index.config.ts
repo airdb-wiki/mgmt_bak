@@ -1,3 +1,4 @@
 export default {
-  navigationBarTitleText: '救助站'
+  navigationBarTitleText: '救助站',
+  enableShareAppMessage: true
 }
