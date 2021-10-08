@@ -1,49 +1,48 @@
 <template>
   <view class="page_me">
-    <img class="bg" :src="bgImg" />
+    <image class="bg" :src="bgImg" />
     <view class="baseinfo1">
       <!-- <image class="head" src="{{headUrl}}"/> -->
-      <wx-open-data class="head" type="userAvatarUrl"></wx-open-data>
+      <open-data class="head" type="userAvatarUrl"></open-data>
       <view class="name">
-        <wx-open-data type="userNickName"></wx-open-data>
+        <open-data type="userNickName"></open-data>
       </view>
     </view>
 
     <view class="info">
       <view class="info-item">
-        <wx-image class="item-icon" :src="followImg" />
+        <image class="item-icon" :src="followImg" />
         <view class="info-title">我跟踪的</view>
-        <img class="right-icon" :src="narrowImg" />
+        <image class="right-icon" :src="narrowImg" />
       </view>
       <view class="info-item">
-        <img class="item-icon" :src="historyImg" />
+        <image class="item-icon" :src="historyImg" />
         <view class="info-title">浏览记录</view>
-        <img class="right-icon" :src="narrowImg" />
+        <image class="right-icon" :src="narrowImg" />
       </view>
 
       <view class="info-item" @click.stop="hello">
-        <img class="item-icon" :src="historyImg" />
+        <image class="item-icon" :src="historyImg" />
         <view class="info-title">联系我们</view>
-        <img class="right-icon" :src="narrowImg" />
+        <image class="right-icon" :src="narrowImg" />
       </view>
 
       <view class="info-item" @click.stop="setting">
-        <img class="item-icon" :src="historyImg" />
+        <image class="item-icon" :src="historyImg" />
         <view class="info-title">设置</view>
-        <img class="right-icon" :src="narrowImg" />
+        <image class="right-icon" :src="narrowImg" />
       </view>
     </view>
-    <!-- <confirm-auth isShow='false'/> -->
-
-    <KButtonArea>
-      <!-- 暂时不开启 show-message-card 功能 -->
-      <KButton type="primary" open-type="contact" :show-message-card="false"
-        >联系我们</KButton
-      >
-    </KButtonArea>
+    <button
+      type="primary"
+      :show-message-card="false"
+      bindcontact="handleContact"
+    >
+      联系客服
+    </button>
 
     <view class="adContainer">
-      <wx-ad unit-id="adunit-6a89174cc83e227f" ad-intervals="30"></wx-ad>
+      <ad unit-id="adunit-6a89174cc83e227f" ad-intervals="30"></ad>
     </view>
   </view>
 </template>
@@ -58,6 +57,43 @@ export default {
     return {
       msg,
     };
+  },
+  data() {
+    return {
+      bgImg: "https://wechat-1251018873.file.myqcloud.com/images/bg.png",
+      followImg:
+        "https://wechat-1251018873.file.myqcloud.com/images/me/follow.png",
+      narrowImg:
+        "https://wechat-1251018873.file.myqcloud.com/images/narrow.png",
+      historyImg:
+        "https://wechat-1251018873.file.myqcloud.com/images/me/history.png",
+    };
+  },
+  methods: {
+    setting() {
+      console.log("xx");
+      wx.openSetting();
+    },
+    handleContact() {
+      console.log(e.detail.path);
+      console.log(e.detail.query);
+      taro.openCustomerServiceChat({
+        extInfo: { url: "https://work.weixin.qq.com/kfid/kfc02343d9ba414880a" },
+        corpId: "wx4aaa3fe59423b402",
+        success(res) {
+          console.log("xx");
+          wx.showToast({
+            title: "title",
+          });
+        },
+        fail(res) {
+          console.log("xxfail");
+          wx.showToast({
+            title: "fail",
+          });
+        },
+      });
+    },
   },
 };
 </script>
@@ -123,7 +159,7 @@ export default {
   }
   .info-title {
     position: absolute;
-    left: 54px;
+    left: 75px;
     font-family: PingFangSC-Regular;
     font-size: 32rpx;
     color: #4a4a4a;
