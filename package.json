@@ -39,22 +39,23 @@
     "@tarojs/components": "3.3.9",
     "@tarojs/runtime": "3.3.9",
     "@tarojs/taro": "3.3.9",
+    "taro-ui": "^2.3.4",
     "vue": "^3.0.0"
   },
   "devDependencies": {
-    "@types/webpack-env": "^1.13.6",
-    "@tarojs/mini-runner": "3.3.9",
     "@babel/core": "^7.8.0",
+    "@tarojs/mini-runner": "3.3.9",
     "@tarojs/webpack-runner": "3.3.9",
-    "babel-preset-taro": "3.3.9",
-    "@vue/compiler-sfc": "^3.0.0",
-    "vue-loader": "^16.0.0-beta.8",
-    "eslint-plugin-vue": "^7.0.0",
-    "eslint-config-taro": "3.3.9",
-    "eslint": "^6.8.0",
-    "stylelint": "9.3.0",
-    "@typescript-eslint/parser": "^4.15.1",
+    "@types/webpack-env": "^1.13.6",
     "@typescript-eslint/eslint-plugin": "^4.15.1",
-    "typescript": "^4.1.0"
+    "@typescript-eslint/parser": "^4.15.1",
+    "@vue/compiler-sfc": "^3.0.0",
+    "babel-preset-taro": "3.3.9",
+    "eslint": "^6.8.0",
+    "eslint-config-taro": "3.3.9",
+    "eslint-plugin-vue": "^7.0.0",
+    "stylelint": "9.3.0",
+    "typescript": "^4.1.0",
+    "vue-loader": "^16.0.0-beta.8"
   }
 }

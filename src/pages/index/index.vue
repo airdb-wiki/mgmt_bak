@@ -12,11 +12,18 @@
       <image :src="item" class="banner-item" mode="widthFix" />
     </swiper-item>
   </swiper>
+
+  <AtList>
+    <AtListItem title="标题文字" arrow="right" />11
+    <AtListItem title="标题文字" extraText="详细信息" />
+    <AtListItem title="禁用状态" disabled extraText="详细信息" />
+  </AtList>
 </template>
 
 <script>
 import { ref } from "vue";
 import "./index.less";
+import { AtList, AtListItem } from "taro-ui";
 
 export default {
   setup() {

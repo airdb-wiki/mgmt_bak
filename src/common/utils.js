@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/prefer-default-export
 export function mpAutoUpdate() {
     /**
      * @description 执行小程序自动更新
