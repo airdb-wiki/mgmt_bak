@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import { createUI } from 'taro-ui-vue3'
-import { Tab2, Contact, ListContent } from './components/index'
+import { NavBar, Contact, ListContent } from './components/index'
 
 import './app.less'
 
@@ -15,7 +15,7 @@ const App = createApp({
 const tuv3 = createUI()
 App.use(tuv3)
 
-App.component(Tab2.name, Tab2)
+App.component(NavBar.name, NavBar)
 App.component(Contact.name, Contact)
 App.component(ListContent.name, ListContent)
 

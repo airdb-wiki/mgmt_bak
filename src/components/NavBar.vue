@@ -1,5 +1,5 @@
 <template>
-  <AtSearchBar></AtSearchBar>
+  <AtSearchBar />
 
   <view class="self_tabs">
     <view class="tab_header">
@@ -44,7 +44,7 @@ import { AtButton, AtList, AtListItem, AtSearchBar } from "taro-ui-vue3";
 import { getArticles } from "../utils/api";
 
 export default defineComponent({
-  name: "Tab2",
+  name: "NavBar",
   components: {
     AtButton,
     AtList,

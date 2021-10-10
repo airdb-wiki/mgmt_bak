@@ -17,7 +17,7 @@
   <Contact></Contact>
 
   <!--List of lost info-->
-  <Tab2></Tab2>
+  <NavBar></NavBar>
 </template>
 
 <script>
