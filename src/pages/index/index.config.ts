@@ -1,4 +1,5 @@
 export default {
   navigationBarTitleText: '宝贝回家',
-  enableShareAppMessage: true
+  enableShareAppMessage: true,
+  enablePullDownRefresh: true
 }

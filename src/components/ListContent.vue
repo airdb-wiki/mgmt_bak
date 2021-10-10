@@ -1,6 +1,6 @@
 <template>
   <view class="listContent">
-    <view v-for="(item, index) in list" :key="index" class="article_list">
+    <AtList v-for="(item, index) in list" :key="index" class="article_list">
       <view class="article_list_item">
         <view
           class="article_detail"
@@ -14,7 +14,7 @@
           </view>
         </view>
       </view>
-    </view>
+    </AtList>
   </view>
 </template>
 
@@ -26,12 +26,14 @@ export default defineComponent({
   name: "ListContent",
   components: {
     AtButton,
+    AtList,
+    AtListItem,
   },
   data() {
     return {};
   },
   created() {
-    console.log("xxxxxxxxxxxxxxconponent_list_content", this.list);
+    console.log("xxxxxxxxxxxxxxcreated_list_content");
     // window.addEventListener('wxshow', (options) => console.log('wxshow:', options))
     wx.showShareMenu({
       withShareTicket: true,

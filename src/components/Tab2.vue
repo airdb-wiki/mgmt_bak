@@ -1,4 +1,6 @@
 <template>
+  <AtSearchBar></AtSearchBar>
+
   <view class="self_tabs">
     <view class="tab_header">
       <AtButton
@@ -38,7 +40,7 @@
 <script>
 import { computed, defineComponent, PropType, toRefs } from "vue";
 
-import { AtButton, AtList, AtListItem } from "taro-ui-vue3";
+import { AtButton, AtList, AtListItem, AtSearchBar } from "taro-ui-vue3";
 import { getArticles } from "../utils/api";
 
 export default defineComponent({
@@ -47,6 +49,7 @@ export default defineComponent({
     AtButton,
     AtList,
     AtListItem,
+    AtSearchBar,
   },
   data() {
     return {
@@ -81,7 +84,6 @@ export default defineComponent({
       this.actclieList = res.data.articles;
     });
 
-    /*
     // reach bottom envet 上拉触底查看历史
     window.addEventListener("reachbottom", (evt) => {
       console.log("reach_bottom", evt);
@@ -98,7 +100,6 @@ export default defineComponent({
     window.addEventListener("pulldownrefresh", (evt1) => {
       console.log("pull_down", evt1);
     });
-    */
   },
 });
 </script>
