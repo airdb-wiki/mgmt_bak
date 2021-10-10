@@ -1,6 +1,5 @@
 import Taro from "@tarojs/taro"
-import { pageToLogin } from "./utils"
-import { HTTP_STATUS } from './config'
+import { HTTP_STATUS, pageToLogin } from './http'
 
 const customInterceptor = (chain) => {
     const requestParams = chain.requestParams

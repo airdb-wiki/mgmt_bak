@@ -1,3 +1,5 @@
+import HTTPREQUEST from "./http"
+
 export function login(params) {
     /**
      * @description 登录
@@ -27,7 +29,8 @@ export function getArticles(pageNo) {
      */
     // return get('/articles', { page_no })
     const pageSize = 10
-    return get('/lost/list', { pageNo, pageSize })
+    console.log("xxx-request")
+    return HTTPREQUEST.get('/lost/list', { pageNo, pageSize })
 }
 
 export function articleDetail(id) {

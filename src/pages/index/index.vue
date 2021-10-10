@@ -13,15 +13,11 @@
     </swiper-item>
   </swiper>
 
-  <view>
-    <AtList>
-      <AtListItem title="标题文字" onClick="{this.handleClick}" />
-      <AtListItem title="标题文字" arrow="right" />
-      <AtListItem title="标题文字" extraText="详细信息" />
-      <AtListItem title="禁用状态" disabled extraText="详细信息" />
-    </AtList>
-  </view>
+  <!--Contact for phone calls-->
   <Contact></Contact>
+
+  <!--List of lost info-->
+  <Tab2></Tab2>
 </template>
 
 <script>

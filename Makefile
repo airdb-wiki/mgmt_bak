@@ -1,5 +1,5 @@
 install:
-	yarm install
+	yarn install
 	yarn add taro-ui-vue3
 
 dev:
