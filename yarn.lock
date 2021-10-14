@@ -9948,8 +9948,8 @@ taro-css-to-react-native@3.3.9:
 
 taro-ui-vue3@^1.0.0-alpha.21:
   version "1.0.0-alpha.21"
-  resolved "https://registry.yarnpkg.com/taro-ui-vue3/-/taro-ui-vue3-1.0.0-alpha.21.tgz#68037625ad0ea4a0e5d080bc82b131309e3ec254"
-  integrity sha512-3//e9gnd8VhG9913ifVZP1wwlE9i1iJwwaYkHhSFgD1RhZomHqN+nRBuzNmV+aYZzjpAYqLSpt0v7CHaIyQwdA==
+  resolved "https://registry.nlark.com/taro-ui-vue3/download/taro-ui-vue3-1.0.0-alpha.21.tgz#68037625ad0ea4a0e5d080bc82b131309e3ec254"
+  integrity sha1-aAN2Ja0OpKDl0IC8grExMJ4+wlQ=
   dependencies:
     dayjs "^1.8.29"
     lodash-es "^4.17.15"

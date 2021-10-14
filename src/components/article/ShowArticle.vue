@@ -82,9 +82,9 @@
 
 <script>
 import Vue from 'vue'
-import { ParseTime } from '../common/utils'
+import { ParseTime } from '../../common/utils'
 
-export default Vue.extend({
+export default {
   name: 'ShowArticle',
   props: ['item'],
   data() {
@@ -132,7 +132,7 @@ export default Vue.extend({
       })
     }
   },
-})
+}
 </script>
 
 <style lang="less">

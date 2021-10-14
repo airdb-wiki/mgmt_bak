@@ -1,11 +1,12 @@
 <template>
   <view class="listContent">
     <AtList v-for="(item, index) in list" :key="index" class="article_list">
+    <AtButton @click="jumpToDetail(1)">
       <view class="article_list_item">
         <view
           class="article_detail"
-          @click="jumpToDetail('/article/' + item.id)"
         >
+        <!-- onClick={this.jumpToDetail.bind(this,item.id)} -->
           <view class="artclie_text_msg">
             <view class="article_author">
               <view class="nickname">{{ item.nickname }}</view>
@@ -14,6 +15,7 @@
           </view>
         </view>
       </view>
+      </AtButton>
     </AtList>
   </view>
 </template>
@@ -21,6 +23,7 @@
 <script>
 import { computed, defineComponent, PropType, toRefs } from "vue";
 import { AtButton, AtList, AtListItem } from "taro-ui-vue3";
+import Taro from '@tarojs/taro';
 
 export default defineComponent({
   name: "ListContent",
@@ -41,12 +44,11 @@ export default defineComponent({
     });
   },
   methods: {
-    jumpToDetail(jurl) {
-      // this.url = '/article/111?data='
-      console.log("xxxurl", jurl);
-      // window.location.href = '/article/111'
-      // window.location.href = jurl
-      window.open(jurl);
+    jumpToDetail(id) {
+      Taro.navigateTo({
+		    url: '/pages/article/detail'
+        // url: 'pages/article/detail?id='+id
+		  })
     },
     share(article) {
       window.onShareAppMessage = (res) => {

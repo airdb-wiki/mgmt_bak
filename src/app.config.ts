@@ -2,7 +2,8 @@ export default {
   pages: [
     'pages/index/index',
     'pages/rescue/index',
-    'pages/me/index'
+    'pages/me/index',
+    'pages/article/detail'
   ],
   window: {
     backgroundTextStyle: 'light',
