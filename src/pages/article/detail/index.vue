@@ -6,8 +6,8 @@
 import { ref } from "vue";
 // 默认是 index
 // import ShowArticle from '../../../components/article/ShowArticle.vue';
-import Taro, { useRouter } from '@tarojs/taro'
-
+import Taro, { useRouter } from '@tarojs/taro';
+import {articleDetail} from '@utils/api.js';
 import "./index.less";
 export default {
   
@@ -30,7 +30,8 @@ export default {
   },
   mounted () {
     // 获取路由参数
-    console.log(this.$instance.router.params) // 输出 { id: 2, type: 'test' }
+    console.log(this.$instance.router.params.id) // 输出 { id: 2, type: 'test' }
+    articleDetail()
   },
    
 };
