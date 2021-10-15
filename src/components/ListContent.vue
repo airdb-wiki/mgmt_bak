@@ -46,7 +46,7 @@ export default defineComponent({
   methods: {
     jumpToDetail(id) {
       Taro.navigateTo({
-		    url: '/pages/article/detail'
+		    url: `/pages/article/detail/index?id=${id}`
         // url: 'pages/article/detail?id='+id
 		  })
     },
