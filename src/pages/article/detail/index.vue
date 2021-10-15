@@ -1,24 +1,25 @@
 <template>
   <!-- <ShowArticle></ShowArticle> -->
+  <view>
+    123123
+  </view>
 </template>
 
 <script>
-import { ref } from "vue";
-// 默认是 index
-// import ShowArticle from '../../../components/article/ShowArticle.vue';
+import { AtMessage } from 'taro-ui-vue3';
 import Taro, { useRouter } from '@tarojs/taro';
 import {articleDetail} from '@utils/api.js';
+
 import "./index.less";
 export default {
-  
+  // ShowArticle,
   components:{
-    // ShowArticle,
-  },
-  setup() {
-   
+    
   },
   data() {
-    return
+    return {
+
+    }
   },
   methods: {
       
@@ -30,8 +31,22 @@ export default {
   },
   mounted () {
     // 获取路由参数
-    console.log(this.$instance.router.params.id) // 输出 { id: 2, type: 'test' }
-    articleDetail()
+    let id = this.$instance.router.params.id;
+    Taro.atMessage({
+          message: '请选择文章',
+          type:'error',
+        });
+    console.log("id.length", id.length)
+    // if (id.length == 0 || id == ""|| id == " "){
+      
+    //   Taro.navigateTo({
+		//     url: '/pages/index/index'
+    //     // url: 'pages/article/detail?id='+id
+		//   })
+    //   return
+    // }
+  
+    
   },
    
 };
