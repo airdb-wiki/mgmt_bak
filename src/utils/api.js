@@ -37,5 +37,5 @@ export function articleDetail(id) {
      * @description 文章详情
      * @param {number} id
      */
-    return get('/mina/v1/article/query', { id })
+    return HTTPREQUEST.get('/mina/v1/article/query', { id })
 }

@@ -6,10 +6,9 @@
 </template>
 
 <script>
-import { AtMessage } from 'taro-ui-vue3';
-import Taro, { useRouter } from '@tarojs/taro';
-import {articleDetail} from '@utils/api.js';
-
+import { AtMessage } from 'taro-ui-vue3'
+import Taro from '@tarojs/taro';
+import { articleDetail } from "../../../utils/api";
 import "./index.less";
 export default {
   // ShowArticle,
@@ -32,11 +31,12 @@ export default {
   mounted () {
     // 获取路由参数
     let id = this.$instance.router.params.id;
-    Taro.atMessage({
-          message: '请选择文章',
-          type:'error',
-        });
-    console.log("id.length", id.length)
+    console.log("id", id);
+    // Taro.atMessage({
+    //       message: '消息通知',
+    //       type:"success"
+    //     });
+    // console.log("id.length", id.length)
     // if (id.length == 0 || id == ""|| id == " "){
       
     //   Taro.navigateTo({
@@ -46,7 +46,10 @@ export default {
     //   return
     // }
   
-    
+    articleDetail(id).then((res) => {
+        console.log(res);
+
+      });
   },
    
 };

@@ -1,7 +1,7 @@
 <template>
   <view class="listContent">
     <AtList v-for="(item, index) in list" :key="index" class="article_list">
-    <AtButton @click="jumpToDetail(1)">
+    <AtButton @click="jumpToDetail(item.id)">
       <view class="article_list_item">
         <view
           class="article_detail"
