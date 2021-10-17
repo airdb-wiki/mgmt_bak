@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="basefirst">
-        <img :src="avatar" mode="scaleToFill" class="avatar" />
+        <image :src="avatar" mode="scaleToFill" class="avatar" />
         <div class="name_cntent">
             <text class="name">{{item.nickname}}&nbsp;&nbsp;{{item.babyid}}</text>
             <text class="desc">{{item.title}}</text>
@@ -81,10 +81,9 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import { ParseTime } from '../../common/utils'
-
-export default {
+import { computed, defineComponent, PropType, toRefs } from "vue";
+export default defineComponent({
   name: 'ShowArticle',
   props: ['item'],
   data() {
@@ -92,47 +91,50 @@ export default {
       avatar: 'https://wechat-1251018873.cos.ap-shanghai.myqcloud.com/mina/base/forward/home1.jpg',
     }
   },
+  setup() {
+    console.log('artice123123', this.item)
+  },
   created() {
-    console.log('xxxxxxxxxxxxxcomponent_article', this.item)
-    if (this.item.images !== undefined) {
-      this.avatar = this.item.images[0]
-    }
-    // window.addEventListener('wxshow', (options) => console.log('wxshow:', options))
-    wx.showShareMenu({
-      withShareTicket: true,
-      menus: ['shareAppMessage', 'shareTimeline'],
-    })
+    
+    // if (this.item.images !== undefined) {
+    //   this.avatar = this.item.images[0]
+    // }
+    // // window.addEventListener('wxshow', (options) => console.log('wxshow:', options))
+    // wx.showShareMenu({
+    //   withShareTicket: true,
+    //   menus: ['shareAppMessage', 'shareTimeline'],
+    // })
   },
   methods: {
     ParseTime,
-    jumpToDetail(jurl) {
-      this.url = '/article/111?data={aaa=11,bb=22}'
-      console.log('xxxurl', jurl)
-      window.location.href = '/article/111'
-      // window.location.href = jurl
-    },
-    share(article) {
-      window.onShareAppMessage = (res) => {
-        console.log(res)
-        if (res.from === 'button') {
-          return {
-            title: article.title,
-            path: `/article/${article.id}`,
-            imageUrl: article.cover,
-          }
-        }
-        return null
-      }
-    },
-    previewImage(list, current) {
-      if (!current) current = 0
-      wx.previewImage({
-        current: current,
-        urls: list
-      })
-    }
+    // jumpToDetail(jurl) {
+    //   this.url = '/article/111?data={aaa=11,bb=22}'
+    //   console.log('xxxurl', jurl)
+    //   window.location.href = '/article/111'
+    //   // window.location.href = jurl
+    // },
+    // share(article) {
+    //   window.onShareAppMessage = (res) => {
+    //     console.log(res)
+    //     if (res.from === 'button') {
+    //       return {
+    //         title: article.title,
+    //         path: `/article/${article.id}`,
+    //         imageUrl: article.cover,
+    //       }
+    //     }
+    //     return null
+    //   }
+    // },
+    // previewImage(list, current) {
+    //   if (!current) current = 0
+    //   wx.previewImage({
+    //     current: current,
+    //     urls: list
+    //   })
+    // }
   },
-}
+})
 </script>
 
 <style lang="less">

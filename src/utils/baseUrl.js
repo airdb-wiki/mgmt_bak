@@ -2,8 +2,9 @@ let BASE_URL = "https://scf.baobeihuijia.com"
 
 const getBaseUrl = (url) => {
     // let BASE_URL = '';
+    let domain = BASE_URL
     if (process.env.NODE_ENV === 'development') {
-        BASE_URL += "/release"
+        domain += "/release"
             //开发环境 - 根据请求不同返回不同的BASE_URL
             // if (url.includes('/api/')) {
             //    BASE_URL = ''
@@ -12,10 +13,10 @@ const getBaseUrl = (url) => {
             // }
     } else {
         // 生产环境
-        BASE_URL += "/release"
+        domain += "/release"
     }
 
-    return BASE_URL
+    return domain
 }
 
 export default getBaseUrl;

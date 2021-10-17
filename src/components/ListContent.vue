@@ -27,6 +27,7 @@ import Taro from '@tarojs/taro';
 
 export default defineComponent({
   name: "ListContent",
+  props: ["list"],
   components: {
     AtButton,
     AtList,
@@ -64,7 +65,7 @@ export default defineComponent({
       };
     },
   },
-  props: ["list"],
+  
 });
 </script>
 
