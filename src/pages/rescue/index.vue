@@ -1,11 +1,15 @@
 <template>
   <view class="index">
-    <text>{{ msg }}</text>
+    <!--List of lost-->
+    <view class="content">
+      <ListRescueCard :list="actclieList" />
+    </view>
   </view>
 </template>
 
 <script>
 import { ref } from "vue";
+// import "taro-ui-vue3/dist/style/components/search-bar.scss";
 import "./index.less";
 
 export default {

@@ -1,11 +1,13 @@
 import { createApp } from 'vue'
 import { createUI } from 'taro-ui-vue3'
-import { NavBar, Contact, ListContent,ShowArticle } from './components/index'
+import { NavBar, Contact, ListContent, ShowArticle, ListRescueCard } from './components/index'
 
 import './app.less'
+// import 'taro-ui-vue3/dist/style/index.scss'
 
 
 const App = createApp({
+
   onShow(options) {
     console.log(options)
   },
@@ -18,6 +20,7 @@ App.use(tuv3)
 App.component(NavBar.name, NavBar)
 App.component(Contact.name, Contact)
 App.component(ListContent.name, ListContent)
+App.component(ListRescueCard.name, ListRescueCard)
 App.component(ShowArticle.name, ShowArticle)
 
 export default App
