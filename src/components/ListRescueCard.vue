@@ -1,9 +1,7 @@
 <template>
   <AtSearchBar
-    showActionButton="{true}"
-    focus="{true}"
-    placeholder="xxxx"
-    value="1111"
+    placeholder="城市 | 名称"
+    value=""
     onChange=""
     onActionClick=""
   />
@@ -32,11 +30,11 @@ import { computed, defineComponent, PropType, toRefs } from "vue";
 import { AtButton, AtList, AtListItem, AtSearchBar } from "taro-ui-vue3";
 import Taro from "@tarojs/taro";
 
-import "taro-ui/dist/style/components/search-bar.scss";
-import "taro-ui/dist/style/components/button.scss";
-import "taro-ui/dist/style/components/icon.scss";
-import "taro-ui/dist/style/components/list.scss";
-import "taro-ui/dist/style/components/loading.scss";
+import "taro-ui-vue3/dist/style/components/search-bar.scss";
+import "taro-ui-vue3/dist/style/components/button.scss";
+import "taro-ui-vue3/dist/style/components/icon.scss";
+import "taro-ui-vue3/dist/style/components/list.scss";
+import "taro-ui-vue3/dist/style/components/loading.scss";
 
 export default defineComponent({
   name: "ListRescueCard",

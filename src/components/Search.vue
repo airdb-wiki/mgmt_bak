@@ -9,7 +9,7 @@ import { AtButton, AtList, AtListItem } from "taro-ui-vue3";
 import { getArticles } from "../utils/api";
 
 import Taro from "@tarojs/taro";
-import { AtSearchBar } from "taro-ui";
+import { AtSearchBar } from "taro-ui-vue3";
 export default class Index extends Taro.Component {
   constructor() {
     super(...arguments);

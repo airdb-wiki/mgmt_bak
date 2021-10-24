@@ -1,5 +1,10 @@
 <template>
-  <AtSearchBar />
+  <AtSearchBar
+    placeholder="姓名 | 编号 | 城市"
+    value=""
+    onChange=""
+    onActionClick=""
+  />
 
   <view class="self_tabs">
     <view class="tab_header">
@@ -42,6 +47,12 @@ import { computed, defineComponent, PropType, toRefs } from "vue";
 
 import { AtButton, AtList, AtListItem, AtSearchBar } from "taro-ui-vue3";
 import { getArticles } from "../utils/api";
+
+import "taro-ui-vue3/dist/style/components/search-bar.scss";
+import "taro-ui-vue3/dist/style/components/button.scss";
+import "taro-ui-vue3/dist/style/components/icon.scss";
+import "taro-ui-vue3/dist/style/components/list.scss";
+import "taro-ui-vue3/dist/style/components/loading.scss";
 
 export default defineComponent({
   name: "NavBar",
