@@ -25,7 +25,6 @@ const customInterceptor = (chain) => {
 
         } else if (res.statusCode === HTTP_STATUS.SUCCESS) {
             return res.data
-
         }
     })
 }

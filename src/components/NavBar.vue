@@ -91,8 +91,8 @@ export default defineComponent({
   created() {
     console.log("xxx-created", this.currentPage);
     getArticles(this.currentPage).then((res) => {
-      // console.log(res)
-      this.actclieList = res.data.articles;
+      this.actclieList = res.data;
+      console.log("xxx act", this.actclieList);
     });
 
     // reach bottom envet 上拉触底查看历史
@@ -103,7 +103,7 @@ export default defineComponent({
       console.log("pageIndex--->", this.currentPage);
       getArticles(this.currentPage).then((res) => {
         console.log("append_xx");
-        this.actclieList = this.actclieList.concat(res.data.articles);
+        this.actclieList = this.actclieList.concat(res.data.data);
       });
     });
 
