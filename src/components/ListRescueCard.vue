@@ -1,28 +1,53 @@
 <template>
-  <AtSearchBar
-    placeholder="城市 | 名称"
-    value=""
-    onChange=""
-    onActionClick=""
-  />
-  <view class="listContent">
-    <AtList v-for="(item, index) in cards" :key="index" class="article_list">
-      <AtButton @click="jumpToDetail(item.id)">
-        <view class="article_list_item">
-          <view class="article_detail">
-            <view class="artclie_text_msg">
-              <view class="article_title">{{ item.name }}</view>
-              <view class="article_author">
-                <view class="">上班时间： {{ item.startedAt }}</view>
-                <br />
-                <view class="">下班时间： {{ item.endedAt }}</view>
+  
+  <view class="rescue-card-content over-flow-hidden">
+    <view class="rescue-card-search">
+      <AtSearchBar
+        placeholder="城市 | 名称"
+        value=""
+        onChange=""
+        onActionClick=""
+      />
+    </view>
+    <view class="rescue-card-listContent">
+      <AtList v-for="(item, index) in cards" :key="index" class="article_list">
+        
+          <view class="rescue-card-listContent-item">
+              <view class="item-head over-flow-hidden">
+                <view class="item-head-name pull-left">{{item.name}}</view>
+                <view class="item-head-address pull-right">{{item.province}}</view>
               </view>
-            </view>
+              <view class="item-content">
+              <view class="item-content-btn over-flow-hidden">
+                  <view class="item-content-btn-item pull-right">区域解决方案</view>
+              </view>
+                <view class="item-content-time">
+                  <view class="item-content-icon">
+                  
+                  </view>  
+                  <view class="item-content-timestr">
+                    <text>个人上班时间</text>
+                    <text>10:00</text>
+                  </view>  
+                  <view class="item-content-timestr">
+                    <text>个人下班时间</text>
+                    <text>18:00~20:00不等</text>
+                  </view>  
+                </view>
+                
+              </view>
+              <view class="item-footer">
+                <view class="item-footer-createAt">上传时间:</view>
+                <!-- <AtButton size='small'>前往详情界面</AtButton> -->
+                <!-- <AtButton @click="jumpToDetail(item.id)"  size='small'></AtButton> -->
+              </view>
           </view>
-        </view>
-      </AtButton>
-    </AtList>
+        
+      </AtList>
   </view>
+  </view>
+
+  
 </template>
 
 <script>
@@ -50,10 +75,12 @@ export default defineComponent({
       cards: [
         {
           id: 1,
-          name: "xxx 救助站",
+          name: "xxx 救助站123",
           is24Hours: true,
           startedAt: 1635007882,
           endedAt: 1635007882,
+          province: "深圳",
+          createAt: 1635007882,
         },
         {
           id: 2,
@@ -61,6 +88,8 @@ export default defineComponent({
           is24Hours: true,
           startedAt: 1635007882,
           endedAt: 1635007882,
+          province: "深圳",
+          createAt: 1635007882,
         },
         {
           id: 3,
@@ -68,6 +97,8 @@ export default defineComponent({
           is24Hours: true,
           startedAt: 1635007882,
           endedAt: 1635007882,
+           province: "深圳",
+          createAt: 1635007882,
         },
       ],
     };
@@ -121,78 +152,62 @@ export default defineComponent({
 
   -webkit-box-orient: vertical;
 }
-.listContent {
-  .article_list_item {
-    box-sizing: border-box;
-    background: #fff;
-    margin-bottom: 20rpx;
-    .article_detail {
-      box-sizing: border-box;
-      display: flex;
-      width: 100%;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #f5f6f6;
-      padding: 20rpx 40rpx;
-      .artclie_text_msg {
-        flex: 1;
-      }
-      .article_author {
-        display: flex;
-        align-items: center;
-        padding-bottom: 16rpx;
-        .img {
-          height: 40rpx;
-          width: 40rpx;
-          border-radius: 50%;
+.pull-left{
+  float:left;
+}
+.pull-right{
+  float:right;
+}
+.over-flow-hidden{
+  overflow: hidden;
+}
+.rescue-card-content {
+  border: 1ps solid #B5CBFA;
+  width:100%;
+  padding: 0 1%;
+  .rescue-card-search{
+    border: 1px solid #B5CBFA;
+    position: fixed;
+    height:2.4rem;
+    width:98%;
+    z-index: 100;
+    padding: 1% 0;
+  }
+
+  .rescue-card-listContent{
+    width:98%;
+    margin-top:4rem;
+   
+     
+     .rescue-card-listContent-item{
+      border: 1px solid #B5CBFA;
+      border-radius:.5rem;
+      margin-top: .5rem;
+       .item-head{
+          border-bottom: 1px solid #E4EBF3;
+          height: 2rem;
+          line-height: 2rem;
+          padding:.5rem;
+          color:#6E788A;
+          font-weight: bolder;
+       }
+      .item-content-btn{
+          padding:2rem;
+          
+         .item-content-btn-item{
+          background: #81A3EE;
+          color:#fff;
+          width:5rem;
+          font-size: .8rem;
+          padding: .3rem;
+          border-radius:.2rem;
+          margin-right: 1rem;
+          
         }
-        .nickname {
-          font-size: 24rpx;
-          color: rgba(102, 102, 102, 1);
-          margin-left: 11rpx;
-        }
+      
       }
-      .article_title {
-        font-size: 36rpx;
-        color: #333333;
-        .ellipsis;
-      }
-      .article_description {
-        color: #999999;
-        font-size: 28rpx;
-        .ellipsis;
-      }
-    }
-    .img_cover {
-      width: 160rpx;
-      height: 160rpx;
-      border-radius: 4px;
-      display: inline-block;
-      margin-left: 40rpx;
-    }
-    .article_other {
-      display: flex;
-      color: #999999;
-      font-size: 28rpx;
-      height: 88rpx;
-      align-items: center;
-      div {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      .img {
-        height: 28rpx;
-        width: 30rpx;
-        margin-right: 10rpx;
-      }
-      .acticle_comments {
-        .img {
-          width: 35rpx;
-        }
-      }
-    }
+      
+     }
   }
 }
 </style>

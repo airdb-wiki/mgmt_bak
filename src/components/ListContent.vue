@@ -6,7 +6,7 @@
         <view
           class="article_detail"
         >
-        <!-- onClick={this.jumpToDetail.bind(this,item.id)} -->
+
           <view class="artclie_text_msg">
             <view class="article_author">
               <view class="nickname">{{ item.nickname }}</view>
