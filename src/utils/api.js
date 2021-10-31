@@ -40,6 +40,27 @@ export function articleDetail(id) {
     return HTTPREQUEST.get('/mina/v1/article/query', { id })
 }
 
+export function listLost(pageNo) {
+    /**
+     * @description 文章列表
+     * @param {number} pageNo
+     * @param {number} pageSize
+     * @param {string} ??type
+     * @param {string} ??keywords
+     */
+    // return get('/articles', { page_no })
+    const pageSize = 10
+    return HTTPREQUEST.get('/mina/v1/lost/list', { pageNo, pageSize })
+}
+
+export function queryLost(id) {
+    /**
+     * @description 文章详情
+     * @param {number} id
+     */
+    return HTTPREQUEST.get('/mina/v1/lost/query', { id })
+}
+
 export function listRescue() {
     /**
      * @description 文章详情
