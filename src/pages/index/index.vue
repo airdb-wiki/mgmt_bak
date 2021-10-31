@@ -15,9 +15,10 @@
 
   <!--Contact for phone calls-->
   <Contact></Contact>
-
+  
   <!--List of lost info-->
   <NavBar></NavBar>
+  
 </template>
 
 <script>

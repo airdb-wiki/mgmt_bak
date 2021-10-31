@@ -39,3 +39,19 @@ export function articleDetail(id) {
      */
     return HTTPREQUEST.get('/mina/v1/article/query', { id })
 }
+
+export function listRescue() {
+    /**
+     * @description 文章详情
+     * @param {number} pageNo
+     * @param {number} pageSize
+     */
+    return HTTPREQUEST.get('/mina/v1/rescue/list', { pageNo, pageSize })
+}
+export function queryRescue(id) {
+    /**
+     * @description 文章详情
+     * @param {number} id
+     */
+    return HTTPREQUEST.get('/mina/v1/rescue/query', { id })
+}
