@@ -1,7 +1,8 @@
 <template>
   <view class="listContent">
     <AtList v-for="(item, index) in list" :key="index" class="article_list">
-    <!-- <AtButton @click="jumpToDetail(item.id)" style="height:5rem;"> -->
+      
+      <AtCard @click="jumpToDetail(item.id)">
       <view class="article_list_item">
         <view
           class="article_detail"
@@ -13,35 +14,17 @@
             </view>
             <view class="article_title"> {{ item.title }}</view>
             
-            <!-- <view class="article_other"> -->
-              <!-- <view class="like">
-                <img class="img" src="https://wechat-1251018873.cos.ap-shanghai.myqcloud.com/images/view.png" alt="" mode="widthFix">
-                {{item.view_num}}
-              </view>
-              <view class="acticle_comments">
-                <img class="img" src="https://wechat-1251018873.cos.ap-shanghai.myqcloud.com/images/comment.png" style="" alt="" mode="widthFix" >
-                {{item.comment_num}}
-              </view>
-              <view class="acticle_share">
-                <wx-button open-type="share" @click="share(item)" style="background:#fff">
-                  <img class="img" src="https://wechat-1251018873.cos.ap-shanghai.myqcloud.com/images/share.png" style="" alt="" mode="widthFix">
-                  {{item.share_num}}
-                </wx-button>
-              </view> -->
-            <!-- </view> -->
+      
             <view>
               <view> <text style="color:red;">失踪时间：</text> {{item.missed_at}}</view>
               <view> <text style="color:red;">失踪地点：</text> {{item.missed_address}}</view>
             </view>
-            <view>
-              <AtButton @click="jumpToDetail(item.id)" class="detail-btn">>详情</AtButton>
-            </view>
-            
+  
 
           </view>
         </view>
       </view>
-      <!-- </AtButton> -->
+      </AtCard>
     </AtList>
   </view>
 </template>
