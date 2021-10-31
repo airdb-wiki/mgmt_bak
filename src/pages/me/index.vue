@@ -33,13 +33,10 @@
         <image class="right-icon" :src="narrowImg" />
       </view>
     </view>
-    <button
-      type="primary"
-      :show-message-card="false"
-      bindcontact="handleContact"
-    >
+
+    <AtButton type="primary" openType="contact" onClick="handleContact">
       联系客服
-    </button>
+    </AtButton>
 
     <view class="adContainer">
       <ad unit-id="adunit-6a89174cc83e227f" ad-intervals="30"></ad>
@@ -49,6 +46,19 @@
 
 <script>
 import { ref } from "vue";
+
+import {
+  AtButton,
+  AtList,
+  AtListItem,
+  AtSearchBar,
+  AtIcon,
+} from "taro-ui-vue3";
+
+import Taro from "@tarojs/taro";
+
+import "taro-ui-vue3/dist/style/components/button.scss";
+
 import "./index.less";
 
 export default {
@@ -70,13 +80,13 @@ export default {
     };
   },
   methods: {
-    setting() {
+    sejtting() {
       console.log("xx");
       wx.openSetting();
     },
     handleContact() {
-      console.log(e.detail.path);
-      console.log(e.detail.query);
+      console.log("xxxxx");
+      // console.log(e.detail.query);
       taro.openCustomerServiceChat({
         extInfo: { url: "https://work.weixin.qq.com/kfid/kfc02343d9ba414880a" },
         corpId: "wx4aaa3fe59423b402",
