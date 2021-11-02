@@ -38,9 +38,11 @@
       联系客服
     </AtButton>
 
+    <!--
     <view class="adContainer">
       <ad unit-id="adunit-6a89174cc83e227f" ad-intervals="30"></ad>
     </view>
+    -->
   </view>
 </template>
 
@@ -85,7 +87,7 @@ export default {
       wx.openSetting();
     },
     handleContact() {
-      console.log("xxxxx");
+      console.log("wework customer");
       // console.log(e.detail.query);
       taro.openCustomerServiceChat({
         extInfo: { url: "https://work.weixin.qq.com/kfid/kfc02343d9ba414880a" },
