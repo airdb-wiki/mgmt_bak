@@ -46,7 +46,7 @@
 import { computed, defineComponent, PropType, toRefs } from "vue";
 
 import { AtButton, AtList, AtListItem, AtSearchBar } from "taro-ui-vue3";
-import { getArticles } from "../utils/api";
+import { getArticles, listLost } from "../utils/api";
 
 import "taro-ui-vue3/dist/style/components/search-bar.scss";
 import "taro-ui-vue3/dist/style/components/button.scss";
@@ -87,10 +87,15 @@ export default defineComponent({
     handleClick() {
       console.log("handleClick");
     },
+    searchLost(e) {
+      searchLost().then((res) => {
+        console.log("searchLost", res.data);
+      });
+    },
   },
   created() {
     console.log("xxx-created", this.currentPage);
-    getArticles(this.currentPage).then((res) => {
+    listLost(this.currentPage).then((res) => {
       this.actclieList = res.data;
       console.log("xxx act", this.actclieList);
     });
@@ -101,7 +106,7 @@ export default defineComponent({
       this.currentPage += 1;
 
       console.log("pageIndex--->", this.currentPage);
-      getArticles(this.currentPage).then((res) => {
+      listLost(this.currentPage).then((res) => {
         console.log("append_xx");
         this.actclieList = this.actclieList.concat(res.data.data);
       });

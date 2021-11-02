@@ -19,27 +19,6 @@ export function checkSession(code) {
     return get('/mina/v1/wechat/check_session', { code })
 }
 
-export function getArticles(pageNo) {
-    /**
-     * @description 文章列表
-     * @param {number} pageNo
-     * @param {number} pageSize
-     * @param {string} ??type
-     * @param {string} ??keywords
-     */
-    // return get('/articles', { page_no })
-    const pageSize = 10
-    return HTTPREQUEST.get('/mina/v1/lost/list', { pageNo, pageSize })
-}
-
-export function articleDetail(id) {
-    /**
-     * @description 文章详情
-     * @param {number} id
-     */
-    return HTTPREQUEST.get('/mina/v1/article/query', { id })
-}
-
 export function listLost(pageNo) {
     /**
      * @description 文章列表
@@ -61,12 +40,23 @@ export function queryLost(id) {
     return HTTPREQUEST.get('/mina/v1/lost/query', { id })
 }
 
-export function listRescue() {
+export function searchLost() {
+    /**
+     * @description 文章详情
+     * @param {number} babyid
+     * @param {string} name
+     * @param {string} city
+     */
+    return HTTPREQUEST.get('/mina/v1/lost/search', { id })
+}
+
+export function listRescue(pageNo) {
     /**
      * @description 文章详情
      * @param {number} pageNo
      * @param {number} pageSize
      */
+    const pageSize = 10
     return HTTPREQUEST.get('/mina/v1/rescue/list', { pageNo, pageSize })
 }
 export function queryRescue(id) {
@@ -75,4 +65,13 @@ export function queryRescue(id) {
      * @param {number} id
      */
     return HTTPREQUEST.get('/mina/v1/rescue/query', { id })
+}
+
+export function searchRescue(city) {
+    /**
+     * @description 文章详情
+     * @param {string} name
+     * @param {string} city
+     */
+    return HTTPREQUEST.get('/mina/v1/rescue/search', { city })
 }
