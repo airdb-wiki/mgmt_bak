@@ -89,7 +89,7 @@ export default {
     handleContact() {
       console.log("wework customer");
       // console.log(e.detail.query);
-      taro.openCustomerServiceChat({
+      Taro.openCustomerServiceChat({
         extInfo: { url: "https://work.weixin.qq.com/kfid/kfc02343d9ba414880a" },
         corpId: "wx4aaa3fe59423b402",
         success(res) {
