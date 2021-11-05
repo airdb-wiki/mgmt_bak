@@ -34,7 +34,7 @@
       </view>
     </view>
 
-    <AtButton type="primary" openType="contact" onClick="handleContact">
+    <AtButton type="primary"  @click="handleContact">
       联系客服
     </AtButton>
 
