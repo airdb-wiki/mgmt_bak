@@ -27,11 +27,11 @@
         <image class="right-icon" :src="narrowImg" />
       </view>
 
-      <view class="info-item" @click.stop="setting">
+      <AtButton class="info-item setting" @click="handleSetting">
         <image class="item-icon" :src="historyImg" />
         <view class="info-title">设置</view>
         <image class="right-icon" :src="narrowImg" />
-      </view>
+      </AtButton>
     </view>
 
     <AtButton type="primary"  @click="handleContact">
@@ -82,14 +82,21 @@ export default {
     };
   },
   methods: {
-    sejtting() {
+    handleSetting() {
       console.log("xx");
-      wx.openSetting();
+      Taro.openSetting({
+        success: function (res) {
+          console.log('setting succ')
+        },
+        fail(res){
+          console.log('setting fail')
+        }
+      })
     },
     handleContact() {
       console.log("wework customer");
       // console.log(e.detail.query);
-      taro.openCustomerServiceChat({
+      Taro.openCustomerServiceChat({
         extInfo: { url: "https://work.weixin.qq.com/kfid/kfc02343d9ba414880a" },
         corpId: "wx4aaa3fe59423b402",
         success(res) {
@@ -163,6 +170,19 @@ export default {
     position: relative;
     border-bottom: 0.5px solid #dcdedf;
   }
+
+  .info-item.setting {
+    border-top:unset;
+    .item-icon {
+      line-height: 32rpx;
+      top: 28rpx;
+    }
+    .info-title {
+      top:0px
+    }
+  }
+  
+
   .item-icon {
     position: absolute;
     width: 36rpx;
