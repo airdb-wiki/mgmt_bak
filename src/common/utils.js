@@ -1,3 +1,4 @@
+
 export function mpAutoUpdate() {
     /**
      * @description 执行小程序自动更新
@@ -6,6 +7,7 @@ export function mpAutoUpdate() {
     if (wx.canIUse('getUpdateManager')) { // 获取小程序更新机制兼容
         const updateManager = wx.getUpdateManager()
         updateManager.onCheckForUpdate((res) => { // 1. 检查小程序是否有新版本发布
+            console.log(' update==>',res)
             if (res.hasUpdate) { // 请求完新版本信息的回调
                 // 检测到新版本，需要更新，给出提示
                 wx.showModal({
