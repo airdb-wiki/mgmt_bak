@@ -1,52 +1,66 @@
 <template>
   <view class="listContent">
-    <AtList v-for="(item, index) in list" :key="index" class="article_list">
-      
-      <AtCard @click="jumpToDetail(item.id)">
-      <view class="article_list_item">
-        <view
-          class="article_detail"
-        >
+    <scroll-view :scroll-y="true" style="height: 800rpx;" @scrolltoupper="upper" @scrolltolower="lower" :scroll-into-view="toView" :scroll-top="scrollTop">
+      <AtList v-for="(item, index) in list" :key="index" class="article_list">
+        
+        <AtCard @click="jumpToDetail(item.id)">
+        <view class="article_list_item">
+          <view
+            class="article_detail"
+          >
 
-          <view class="artclie_text_msg">
-            <view class="article_author">
-              <view class="nickname">{{ item.nickname }}</view>
-            </view>
-            <view class="article_title"> {{ item.title }}</view>
-            
-      
-            <view>
-              <view> <text style="color:red;">失踪时间：</text> {{item.missed_at}}</view>
-              <view> <text style="color:red;">失踪地点：</text> {{item.missed_address}}</view>
-            </view>
-  
+            <view class="artclie_text_msg">
+              <view class="article_author">
+                <view class="nickname">{{ item.nickname }}</view>
+              </view>
+              <view class="article_title"> {{ item.title }}</view>
+              
+        
+              <view>
+                <view> <text style="color:red;">失踪时间：</text> {{item.missed_at}}</view>
+                <view> <text style="color:red;">失踪地点：</text> {{item.missed_address}}</view>
+              </view>
+    
 
+            </view>
           </view>
         </view>
-      </view>
-      </AtCard>
-    </AtList>
+        </AtCard>
+      </AtList>
+    </scroll-view>
   </view>
 </template>
 
 <script>
 import { computed, defineComponent, PropType, toRefs } from "vue";
 import { AtButton, AtList, AtListItem } from "taro-ui-vue3";
+import { listRescue, queryRescue, searchRescue } from "../utils/api";
 import Taro from '@tarojs/taro';
 
 export default defineComponent({
   name: "ListContent",
-  props: ["list"],
+  props: {
+      list: {
+        type:Array,
+        default: Array,
+      },
+      currentPage: {
+        type:Number,
+        default: 1,
+      },
+
+  },
   components: {
     AtButton,
     AtList,
     AtListItem,
   },
   data() {
-    return {};
+    return {
+      scrollTop: 0,
+    };
   },
   created() {
-    console.log("xxxxxxxxxxxxxxcreated_list_content");
     // window.addEventListener('wxshow', (options) => console.log('wxshow:', options))
     wx.showShareMenu({
       withShareTicket: true,
@@ -73,6 +87,17 @@ export default defineComponent({
         return null;
       };
     },
+    // 重新加载
+    upper(e) {
+      this.$emit("updatePage",1)
+    },
+
+    // 加载分页
+    lower(e) {
+      this.$emit("updatePage",this.currentPage + 1)
+      
+    },
+
   },
   
 });
@@ -95,6 +120,18 @@ export default defineComponent({
 
   -webkit-box-orient: vertical;
 }
+.scroll-view_H{
+  white-space: nowrap;
+}
+.scroll-view-item{
+  height: 300rpx;
+}
+.scroll-view-item_H{
+  display: inline-block;
+  width: 100%;
+  height: 300rpx;
+}
+
 .listContent {
   .article_list_item {
     box-sizing: border-box;
