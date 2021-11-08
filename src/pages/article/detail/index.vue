@@ -112,7 +112,7 @@
 <script>
 import { AtMessage } from "taro-ui-vue3";
 import Taro from "@tarojs/taro";
-import { articleDetail } from "../../../utils/api";
+import { queryLost } from "../../../utils/api";
 // import ShowArticle  from '../../../components/article/ShowArticle.vue'
 import { ParseTime } from "../../../common/utils";
 import "./index.less";
@@ -151,6 +151,7 @@ export default {
     // }
 
     queryLost(id).then((res) => {
+      console.log(id)
       this.item = res.data.article;
       console.log(res.data.article);
       console.log("res.data.article", this.item);

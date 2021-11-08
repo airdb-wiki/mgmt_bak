@@ -1,9 +1,9 @@
 <template>
   <AtSearchBar
     placeholder="姓名 | 编号 | 城市"
-    value=""
-    onChange=""
-    onActionClick=""
+    :value="keyword"
+    :onChange="changeKeyword"
+    :onActionClick="search"
   />
 
   <view class="self_tabs">
@@ -46,7 +46,7 @@
 import { computed, defineComponent, PropType, toRefs } from "vue";
 
 import { AtButton, AtList, AtListItem, AtSearchBar } from "taro-ui-vue3";
-import { getArticles, listLost } from "../utils/api";
+import { getArticles, listLost, searchRescue } from "../utils/api";
 
 import "taro-ui-vue3/dist/style/components/search-bar.scss";
 import "taro-ui-vue3/dist/style/components/button.scss";
@@ -77,6 +77,7 @@ export default defineComponent({
       activeKey: "newest",
       actclieList: [],
       currentPage: 1, // default currentPage is 1
+      keyword: "",
     };
   },
   methods: {
@@ -93,7 +94,7 @@ export default defineComponent({
       });
     },
     updatePage(page){
-        listLost(page).then((res) => {
+        listLost(page, this.keyword).then((res) => {
           if (res.data.length > 0){
             if (page == 1){
               this.actclieList = res.data;
@@ -104,6 +105,15 @@ export default defineComponent({
             this.currentPage = page;
           }
         });
+    },
+    search(){
+        this.currentPage = 1;
+        listLost(this.currentPage, this.keyword).then((res) => {
+            this.actclieList = res.data;
+        });
+    },
+    changeKeyword(value){
+      this.keyword = value
     },
   },
   created() {
