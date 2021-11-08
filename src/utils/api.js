@@ -50,14 +50,14 @@ export function searchLost() {
     return HTTPREQUEST.get('/mina/v1/lost/search', { id })
 }
 
-export function listRescue(pageNo=1) {
+export function listRescue(pageNo=1,keyword="") {
     /**
      * @description 文章详情
      * @param {number} pageNo
      * @param {number} pageSize
      */
     const pageSize = 10
-    return HTTPREQUEST.get('/mina/v1/rescue/list', { pageNo, pageSize})
+    return HTTPREQUEST.get('/mina/v1/rescue/list', { pageNo, pageSize, keyword})
 }
 export function queryRescue(id) {
     /**

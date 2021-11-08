@@ -3,12 +3,13 @@
     <view class="rescue-card-search">
       <AtSearchBar
         placeholder="城市 | 名称"
-        value=""
-        onChange=""
-        onActionClick=""
+        :value="keyword"
+        :onChange="changeKeyword"
+        :onActionClick="search"
       />
     </view>
     <view class="rescue-card-listContent">
+      <scroll-view :scroll-y="true" style="height: 1200rpx;" @scrolltoupper="upper" @scrolltolower="lower" :scroll-into-view="toView" :scroll-top="scrollTop">
       <AtList
         v-for="(item, index) in rescueCards"
         :key="index"
@@ -58,6 +59,7 @@
           </view>
         </view>
       </AtList>
+      </scroll-view>
     </view>
   </view>
 </template>
@@ -141,6 +143,7 @@ export default defineComponent({
       ],
       currentPage: 1, // default currentPage is 1
       rescueCards: [],
+      keyword: "",
     };
   },
   created() {
@@ -183,6 +186,33 @@ export default defineComponent({
     //  获取字符长度
     getLength(str) {
       return str.replace(/[\u0391-\uFFE5]/g, "aa").length; //先把中文替换成两个字节的英文，在计算长度
+    },
+     // 重新加载
+    upper(e) {
+      listRescue(1).then((res) => {
+            this.rescueCards = res.data;
+            this.currentPage = 1
+      });
+    },
+
+    // 加载分页
+    lower(e) {
+      let page = this.currentPage + 1
+      listRescue(page).then((res) => {
+        if (res.data.length > 0) {
+            this.rescueCards.concat(res.data);
+            this.currentPage = page
+        }
+      });
+    },
+    changeKeyword(val){
+        this.keyword = val
+    },
+    search(){
+      listRescue(1,this.keyword).then((res) => {
+          this.rescueCards = res.data;
+          this.currentPage = 1
+      });
     },
   },
 });
