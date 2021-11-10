@@ -219,7 +219,6 @@ export default defineComponent({
   width: 100%;
   padding: 0 1%;
   .rescue-card-search {
-    border: 1px solid #b5cbfa;
     position: fixed;
     height: 2.4rem;
     width: 98%;
