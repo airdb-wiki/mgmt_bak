@@ -1,9 +1,9 @@
 <template>
   <AtSearchBar
     placeholder="姓名 | 编号 | 城市"
-    value=""
-    onChange=""
-    onActionClick=""
+    :value="keyword"
+    :onChange="changeKeyword"
+    :onActionClick="search"
   />
 
   <view class="self_tabs">
@@ -37,7 +37,7 @@
 
     <!--List of lost-->
     <view class="content">
-      <ListContent :list="actclieList" />
+      <ListContent :list="actclieList" :currentPage="currentPage" @updatePage="updatePage"/>
     </view>
   </view>
 </template>
@@ -46,7 +46,7 @@
 import { computed, defineComponent, PropType, toRefs } from "vue";
 
 import { AtButton, AtList, AtListItem, AtSearchBar } from "taro-ui-vue3";
-import { getArticles, listLost } from "../utils/api";
+import { getArticles, listLost, searchRescue } from "../utils/api";
 
 import "taro-ui-vue3/dist/style/components/search-bar.scss";
 import "taro-ui-vue3/dist/style/components/button.scss";
@@ -77,6 +77,7 @@ export default defineComponent({
       activeKey: "newest",
       actclieList: [],
       currentPage: 1, // default currentPage is 1
+      keyword: "",
     };
   },
   methods: {
@@ -92,30 +93,53 @@ export default defineComponent({
         console.log("searchLost", res.data);
       });
     },
+    updatePage(page){
+        listLost(page, this.keyword).then((res) => {
+          if (res.data.length > 0){
+            if (page == 1){
+              this.actclieList = res.data;
+            }else{
+              this.actclieList = this.actclieList.concat(res.data);
+            }
+            
+            this.currentPage = page;
+          }
+        });
+    },
+    search(){
+        this.currentPage = 1;
+        listLost(this.currentPage, this.keyword).then((res) => {
+            this.actclieList = res.data;
+        });
+    },
+    changeKeyword(value){
+      this.keyword = value
+    },
   },
   created() {
-    console.log("xxx-created", this.currentPage);
+    // console.log("xxx-created", this.currentPage);
     listLost(this.currentPage).then((res) => {
       this.actclieList = res.data;
       console.log("xxx act", this.actclieList);
     });
 
     // reach bottom envet 上拉触底查看历史
-    window.addEventListener("reachbottom", (evt) => {
-      console.log("reach_bottom", evt);
-      this.currentPage += 1;
+    // window.addEventListener("reachbottom", (evt) => {
+    //   console.log("reach_bottom", evt);
+    //   this.currentPage += 1;
 
-      console.log("pageIndex--->", this.currentPage);
-      listLost(this.currentPage).then((res) => {
-        console.log("append_xx");
-        this.actclieList = this.actclieList.concat(res.data.data);
-      });
-    });
+    //   console.log("pageIndex--->", this.currentPage);
+    //   listLost(this.currentPage).then((res) => {
+    //     this.actclieList = this.actclieList.concat(res.data.data);
+    //   });
+    // });
 
-    // pull down refresh 上拉更新数据
-    window.addEventListener("pulldownrefresh", (evt1) => {
-      console.log("pull_down", evt1);
-    });
+    // // pull down refresh 上拉更新数据
+    // window.addEventListener("pulldownrefresh", (evt1) => {
+    //   console.log("pull_down", evt1);
+    // });
+
+    
   },
 });
 </script>
