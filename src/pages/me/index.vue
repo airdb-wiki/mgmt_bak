@@ -34,8 +34,8 @@
       </AtButton>
     </view>
 
-    <AtButton type="primary"  @click="handleContact">
-      联系客服
+    <AtButton type="primary"  @click="handleMakingPhoneCallToCustomerSupport">
+      联系我们
     </AtButton>
 
     <!--
@@ -93,24 +93,9 @@ export default {
         }
       })
     },
-    handleContact() {
-      console.log("wework customer");
-      // console.log(e.detail.query);
-      Taro.openCustomerServiceChat({
-        extInfo: { url: "https://work.weixin.qq.com/kfid/kfc02343d9ba414880a" },
-        corpId: "wx4aaa3fe59423b402",
-        success(res) {
-          console.log("xx");
-          wx.showToast({
-            title: "title",
-          });
-        },
-        fail(res) {
-          console.log("xxfail");
-          wx.showToast({
-            title: "fail",
-          });
-        },
+    handleMakingPhoneCallToCustomerSupport() {
+      wx.makePhoneCall({
+        phoneNumber: "0435-3338090",
       });
     },
   },

@@ -1,10 +1,6 @@
 <template>
-  <AtButton class="connect" @click="getPhoneNum">
-    <image
-      class="img"
-      src="https://wechat-1251018873.file.myqcloud.com/images/phone.png"
-    />
-    <view class="text">0435-3338090</view>
+  <AtButton class="connect" @click="handleOpenCustomerServiceChat">
+    <view class="text">微信客服</view>
   </AtButton>
 </template>
 
@@ -12,6 +8,7 @@
 <script>
 import { computed, defineComponent, PropType, toRefs } from "vue";
 import { AtButton } from "taro-ui-vue3";
+import Taro from "@tarojs/taro";
 
 export default defineComponent({
   name: "Contact",
@@ -19,13 +16,22 @@ export default defineComponent({
     AtButton,
   },
   methods: {
-    handleClick() {
-      console.log("handleClick");
-    },
-    getPhoneNum() {
-      console.log("getPhoneNum");
-      wx.makePhoneCall({
-        phoneNumber: "0435-3338090",
+    handleOpenCustomerServiceChat() {
+      Taro.openCustomerServiceChat({
+        extInfo: { url: "https://work.weixin.qq.com/kfid/kfc5fdb2e0a1f297753?sence=mp-bbhj" },
+        corpId: "wx4aaa3fe59423b402",
+        success(res) {
+          console.log("xx");
+          wx.showToast({
+            title: "title",
+          });
+        },
+        fail(res) {
+          console.log("xxfail");
+          wx.showToast({
+            title: "fail",
+          });
+        },
       });
     },
   },
