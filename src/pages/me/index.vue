@@ -98,7 +98,7 @@ export default {
     },
     handleOpenCustomerServiceChat() {
       Taro.openCustomerServiceChat({
-        extInfo: { url: "https://work.weixin.qq.com/kfid/kfc5fdb2e0a1f297753?sence=mp-bbhj" },
+        extInfo: { url: "https://work.weixin.qq.com/kfid/kfc02343d9ba414880a?sence=mp-bbhj" },
         corpId: "wx4aaa3fe59423b402",
         success(res) {
           console.log("xx");
