@@ -20,13 +20,11 @@
         <view class="info-title">浏览记录</view>
         <image class="right-icon" :src="narrowImg" />
       </view>
-
-      <view class="info-item" @click.stop="hello">
+      <AtButton class="info-item setting" @click="handleMakingPhoneCallToCustomerSupport">
         <image class="item-icon" :src="historyImg" />
-        <view class="info-title">联系我们</view>
+        <view class="info-title">联系电话</view>
         <image class="right-icon" :src="narrowImg" />
-      </view>
-
+      </AtButton>
       <AtButton class="info-item setting" @click="handleSetting">
         <image class="item-icon" :src="historyImg" />
         <view class="info-title">设置</view>
@@ -34,8 +32,8 @@
       </AtButton>
     </view>
 
-    <AtButton type="primary"  @click="handleMakingPhoneCallToCustomerSupport">
-      联系我们
+    <AtButton type="primary"  @click="handleOpenCustomerServiceChat">
+      技术支持
     </AtButton>
 
     <!--
@@ -98,6 +96,24 @@ export default {
         phoneNumber: "0435-3338090",
       });
     },
+    handleOpenCustomerServiceChat() {
+      Taro.openCustomerServiceChat({
+        extInfo: { url: "https://work.weixin.qq.com/kfid/kfc5fdb2e0a1f297753?sence=mp-bbhj" },
+        corpId: "wx4aaa3fe59423b402",
+        success(res) {
+          console.log("xx");
+          wx.showToast({
+            title: "title",
+          });
+        },
+        fail(res) {
+          console.log("xxfail");
+          wx.showToast({
+            title: "fail",
+          });
+        },
+      });
+    }
   },
 };
 </script>
