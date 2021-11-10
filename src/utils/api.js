@@ -1,5 +1,8 @@
 import HTTPREQUEST from "./http"
 
+// Use standard REST APIs, swagger:
+// https://airdb.dev/redoc/?url=https://service-iw6drlfr-1251018873.sh.apigw.tencentcs.com/test/mina/docs/swagger.json
+
 export function login(params) {
     /**
      * @description 登录
@@ -19,7 +22,7 @@ export function checkSession(code) {
     return get('/mina/v1/wechat/check_session', { code })
 }
 
-export function listLost(pageNo=1, keyword="") {
+export function listLost(pageNo) {
     /**
      * @description 文章列表
      * @param {number} pageNo
@@ -29,7 +32,7 @@ export function listLost(pageNo=1, keyword="") {
      */
     // return get('/articles', { page_no })
     const pageSize = 10
-    return HTTPREQUEST.get('/mina/v1/lost/list', { pageNo, pageSize, keyword})
+    return HTTPREQUEST.get('/mina/v1/lost', { pageNo, pageSize })
 }
 
 export function queryLost(id) {
@@ -37,7 +40,7 @@ export function queryLost(id) {
      * @description 文章详情
      * @param {number} id
      */
-    return HTTPREQUEST.get('/mina/v1/lost/query', { id })
+    return HTTPREQUEST.get('/mina/v1/lost/', { id })
 }
 
 export function searchLost() {
@@ -47,24 +50,24 @@ export function searchLost() {
      * @param {string} name
      * @param {string} city
      */
-    return HTTPREQUEST.get('/mina/v1/lost/search', { id })
+    return HTTPREQUEST.get('/mina/v1/lost/', { id })
 }
 
-export function listRescue(pageNo=1,keyword="") {
+export function listRescue(pageNo) {
     /**
      * @description 文章详情
      * @param {number} pageNo
      * @param {number} pageSize
      */
     const pageSize = 10
-    return HTTPREQUEST.get('/mina/v1/rescue/list', { pageNo, pageSize, keyword})
+    return HTTPREQUEST.get('/mina/v1/rescue', { pageNo, pageSize })
 }
 export function queryRescue(id) {
     /**
      * @description 文章详情
      * @param {number} id
      */
-    return HTTPREQUEST.get('/mina/v1/rescue/query', { id })
+    return HTTPREQUEST.get('/mina/v1/rescue/', { id })
 }
 
 export function searchRescue(city) {
@@ -73,5 +76,5 @@ export function searchRescue(city) {
      * @param {string} name
      * @param {string} city
      */
-    return HTTPREQUEST.get('/mina/v1/rescue/search', { city })
+    return HTTPREQUEST.get('/mina/v1/rescue/', { city })
 }
