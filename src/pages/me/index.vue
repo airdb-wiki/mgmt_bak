@@ -25,6 +25,11 @@
         <view class="info-title">联系电话</view>
         <image class="right-icon" :src="narrowImg" />
       </AtButton>
+      <AtButton class="info-item setting" @click="handleClickAcknowledgement">
+        <image class="item-icon" :src="historyImg" />
+        <view class="info-title">特别感谢</view>
+        <image class="right-icon" :src="narrowImg" />
+      </AtButton>
       <AtButton class="info-item setting" @click="handleSetting">
         <image class="item-icon" :src="historyImg" />
         <view class="info-title">设置</view>
@@ -35,12 +40,6 @@
     <AtButton type="primary"  @click="handleOpenCustomerServiceChat">
       技术支持
     </AtButton>
-
-    <!--
-    <view class="adContainer">
-      <ad unit-id="adunit-6a89174cc83e227f" ad-intervals="30"></ad>
-    </view>
-    -->
   </view>
 </template>
 
@@ -113,7 +112,12 @@ export default {
           });
         },
       });
-    }
+    },
+    handleClickAcknowledgement() {
+      Taro.navigateTo({
+		    url: `/pages/me/acknowledgement/index`
+		  })
+    },
   },
 };
 </script>

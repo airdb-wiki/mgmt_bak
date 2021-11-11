@@ -3,6 +3,7 @@ export default {
     'pages/index/index',
     'pages/rescue/index',
     'pages/me/index',
+    'pages/me/acknowledgement/index',
     'pages/article/detail/index'
   ],
   window: {
