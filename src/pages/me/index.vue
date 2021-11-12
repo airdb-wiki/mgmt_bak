@@ -22,7 +22,7 @@
       </view>
        <view class="info-item" @tap="toRoute('thank')">
         <image class="item-icon" :src="historyImg"/>
-        <view class="info-title">感谢页面</view>
+        <view class="info-title">特别鸣谢</view>
         <image class="right-icon" :src="narrowImg" />
       </view>
       <AtButton class="info-item setting" @click="handleMakingPhoneCallToCustomerSupport">
