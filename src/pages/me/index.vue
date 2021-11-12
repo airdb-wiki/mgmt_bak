@@ -20,6 +20,11 @@
         <view class="info-title">浏览记录</view>
         <image class="right-icon" :src="narrowImg" />
       </view>
+       <view class="info-item" @tap="toRoute('thank')">
+        <image class="item-icon" :src="historyImg"/>
+        <view class="info-title">感谢页面</view>
+        <image class="right-icon" :src="narrowImg" />
+      </view>
       <AtButton class="info-item setting" @click="handleMakingPhoneCallToCustomerSupport">
         <image class="item-icon" :src="historyImg" />
         <view class="info-title">联系电话</view>
@@ -113,6 +118,12 @@ export default {
           });
         },
       });
+    },
+    toRoute(url) {
+      console.log(url)
+      Taro.navigateTo({
+        url: `/pages/mine/${url}/index`
+      })
     }
   },
 };
