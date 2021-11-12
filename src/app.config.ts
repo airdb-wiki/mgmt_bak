@@ -3,7 +3,10 @@ export default {
     'pages/index/index',
     'pages/rescue/index',
     'pages/me/index',
-    'pages/article/detail/index'
+    'pages/article/detail/index',
+    'pages/mine/thank/index',
+    'pages/mine/history/index',
+    'pages/mine/follow/index'
   ],
   window: {
     backgroundTextStyle: 'light',
