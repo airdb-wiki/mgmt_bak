@@ -10,27 +10,27 @@
     </view>
 
     <view class="info">
-      <view class="info-item">
+      <AtButton class="info-item btn"  @click="toRoute('follow')">
         <image class="item-icon" :src="followImg" />
         <view class="info-title">我跟踪的</view>
         <image class="right-icon" :src="narrowImg" />
-      </view>
-      <view class="info-item">
+      </AtButton>
+      <AtButton class="info-item btn" @click="toRoute('history')">
         <image class="item-icon" :src="historyImg" />
         <view class="info-title">浏览记录</view>
         <image class="right-icon" :src="narrowImg" />
-      </view>
-       <view class="info-item" @tap="toRoute('thank')">
+      </AtButton>
+       <AtButton class="info-item btn" @click="toRoute('thank')">
         <image class="item-icon" :src="historyImg"/>
         <view class="info-title">特别鸣谢</view>
         <image class="right-icon" :src="narrowImg" />
-      </view>
-      <AtButton class="info-item setting" @click="handleMakingPhoneCallToCustomerSupport">
+      </AtButton>
+      <AtButton class="info-item btn" @click="handleMakingPhoneCallToCustomerSupport">
         <image class="item-icon" :src="historyImg" />
         <view class="info-title">联系电话</view>
         <image class="right-icon" :src="narrowImg" />
       </AtButton>
-      <AtButton class="info-item setting" @click="handleSetting">
+      <AtButton class="info-item btn" @click="handleSetting">
         <image class="item-icon" :src="historyImg" />
         <view class="info-title">设置</view>
         <image class="right-icon" :src="narrowImg" />
@@ -122,7 +122,7 @@ export default {
     toRoute(url) {
       console.log(url)
       Taro.navigateTo({
-        url: `/pages/mine/${url}/index`
+        url: `/pages/me/${url}/index`
       })
     }
   },
@@ -183,7 +183,7 @@ export default {
     border-bottom: 0.5px solid #dcdedf;
   }
 
-  .info-item.setting {
+  .info-item.btn {
     border-top:unset;
     .item-icon {
       line-height: 32rpx;
