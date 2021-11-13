@@ -15,34 +15,72 @@
 
   <!--Contact for phone calls-->
   <Contact></Contact>
-  
-  <!--List of lost info-->
+
+  <AtSearchBar
+    v-model:value="keyword"
+    placeholder="姓名 | 编号 | 城市"
+    @ActionClick="updatePage(1)"
+  />
+
   <NavBar></NavBar>
   
+  <!--List of lost info-->
+  <view class="content">
+    <ListContent
+      :list="actclieList"
+      :currentPage="currentPage"
+      @updatePage="updatePage"
+    />
+  </view>
 </template>
 
 <script>
+import { stopPullDownRefresh } from "@tarojs/taro";
 import { ref } from "vue";
+import { AtSearchBar } from "taro-ui-vue3";
+import { listLost } from "../../utils/api";
+import "taro-ui-vue3/dist/style/components/search-bar.scss";
 import "./index.less";
 
-import { AtList, AtListItem } from "taro-ui-vue3";
-
 export default {
-  setup() {
-    const msg = ref("Hello world");
-    const bg = "https://wechat-1251018873.file.myqcloud.com/images/banner.png";
-    return {
-      msg,
-      bg,
-    };
+  components: { AtSearchBar },
+  async onPullDownRefresh() {
+    await this.updatePage(1)
+    stopPullDownRefresh()
   },
-  data() {
+  setup() {
+    const keyword = ref('')
+    const currentPage = ref(1)
+    const actclieList = ref([])
+    const background = [
+      "https://wechat-1251018873.file.myqcloud.com/images/banner.png",
+      "https://wechat-1251018873.file.myqcloud.com/images/banner.png",
+      "https://wechat-1251018873.file.myqcloud.com/images/banner.png",
+    ]
+
+    updatePage(1)
+
+    async function updatePage(page) {
+      console.log(keyword.value);
+      await listLost(page, keyword.value).then((res) => {
+        if (res.data.length > 0){
+          if (page === 1){
+            actclieList.value = res.data;
+          }else{
+            actclieList.value = actclieList.value.concat(res.data);
+          }
+          
+          currentPage.value = page;
+        }
+      });
+    }
+
     return {
-      background: [
-        "https://wechat-1251018873.file.myqcloud.com/images/banner.png",
-        "https://wechat-1251018873.file.myqcloud.com/images/banner.png",
-        "https://wechat-1251018873.file.myqcloud.com/images/banner.png",
-      ],
+      keyword,
+      currentPage,
+      actclieList,
+      background,
+      updatePage,
     };
   },
   methods: {

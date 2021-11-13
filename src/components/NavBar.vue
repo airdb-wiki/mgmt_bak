@@ -1,11 +1,4 @@
 <template>
-  <AtSearchBar
-    placeholder="姓名 | 编号 | 城市"
-    :value="keyword"
-    :onChange="changeKeyword"
-    :onActionClick="search"
-  />
-
   <view class="self_tabs">
     <view class="tab_header">
       <AtButton
@@ -24,43 +17,20 @@
       </AtButton>
     </view>
   </view>
-
-  <view>
-    <!--
-    <AtList>
-      <AtListItem title="标题文字" onClick="{this.handleClick}" />
-      <AtListItem title="标题文字" arrow="right" />
-      <AtListItem title="标题文字" extraText="详细信息" />
-      <AtListItem title="禁用状态" disabled extraText="详细信息" />
-    </AtList>
-    -->
-
-    <!--List of lost-->
-    <view class="content">
-      <ListContent :list="actclieList" :currentPage="currentPage" @updatePage="updatePage"/>
-    </view>
-  </view>
 </template>
 
 <script>
 import { computed, defineComponent, PropType, toRefs } from "vue";
 
-import { AtButton, AtList, AtListItem, AtSearchBar } from "taro-ui-vue3";
-import { getArticles, listLost, searchRescue } from "../utils/api";
+import { AtButton } from "taro-ui-vue3";
 
-import "taro-ui-vue3/dist/style/components/search-bar.scss";
 import "taro-ui-vue3/dist/style/components/button.scss";
 import "taro-ui-vue3/dist/style/components/icon.scss";
-import "taro-ui-vue3/dist/style/components/list.scss";
-import "taro-ui-vue3/dist/style/components/loading.scss";
 
 export default defineComponent({
   name: "NavBar",
   components: {
     AtButton,
-    AtList,
-    AtListItem,
-    AtSearchBar,
   },
   data() {
     return {
@@ -85,61 +55,6 @@ export default defineComponent({
       this.activeKey = activeKey;
       this.$emit("onChange", activeKey);
     },
-    handleClick() {
-      console.log("handleClick");
-    },
-    searchLost(e) {
-      searchLost().then((res) => {
-        console.log("searchLost", res.data);
-      });
-    },
-    updatePage(page){
-        listLost(page, this.keyword).then((res) => {
-          if (res.data.length > 0){
-            if (page == 1){
-              this.actclieList = res.data;
-            }else{
-              this.actclieList = this.actclieList.concat(res.data);
-            }
-            
-            this.currentPage = page;
-          }
-        });
-    },
-    search(){
-        this.currentPage = 1;
-        listLost(this.currentPage, this.keyword).then((res) => {
-            this.actclieList = res.data;
-        });
-    },
-    changeKeyword(value){
-      this.keyword = value
-    },
-  },
-  created() {
-    // console.log("xxx-created", this.currentPage);
-    listLost(this.currentPage).then((res) => {
-      this.actclieList = res.data;
-      console.log("xxx act", this.actclieList);
-    });
-
-    // reach bottom envet 上拉触底查看历史
-    // window.addEventListener("reachbottom", (evt) => {
-    //   console.log("reach_bottom", evt);
-    //   this.currentPage += 1;
-
-    //   console.log("pageIndex--->", this.currentPage);
-    //   listLost(this.currentPage).then((res) => {
-    //     this.actclieList = this.actclieList.concat(res.data.data);
-    //   });
-    // });
-
-    // // pull down refresh 上拉更新数据
-    // window.addEventListener("pulldownrefresh", (evt1) => {
-    //   console.log("pull_down", evt1);
-    // });
-
-    
   },
 });
 </script>
