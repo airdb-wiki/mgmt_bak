@@ -1973,6 +1973,11 @@
     "@vue/compiler-dom" "3.2.21"
     "@vue/shared" "3.2.21"
 
+"@vue/devtools-api@^6.0.0-beta.18":
+  version "6.0.0-beta.20.1"
+  resolved "https://registry.yarnpkg.com/@vue/devtools-api/-/devtools-api-6.0.0-beta.20.1.tgz#5b499647e929c35baf2a66a399578f9aa4601142"
+  integrity sha512-R2rfiRY+kZugzWh9ZyITaovx+jpU4vgivAEAiz80kvh3yviiTU3CBuGuyWpSwGz9/C7TkSWVM/FtQRGlZ16n8Q==
+
 "@vue/reactivity@3.2.21":
   version "3.2.21"
   resolved "https://registry.npmjs.org/@vue/reactivity/-/reactivity-3.2.21.tgz"

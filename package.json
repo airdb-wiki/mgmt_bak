@@ -36,6 +36,7 @@
     "author": "",
     "dependencies": {
         "@babel/runtime": "^7.7.7",
+        "@nutui/nutui-taro": "^3.1.10",
         "@tarojs/components": "3.3.11",
         "@tarojs/runtime": "3.3.11",
         "@tarojs/taro": "3.3.11",
@@ -52,6 +53,7 @@
         "@typescript-eslint/eslint-plugin": "^4.15.1",
         "@typescript-eslint/parser": "^4.15.1",
         "@vue/compiler-sfc": "^3.0.0",
+        "babel-plugin-import": "^1.13.3",
         "babel-preset-taro": "3.3.11",
         "eslint": "^6.8.0",
         "eslint-config-taro": "3.3.11",
