@@ -9,7 +9,7 @@
       />
     </view>
     <view class="rescue-card-listContent">
-      <scroll-view :scroll-y="true" style="height: 1200rpx;" @scrolltoupper="upper" @scrolltolower="lower" :scroll-into-view="toView" :scroll-top="scrollTop">
+      <scroll-view :scroll-y="true" style="height: 1200rpx;" @scrolltoupper="upper" @scrolltolower="lower">
       <AtList
         v-for="(item, index) in rescueCards"
         :key="index"
@@ -200,7 +200,7 @@ export default defineComponent({
       let page = this.currentPage + 1
       listRescue(page).then((res) => {
         if (res.data.length > 0) {
-            this.rescueCards.concat(res.data);
+            this.rescueCards = this.rescueCards.concat(res.data);
             this.currentPage = page
         }
       });
