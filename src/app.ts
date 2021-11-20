@@ -7,9 +7,11 @@
  * @FilePath: /mp-bbhj/src/app.ts
  */
 import { createApp } from 'vue'
+import { Icon, SearchBar } from '@nutui/nutui-taro'
 import { createUI } from 'taro-ui-vue3'
 import { NavBar, Contact, ListContent, ShowArticle, ListRescueCard } from './components/index'
 import { mpAutoUpdate } from  './common/utils.js'
+import "@nutui/nutui-taro/dist/style.css";
 import './app.less'
 // import 'taro-ui-vue3/dist/style/index.scss'
 
@@ -25,6 +27,8 @@ const App = createApp({
 
 const tuv3 = createUI()
 App.use(tuv3)
+
+App.use(Icon).use(SearchBar)
 
 App.component(NavBar.name, NavBar)
 App.component(Contact.name, Contact)

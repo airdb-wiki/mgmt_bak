@@ -1,20 +1,15 @@
 <template>
-  <AtButton class="connect" @click="handleOpenCustomerServiceChat">
+  <button class="connect" @tap="handleOpenCustomerServiceChat">
     <view class="text">微信客服</view>
-  </AtButton>
+  </button>
 </template>
-
 
 <script>
 import { computed, defineComponent, PropType, toRefs } from "vue";
-import { AtButton } from "taro-ui-vue3";
 import Taro from "@tarojs/taro";
 
 export default defineComponent({
   name: "Contact",
-  components: {
-    AtButton,
-  },
   methods: {
     handleOpenCustomerServiceChat() {
       Taro.openCustomerServiceChat({
