@@ -21,7 +21,7 @@ const config = {
             pxtransform: {
                 enable: true,
                 config: {
-
+                    selectorBlackList: [/nut-/],
                 }
             },
             url: {
@@ -55,7 +55,8 @@ const config = {
                 }
             }
         }
-    }
+    },
+    plugins: ['@tarojs/plugin-html'],
 }
 
 module.exports = function(merge) {

@@ -1463,6 +1463,13 @@
     webpack-format-messages "^2.0.5"
     yauzl "2.10.0"
 
+"@tarojs/plugin-html@^3.3.14":
+  version "3.3.14"
+  resolved "https://registry.yarnpkg.com/@tarojs/plugin-html/-/plugin-html-3.3.14.tgz#a8ccff2f3ff963fa9a393f6cfaa2d20a8485147b"
+  integrity sha512-bnoRKspWsqvzIrbxmggpWXJ672Kv93Zdtzz8jMnNHKNsM8tuSLTjozmVeGpG42Q/sv6Ym1RqH9c9g52+SfSw6Q==
+  dependencies:
+    "@tarojs/shared" "3.3.14"
+
 "@tarojs/plugin-less@^2.2.10":
   version "2.2.10"
   resolved "https://registry.npmjs.org/@tarojs/plugin-less/-/plugin-less-2.2.10.tgz"
@@ -1592,6 +1599,11 @@
   version "3.3.11"
   resolved "https://registry.npmjs.org/@tarojs/shared/-/shared-3.3.11.tgz"
   integrity sha512-J0ly2dGUwnk4WeNFlRF4nde9U/BnAx7L2jSihC1cJ81vd7quoE83/IkLQcqqrUCiSCjcGkpjhJVbrgwaswjosw==
+
+"@tarojs/shared@3.3.14":
+  version "3.3.14"
+  resolved "https://registry.yarnpkg.com/@tarojs/shared/-/shared-3.3.14.tgz#dcb6a149cdafb97369a06d7bf74c8249894bb3ec"
+  integrity sha512-iowfmHKVV0cKLMtdNdYoYLQ/CCQ6cl9L2eJh/sJj1OvytxdxjCzyjyR1pJQYkyTPkwRtDweNwzRsezLQlRfBAA==
 
 "@tarojs/taro-h5@3.3.11":
   version "3.3.11"
