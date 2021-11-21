@@ -1,11 +1,11 @@
 <template>
   <view class="self_tabs">
     <view class="tab_header">
-      <AtButton
+      <button
         v-for="item in tabList"
         :key="item.key"
-        @click.stop="tabChang(item.key)"
         :class="item.key === activeKey ? 'item_active' : 'item'"
+        @tap="tabChang(item.key)"
       >
         {{ item.label }}
         <image
@@ -14,7 +14,7 @@
           :src="item.key === activeKey ? item.activeIcon : item.icon"
           style="height: 30rpx; width: 30rpx"
         />
-      </AtButton>
+      </button>
     </view>
   </view>
 </template>
@@ -22,16 +22,8 @@
 <script>
 import { computed, defineComponent, PropType, toRefs } from "vue";
 
-import { AtButton } from "taro-ui-vue3";
-
-import "taro-ui-vue3/dist/style/components/button.scss";
-import "taro-ui-vue3/dist/style/components/icon.scss";
-
 export default defineComponent({
   name: "NavBar",
-  components: {
-    AtButton,
-  },
   data() {
     return {
       tabList: [

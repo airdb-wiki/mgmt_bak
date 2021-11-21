@@ -41,13 +41,12 @@
         "@tarojs/runtime": "3.3.11",
         "@tarojs/taro": "3.3.11",
         "hairline": "^1.0.0",
-        "taro-ui-vue3": "^1.0.0-alpha.21",
         "vue": "^3.0.0"
     },
     "devDependencies": {
         "@babel/core": "^7.8.0",
         "@tarojs/mini-runner": "3.3.11",
-        "@tarojs/plugin-html": "^3.3.11",
+        "@tarojs/plugin-html": "3.3.11",
         "@tarojs/plugin-less": "^2.2.10",
         "@tarojs/webpack-runner": "3.3.11",
         "@types/webpack-env": "^1.13.6",
