@@ -3,6 +3,11 @@ import HTTPREQUEST from "./http"
 // Use standard REST APIs, swagger:
 // https://airdb.dev/redoc/?url=https://service-iw6drlfr-1251018873.sh.apigw.tencentcs.com/test/mina/docs/swagger.json
 
+export const API_LIST = {
+    lost: '/mina/v1/lost',
+    rescue: '/mina/v1/rescue',
+}
+
 export function login(params) {
     /**
      * @description 登录

@@ -7,13 +7,18 @@
  * @FilePath: /mp-bbhj/src/app.ts
  */
 import { createApp } from 'vue'
-import { createUI } from 'taro-ui-vue3'
-import { NavBar, Contact, ListContent, ShowArticle, ListRescueCard } from './components/index'
+import {
+  Icon,
+  SearchBar,
+  Cell,
+  CellGroup,
+  Button,
+  Collapse,
+  CollapseItem,
+} from '@nutui/nutui-taro'
 import { mpAutoUpdate } from  './common/utils.js'
+import "@nutui/nutui-taro/dist/style.css";
 import './app.less'
-// import 'taro-ui-vue3/dist/style/index.scss'
-
-
 
 const App = createApp({
   onShow(options) {
@@ -23,13 +28,13 @@ const App = createApp({
   // 入口组件不需要实现 render 方法，即使实现了也会被 taro 所覆盖
 })
 
-const tuv3 = createUI()
-App.use(tuv3)
-
-App.component(NavBar.name, NavBar)
-App.component(Contact.name, Contact)
-App.component(ListContent.name, ListContent)
-App.component(ListRescueCard.name, ListRescueCard)
-App.component(ShowArticle.name, ShowArticle)
+App
+  .use(Icon)
+  .use(SearchBar)
+  .use(Cell)
+  .use(CellGroup)
+  .use(Button)
+  .use(Collapse)
+  .use(CollapseItem)
 
 export default App

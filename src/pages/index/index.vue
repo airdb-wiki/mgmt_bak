@@ -15,21 +15,21 @@
 
   <!--Contact for phone calls-->
   <Contact></Contact>
-
-  <AtSearchBar
-    v-model:value="keyword"
+  <!-- TODO: change to `query.keyword` -->
+  <nut-searchbar
+    v-model="keyword"
     placeholder="姓名 | 编号 | 城市"
-    @ActionClick="updatePage(1)"
+    @search="refreshList"
   />
 
   <NavBar></NavBar>
   
   <!--List of lost info-->
   <view class="content">
-    <ListContent
-      :list="actclieList"
-      :currentPage="currentPage"
-      @updatePage="updatePage"
+    <content-item
+      v-for="item in list"
+      :key="item.id"
+      :item="item"
     />
   </view>
 </template>
@@ -37,50 +37,37 @@
 <script>
 import { stopPullDownRefresh } from "@tarojs/taro";
 import { ref } from "vue";
-import { AtSearchBar } from "taro-ui-vue3";
-import { listLost } from "../../utils/api";
-import "taro-ui-vue3/dist/style/components/search-bar.scss";
+import { useList } from "../../composables/index";
+import { API_LIST } from "../../utils/api";
+import Contact from '../../components/Contact.vue';
+import NavBar from '../../components/NavBar.vue';
+import ContentItem from '../../components/ContentItem.vue';
 import "./index.less";
 
 export default {
-  components: { AtSearchBar },
-  async onPullDownRefresh() {
-    await this.updatePage(1)
-    stopPullDownRefresh()
+  components: { Contact, NavBar, ContentItem },
+  onPullDownRefresh() {
+    this.refreshList(stopPullDownRefresh)
+  },
+  onReachBottom() {
+    this.loadList()
   },
   setup() {
+    const { query, list, loadList, refreshList } = useList({ url: API_LIST.lost })
     const keyword = ref('')
-    const currentPage = ref(1)
-    const actclieList = ref([])
     const background = [
       "https://wechat-1251018873.file.myqcloud.com/images/banner.png",
       "https://wechat-1251018873.file.myqcloud.com/images/banner.png",
       "https://wechat-1251018873.file.myqcloud.com/images/banner.png",
     ]
 
-    updatePage(1)
-
-    async function updatePage(page) {
-      console.log(keyword.value);
-      await listLost(page, keyword.value).then((res) => {
-        if (res.data.length > 0){
-          if (page === 1){
-            actclieList.value = res.data;
-          }else{
-            actclieList.value = actclieList.value.concat(res.data);
-          }
-          
-          currentPage.value = page;
-        }
-      });
-    }
-
     return {
       keyword,
-      currentPage,
-      actclieList,
+      query,
+      list,
+      loadList,
+      refreshList,
       background,
-      updatePage,
     };
   },
   methods: {

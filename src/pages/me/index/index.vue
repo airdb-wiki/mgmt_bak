@@ -9,37 +9,37 @@
       </view>
     </view>
 
-    <view class="info">
-      <AtButton class="info-item btn"  @click="toRoute('follow')">
-        <image class="item-icon" :src="followImg" />
-        <view class="info-title">我跟踪的</view>
-        <image class="right-icon" :src="narrowImg" />
-      </AtButton>
-      <AtButton class="info-item btn" @click="toRoute('history')">
-        <image class="item-icon" :src="historyImg" />
-        <view class="info-title">浏览记录</view>
-        <image class="right-icon" :src="narrowImg" />
-      </AtButton>
-       <AtButton class="info-item btn" @click="toRoute('thank')">
-        <image class="item-icon" :src="historyImg"/>
-        <view class="info-title">特别鸣谢</view>
-        <image class="right-icon" :src="narrowImg" />
-      </AtButton>
-      <AtButton class="info-item btn" @click="handleMakingPhoneCallToCustomerSupport">
-        <image class="item-icon" :src="historyImg" />
-        <view class="info-title">联系电话</view>
-        <image class="right-icon" :src="narrowImg" />
-      </AtButton>
-      <AtButton class="info-item btn" @click="handleSetting">
-        <image class="item-icon" :src="historyImg" />
-        <view class="info-title">设置</view>
-        <image class="right-icon" :src="narrowImg" />
-      </AtButton>
-    </view>
+    <nut-cell-group class="info">
+      <nut-cell title="我跟踪的" is-link class="info-item" @tap="toRoute('follow')">
+        <template #icon>
+          <image class="item-icon" :src="followImg" />
+        </template>
+      </nut-cell>
+      <nut-cell title="浏览记录" is-link class="info-item" @tap="toRoute('history')">
+        <template #icon>
+          <image class="item-icon" :src="historyImg" />
+        </template>
+      </nut-cell>
+      <nut-cell title="特别鸣谢" is-link class="info-item" @tap="toRoute('thank')">
+        <template #icon>
+          <image class="item-icon" :src="historyImg" />
+        </template>
+      </nut-cell>
+      <nut-cell title="联系电话" is-link class="info-item" @tap="handleMakingPhoneCallToCustomerSupport">
+        <template #icon>
+          <image class="item-icon" :src="historyImg" />
+        </template>
+      </nut-cell>
+      <nut-cell title="设置" is-link class="info-item" @tap="handleSetting">
+        <template #icon>
+          <image class="item-icon" :src="historyImg" />
+        </template>
+      </nut-cell>
+    </nut-cell-group>
 
-    <AtButton type="primary"  @click="handleOpenCustomerServiceChat">
+    <nut-button type="info" block @tap="handleOpenCustomerServiceChat">
       技术支持
-    </AtButton>
+    </nut-button>
 
     <!--
     <view class="adContainer">
@@ -51,19 +51,7 @@
 
 <script>
 import { ref } from "vue";
-
-import {
-  AtButton,
-  AtList,
-  AtListItem,
-  AtSearchBar,
-  AtIcon,
-} from "taro-ui-vue3";
-
 import Taro from "@tarojs/taro";
-
-import "taro-ui-vue3/dist/style/components/button.scss";
-
 import "./index.less";
 
 export default {
@@ -135,7 +123,6 @@ export default {
   .bg {
     width: 100%;
     position: absolute;
-    z-index: 1;
     height: 352rpx;
     top: 0;
   }
@@ -183,23 +170,10 @@ export default {
     border-bottom: 0.5px solid #dcdedf;
   }
 
-  .info-item.btn {
-    border-top:unset;
-    .item-icon {
-      line-height: 32rpx;
-      top: 28rpx;
-    }
-    .info-title {
-      top:0px
-    }
-  }
-  
-
   .item-icon {
-    position: absolute;
+    margin-right: 20rpx;
     width: 36rpx;
-    left: 34rpx;
-    height: 32rpx;
+    height: 36rpx;
   }
   .info-title {
     position: absolute;
