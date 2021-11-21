@@ -1,5 +1,5 @@
 <template>
-  <view class="article_list_item">
+  <view class="article_list_item" @tap="jumpToDetail">
     <view
       class="article_detail"
     >
@@ -18,13 +18,36 @@
 </template>
 
 <script setup>
+import { navigateTo } from "@tarojs/taro";
 import { toRefs } from "vue"
 
-const props = defineProps()
+const props = defineProps(['item'])
 const { item } = toRefs(props)
+
+function jumpToDetail() {
+  navigateTo({
+		url: `/pages/article/detail/index?id=${item.value.id}`
+	})
+}
 </script>
 
 <style lang="less">
+.ellipsis {
+  display: -webkit-box;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  word-wrap: break-word;
+
+  white-space: normal !important;
+  word-break: break-all;
+
+  -webkit-line-clamp: 2;
+
+  -webkit-box-orient: vertical;
+}
 .article_list_item {
   box-sizing: border-box;
   background: #fff;

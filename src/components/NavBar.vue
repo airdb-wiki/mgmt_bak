@@ -61,6 +61,8 @@ export default defineComponent({
 
 <style lang="less">
 .self_tabs {
+  position: sticky;
+  top: 0;
   display: flex;
   flex-direction: column;
   .tab_header {
