@@ -34,14 +34,5 @@ export default {
       "text": "我的"
     }]
   },
-  "quickMenu": {
-    "share": true,
-    "favorite": true,
-    "sendToDesktop": true
-  },
   "debug": false,
-  "pageAlias": {
-    "index": "pages/index/index",
-    "me": "pages/me/index"
-  }
 }

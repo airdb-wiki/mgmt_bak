@@ -55,7 +55,7 @@ class httpRequest {
         return Taro.request(option);
     }
 
-    get(url, data = "") {
+    get(url, data) {
         let option = { url, data };
         return this.baseOptions(option);
     }
@@ -65,12 +65,12 @@ class httpRequest {
         return this.baseOptions(params, "POST");
     }
 
-    put(url, data = "") {
+    put(url, data) {
         let option = { url, data };
         return this.baseOptions(option, "PUT");
     }
 
-    delete(url, data = "") {
+    delete(url, data) {
         let option = { url, data };
         return this.baseOptions(option, "DELETE");
     }
