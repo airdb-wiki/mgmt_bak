@@ -36,7 +36,7 @@
     "author": "",
     "dependencies": {
         "@babel/runtime": "^7.7.7",
-        "@nutui/nutui-taro": "^3.1.10",
+        "@nutui/nutui-taro": "^3.1.11",
         "@tarojs/components": "3.3.11",
         "@tarojs/runtime": "3.3.11",
         "@tarojs/taro": "3.3.11",
@@ -47,7 +47,7 @@
     "devDependencies": {
         "@babel/core": "^7.8.0",
         "@tarojs/mini-runner": "3.3.11",
-        "@tarojs/plugin-html": "^3.3.14",
+        "@tarojs/plugin-html": "^3.3.11",
         "@tarojs/plugin-less": "^2.2.10",
         "@tarojs/webpack-runner": "3.3.11",
         "@types/webpack-env": "^1.13.6",

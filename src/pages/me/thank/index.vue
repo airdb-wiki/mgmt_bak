@@ -1,79 +1,40 @@
 <template>
   <view class="thank-container">
-      <AtAccordion
-        @click="onClick('companyShow')"
-        title='公司'
-        :isAnimation='false'
-        :open="companyShow"
-      >
-        <AtList :hasBorder="false">
-          <AtListItem
-            v-for="(item, index) in company"
-            :key="index"
-            :title="item.name"
-            thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png'
-          />
-        </AtList>
-      </AtAccordion>
-      <AtAccordion
-        @click="onClick('teamShow')"
-        title='团队'
-        :isAnimation='false'
-        :open="teamShow"
-      >
-        <AtList :hasBorder="false">
-          <AtListItem
-            v-for="(item, index) in team"
-            :key="index"
-            :title="item.name"
-            thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png'
-          />
-        </AtList>
-      </AtAccordion>
-      <AtAccordion
-        @click="onClick('personShow')"
-        title='个人'
-        :isAnimation='false'
-        :open="personShow"
-      >
-        <AtList :hasBorder="false">
-          <AtListItem
-            v-for="(item, index) in person"
-            :key="index"
-            :title="item.name"
-          />
-        </AtList>
-      </AtAccordion>
+    <nut-collapse v-model:active="activeName" icon="down-arrow">
+      <nut-collapse-item title="公司" :name="1">
+        <nut-cell-group>
+          <nut-cell v-for="(item, index) in company" :key="index" :title="item.name" />
+        </nut-cell-group>
+      </nut-collapse-item>
+      <nut-collapse-item title="团队" :name="2">
+        <nut-cell-group>
+          <nut-cell v-for="(item, index) in team" :key="index" :title="item.name" />
+        </nut-cell-group>
+      </nut-collapse-item>
+      <nut-collapse-item title="个人" :name="3">
+        <nut-cell-group>
+          <nut-cell v-for="(item, index) in person" :key="index" :title="item.name" />
+        </nut-cell-group>
+      </nut-collapse-item>
+    </nut-collapse>
   </view>
 </template>
 
 <script>
 import { ref } from "vue";
-
-import {
-  AtButton,
-  AtList,
-  AtListItem,
-  AtSearchBar,
-  AtIcon,
-  AtAccordion
-} from "taro-ui-vue3";
-
 import Taro from "@tarojs/taro";
-import "taro-ui-vue3/dist/style/components/accordion.scss";
 import "./index.less";
 
 export default {
   setup() {
-    
+    const activeName = ref([]);
+
     return {
-     
+      activeName,
     };
   },
   data() {
     return {
-      value1: false,
-      companyShow: false,
       company: [
         {
           name: '公司名称1',
@@ -85,7 +46,6 @@ export default {
           name: '公司名称3',
         }
       ],
-      teamShow: false,
       team: [
         {
           name: '团队名称1',
@@ -97,7 +57,6 @@ export default {
           name: '团队名称3',
         }
       ],
-      personShow: false,
       person: [
         {
           name: 'Dean CN <dean@airdb.com>',
@@ -114,19 +73,8 @@ export default {
       ]
     };
   },
-  methods: {
-    onClick(type) {
-      console.log(this[type])
-      this[type] = !this[type]
-      console.log(this.companyShow)
-    }
-  },
 };
 </script>
 
-
 <style lang="less">
-  .thank-container{
-    
-  }
 </style>

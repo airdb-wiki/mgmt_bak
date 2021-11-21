@@ -7,7 +7,15 @@
  * @FilePath: /mp-bbhj/src/app.ts
  */
 import { createApp } from 'vue'
-import { Icon, SearchBar } from '@nutui/nutui-taro'
+import {
+  Icon,
+  SearchBar,
+  Cell,
+  CellGroup,
+  Button,
+  Collapse,
+  CollapseItem,
+} from '@nutui/nutui-taro'
 import { createUI } from 'taro-ui-vue3'
 import { mpAutoUpdate } from  './common/utils.js'
 import "@nutui/nutui-taro/dist/style.css";
@@ -24,6 +32,13 @@ const App = createApp({
 const tuv3 = createUI()
 App.use(tuv3)
 
-App.use(Icon).use(SearchBar)
+App
+  .use(Icon)
+  .use(SearchBar)
+  .use(Cell)
+  .use(CellGroup)
+  .use(Button)
+  .use(Collapse)
+  .use(CollapseItem)
 
 export default App
