@@ -35,7 +35,7 @@
       </view>
       <button
         size="small"
-        @tap="jumpToDetail(item.id)"
+        @tap="jumpToDetail"
         class="pull-right detail-btn"
       >
         > 查看详情
@@ -48,17 +48,26 @@
 import { navigateTo } from "@tarojs/taro"
 import { toRefs } from "vue"
 
-const props = defineProps()
+const props = defineProps(['item'])
 const { item } = toRefs(props)
 
-function jumpToDetail(id) {
+function jumpToDetail() {
   navigateTo({
-    url: `/pages/article/detail/index?id=${id}`,
+    url: `/pages/article/detail/index?id=${item.value.id}`,
   })
 }
 </script>
 
 <style lang="less">
+.pull-left {
+  float: left;
+}
+.pull-right {
+  float: right;
+}
+.over-flow-hidden {
+  overflow: hidden;
+}
 .rescue-card-listContent-item {
   border: 1px solid #b5cbfa;
   border-radius: 0.5rem;
@@ -102,6 +111,9 @@ function jumpToDetail(id) {
       border: none;
       background: none;
       color: #313bd1;
+      &::after{
+        content: none;
+      }
     }
   }
 }

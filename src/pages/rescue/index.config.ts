@@ -1,4 +1,5 @@
 export default {
   navigationBarTitleText: '救助站',
-  enableShareAppMessage: true
+  enableShareAppMessage: true,
+  enablePullDownRefresh: true,
 }
