@@ -15,14 +15,14 @@
 
   <!--Contact for phone calls-->
   <Contact></Contact>
-  <!-- TODO: change to `query.keyword` -->
+  <!-- nut-searchbar @search事件失效.. -->
   <nut-searchbar
-    v-model="keyword"
+    v-model="query.keyword"
     placeholder="姓名 | 编号 | 城市"
-    @search="refreshList"
-  />
+    @blur="refreshList"
+></nut-searchbar>
 
-  <NavBar></NavBar>
+  <NavBar @change="onNavBarChange"></NavBar>
   
   <!--List of lost info-->
   <view class="content">
@@ -53,8 +53,7 @@ export default {
     this.loadList()
   },
   setup() {
-    const { query, list, loadList, refreshList } = useList({ url: API_LIST.lost })
-    const keyword = ref('')
+    const { query, list, loadList, refreshList } = useList({ url: API_LIST.lost,queryDefault:{type:'newest'} })
     const background = [
       "https://wechat-1251018873.file.myqcloud.com/images/banner.png",
       "https://wechat-1251018873.file.myqcloud.com/images/banner.png",
@@ -62,7 +61,6 @@ export default {
     ]
 
     return {
-      keyword,
       query,
       list,
       loadList,
@@ -76,6 +74,11 @@ export default {
         title: "xx",
       };
     },
+    onNavBarChange(activeBar){
+      this.query.type = activeBar
+      this.refreshList()
+    }
+    
   },
 };
 </script>
