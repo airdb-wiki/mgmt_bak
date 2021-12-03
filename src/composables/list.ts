@@ -8,6 +8,7 @@ interface ListAttr<T = StringObject> {
   transform?: (form: T) => T
   immediate?: boolean
   limit?: number
+  queryDefault?:T
 }
 
 /**
@@ -16,12 +17,14 @@ interface ListAttr<T = StringObject> {
  * @param transform 转换搜索
  * @param immediate 是否在初始化时加载，默认: `true`
  * @param limit 单次请求获取数据的条数，默认: `10`
+ * @param queryDefault 默认查询条件
  */
 export function useList<Item = StringObject, Serach = Item>({
   url,
   transform,
   immediate = true,
   limit = 10,
+  queryDefault
 }: ListAttr<Serach>): {
   query: Ref<Serach>
   isFetching: Ref<boolean>
@@ -35,7 +38,7 @@ export function useList<Item = StringObject, Serach = Item>({
   const isEnd = ref(false)
   const isFetching = ref(false)
   const isRefresh = ref(false)
-  const query = ref<Serach>({} as Serach) as Ref<Serach>
+  const query = ref<Serach>( queryDefault ? queryDefault:{} as Serach ) as Ref<Serach>
   const list = ref<Item[]>([]) as Ref<Item[]>
   const payload = computed(() => {
     const _query = transform ? transform(unref(query)) : query.value

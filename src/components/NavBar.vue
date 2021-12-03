@@ -36,16 +36,13 @@ export default defineComponent({
         { label: "寻家", key: "column" },
         { label: "其他", key: "pay" },
       ],
-      activeKey: "newest",
-      actclieList: [],
-      currentPage: 1, // default currentPage is 1
-      keyword: "",
+      activeKey: "newest"
     };
   },
   methods: {
     tabChang(activeKey) {
       this.activeKey = activeKey;
-      this.$emit("onChange", activeKey);
+      this.$emit("change", activeKey);
     },
   },
 });
