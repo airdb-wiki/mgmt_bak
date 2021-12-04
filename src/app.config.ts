@@ -14,7 +14,8 @@ export default {
     'pages/me/index/index',
     'pages/me/thank/index',
     'pages/me/history/index',
-    'pages/me/follow/index'
+    'pages/me/follow/index',
+    'pages/me/customer-service/index',
   ],
   window: {
     backgroundTextStyle: 'light',
