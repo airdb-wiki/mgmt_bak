@@ -91,6 +91,9 @@ export default {
         {
           name: "jerry-shao <com.jerryshao@jerryshao.com>",
         },
+        {
+          name: "hsluoyz <hsluoyz@qq.com>",
+        },
       ],
     };
   },

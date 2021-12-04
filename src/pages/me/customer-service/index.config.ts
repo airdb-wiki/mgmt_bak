@@ -1,4 +1,4 @@
 export default {
-  navigationBarTitleText: '客服',
+  navigationBarTitleText: '公益客服',
   enableShareAppMessage: true,
 }

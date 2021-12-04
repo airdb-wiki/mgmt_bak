@@ -4,16 +4,18 @@
       <text class="title">{{ item.title }}</text>
       <text class="desc">{{ item.desc }}</text>
     </view>
-    <nut-button type="primary" @tap="openCustomerService(item.id)">联系</nut-button>
+    <nut-button type="primary" @tap="openCustomerService(item.id)"
+      >客服</nut-button
+    >
   </view>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { openCustomerService } from '../utils/wxkf'
+import { defineComponent } from "vue";
+import { openCustomerService } from "../utils/wxkf";
 
 export default defineComponent({
-  name: 'CustomerItem',
+  name: "CustomerItem",
   props: {
     item: {
       type: Object,
@@ -23,9 +25,9 @@ export default defineComponent({
   setup() {
     return {
       openCustomerService,
-    }
-  }
-})
+    };
+  },
+});
 </script>
 
 <style lang="less">

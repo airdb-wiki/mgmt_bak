@@ -10,22 +10,42 @@
     </view>
 
     <nut-cell-group class="info">
-      <nut-cell title="我跟踪的" is-link class="info-item" @tap="toRoute('follow')">
+      <nut-cell
+        title="我跟踪的"
+        is-link
+        class="info-item"
+        @tap="toRoute('follow')"
+      >
         <template #icon>
           <image class="item-icon" :src="followImg" />
         </template>
       </nut-cell>
-      <nut-cell title="浏览记录" is-link class="info-item" @tap="toRoute('history')">
+      <nut-cell
+        title="浏览记录"
+        is-link
+        class="info-item"
+        @tap="toRoute('history')"
+      >
         <template #icon>
           <image class="item-icon" :src="historyImg" />
         </template>
       </nut-cell>
-      <nut-cell title="特别鸣谢" is-link class="info-item" @tap="toRoute('thank')">
+      <nut-cell
+        title="特别鸣谢"
+        is-link
+        class="info-item"
+        @tap="toRoute('thank')"
+      >
         <template #icon>
           <image class="item-icon" :src="historyImg" />
         </template>
       </nut-cell>
-      <nut-cell title="联系电话" is-link class="info-item" @tap="handleMakingPhoneCallToCustomerSupport">
+      <nut-cell
+        title="联系电话"
+        is-link
+        class="info-item"
+        @tap="handleMakingPhoneCallToCustomerSupport"
+      >
         <template #icon>
           <image class="item-icon" :src="historyImg" />
         </template>
@@ -35,7 +55,12 @@
           <image class="item-icon" :src="historyImg" />
         </template>
       </nut-cell>
-      <nut-cell title="客服" is-link class="info-item" @tap="toRoute('customer-service')">
+      <nut-cell
+        title="公益客服"
+        is-link
+        class="info-item"
+        @tap="toRoute('customer-service')"
+      >
         <template #icon>
           <image class="item-icon" :src="historyImg" />
         </template>
@@ -82,12 +107,12 @@ export default {
       console.log("xx");
       Taro.openSetting({
         success: function (res) {
-          console.log('setting succ')
+          console.log("setting succ");
         },
-        fail(res){
-          console.log('setting fail')
-        }
-      })
+        fail(res) {
+          console.log("setting fail");
+        },
+      });
     },
     handleMakingPhoneCallToCustomerSupport() {
       wx.makePhoneCall({
@@ -96,7 +121,9 @@ export default {
     },
     handleOpenCustomerServiceChat() {
       Taro.openCustomerServiceChat({
-        extInfo: { url: "https://work.weixin.qq.com/kfid/kfc02343d9ba414880a?sence=mp-bbhj" },
+        extInfo: {
+          url: "https://work.weixin.qq.com/kfid/kfc02343d9ba414880a?sence=mp-bbhj",
+        },
         corpId: "wx4aaa3fe59423b402",
         success(res) {
           console.log("xx");
@@ -113,11 +140,11 @@ export default {
       });
     },
     toRoute(url) {
-      console.log(url)
+      console.log(url);
       Taro.navigateTo({
-        url: `/pages/me/${url}/index`
-      })
-    }
+        url: `/pages/me/${url}/index`,
+      });
+    },
   },
 };
 </script>
