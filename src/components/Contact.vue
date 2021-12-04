@@ -1,34 +1,17 @@
 <template>
-  <button class="connect" @tap="handleOpenCustomerServiceChat">
+  <button class="connect" @tap="openCustomerService()">
     <view class="text">微信客服</view>
   </button>
 </template>
 
 <script>
 import { computed, defineComponent, PropType, toRefs } from "vue";
-import Taro from "@tarojs/taro";
+import { openCustomerService } from '../utils/wxkf'
 
 export default defineComponent({
   name: "Contact",
   methods: {
-    handleOpenCustomerServiceChat() {
-      Taro.openCustomerServiceChat({
-        extInfo: { url: "https://work.weixin.qq.com/kfid/kfc5fdb2e0a1f297753?sence=mp-bbhj" },
-        corpId: "wx4aaa3fe59423b402",
-        success(res) {
-          console.log("xx");
-          wx.showToast({
-            title: "title",
-          });
-        },
-        fail(res) {
-          console.log("xxfail");
-          wx.showToast({
-            title: "fail",
-          });
-        },
-      });
-    },
+    openCustomerService,
   },
 });
 </script>

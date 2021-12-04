@@ -35,6 +35,11 @@
           <image class="item-icon" :src="historyImg" />
         </template>
       </nut-cell>
+      <nut-cell title="客服" is-link class="info-item" @tap="toRoute('customer-service')">
+        <template #icon>
+          <image class="item-icon" :src="historyImg" />
+        </template>
+      </nut-cell>
     </nut-cell-group>
 
     <nut-button type="info" block @tap="handleOpenCustomerServiceChat">
