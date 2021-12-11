@@ -15,27 +15,36 @@
 
   <!--Contact for phone calls-->
   <Contact></Contact>
-  <!-- nut-searchbar @search事件失效.. -->
-  <nut-searchbar
-    v-model="query.keyword"
-    placeholder="姓名 | 编号 | 城市"
-    @blur="refreshList"
-></nut-searchbar>
 
   <NavBar @change="onNavBarChange"></NavBar>
-  
-  <!--List of lost info-->
-  <view class="content">
-    <content-item
-      v-for="item in list"
-      :key="item.id"
-      :item="item"
-    />
+
+  <view class="lost-list-container">
+    <!-- nut-searchbar @search事件失效.. -->
+    <nut-searchbar
+      v-model="query.keyword"
+      placeholder="搜索"
+      @clear="onQueryClear"
+      @blur="refreshList"> 
+    <template v-slot:leftin>
+      <nut-icon size="14" name="search2"></nut-icon>
+    </template>
+  </nut-searchbar>
+
+
+    
+    <!--List of lost info-->
+    <view class="content">
+      <content-item
+        v-for="item in list"
+        :key="item.id"
+        :item="item"
+      />
+    </view>
   </view>
 </template>
 
 <script>
-import { stopPullDownRefresh } from "@tarojs/taro";
+import Taro, { stopPullDownRefresh } from "@tarojs/taro";
 import { ref } from "vue";
 import { useList } from "../../composables/index";
 import { API_LIST } from "../../utils/api";
@@ -53,7 +62,7 @@ export default {
     this.loadList()
   },
   setup() {
-    const { query, list, loadList, refreshList } = useList({ url: API_LIST.lost,queryDefault:{type:'newest'} })
+    const { query, list, loadList, refreshList } = useList({ url: API_LIST.lost,queryDefault:{category:1} })
     const background = [
       "https://wechat-1251018873.file.myqcloud.com/images/banner.png",
       "https://wechat-1251018873.file.myqcloud.com/images/banner.png",
@@ -65,7 +74,7 @@ export default {
       list,
       loadList,
       refreshList,
-      background,
+      background
     };
   },
   methods: {
@@ -75,7 +84,11 @@ export default {
       };
     },
     onNavBarChange(activeBar){
-      this.query.type = activeBar
+      this.query.category = activeBar
+      this.refreshList()
+    },
+    onQueryClear(){
+      this.query = ''
       this.refreshList()
     }
     
@@ -84,6 +97,14 @@ export default {
 </script>
 
 <style lang="less">
+.lost-list-container {
+  flex:1;
+  background-color: #97939726;
+  padding:24rpx;
+  >.nut-searchbar {
+    background-color: unset;
+  }
+}
 .miniprogram-root {
   .for-web {
     display: none;

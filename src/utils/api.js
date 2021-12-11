@@ -32,7 +32,7 @@ export function listLost(pageNo) {
      * @description 文章列表
      * @param {number} pageNo
      * @param {number} pageSize
-     * @param {string} ??type
+     * @param {string} ??category
      * @param {string} ??keywords
      */
     // return get('/articles', { page_no })
