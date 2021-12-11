@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2021-12-11 11:50:56
+ * @LastEditTime: 2021-12-11 17:30:18
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: /mp-bbhj/src/utils/api.js
+ */
 import HTTPREQUEST from "./http"
 
 // Use standard REST APIs, swagger:
@@ -40,12 +48,24 @@ export function listLost(pageNo) {
     return HTTPREQUEST.get('/mina/v1/lost', { pageNo, pageSize })
 }
 
-export function queryLost(id) {
+export function queryLost(lost_id) {
     /**
-     * @description 文章详情
-     * @param {number} id
+     * @description 寻亲详情
+     * @param {number} lost_id
      */
-    return HTTPREQUEST.get('/mina/v1/lost/', { id })
+    return HTTPREQUEST.get('/mina/v1/lost/' +lost_id)
+}
+
+export function lostShareCb({lost_id, share_key}) {
+    /**
+     * @description 寻亲详情页转发回调
+     * @param {number} lost_id 
+     * @param {string} share_key
+     */
+    console.log(lost_id)
+    console.log(share_key)
+
+    return HTTPREQUEST.get(`/mina/v1/lost/${lost_id}/share/${share_key}/callback`)
 }
 
 export function searchLost() {
