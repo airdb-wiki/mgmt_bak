@@ -51,15 +51,16 @@ function jumpToDetail() {
 .article_list_item {
   box-sizing: border-box;
   background: #fff;
-  // margin-bottom: 20rpx;
+  margin: 20rpx 0rpx;
+  border-radius: 20rpx;
+  border:1px solid #3333332e;
   .article_detail {
     box-sizing: border-box;
     display: flex;
     width: 100%;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    border-bottom: 1px solid #f5f6f6;
-    padding: 20rpx 40rpx;
+    padding:20rpx;
     .artclie_text_msg {
       flex: 1;
     }

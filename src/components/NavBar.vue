@@ -1,7 +1,7 @@
 <template>
   <view class="self_tabs">
     <view class="tab_header">
-      <button
+      <view
         v-for="item in tabList"
         :key="item.key"
         :class="item.key === activeKey ? 'item_active' : 'item'"
@@ -14,7 +14,7 @@
           :src="item.key === activeKey ? item.activeIcon : item.icon"
           style="height: 30rpx; width: 30rpx"
         />
-      </button>
+      </view>
     </view>
   </view>
 </template>
@@ -25,46 +25,49 @@ import { computed, defineComponent, PropType, toRefs } from "vue";
 export default defineComponent({
   name: "NavBar",
   data() {
+    /**
+     * [{"id":5,"name":"流浪乞讨"},
+     * {"id":4,"name":"其他寻人"},
+     * {"id":3,"name":"海外寻亲"},
+     * {"id":2,"name":"宝贝寻家"},
+     * {"id":1,"name":"家寻宝贝"}]
+     */
     return {
       tabList: [
         {
           label: "家寻",
-          key: "newest",
-          // icon: "http://static.gocoder.top/unfold.png",
-          // activeIcon: "http://static.gocoder.top/unfold_active.png",
+          key: 1,
         },
-        { label: "寻家", key: "column" },
-        { label: "其他", key: "pay" },
+        { label: "寻家", key: 2 },
+        { label: "其他", key: 4 },
       ],
-      activeKey: "newest"
+      activeKey: 1
     };
   },
   methods: {
     tabChang(activeKey) {
       this.activeKey = activeKey;
       this.$emit("change", activeKey);
-    },
+    }
   },
 });
 </script>
 
 <style lang="less">
 .self_tabs {
-  position: sticky;
-  top: 0;
+  width: 100%;
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
   .tab_header {
     display: flex;
     align-items: center;
-    height: 88rpx;
     align-items: center;
     color: #999;
-    border-bottom: 1rpx solid #f6f5f8;
     box-sizing: border-box;
     background: #fff;
     justify-content: space-around;
-
+    width: 100%;
+    padding:16rpx 0px;
     .item {
       font-size: 32rpx;
       text-align: center;
