@@ -26,13 +26,19 @@ export default {
   "tabBar": {
     "list": [{
       "pagePath": "pages/index/index",
-      "text": "首页"
+      "text": "首页",
+      "iconPath":'imgs/tabs/home.png',
+      "selectedIconPath":'imgs/tabs/home_selected.png'
     }, {
       "pagePath": "pages/rescue/index",
-      "text": "救助站"
+      "text": "救助站",
+      "iconPath":'imgs/tabs/doc.png',
+      "selectedIconPath":'imgs/tabs/doc_selected.png'
     }, {
       "pagePath": "pages/me/index/index",
-      "text": "我的"
+      "text": "我的",
+      "iconPath":'imgs/tabs/me.png',
+      "selectedIconPath":'imgs/tabs/me_selected.png'
     }]
   },
   "debug": false,
