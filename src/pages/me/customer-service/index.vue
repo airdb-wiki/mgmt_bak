@@ -2,10 +2,17 @@
   <view class="customer-service">
     <view class="customer-service-tip">
       <text class="title">FAQ 常见问题：</text>
-      <text class="text">1.紧急情况下，您可以通过客服联系我们，我们会有专业高效的客服会尽快回复您。</text>
-      <text class="text">2. 我们的客服会将您的情况进行搜集，并且会通知到下线的志愿者,触发线下救助流程。</text>
+      <text class="text"
+        >1.紧急情况下，您可以通过客服联系我们，我们会有专业高效的客服会尽快回复您。</text
+      >
+      <text class="text"
+        >2.
+        我们的客服会将您的情况进行搜集，并且会通知到下线的志愿者,触发线下救助流程。</text
+      >
       <text class="text">3. 整个过程是公益行为，不会收取任何费用。</text>
-      <text class="text">4.整个过程不会主动采集您的个人信息，是隐私的。只有微信头像和昵称是公开的。</text>
+      <text class="text"
+        >4.整个过程不会主动采集您的个人信息，是隐私的。只有微信头像和昵称是公开的。</text
+      >
       <text class="text">5. 欢迎大家积极参与、加入志愿者群。</text>
     </view>
     <view class="customer-list">
@@ -21,6 +28,7 @@ import {
   WXKF_YINGJIJIUYUAN,
   WXKF_JINJIXUNREN,
   WXKF_BBHJ,
+  WXKF_XINLIZIXUN,
 } from "../../../utils/wxkf";
 import CustomerItem from "../../../components/CustomerItem.vue";
 
@@ -31,7 +39,7 @@ export default defineComponent({
       {
         id: WXKF_ZUOHAOSHI,
         title: "一块做好事",
-        desc: "一块做好事，让社会更美好",
+        desc: "欢迎运营产品设计开发等技术人员加入志愿者, 一起做好事",
       },
       {
         id: WXKF_YINGJIJIUYUAN,
@@ -44,19 +52,19 @@ export default defineComponent({
         desc: "反馈、咨询救援物资需求情况",
       },
       {
-        id: WXKF_JINJIXUNREN,
+        id: WXKF_YINGJIJIUYUAN,
         title: "洪灾救援",
         desc: "洪水灾害救援",
       },
       {
-        id: WXKF_ZUOHAOSHI,
-        title: "志愿者",
-        desc: "成为线下寻人志愿者，帮助走失宝贝寻家",
+        id: WXKF_XINLIZIXUN,
+        title: "心理咨询",
+        desc: "(试运营)提供心理咨询服务",
       },
       {
         id: WXKF_ZUOHAOSHI,
-        title: "技术志愿者",
-        desc: "欢迎产品运营开发等技术人员加入，帮助我们提升服务质量",
+        title: "抗疫有我",
+        desc: "全民抗疫，一起努力打败疫情",
       },
     ];
 
@@ -76,11 +84,11 @@ export default defineComponent({
   .customer-service-tip {
     padding: 25px;
     border-radius: 8px;
-    background-image: url('../../../../imgs/bg_customer.jpg');
+    background-image: url("../../../../imgs/bg_customer.jpg");
     background-size: cover;
     background-position: center;
     overflow: hidden;
-    filter: drop-shadow(0 0 5px rgba(17,17,17,0.06));
+    filter: drop-shadow(0 0 5px rgba(17, 17, 17, 0.06));
     .title {
       display: block;
       font-size: 36px;
