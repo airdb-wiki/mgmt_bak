@@ -41,6 +41,7 @@
         "@tarojs/runtime": "3.3.11",
         "@tarojs/taro": "3.3.11",
         "hairline": "^1.0.0",
+        "taro-ui-vue3": "^1.0.0-alpha.21",
         "vue": "^3.0.0"
     },
     "devDependencies": {
