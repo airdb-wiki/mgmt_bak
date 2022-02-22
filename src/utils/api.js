@@ -12,8 +12,8 @@ import HTTPREQUEST from "./http"
 // https://airdb.dev/redoc/?url=https://service-iw6drlfr-1251018873.sh.apigw.tencentcs.com/test/mina/docs/swagger.json
 
 export const API_LIST = {
-    lost: '/mina/v1/lost',
-    rescue: '/mina/v1/rescue',
+    lost: '/bbhj/v1/lost',
+    rescue: '/bbhj/v1/rescue',
 }
 
 export function login(params) {
@@ -32,7 +32,7 @@ export function checkSession(code) {
      * @description 检查登录
      * @param {string} code 小程序登录code
      */
-    return get('/mina/v1/wechat/check_session', { code })
+    return get('/bbhj/v1/wechat/check_session', { code })
 }
 
 export function listLost(pageNo) {
@@ -45,7 +45,7 @@ export function listLost(pageNo) {
      */
     // return get('/articles', { page_no })
     const pageSize = 10
-    return HTTPREQUEST.get('/mina/v1/lost', { pageNo, pageSize })
+    return HTTPREQUEST.get('/bbhj/v1/lost', { pageNo, pageSize })
 }
 
 export function queryLost(lost_id) {
@@ -53,10 +53,10 @@ export function queryLost(lost_id) {
      * @description 寻亲详情
      * @param {number} lost_id
      */
-    return HTTPREQUEST.get('/mina/v1/lost/' +lost_id)
+    return HTTPREQUEST.get('/bbhj/v1/lost/' + lost_id)
 }
 
-export function lostShareCb({lost_id, share_key}) {
+export function lostShareCb({ lost_id, share_key }) {
     /**
      * @description 寻亲详情页转发回调
      * @param {number} lost_id 
@@ -65,7 +65,7 @@ export function lostShareCb({lost_id, share_key}) {
     console.log(lost_id)
     console.log(share_key)
 
-    return HTTPREQUEST.get(`/mina/v1/lost/${lost_id}/share/${share_key}/callback`)
+    return HTTPREQUEST.get(`/bbhj/v1/lost/${lost_id}/share/${share_key}/callback`)
 }
 
 export function searchLost() {
@@ -75,7 +75,7 @@ export function searchLost() {
      * @param {string} name
      * @param {string} city
      */
-    return HTTPREQUEST.get('/mina/v1/lost/', { id })
+    return HTTPREQUEST.get('/bbhj/v1/lost/', { id })
 }
 
 export function listRescue(pageNo) {
@@ -85,14 +85,14 @@ export function listRescue(pageNo) {
      * @param {number} pageSize
      */
     const pageSize = 10
-    return HTTPREQUEST.get('/mina/v1/rescue', { pageNo, pageSize })
+    return HTTPREQUEST.get('/bbhj/v1/rescue', { pageNo, pageSize })
 }
 export function queryRescue(id) {
     /**
      * @description 文章详情
      * @param {number} id
      */
-    return HTTPREQUEST.get('/mina/v1/rescue/', { id })
+    return HTTPREQUEST.get('/bbhj/v1/rescue/', { id })
 }
 
 export function searchRescue(city) {
@@ -101,5 +101,5 @@ export function searchRescue(city) {
      * @param {string} name
      * @param {string} city
      */
-    return HTTPREQUEST.get('/mina/v1/rescue/', { city })
+    return HTTPREQUEST.get('/bbhj/v1/rescue/', { city })
 }
