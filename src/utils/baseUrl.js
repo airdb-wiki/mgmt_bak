@@ -4,7 +4,7 @@ const BASE_URL = "https://scf.baobeihuijia.com"
 const getBaseUrl = (url) => {
     let domain = BASE_URL
     const system = Taro.getAccountInfoSync()
-    switch(system.miniProgram.envVersion) {
+    switch (system.miniProgram.envVersion) {
         case 'develop':
             domain += "/test"
             break;
@@ -12,7 +12,7 @@ const getBaseUrl = (url) => {
             domain += "/test"
             break;
         case 'release':
-            domain += "/test"
+            domain += "/release"
             break;
     }
     return domain
