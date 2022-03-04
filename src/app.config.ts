@@ -9,6 +9,7 @@
 export default {
   pages: [
     'pages/index/index',
+    'pages/lost/create/index',
     'pages/rescue/index',
     'pages/article/detail/index',
     'pages/me/index/index',
@@ -27,18 +28,18 @@ export default {
     "list": [{
       "pagePath": "pages/index/index",
       "text": "首页",
-      "iconPath":'imgs/tabs/home.png',
-      "selectedIconPath":'imgs/tabs/home_selected.png'
+      "iconPath": 'imgs/tabs/home.png',
+      "selectedIconPath": 'imgs/tabs/home_selected.png'
     }, {
       "pagePath": "pages/rescue/index",
       "text": "救助站",
-      "iconPath":'imgs/tabs/doc.png',
-      "selectedIconPath":'imgs/tabs/doc_selected.png'
+      "iconPath": 'imgs/tabs/doc.png',
+      "selectedIconPath": 'imgs/tabs/doc_selected.png'
     }, {
       "pagePath": "pages/me/index/index",
       "text": "我的",
-      "iconPath":'imgs/tabs/me.png',
-      "selectedIconPath":'imgs/tabs/me_selected.png'
+      "iconPath": 'imgs/tabs/me.png',
+      "selectedIconPath": 'imgs/tabs/me_selected.png'
     }]
   },
   "debug": false,

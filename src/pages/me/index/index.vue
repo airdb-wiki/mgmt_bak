@@ -11,6 +11,17 @@
 
     <nut-cell-group class="info">
       <nut-cell
+        title="走失信息录入"
+        is-link
+        class="info-item"
+        @tap="toRoute('follow')"
+      >
+        <template #icon>
+          <image class="item-icon" :src="followImg" />
+        </template>
+      </nut-cell>
+
+      <nut-cell
         title="我跟踪的"
         is-link
         class="info-item"
