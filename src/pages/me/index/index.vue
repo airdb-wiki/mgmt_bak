@@ -11,6 +11,16 @@
 
     <nut-cell-group class="info">
       <nut-cell
+        title="信息录入"
+        is-link
+        class="info-item"
+        @tap="infoEntry()"
+      >
+        <template #icon>
+          <image class="item-icon" :src="followImg" />
+        </template>
+      </nut-cell>
+      <nut-cell
         title="我跟踪的"
         is-link
         class="info-item"
@@ -103,6 +113,11 @@ export default {
     };
   },
   methods: {
+    infoEntry() {
+      Taro.navigateTo({
+        url: '/pages/me/infoEntry/index',
+      });
+    },
     handleSetting() {
       console.log("xx");
       Taro.openSetting({

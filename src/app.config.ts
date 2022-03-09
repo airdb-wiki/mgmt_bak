@@ -16,6 +16,7 @@ export default {
     'pages/me/history/index',
     'pages/me/follow/index',
     'pages/me/customer-service/index',
+    'pages/me/infoEntry/index'
   ],
   window: {
     backgroundTextStyle: 'light',

@@ -15,6 +15,7 @@ import {
   Button,
   Collapse,
   CollapseItem,
+  Input
 } from '@nutui/nutui-taro'
 import { mpAutoUpdate } from  './common/utils.js'
 import "@nutui/nutui-taro/dist/style.css";
@@ -36,5 +37,6 @@ App
   .use(Button)
   .use(Collapse)
   .use(CollapseItem)
+  .use(Input)
 
 export default App
