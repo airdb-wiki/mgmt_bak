@@ -10,12 +10,7 @@
     </view>
 
     <nut-cell-group class="info">
-      <nut-cell
-        title="信息录入"
-        is-link
-        class="info-item"
-        @tap="infoEntry()"
-      >
+      <nut-cell title="信息录入" is-link class="info-item" @tap="infoEntry()">
         <template #icon>
           <image class="item-icon" :src="followImg" />
         </template>
@@ -115,7 +110,7 @@ export default {
   methods: {
     infoEntry() {
       Taro.navigateTo({
-        url: '/pages/me/infoEntry/index',
+        url: "/pages/index/create/index",
       });
     },
     handleSetting() {
