@@ -19,6 +19,7 @@ export default {
     'pages/me/customer-service/index'
   ],
   "pageAlias": {
+    "pages/lost/create/index": "pages/index/create/index",
     "pages/index/xx": "pages/index/index",
   },
   window: {
