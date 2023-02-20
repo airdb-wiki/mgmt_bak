@@ -1,9 +1,0 @@
-{
-  "miniprogramRoot": "./",
-  "projectname": "mp-bbhj",
-  "appid": "wxc4e11081e3d5bdf7",
-  "setting": {
-    "es6": false,
-    "minified": false
-  }
-}

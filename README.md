@@ -1,38 +1,23 @@
-## 产品
+# Team Management 团队管理
 
-![宝贝回家](imgs/search_mina.png)
+## 人员管理
 
-[![Stargazers over time](https://starchart.cc/airdb/mina.svg)](https://starchart.cc/airdb/mina)
+SIG 特别兴趣组管理规范: [参考](https://github.com/airdb/mgmt/blob/main/sig/README.md)
 
-[Figma org](https://www.figma.com/@airdb)  
-[设计图 - new](https://www.figma.com/file/xcoF6ywUadcB81F4mVn8cW/mina)
+## 流程规范
 
-[设计图](https://org.modao.cc/app/9358480b82ba8ef102789b663a3e4715)
+Comming soon ~~
 
+## 捐赠管理
 
-## 项目
-[进度与任务](https://github.com/orgs/airdb/projects/6)
+官方渠道: [点击查阅](https://github.com/sponsors/airdb?frequency=one-time)
 
-## 开发
+个人捐赠: [点击查阅](https://github.com/airdb/mgmt/blob/main/sponsors/individual.md)
 
-[Taro](https://taro.jd.com/) + [Taro-UI-Vue3](https://github.com/b2nil/taro-ui-vue3)
+## 文化建设
 
+## 社区贡献 Community Contribution
 
-## License
+Personal Projects:  [Checkout!](https://github.com/airdb/mgmt/blob/main/contribution/personal_project.md)
 
-MIT
-
-
-
-# Mina
-
-![Build Status](https://github.com/bbhj/mina/workflows/Node/badge.svg)
-
-> Searching for missing children, and help them come back home.
-
-We are a technical team with love and emotions.
-
-Welcome to join us.
-
-:)
-
+Team Projects:  [Checkout!](https://github.com/airdb/mgmt/blob/main/contribution/team_project.md)
