@@ -1,0 +1,13 @@
+name: Message Notify
+on: [push]
+jobs:
+
+  notification:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Discord notification
+      env:
+        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+      uses: Ilshidur/action-discord@master
+      with:
+        args: '{{ GITHUB_SERVER_URL }}/{{ GITHUB_REPOSITORY }} The branch {{ GITHUB_REF_NAME }} has been pushed by {{ EVENT_PAYLOAD.sender.login }}.'
