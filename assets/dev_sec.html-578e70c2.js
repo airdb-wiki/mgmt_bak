@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-dc906e46","path":"/roles/dev_sec.html","title":"Security Develop Enginer","lang":"en-US","frontmatter":{},"headers":[{"level":2,"title":"职责","slug":"职责","link":"#职责","children":[]}],"git":{"updatedTime":1677867945000,"contributors":[{"name":"deancn","email":"dean@airdb.com","commits":1}]},"filePathRelative":"roles/dev_sec.md"}');export{e as data};

@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-70f06360","path":"/weekly/2023-q1.html","title":"2023 Q1","lang":"en-US","frontmatter":{},"headers":[],"git":{"updatedTime":1677867945000,"contributors":[{"name":"deancn","email":"dean@airdb.com","commits":1}]},"filePathRelative":"weekly/2023-q1.md"}');export{e as data};

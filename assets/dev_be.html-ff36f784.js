@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-44caa221","path":"/roles/dev_be.html","title":"Backend Develop Enginer","lang":"en-US","frontmatter":{},"headers":[{"level":2,"title":"职责","slug":"职责","link":"#职责","children":[]}],"git":{"updatedTime":1677867945000,"contributors":[{"name":"deancn","email":"dean@airdb.com","commits":1}]},"filePathRelative":"roles/dev_be.md"}');export{e as data};

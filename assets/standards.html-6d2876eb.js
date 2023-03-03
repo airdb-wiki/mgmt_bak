@@ -1,0 +1,1 @@
+const a=JSON.parse('{"key":"v-9cf050c8","path":"/team/standards.html","title":"团队分工相关","lang":"en-US","frontmatter":{},"headers":[],"git":{"updatedTime":1677867945000,"contributors":[{"name":"deancn","email":"dean@airdb.com","commits":1}]},"filePathRelative":"team/standards.md"}');export{a as data};
