@@ -11,19 +11,22 @@ export const sidebarEn: SidebarConfig = {
       ]
     },
   ],
-  '/okr/': [
+  '/ways/': [
     {
-      text: 'OKR 的背景',
+      text: '学习和管理方法',
       children: [
-        '/okr/README.md',
-        '/okr/2022.md',
-        '/okr/2023.md',
+        '/ways/README.md',
+        '/ways/efficient-communication.md',
+        '/ways/4-ways-to-learn.md',
+        '/ways/m1-ability.md',
+        '/ways/time-management.md'
       ],
     },
     {
       text: 'OKR 之剑',
       children: [
-        '/okr/swordman/README.md',
+        '/ways/swordman/README.md',
+        '/ways/grad.md',
       ],
     },
   ],
@@ -37,6 +40,7 @@ export const sidebarEn: SidebarConfig = {
     {
       text: '2023',
       children: [
+        '/weekly/okr_2023.md',
         '/weekly/2023.md',
         '/weekly/2023-q1.md',
       ]
@@ -45,6 +49,7 @@ export const sidebarEn: SidebarConfig = {
       text: '2022',
       collapsible: true,
       children: [
+        '/weekly/okr_2022.md',
         '/weekly/2022.md',
         '/weekly/2022-q1.md',
         '/weekly/2022-q2.md',
