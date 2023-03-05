@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-157dd9f2","path":"/ways/","title":"公共部分内容","lang":"en-US","frontmatter":{},"headers":[{"level":2,"title":"HRBP 方法论","slug":"hrbp-方法论","link":"#hrbp-方法论","children":[]}],"git":{"updatedTime":1677901029000,"contributors":[{"name":"deancn","email":"dean@airdb.com","commits":1}]},"filePathRelative":"ways/README.md"}');export{e as data};

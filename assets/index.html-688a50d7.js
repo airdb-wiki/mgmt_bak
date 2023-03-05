@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-dc256840","path":"/ways/swordman/","title":"OKR 之剑","lang":"en-US","frontmatter":{},"headers":[{"level":2,"title":"Overview","slug":"overview","link":"#overview","children":[]}],"git":{"updatedTime":1677901029000,"contributors":[{"name":"deancn","email":"dean@airdb.com","commits":1}]},"filePathRelative":"ways/swordman/README.md"}');export{e as data};

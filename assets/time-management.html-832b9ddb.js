@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-ad61ff30","path":"/ways/time-management.html","title":"时间管理","lang":"en-US","frontmatter":{"title":"时间管理"},"headers":[],"git":{"updatedTime":1677901029000,"contributors":[{"name":"deancn","email":"dean@airdb.com","commits":1}]},"filePathRelative":"ways/time-management.md"}');export{e as data};
